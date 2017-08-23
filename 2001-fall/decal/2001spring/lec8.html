@@ -1,0 +1,136 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 8</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 8 notes:</h1>
+
+Thanks to Steve Calahan for preparing this lecture.
+
+<h2>administrivia:</h2>
+        <B>Enrollment</B>
+        Any problems?  Please email me to get on the course announcement list:
+        jones@csua.berkeley.edu
+
+        <B>Getting Help</B>
+        If you have trouble, please email me, or one of the other teachers.
+        The OCF staffers are often around the lab, and can be helpful.
+        Don't forget your classmates can also be helpful.  
+
+        <b>Class Project</b>
+
+        The course project description is in <a href=lec5.html>Lecture 5</a>.
+
+        <B>Questions?</B>
+
+<hr width=50%>
+
+<h2>class notes:</h2>
+
+<h3>The Shell</h3>
+
+The shell is what makes unix great.  Sure people will boast the stability,
+but windows is getting to the point where is sucks to a much lesser extent
+than in years past.  Others might say speed, but this is an abstract
+concept, as what makes unix run faster on a lot of systems is that the
+company which built the system, wrote the OS, and wrote it specifically to
+run with that hard ware, giving them an "unfair" advantage.  There are
+millions of other little advantages, better file systems, multi-user
+capabilities, and remote access, but none of these are worth a damn without
+the shell.<br> The way that unix works is that the entire operating system
+is run by a kernel.  The only way to talk to the kernel is through the
+shell.  It is the gate keeper of all, your manner of communicating with the
+machine, and what's beautiful about it is that the shell is a perfect
+compromise of machine language and human contemplation.  One possibility
+would be to compute everything using assembly commands, which the computer
+understands immediately, but that sucks, especially since the language is
+really ugly looks more like math than english, and I'm going to be stuck the
+whole night programming in it.  The other option is to point and click your
+way around like a monkey.  This is great for the average imbecile, but a lot
+of the problems that occur with the stupidity of Windows users is that they
+don't understand what is going on with the computer and the operating system
+claims that they don't have to.  You click a button that is there and things
+move, so when you need to learn how to do something new, you have little
+idea where to look, and when something goes wrong, you certainly don't know
+what happened.  <br> The shell takes in commands in the same way that a
+programming language interprets your code.  Lets use java because it's
+popular and sexy:<br>
+
+<b>java:</b><br>
+int number = 1;<br>
+number = number + 1;<br>
+<br>
+<i> number now equals 2</i><br>
+<b>shell:</b><br>
+let "number = (1)"<br>
+let "number = (number + 1)"<br>
+<br>
+<i> number now equals2</i><br>
+<br>
+
+Therefore all the commands that you have been taught to input into the shell
+are better thought of as evaluations of the shell.  When you type at the
+prompt something like:<br>
+
+<br>
+bash$ cat letter.txt > spell<br>
+<br>
+It will be evaluated by the shell in the following manner.<br>
+
+The shell will read first parse in this text and look for what is of highest
+priority.  That is redirection.  The key strength of the shell is i/o input
+and output.  It redirects information from one source to another.  The way
+that your most familiar with is the redirection of information from the hard
+drive to the monitor, or standard out.  (stout)  In this case the first
+redirection to not is ">" it redirects the output of the first part of the
+expression "cat letter.txt" into a program called spell, which which will
+output this information to stout, which in this case will be the screen.<br>
+
+<br>
+
+This one command will quickly spell check any document.  To do this with c
+is a very annoying and difficult task.  I know this because the first
+programming project for cs61c is philspell, and it's a really crappy spell
+checker, depending on your library, but I won't get into that.  phil spell
+was hundreds of lines of code for me.  On the other hand this was one line .
+. .<br>
+
+<br>
+
+<i>OK, well I'm going into too much depth for notes.  After this I would
+note that the shell is an ideal first language because so much can be done
+in so little time.  Source to site, eye candy the window manager:</i><br>
+
+<br>
+Why to make "eyecandy"<br>
+# /bin/bash<br>
+<br>
+#EyeCandy --Calman<br>
+#Ooh boy this is gonna be cool<br>
+#oh so pretty!<br>
+<br>
+nautilus &<br>
+if [-e /home/$USER/.eyecandy/custom] ; then<br>
+	sawfish /home/$USER/.eyecandy/custom &<br>
+else <br>
+	sawfish <br>
+fi<br>
+<br>
+exec panel<br>
+
+<h2>homework</h2>
+
+write "hello world"
+
+write a shell script that prints out "hello world" if given no arguements,
+and prints out "hello arguement" when given an arguement.
+
+mail your script to jones@xcf.berkeley.edu
+
+<br>
+</body>
+</html>

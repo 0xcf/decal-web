@@ -1,0 +1,116 @@
+CS198 Intermediate Systems Administration DeCal
+Lab #6
+Joshua Kwan
+
+I've decided to continue using the text-based format for labs simply
+because making it look good is way too difficult.
+
+This lab will test your skills with shell scripting. You need, need,
+need to have the lecture (or an equivalent shell scripting guide) open
+while doing this lab, as you're going to be using things you learned in
+class.
+
+There's only going to be two questions because they both involve you
+writing significant shell scripts!
+
+I. TV Episode Renamer
+---------------------
+
+You work for a television company. For archival, the company is keeping
+copies of the first season of its new show, "America's Next Top Student Model."
+However, the files are named oddly:
+
+s01e01.avi
+s01e02.avi
+s01e03.avi
+... more ...
+s01e10.avi
+
+You have been given a list of official episode names and you have been tasked
+with renaming the files into this format:
+
+1$EPISODE - $TITLE.avi
+
+where $EPISODE is zero-padded (10 remains 10, but 3 becomes 03.)
+
+The episode names are as follows:
+
+Top Student Ahram
+Top Student Dwight
+Top Student Hubert
+Top Student Micah
+Top Student Jessica
+Top Student Antony
+Top Student Jordi
+Top Student David
+Top Student Nathan
+Top Student Jose
+
+(thus, episode 1 would be properly named "101 - Top Student Ahram.avi.")
+
+Write a shell script that uses this file as input and renames each file
+in the above format. I should be able to run it with:
+
+$ rename-tv < episode_names
+
+in a directory that contains all the original filenames.
+
+Hints:
+- Remember to prefix your script with #!/bin/sh and then chmod +x it before
+  you run it. If it won't load, do you need to put "./" in front of the program
+  name?
+- Copy and paste the episode names into a file and use that for your testing.
+- If you want to create empty files with the original filenames mentioned
+  above, do this:
+
+  for i in `seq 1 9`; do touch s01e0$i.avi; done; touch s01e10.avi
+
+II. Pig Latin Revisited
+-----------------------
+
+Last lab, we tried to figure out a regular expression to convert a
+sentence into Pig Latin. It turns out that it is much easier to do it
+on a word by word level with a shell script, and you've learned all
+you need to do it.
+
+Assume sentences only contain letters and spaces, don't consider having
+to special case numbers. You can either use standard input (read) or
+pass the sentence on the command line, whichever you think is easier. For
+the former, I should be able to run it like this:
+
+$ echo "The quick brown fox jumped over the lazy dog" | piglatin
+
+for the latter,
+
+$ piglatin The quick brown fox jumped over the lazy dog
+
+Here's how pig latin works:
+- for words that start with a consonant, move the first letter to the
+  end then tack on -ay.
+- for words that start with a vowel, just add -ay.
+
+Here are some tips:
+- if you intend to use a read loop, read will read a whole *line* into a
+  variable. To split it into words, you can include it into an inner loop
+  like this:
+
+  for word in $sentence; do
+  	...
+  done
+
+  Due to the way the shell behaves, each space-separated word in the sentence
+  will be iterated over one at a time. Compare this to
+
+  for word in "$sentence"; do
+
+  In this case, there will be only one item in the loop and it will be 
+  the entire contents of $sentence.
+- You can compare the first character of a word using case.
+  case "$word" in
+  	[aeiou]*) ... vowel case ... ;;
+	*) ... everything else ... ;;
+  esac
+
+  (note: yours has to handle uppercase letters too.)
+
+If you're confused, please come to office hour!

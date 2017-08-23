@@ -1,0 +1,79 @@
+CS198 Intermediate Systems Administration DeCal
+Week 5 Lab - George Wu
+-----------------------------------------------
+
+In this lab the focus is to just let you play with all the power tools you've
+just learned about. This lab is in text format so you can use it as a corpus
+for any text manipulation tasks you may want to try out. (For some questions
+you are advised to copy the relevant sections you need to process into a
+separate text file.)
+
+Thus, if you want a copy of this whole text file for yourself, just log into
+your server and wget the lab URL!
+
+This is an individual lab, so I would like individual submissions from each
+student this time. Email solutions to geo+decal@OCF.Berkeley.EDU.
+
+I. Regular Expressions
+
+I went over regular expressions very briefly in lecture on purpose; there is
+so much to learn about them that it is best to just learn by example and
+experiment. Please have http://www.ternent.com/tech/regexp.html open for this
+question.
+
+1. Create a regular expression that matches against hyphenated Social Security
+   numbers.
+2. Create a regular expression that matches against email addresses (to the
+   best of your knowledge; don't stress out about being too precise.)
+3. Create a regular expression that matches against RFC 822 dates (such as
+   those returned by the 'date -R' command.)
+
+II. Implementing a rudimentary database with cut, wc, sort, and grep
+
+The following is a CSV (comma-separated values) excerpt representing a table
+of student names, user IDs, group numbers, and grades. Copy this excerpt into
+a separate text file so you can manipulate it.
+
+(This is last semester's roster, the only difference is that everyone actually
+passed last semester. High hopes for all this time around! :D)
+
+Emily,cb,2,P
+Graeme,cf,2,P
+Joe,cg,3,NP
+Gazi,cj,2,P
+Jason,db,1,NP
+Victor,dc,1,P
+
+Show the command you used to find the answer, and you do have to come up with
+a command; you can't just look at the data above. :P
+
+1. Use grep to find the students that did NOT pass the class. Then, use cut to
+   display only their names.
+2. Use grep to find the students in group 2. Then, use wc to count how many
+   students there are in that group.
+4. (Open-ended.) Display the list of students' names, IN ASCENDING ORDER BY
+   USER ID.
+
+III. Using sed
+
+For this exercise, you can use this lab questions file as an input to sed.
+
+1. Change all capital or lowercase instances of "s" into "hooray".
+2. In sed, you can use '&' in a replacement expression to represent the original
+   part of the line that was matched. E.g.
+
+   s/test/&er/
+
+   will change 'test' into 'tester' on each line.
+
+   Devise a sed expression that will change all instances of 'to' to 'atone'
+   using this construct.
+3. BONUS/JUST FOR FUN: Devise a sed expression or series of sed expressions that
+   will change a sentence into pig latin. Doesn't have to be perfect. (Look it
+   up if you don't know what it is.)
+
+   You can test with the following sentence if you like:
+   "The quick brown fox jumped over the lazy dog."
+
+   The correct result should be
+   "Ethay ickquay ownbray oxfay umpedjay overway ethay azylay ogday."

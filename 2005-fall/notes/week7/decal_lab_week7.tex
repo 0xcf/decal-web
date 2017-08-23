@@ -1,0 +1,94 @@
+%% LyX 1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ \newenvironment{lyxcode}
+   {\begin{list}{}{
+     \setlength{\rightmargin}{\leftmargin}
+     \setlength{\listparindent}{0pt}% needed for AMS classes
+     \raggedright
+     \setlength{\itemsep}{0pt}
+     \setlength{\parsep}{0pt}
+     \normalfont\ttfamily}%
+    \item[]}
+   {\end{list}}
+
+\usepackage{babel}
+\makeatother
+\begin{document}
+
+\title{System Administration for the Web:\\
+Week 7 Lab}
+
+
+\date{October 24, 2005}
+
+\maketitle
+
+\section{Notes}
+
+This laboratory focuses entirely upon programming in Perl. We understand
+that many of you have had no programming experience at all, so we've
+tried to make this laboratory as simple as possible. However, don't
+feel too bad if you don't completely understand what you're doing
+-- we aren't expecting you to learn how to program in just 40 minutes.
+\emph{You should be able to complete these exercises, though}. We're
+planning on making one part of the project a programming exercise,
+so it's in your best interests to at least attempt to complete this
+assignment and ask questions if you run into trouble.
+
+
+\section{Running Perl Programs}
+
+To a computer, Perl programs are just ordinary text files. They only
+know to run a Perl program if you give your Perl program the appropriate
+permissions. In this case, the minimum permissions are read and execute.
+
+If you've correctly specified the \emph{shebang} line and set the
+correct permissions, executing your Perl program is as simple as typing
+something like the following:
+
+\begin{lyxcode}
+./my\_perl\_program
+\end{lyxcode}
+in the directory that contains your Perl program. In the off-chance
+that you've accidentally created an infinite loop in your program,
+please recall that you can press \texttt{Ctrl-C} to terminate the
+execution of a program.
+
+
+\section{Lab for Week 7}
+
+
+\subsection{Modifying A Simple Perl Program}
+
+The first half of this laboratory will be modifying the guessing number
+game presented during lecture and in the lecture notes. I've conveniently
+placed a copy of this program in the \texttt{/home/cc/cs198/fa05/class/cs198-ec/labs/lab7}
+directory.
+
+\begin{description}
+\item [{[}1{]}]Copy the \texttt{guess\_the\_number.pl} file to your home
+directory.
+\item [{[}2{]}]Modify the program to ask the user for the maximum random
+number.
+\item [{[}3{]}]Modify the program to count the number of guesses a person
+uses and to print this number when the user guesses the correct number.
+\end{description}
+
+\subsection{Writing Your Own Programs}
+
+\begin{description}
+\item [{[}1{]}]Write a program that prompts the user for and reads two
+numbers (on separate lines of input) and prints out the product of
+the two numbers multiplied together.
+\item [{[}2{]}]Write a program that will ask the user for a given name
+and report the corresponding family name. Use a hash of given and
+family names in your program.
+\end{description}
+
+\end{document}

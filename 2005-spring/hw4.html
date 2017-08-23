@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>System Administration for the Web: Homework 4</TITLE>
+<META NAME="description" CONTENT="System Administration for the Web: Homework 4">
+<META NAME="keywords" CONTENT="hw4">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="hw4.css">
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev_g.png">   
+<BR>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<H1 ALIGN="CENTER">System Administration for the Web: Homework 4</H1>
+<DIV CLASS="author_info">
+
+<P ALIGN="CENTER"><STRONG>Randy Chung</STRONG></P>
+</DIV>
+
+<H1><A NAME="SECTION00010000000000000000">
+Part 0: Organization</A>
+</H1>
+    Since this homework was posted late, it is not due until Friday of this coming week (3/11).
+
+<P>
+Before you get started, you should know that this is a group assignment.  The first thing you should do is decide who's account to use for this assignment.  You'll be using an OCF account, so if I see any cs198-xx accounts as the name of the account you're using, very bad things will happen to you.  Your group was assigned a host and a port to use during class.  If you don't remember your group's information, send us an email and we'll get it to you.  This assignment only has to be done on one account, but everybody should contribute.
+
+<H1><A NAME="SECTION00020000000000000000">
+Part 1: Compile Apache and PHP</A>
+</H1>
+    During class, you compiled Apache.  Since most of you didn't finish it, we're going to do it again.  These are the steps that you should follow:
+    
+<UL>
+<LI>Download the source
+</LI>
+<LI>Extract the source
+</LI>
+<LI>Configure
+</LI>
+<LI>Compile
+</LI>
+<LI>Install
+    
+</LI>
+</UL>
+<H2><A NAME="SECTION00021000000000000000">
+Download the Source</A>
+</H2>
+    Open a web browser and navigate to http://www.apache.org.  Click on the link to ``HTTP Server'' on the menu on the left (it'll be the topmost entry).  We'll be downloading Apache 2.0.53.  First, log in to your OCF account.  Then, in your web browser, look for the link to the Unix source, particularly the gzipped version (it will end in .gz, whereas the bzip2 version will end in .bz2).  Right click the link and copy the url.  Go back to your SSH session, and type in the following command:
+    <PRE>
+    wget (the URL)
+</PRE>
+    Hit enter, and this will download the source.
+    
+<H2><A NAME="SECTION00022000000000000000">
+Extract the source</A>
+</H2>
+    Since the OCF uses Solaris, and has the GNU tools installed with a prefix of 'g' (e.g. 'tar' is 'gtar'), you have two ways of extracting the source.  One uses the Solaris set of tools to do it, and the other uses the GNU tools.  We provide both methods for your perusal, but suggest using the GNU tools since they have many more features.
+
+<P>
+For Solaris' tools:
+    <PRE>
+    gzip -dc (filename) | tar xvf -
+</PRE>
+    What this will do is run the program gzip, telling it to decompress the file, and send it to standard out (which usually goes to the screen), but we then pipe it to tar (so all the output of the gzip command becomes the input of the tar command), and we tell tar to (e)xtract, be (v)erbose, and that the input comes from a (f)ile (in this case, the dash specifies standard input, usually the keyboard, but since we've redirected it in this case it comes from the output of gzip).
+
+<P>
+For GNU's tools:
+    <PRE>
+    gtar xvzf (filename)
+</PRE>
+    As you can see, GNU's tools makes life much happier by just passing in an extra flag, which tells it to take care of (z)ipping and unzipping files on the fly.
+    
+<H2><A NAME="SECTION00023000000000000000">
+Configure</A>
+</H2>
+    For this class, we'll be installing the webserver to a subdirectory of your home directory.  We'll also be installing Apache with shared object support (more on this in the coming week).  First, go into the directory that was just extracted.  Then, issue the following command:
+    <PRE>
+    ./configure --prefix=$HOME/decal --enable-so
+</PRE>
+    This tells the configure script to configure everything to be installed to your home directory, under the subdirectory decal.  You'll see what this means when we're done with all the steps.  This might take a while, so go play some video games or take a walk.
+    
+<H2><A NAME="SECTION00024000000000000000">
+Compile</A>
+</H2>
+    Once the configuration step has finished, there will hopefully be no problems.  At this point, we use the make program to compile everything.  Since we want to use GNU's make and not Solaris make, type in the following:
+    <PRE>
+    gmake
+</PRE>
+    and you're done.  This will take a long time (20+ minutes), so go do something else for a while.
+    
+<H2><A NAME="SECTION00025000000000000000">
+Install</A>
+</H2>
+    If all went well, the compiling process should end normally.  At this point we run the final command, which is
+    <PRE>
+    gmake install
+</PRE>
+    which will install everything into your home directory, under the subdirectory 'decal'.  Try going in there and seeing what's in the directory; you should see some directories like bin, sbin, lib, and others.  At this point, we're done installing Apache.  Congratulations!
+
+<P>
+
+<H2><A NAME="SECTION00026000000000000000">
+PHP Support</A>
+</H2>
+    Next, we're going to add PHP support.  The first thing you should do is download the source from http://www.php.net and configure and compile it.  You should follow roughly the same outline as above for installing Apache (with some adjustments for filename and such).  Try to work this one out as a group; you should be able to figure everything out based on the information above and online documentation at PHP's website.  One thing you will need to do is configure PHP to use a support program called apxs, which will allow you to compile PHP as a module for Apache (we'll talk about this more in the coming week).  For now, all you'll need to know is that when you run configure for PHP, use the following line:
+    <PRE>
+	    ./configure --prefix=$HOME/decal --with-apxs2=$HOME/decal/bin/apxs
+</PRE>
+
+<P>
+Once you've compiled and installed PHP, you'll have to edit Apache's configuration file, which will be located in your home directory, under the decal subdirectory, under conf.  In short, it will be in $HOME/decal/conf, and it will be called httpd.conf.  This is the file we'll be editing for all changes in the server's configuration, which brings us to our next section*...
+
+<P>
+
+<H2><A NAME="SECTION00027000000000000000">
+Configuring Apache</A>
+</H2>
+    There are two changes we'll make to the configuration file: one is to change the default port the server listens on, and the other will be adding PHP support.  To make the first change, open httpd.conf with your favorite text editor and change the line that says
+    <PRE>
+    Listen 80
+</PRE>
+    to:
+    <PRE>
+    Listen (the port you were assigned)
+</PRE>
+    If you haven't been assigned a port number because you haven't submitted your group information, DO IT NOW.  If you do not have a group, you should let us know NOW.  At the beginning of the semester I mentioned that there are a few (very few) ways to fail the class.  Not being in a group and/or not contributing to the group is one of them.  If you don't remember your port, have your group leader contact us and we'll send you a reminder.
+
+<P>
+Next, we'll be adding support for PHP.  Looking in httpd.conf again, look for lines that begin with AddType (some of them might be commented out, which you can tell because they'll have a hash symbol in front of it).  We're going to add a line to tell the webserver that files ending in .php should be processed with the PHP engine:
+    <PRE>
+    AddType application/x-httpd-php .php
+</PRE>
+
+<P>
+We'll also want to add a line to the configuration file to tell the webserver that if you try to open a web page, it will first look for an index.php, then an index.html, and so forth.  The line we're looking for is:
+    <PRE>
+    DirectoryIndex index.html (possible trailing stuff here)
+</PRE>
+    We want to change that to:
+    <PRE>
+    DirectoryIndex index.php index.html (whatever was here as well)
+</PRE>
+    After this, we start (or restart) the webserver, by using the apachectl command.  You can do this by going to $HOME/decal/bin, as follows:
+    <PRE>
+    cd $HOME/decal/bin
+    ./apachectl start (or, alternatively, restart)
+</PRE>
+    With this we should be done, so now we test to see if everything went correctly.
+
+<H1><A NAME="SECTION00030000000000000000">
+Part 2: Simple Testing</A>
+</H1>
+    Since the goal of this class is not to produce oodles and oodles of content, what we'll be expecting you to do is just a simple PHP script to make sure that things are working.
+
+<P>
+Go to the htdocs directory of your Apache installation, which holds default files for the webserver.  By default, this will be in $HOME/decal/htdocs (since we installed to $HOME/decal).  Make a new directory called test, and create a new file in it.  We'll call this file index.php.  The whole path to the file is thus $HOME/decal/htdocs/test.php.  The contents of this file should be the following (and only the following):
+
+<P>
+<PRE>
+    &lt;?php
+    phpinfo();
+    ?&gt;
+</PRE>
+
+<P>
+Let's see if everything worked correctly.
+
+<P>
+Open a web browser.  The address we'll be going to depends on the machine and port you were assigned.  If you were assigned to use firestorm, port 10001, you would go to http://firestorm.ocf.berkeley.edu:10001.  If you were assigned blizzard and port 10007, you would go to http://blizzard.ocf.berkeley.edu:10007.  When you go to this site, you should see an Apache test page, which means Apache is working.  Celebrate!  If not, something has gone wrong and you need to retrace your steps.  Now, to see that PHP is working, go to the test directory, e.g. http://firestorm.ocf.berkeley.edu:10001/test/index.php.  If the script runs and outputs a bunch of information, then congratulations!  You're done.  Email us and let us know so we can check it out.  If you want to be adventurous, feel free to add more files to try it out (but you don't have to...yet.)
+
+<H1><A NAME="SECTION00040000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG>System Administration for the Web: Homework 4</STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2002-2-1 (1.70)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 hw4.tex</TT>
+<P>
+The translation was initiated by randy on 2005-03-05
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev_g.png">   
+<BR></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+randy
+2005-03-05
+</ADDRESS>
+</BODY>
+</HTML>

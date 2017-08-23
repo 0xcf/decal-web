@@ -1,0 +1,30 @@
+\documentclass[10pt]{article}
+\usepackage{setspace, fullpage}
+\title{Week 2 Notes}
+\begin{document}
+\maketitle
+\section{System Administration Tools}
+Note: In the notes we will try to make commands look {\bf bold} and directories like \emph{/usr/local/} for emphasis. Also, when we refer to *NIX, we are using that to symbolize the OSes including but limited to Solaris, Linux and BSD.
+\subsection{know the commands}
+You have been empowered with the option of being able to edit the commands.
+\subsection{know a text editor}
+Since you are given the power of being able to edit system information by yourself, most of the time using the command line will not be enough. You will need how to use a \emph{(gasp)} text editor. The text editor wars are no less extensive than the ones going on in the Capitol (but are more important in our opinion),  vim vs emacs, ed vs vim, vim vs vim, etc. 
+
+Vim is the editor which is possibly the best available right now, and is most often used by people in the business, however it does a steep learning curve as it much different from what you've used before. It has advantages as some disadvantages when compared to emacs (we will not compare it to nano, pico, gedit, since those are not used as commonly nor have as many features in our opinion). Advantages are that it loads real fast, has a lot of shortcuts, and basically allows the user to faster crank out text. Disadvantages are that there are not as many features compared to emacs, and that every time you use vim a kitten dies (just kidding).
+\subsection{RTFM}
+Leaving the most important for last. Not even the most experienced administrator can remember all of the options, tricks of all the software. Things change, and hence one must keep up. Learning how to find \emph{relevant} and \emph{correct} information is the most useful skill one can learn. Nobody is born knowing which options {\bf ssh} takes to enable X-forwarding, however, everybody should be able to quickly look those things up.
+
+There are two main sources for you. One is the Internet (Google), and the other is the manual {\bf man} pages that come with each *NIX variant. {\bf man ssh} for example will give the user the manual of {\bf ssh} command which will include all of the options that the command takes and what they do, and some information like who wrote the tools, bugs, etc. Does {\bf man} have its own manual? Of course, try {\bf man man}! How could one find the commands they need? Try {\bf apropos} which will return anything and everything appropriate to what you are looking for. {\bf apropos memory} will return anything relevant to memory.
+
+For the curious {\bf man} pages are stored in \emph{/usr/share/doc}.
+
+
+\section{Connecting via Network}
+So, we have given you a preview of what you can do on a system. But how can you connect to another server to explore and try out the knowledge. 
+\subsection{Networking}
+If you have taken EE122 then you probably know more than you want about networks, but if you have not, worry not -- we will a class dedicated to networking. OSI Model, 3-Way Handshake will all be covered in some detail, but let's introduce the practical things first.
+\subsection{SSH} 
+{\bf ssh} is a remote login program (and also a protocol but more on that later).
+
+\end{document}
+

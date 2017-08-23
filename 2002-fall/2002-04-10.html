@@ -1,0 +1,243 @@
+<HTML><head>
+<title>System Administration for the Web - Day 6 Notes</title>
+
+</head>
+
+<body bgcolor="#dddddd" topmargin="2">
+
+<font size=+2><B>System Administration for the Web</B> - Day 6
+notes</font>
+<P>
+<table width=610 border=0 cellpadding=8 cellspacing=1>
+<TR><TD Colspan=3 align=left bgcolor="#eeeeee">
+
+<font size=+2>Notes:</font><P>
+
+<B>Administrivia:</B><BR>
+<LI>What topics do we want to cover for the rest of the semester?
+
+<P><B>Course Notes:</B><BR>
+
+
+
+<pre>
+
+
+<h3>
+Process Control
+</h3>
+
+<ul>
+<i>Process</i> is unix-speak for "program."  You can see what processes you have 
+running by using the <b>ps</b> command:
+
+<ul>
+% ps
+PID   TTY      TIME CMD
+18061 pts/3    0:00 csh
+18264 pts/3    0:00 tcsh
+</ul>
+or
+<ul>
+% ps -f
+UID   PID   PPID   C    STIME TTY      TIME CMD
+jones 18061 18058  0   Apr 06 pts/3    0:00 -csh
+jones 18264 18061  0   Apr 06 pts/3    0:00 tcsh
+</ul>
+	  
+The "<b>-f</b>" flag gives more information (a "full" listing).
+So what do these columns mean?
+UID is the user that owns the process.
+PID is the process ID of the process.
+PPID is the PID of the process that spawned this process (the Parent PID).
+TTY is the terminal on which the process is running.
+CMD is the name of the process.
+
+From the listing above, you can see that I have two processes, and
+that the tcsh process was spawned from the csh process (the tcsh PPID 
+is the same as the csh PID).
+
+This relationship is better illustrated by the <b>pstree</b> command:
+<ul>
+% pstree jones
+-csh---tcsh---vim
+-csh---tcsh---perl---ps
+</ul>
+Here you see that I have one window open editing this file with vim, 
+and another window running <b>pstree</b>, which is a perl script that 
+calls <b>ps</b>.
+
+<b>The basics - process control from the command prompt</b>
+
+Let's create a dummy process to manipulate.  We'll create an empty
+file, and create a process to watch for any lines added to the 
+end of that file:
+
+<ul>
+% touch jib
+% tail -f jib &
+
+[1]  + Suspended (tty output)        tail -f jib
+[1] 4739
+</ul>
+
+What happened?  Remember that the <b>&</b> character added to the end of
+a line puts the command into the background.
+The [1] above tells you that "tail -f jib" is job #1, while the [1] 4739
+tells you that the PID of that process is 4739.  We can confirm this with
+<b>ps</b>:
+
+<ul>
+%  ps
+  PID TTY      TIME CMD
+18061 pts/3    0:00 csh
+18264 pts/3    0:00 tcsh
+ 4739 pts/3    0:00 tail
+</ul>
+
+We can get the same result by starting the command without the "&", 
+and then sending the process the suspend signal by hitting ctrl-z:
+(stuff the user types below is in bold)
+
+<ul>
+% <b>tail -f jib
+^Z</b>
+Suspended
+</ul>
+
+At this point, the process is suspended, and you are at a command prompt.
+You can now do other stuff until you are ready to resume the process, 
+using <b>fg</b> to bring the process back to the foreground:
+
+<ul>
+% fg %1
+</ul>
+
+If this is a command that can run in the background (is not interactive 
+with the user) you can let the command run in the background using <b>bg</b>.
+You can bring the command to the foreground at any time using <b>fg</b>.
+
+At some point, you will want to end the command.  You can send the interrupt
+signal to the command while the command is in the foreground with ctrl-C:
+
+<ul>
+fg %1
+tail -f jib
+^C
+</ul>
+
+At this point, the "tail -f jib" process is over.
+
+<b>more advanced: kill</b>
+
+The <b>kill</b> command can be used to control processes without bringing
+them to the foreground.  If you are the superuser, the kill command can
+be used to terminate other user's commands, or to send signals to system
+daemons, which the daemons interpret as input.  A common example of this 
+is causing the web-server to reload it's configuration, after it has been
+changed, by sending it the HANGUP signal: <b>kill -HUP httpdPID</b> (where
+httpdPID is the PID of your webserver)
+
+From a user's perspective, you can 
+
+<ul>
+%  ps
+ PID TTY      TIME CMD
+5149 pts/25   0:00 csh
+     
+% ps -u jones
+  PID TTY      TIME CMD
+18061 pts/3    0:00 csh
+ 4946 pts/36   0:01 vim
+ 5149 pts/25   0:00 csh
+ 4844 pts/3    0:00 tail
+10955 pts/36   0:00 csh
+18264 pts/3    0:01 tcsh
+11081 pts/36   0:01 tcsh
+</ul>
+
+If we call <b>ps</b> with no arguements, it reports on the processes 
+associated with the local terminal.  To see all of my processes on the
+machine, I call <b>ps -u jones</b>.
+
+Say I went home or my computer froze and I wanted to stop that tail job.
+I couldn't use job control as described above because I don't have access
+to terminal 3.  I would have to use the <b>kill</b> command:
+
+<ul>
+% kill 4844
+[2]    Terminated                    tail -f jib
+</ul>
+
+Some commands don't repond to the terminate signal (aka SIGTERM, aka
+signal -15).  You can send other signals to the program, for a full list,
+read the kill manpage.  The most popular signals are:
+
+Signal Name    Kill#    nemonic catchable?
+-----------    -----    ------- ----------
+hangup		-1	HUP	catchable
+interrupt	-2	INT	catchable
+quit		-3	QUIT	catchable
+kill		-9	KILL	not catchable
+terminate	-15	TERM	catchable
+
+Catchable signals are signals that a program can "catch" and interpret
+as input.  It's up to the program's designer to cause the program to 
+behave in a predictable manner for a given signal (i.e. to cause the
+program to exit when it gets a QUIT signal).
+
+If a program doesn't respond to plain-vanila kill, or kill -3, you
+can use kill -9 (or kill -KILL):
+
+<ul>
+% ps
+  PID TTY      TIME CMD
+ 5493 pts/3    0:00 tail
+18061 pts/3    0:00 csh
+18264 pts/3    0:01 tcsh
+% kill -3 5493
+% ps
+  PID TTY      TIME CMD
+ 5493 pts/3    0:00 tail
+18061 pts/3    0:00 csh
+18264 pts/3    0:01 tcsh
+% kill -9 5493
+[1]    Killed                        tail -f blah
+% ps
+  PID TTY      TIME CMD
+18061 pts/3    0:00 csh
+18264 pts/3    0:01 tcsh
+</ul>
+
+<b>kill -9</b> is viewed as a last resort, because it terminates the
+program without allowing itself to clean up it's memory close any files
+or do whatever else it is supposed to before exiting.  Some programs 
+use the signals other than -9 as alerts that they are about to be killed,
+and clean up, but don't terminate when those signals are recieved, so
+those signals should be tried first.
+
+<b>More advanced stuff: process execution priority with <i>nice</i></b>
+
+nice [-19 -> 19] cmd args (default is 10)
+renice #
+"be nice, run slower (less frequently)"
+
+what's eating up my cpu time?
+top
+
+
+
+
+
+
+
+</UL>
+
+</pre>  
+
+<hr width=75%>
+c.2002, Devin Jones - jones@csua.berkeley.edu<BR>
+last modified: <I><!--#flastmod file="2002-04-10.html"--></I><P>
+
+</body>
+</html>

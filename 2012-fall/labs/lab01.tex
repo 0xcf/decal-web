@@ -1,0 +1,65 @@
+\documentclass{article}
+
+%% Fonts!
+%\usepackage{sectsty}
+%\usepackage[no-math]{fontspec}
+%\usepackage{xltxtra,xunicode}
+%\allsectionsfont{\sffamily}
+%\setromanfont[Mapping=tex-text]{Adobe Garamond Pro}
+%\setsansfont[Mapping=tex-text]{Myriad Pro}
+%\setmonofont[BoldFont=Monaco,Scale=0.8]{Monaco}
+
+\begin{document}
+
+\title{Introduction to {\sc Unix} and the Shell}
+\author{Hands-On {\sc Unix} System Administration DeCal}
+\date{Lab 1 --- 27 August 2012}
+
+\maketitle
+
+\section*{Introduction}
+Today we went over the shell, a few common {\sc Unix} commands, text streams, substitution, and \texttt{vi}.  In this lab, you'll get some practice with these tools while learning more about the shell.
+
+This lab is due in hard copy at the beginning of next class (that is, by 6:10 PM on the 10th).  You can type up your answers in a text file and use \texttt{lpr} to print it (your cs198 account comes with 150 free print pages); if you want to use a word processor, try \texttt{soffice}.  Please \textbf{make sure your submission includes your name and your cs198 and/or OCF account name}.  If you get stuck, ask for help!
+
+\section{The basics}
+In a sentence or two, precisely describe what each of the following commands does.  (You may need to look them up in the \texttt{man}ual; some commands are shell builtins that don't have manual entries, but you can always try them out!)
+
+Note: The commands below are not necessarily in order of which you run them.
+\begin{enumerate}
+	\item \texttt{cd .} Hint: You might want to run the next command before this one. (What is the difference between . and ..?)
+	\item \texttt{cd ..}
+	\item \texttt{cat /etc/hosts /etc/motd}.  Fun fact:  You'll often see constructions such as \texttt{cat README | grep garply}.  This is often unnecessary, as many commands will accept files as arguments (\texttt{grep garply README}), and using commands this way will win you a Useless Use of Cat award.
+	\item \texttt{ls -a}, \texttt{ls -l} and \texttt{ls -d}.
+	\item \texttt{cd /tmp}.
+	\item \texttt{mkdir -p foo/bar/baz}.
+	\item \texttt{man mkdir}.
+	\item \texttt{rmdir *}.  Hint: \texttt{rmdir}'s behavior is not immediately obvious.  Be careful.
+	\item \texttt{less $\sim$cs198-8/longfile}.
+	\item \texttt{find $\sim$ -name '.*' 2>/dev/null}. Hint: Break down each part of the command first.
+	\item \texttt{touch file}.
+	\item \texttt{pwd}.
+	\item \texttt{cp file /tmp}. Hint: Pay attention to /tmp. This is a bit subtle.
+	\item \texttt{mv file /tmp/newfile}.
+	\item \texttt{echo the foo baz}. Note there are no quotes.
+	\item \texttt{uname -a}. What kind of information does this command print out?
+	\item \texttt{history}. This command should be pretty obvious.
+	\item \texttt{bash} or \texttt{tcsh} or \texttt{zsh}. Specifically, what do each of these commands do?
+	\item \texttt{apropos download}.
+\end{enumerate}
+
+\section{Extra for Experts\texttrademark{}!}
+\subsection{Editing text}
+\textsc{Unix} text editors are not the most user-friendly tools around --- some, like \texttt{vi}, don't even let you enter text without reading a manual first!  Vim (Vi IMproved) has a tutorial, which you can access by running \texttt{vimtutor}; you don't need to work through the whole thing, but at least get comfortable with the basics.  \textasciicircum{}[ is equivalent to the Escape key, which will save you a bit of effort.
+
+The shell doesn't (by default\footnote{Many programs use GNU Readline to handle text input; you can configure readline to use Emacs or vi keybindings, depending on which you prefer.}) use modal editing, but supports some useful keyboard shortcuts that are worth committing to memory:
+\begin{itemize}
+	\item \textbf{\textasciicircum{}U} --- delete all text from your cursor to the beginning of the line
+	\item \textbf{\textasciicircum{}K} --- delete all text from your cursor to the end of the line
+	\item \textbf{\textasciicircum{}W} --- delete the last word (delimited by spaces)
+	\item \textbf{\textasciicircum{}A} --- jump to the start of the line
+	\item \textbf{\textasciicircum{}E} --- jump to the end of the line
+\end{itemize}
+Another useful keyboard shortcut, while not strictly related to editing text, is \textbf{\textasciicircum{}L}, which clears your display.
+
+\end{document}

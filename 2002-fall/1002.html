@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Installing Linux</title>
+</head>
+<body>
+<font face="Comic Sans MS, Helvetica, Times New Roman" color="green">
+<h2>Installing Linux Notes</h2><br>
+Today's notes are brought to you by the letter r.  As in arrrrrrrrgh or arr matey or the ever so popular "are we done yet?"  Also brought to you by my lack of color coordination.  Remember, if it's visually displeasing, it was probably brought to you by me!<br><br>
+<br>
+
+Things you should be aware of:<br><br>
+
+<dd>Partitioning<br>
+<dd>File systems<br>
+<dd>Mounting<br>
+<dd>Packages (Programs) you need/don't need<br>
+<dd>Which distribution describes you, as a person?<br><br>
+
+<font color="blue"><b>I. Partioning: Because the haves just don't like the have-nots</b><br>
+<br></font>
+<dd>Partitioning is a required step before any hard disk can be used.  When you first buy a hard disk, it comes with garbled information on it (i.e. random scatterings of magnetism).  As with so many other things, your role is to impose order on the chaos.  Here's an analogy.  You're a shephard, fresh out of shephard college.  You've been given a grant of sheep; some are big, some are small, some are old, some are young, some are black, some are white, some are made of sausages.  This wouldn't be so bad if they didn't like different types of grass too (any other kind and they'd die, which would put you out of a job, much like the other fresh college graduates now).  So to impose some order on everything, you first set up some fences in your field, which in essence <b>partitions</b> your field.  Your field is like your hard disk; it's never big enough.  Much in the same way, you partition your hard disk.  The next step is to actually put some sort of sheep in your partitions.  So you separate your black sheep, your white sheep, etc. etc.  Likewise, you keep the types of data in your hard disk separated (e.g. NTFS, ext2, ext3, HFS, HPFS, NFS, FAT, FAT16, FAT32, etc.)  While the data isn't really stored as a "type" per se, the data is organized a certain way, which is determind by the <b>file system</b><br><br>
+
+<font color="blue"><b>II. File Systems: Because we all think we're better than everyone else</b><br><br></font>
+
+<dd>Over the course of computing time, a number of file systems have come, gone, and disappeared into the annuls of history.  Other file systems have managed to develop a foothold and latch on.  While reading up on the history of file systems can be (to some people) an interesting topic, it's outside the scope of this course.  So the first question is: what is a file system?  In the simplest terms, it's a way of organizing data and files (which are more or less the same, for our purposes) on the hard disk.  To get into a little extra detail, there are a number of bytes set aside at the beginning of each partition which hold the information for the file system.  This then allows the rest of the hard disk to be accessed.  If you didn't understand the last few statements, don't worry about it; it's more in-depth than this class is concerned with (but thrown out for anyone who was curious).  Generally, if you're a Windows user you'll either be using FAT32 (which stands for File Allocation Table) or NTFS (which stands for NT, from Windows NT infamy, File System).  Linux users will generally find either ext2 or ext3 (extended file system 2/3, respectively), and MacOS users will generally find HFS as their file system.  They have their pros and cons; what they are goes beyond the scope of this course.  The only types you'll need to concern yourself with are ext2 (a little familiarity will do) ext3 (mostly this) and swap.  The swap file system is something you'll see in Linux, and is used for storing swapfile data.  You can think of swap as temporary RAM (memory).
+<br><br>
+<font color="blue">
+<b>III. Mounting: Because any other word would be uncivilized</b></font><br><br>
+<dd>Mounting is a pretty straightforward thing to do.  All it means is to assign a given hard disk partition (which was taken by the two parts above) a "mount point," e.g. /usr or /boot or what have you.  No matter how you decide to arrange your mounting, two very (crucial) ones are "root" and "swap."  For the user, the swap partition is completely invisible.  "Root" (which is represented in the file system simply as /) is where everything else begins.  You can mount other partitions as points such as /home, /usr, /opt, etc. etc.  If you only have a root partition, all other mountpoints will be created under the root partition.  If you don't have a root partition, you're in trouble.<br>
+<br>
+<font color="blue">
+<b>IV. Packages (Programs)</b></font><br><br>
+<dd>Packages are the heart and soul of the most common Linux distributions.  There are two (common) ways of getting software on Linux: 1) Source tarballs, 2) binary distributions.<br>
+I. Source Tarballs:<br><br>
+What's source?
+<br>
+<dd>Source files are the original code used to make software.  Hidden somewhere in the annals of Microsoft are the source files they use to turn words into programs (binary files).  The process of converting code into a working program is called "compiling," which is what you have to do with source files (usually with tools such as gcc or Visual Studio).<br>
+What's a tarball?
+<br>
+<dd>"tar" is the name of a utility in Unix which comes from Tape ARchive.  It's purpose is to take a number of files and then turn them into one big file.  Having it as one file makes files easier to backup and catalog, especially for tape backups (hence the name of the utility).  Tarballs are oftentimes zipped as well (with gzip or bzip).<br><br>
+II. Binary Packages:<br><br>
+<dd>"Binary" is usually in reference to something that's in machine language.  Other files which are referred to as binary include jpg's, avi's, and other non-text files.  The usual alternative to "binary" is "ASCII/text."  There are certain problems in converting files to and from formats, but that's another topic beyond the scope of this course.  Binary packages are more or less analogous to Windows software, which all comes precompiled.<br>
+<br>
+Why choose one format over the other?<br><br>
+Source: By compiling your software yourself, the program is optimized to run faster and more efficiently on your particular system.  The downside to this is not only time spent compiling software, but it also becomes difficult to maintain a large collection of software without a well defined series of steps.<br>
+Binary: Having software come pre-compiled saves you the time and hassle of compiling software yourself.  Binary packages also tend to come in formats that are easy to plug-in to an existing Linux installation (e.g. Red Hat's rpm system, Debian's packaging system, FreeBSD's ports system, etc.)  This makes software easier to catalog and maintain, but also loses efficiency.<br>
+Which system to choose depends on your own particular needs.<br><br>
+<font color="blue">
+<b>V. Distributions</b></font><br><br>
+<dd>There are a number of distributions; the one I've decided to use for this course is Mandrake (some people will agree it's a good choice, others will want to eviscerate me for it).  The biggest differences between the distributions are the software they include and their ease of installation/use/maintainability.  What distribution you decide to use is up to you; Mandrake is what I started with before more or less rebuilding my entire system.  Rebuilding the whole thing is a slow and painful process; unless you're looking to hurt yourself (or learn a lot more about computers than you ever wanted to know), don't do it :)
+<br><br><br>
+<h3>As with all class meetings, feel free to email me questions and concerns, and do stop by my office hours sometime, which can be found at www.ocf.berkeley.edu/staff_hours</h3></font></body></html>

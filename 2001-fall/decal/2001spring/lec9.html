@@ -1,0 +1,396 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 9</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 9 notes:</h1>
+
+<h2>administrivia:</h2>
+	<B>Enrollment</B>
+	Any problems?  Please email me to get on the course announcement list:
+	jones@csua.berkeley.edu
+
+	<B>Getting Help</B>
+	If you have trouble, please email me, or one of the other teachers.
+	The OCF staffers are often around the lab, and can be helpful.
+	Don't forget your classmates can also be helpful.  
+
+	<b>Class Project</b>
+
+	The course project description is in <a href=lec5.html>Lecture 5</a>.
+	Your writeup is due by the end of April.
+
+	<B>Questions?</B>	
+
+<hr width=50%>
+
+<h2>class notes:</h2>
+<ul>
+
+<ul>
+<B>Topics:</B>
+process control
+basic networking
+basic security
+</ul>
+
+<h3>
+Process Control
+</h3>
+
+<ul>
+<i>Process</i> is unix-speak for "program."  You can see what processes you have 
+running by using the <b>ps</b> command:
+
+<ul>
+% ps
+PID   TTY      TIME CMD
+18061 pts/3    0:00 csh
+18264 pts/3    0:00 tcsh
+</ul>
+or
+<ul>
+% ps -f
+UID   PID   PPID   C    STIME TTY      TIME CMD
+jones 18061 18058  0   Apr 06 pts/3    0:00 -csh
+jones 18264 18061  0   Apr 06 pts/3    0:00 tcsh
+</ul>
+	  
+The "<b>-f</b>" flag gives more information (a "full" listing).
+So what do these columns mean?
+UID is the user that owns the process.
+PID is the process ID of the process.
+PPID is the PID of the process that spawned this process (the Parent PID).
+TTY is the terminal on which the process is running.
+CMD is the name of the process.
+
+From the listing above, you can see that I have two processes, and
+that the tcsh process was spawned from the csh process (the tcsh PPID 
+is the same as the csh PID).
+
+This relationship is better illustrated by the <b>pstree</b> command:
+<ul>
+% pstree jones
+-csh---tcsh---vim
+-csh---tcsh---perl---ps
+</ul>
+Here you see that I have one window open editing this file with vim, 
+and another window running <b>pstree</b>, which is a perl script that 
+calls <b>ps</b>.
+
+<b>The basics - process control from the command prompt</b>
+
+Let's create a dummy process to manipulate.  We'll create an empty
+file, and create a process to watch for any lines added to the 
+end of that file:
+
+<ul>
+% touch jib
+% tail -f jib &
+
+[1]  + Suspended (tty output)        tail -f jib
+[1] 4739
+</ul>
+
+What happened?  Remember that the <b>&</b> character added to the end of
+a line puts the command into the background.
+The [1] above tells you that "tail -f jib" is job #1, while the [1] 4739
+tells you that the PID of that process is 4739.  We can confirm this with
+<b>ps</b>:
+
+<ul>
+%  ps
+  PID TTY      TIME CMD
+18061 pts/3    0:00 csh
+18264 pts/3    0:00 tcsh
+ 4739 pts/3    0:00 tail
+</ul>
+
+We can get the same result by starting the command without the "&", 
+and then sending the process the suspend signal by hitting ctrl-z:
+(stuff the user types below is in bold)
+
+<ul>
+% <b>tail -f jib
+^Z</b>
+Suspended
+</ul>
+
+At this point, the process is suspended, and you are at a command prompt.
+You can now do other stuff until you are ready to resume the process, 
+using <b>fg</b> to bring the process back to the foreground:
+
+<ul>
+% fg %1
+</ul>
+
+If this is a command that can run in the background (is not interactive 
+with the user) you can let the command run in the background using <b>bg</b>.
+You can bring the command to the foreground at any time using <b>fg</b>.
+
+At some point, you will want to end the command.  You can send the interrupt
+signal to the command while the command is in the foreground with ctrl-C:
+
+<ul>
+fg %1
+tail -f jib
+^C
+</ul>
+
+At this point, the "tail -f jib" process is over.
+
+<b>more advanced: kill</b>
+
+The <b>kill</b> command can be used to control processes without bringing
+them to the foreground.  If you are the superuser, the kill command can
+be used to terminate other user's commands, or to send signals to system
+daemons, which the daemons interpret as input.  A common example of this 
+is causing the web-server to reload it's configuration, after it has been
+changed, by sending it the HANGUP signal: <b>kill -HUP httpdPID</b> (where
+httpdPID is the PID of your webserver)
+
+From a user's perspective, you can 
+
+<ul>
+%  ps
+ PID TTY      TIME CMD
+5149 pts/25   0:00 csh
+     
+% ps -u jones
+  PID TTY      TIME CMD
+18061 pts/3    0:00 csh
+ 4946 pts/36   0:01 vim
+ 5149 pts/25   0:00 csh
+ 4844 pts/3    0:00 tail
+10955 pts/36   0:00 csh
+18264 pts/3    0:01 tcsh
+11081 pts/36   0:01 tcsh
+</ul>
+
+If we call <b>ps</b> with no arguements, it reports on the processes 
+associated with the local terminal.  To see all of my processes on the
+machine, I call <b>ps -u jones</b>.
+
+Say I went home or my computer froze and I wanted to stop that tail job.
+I couldn't use job control as described above because I don't have access
+to terminal 3.  I would have to use the <b>kill</b> command:
+
+<ul>
+% kill 4844
+[2]    Terminated                    tail -f jib
+</ul>
+
+Some commands don't repond to the terminate signal (aka SIGTERM, aka
+signal -15).  You can send other signals to the program, for a full list,
+read the kill manpage.  The most popular signals are:
+
+Signal Name    Kill#    nemonic catchable?
+-----------    -----    ------- ----------
+hangup		-1	HUP	catchable
+interrupt	-2	INT	catchable
+quit		-3	QUIT	catchable
+kill		-9	KILL	not catchable
+terminate	-15	TERM	catchable
+
+Catchable signals are signals that a program can "catch" and interpret
+as input.  It's up to the program's designer to cause the program to 
+behave in a predictable manner for a given signal (i.e. to cause the
+program to exit when it gets a QUIT signal).
+
+If a program doesn't respond to plain-vanila kill, or kill -3, you
+can use kill -9 (or kill -KILL):
+
+<ul>
+% ps
+  PID TTY      TIME CMD
+ 5493 pts/3    0:00 tail
+18061 pts/3    0:00 csh
+18264 pts/3    0:01 tcsh
+% kill -3 5493
+% ps
+  PID TTY      TIME CMD
+ 5493 pts/3    0:00 tail
+18061 pts/3    0:00 csh
+18264 pts/3    0:01 tcsh
+% kill -9 5493
+[1]    Killed                        tail -f blah
+% ps
+  PID TTY      TIME CMD
+18061 pts/3    0:00 csh
+18264 pts/3    0:01 tcsh
+</ul>
+
+<b>kill -9</b> is viewed as a last resort, because it terminates the
+program without allowing itself to clean up it's memory close any files
+or do whatever else it is supposed to before exiting.  Some programs 
+use the signals other than -9 as alerts that they are about to be killed,
+and clean up, but don't terminate when those signals are recieved, so
+those signals should be tried first.
+
+<b>More advanced stuff: process execution priority with <i>nice</i></b>
+
+nice [-19 -> 19] cmd args (default is 10)
+renice #
+"be nice, run slower (less frequently)"
+
+what's eating up my cpu time?
+top
+
+
+
+
+
+
+
+</UL>
+
+<h3>
+Basic Networking
+</h3>
+
+Network configuration could be a very rich topic, and unfortunately for 
+the purposes of this class, we can't get into how it all works.  At a bare
+minimum, you should know how to get your machine onto a pre-existing 
+network.  Happily, this is not too complex.
+
+In order to get network connectivity, you will have to know the following:
+<LI>An unused IP address on your subnet
+<LI>The IP address of your subnet's gateway
+<LI>The netmask of your subnet
+<LI>Where your OS expects this information to be configured
+<LI>Your broadcast address
+<LI>Your Domain Name Server (DNS server)
+
+Several terms have been introduced, so I'll give brief explanations:
+
+<B>IP Address</B> the numerical address of your machine, i.e. 128.32.191.87
+
+<B>subnet</b> a local area network
+
+<b>gateway</b> the IP address of the machine that connects your subnet
+to the greater network.
+
+<b>netmask</b> this tells machines on your subnet whether communication
+with a certain IP involves communication inside or outside your subnet.
+
+<b>broadcast address</b> the subnet address that all machines watch for 
+broadcast messages.  Usually you don't have to configure this, the 
+standard is 
+
+<b>DNS server</b> a machine on the net that translates from named internet 
+addresses (ie "google.com") to IP addresses.
+
+This information is usually specified in rc files, with <b>ifconfig</b>
+commands, or in some linux distributions, it is done with the new
+command line tools <b>ifup</b> and <b>ifdown</b> (found in the 
+/etc/sysconfig/network-scripts on RedHat at the time of this writing).
+
+Usually, when you install a system you are prompted to enter all of this 
+information, and if you do so correctly, your machine will be configured 
+properly.  This is great, but what if you need to change the information 
+later, or if you made a mistake?  You'd probably like to avoid doing a 
+complete reinstall just to reconfigure your networking.  
+
+Unfortunately, the config files containing this information are in 
+different places on each OS, so you'll need to consult the documentation 
+for your OS if you need to change this, or search around for it by hand.
+Optionally, you may be able to access the tools that you used to configure 
+the system initially.  For instance, on one version of VAlinux RedHat, I 
+was able to use the "/usr/sbin/netconfig" tool until I discovered where 
+the actual network configuration files were kept.  Unfortunately that tool 
+is a specific installation/configuration tool, and probably doesn't exist 
+on other systems or even other versions of RedHat.  Check your OS's docs, 
+especially the installation docs for hints on where to find such tools.
+
+After you've got all this stuff configured, you can check if your system 
+can happily communicate to others on the network using the <b>ping</b> 
+command.  Ping is a simple command that sends a packet and waits for a 
+response from the remote server (the response is sometimes called "pong").
+I usually test pinging the gateway, and some machine not on the local 
+subnet:
+
+<ul>
+famine [62] ping 128.32.191.1
+128.32.191.1 is alive
+famine [64] ping 64.208.34.100
+64.208.34.100 is alive
+</ul>
+
+At this point, we have to use IP addresses, rather than standard named 
+addresses like google.com because we haven't configured DNS yet.
+
+Finally, if you don't have DNS configured, you can tell your system your 
+DNS server by modifying your /etc/resolv.conf file.
+
+The file should contain at least a line that looks like:
+<b>nameserver 128.32.191.249</b>
+where the IP address is the IP address of a nearby DNS server.
+
+You can specify as many nameservers as you like, and you can also specify 
+other things about your local network to make name resolution more 
+convenient.  For instance you can add <b>search</b> and <b>domain</b>lines:
+<b>domain OCF.Berkeley.EDU
+search OCF.Berkeley.EDU Berkeley.EDU</b>
+
+adding these lines allows you to specify addresses more simply, for 
+instance, I could simply type "ssh csua" rather than "ssh csua.berkeley.edu"
+because the system would automagically search the domains specified for a 
+machine named csua.
+
+<h3>
+Basic Security
+</h3>
+
+stopping unneeded services:
+	
+disabling telnet and ftp: 
+(after making sure ssh is up and running, even after reboot) 
+
+Why disable telnet and ftp?  Even though telnet and ftp are old services,
+there are new bugs and exploits being found for versions of these utilites
+on an ongoing basis.  Besides new problems cropping up, there is a
+fundemental problem with those two protocols in that they transmit your
+password in plaintext over the net when you log in, allowing anyone who is
+surreptitiously watching the network to learn your password as the bits zoom
+by.  The ssh and scp protocols have been created to replace telnet and ftp
+respectively and address this problem.  Be sure to install and configure 
+sshd before disabling telnet and ftp unless you don't intend to support 
+remote access.
+
+The inet daemon starts the telnet and ftp services, and the file
+/etc/inetd.conf controls which services inetd spawns on which ports. We
+commented these services out and restarted inetd as specified in the file
+itself.
+
+From a inetd.conf file in which telnet has been turned off (note the #'s 
+before the telnet line):
+
+# These are standard services.
+#
+ftp    stream  tcp     nowait  root    /usr/sbin/tcpd  in.ftpd -l -a
+<font color=red>#</font>telnet stream  tcp     nowait  root    /usr/sbin/tcpd  in.telnetd
+
+inetd then needs to be told to reload it's configuration: (kill -HUP
+<i>inetd's PID</i>).
+
+To confirm that you successfully turned off a service, try to telnet to that 
+service's port (you can find what service is running on which port by 
+looking in /etc/inet/services or /etc/services):
+
+Telnet usually lives on port 23:
+telnet localhost 23
+
+<h2>no homework</h2>
+
+<h2>enrichment</h2>
+
+read the manpages for ps, fg, bg, top, kill, nice, renice, and your favorite 
+shells
+
+read the manpages for ping, resolv.conf
+
+<hr>

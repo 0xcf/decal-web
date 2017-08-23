@@ -1,0 +1,125 @@
+<!-- Snooping around, are we?  Here, have a cookie: http://is.gd/JRxl5A -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Hands-On UNIX System Administration &mdash; Spring 2012</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+
+    <body>
+        <h1>CS 98/198-8: Hands-On UNIX System Administration</h1>
+
+
+        <h2><a id="announcements">Announcements</a></h2>
+
+        <ul>
+            <li><span class="date">(1/16)</span> Welcome to the Sysadmin DeCal!
+            The <a href="syllabus.pdf">syllabus</a> has been uploaded.</li>
+        </ul>
+
+
+        <h2><a id="essentials">Essentials</a></h2>
+
+        <p>The Spring 2012 Sysadmin DeCal meets on <strong>Mondays from 6-8PM
+            in 275 Soda</strong> and is facilitated by Jordan Salter, Dara
+        Adib, and Felix Wong.  Office hours are held <a href="#staff">by
+            appointment</a> (don't be shy!).</p>
+
+        <p>We'll cover the setup and administration of a production-quality
+        UNIX server, suitable for web/mail hosting, shared shell hosting
+        &agrave; la the EECS Instructional servers, and the like.  Topics
+        include general UNIX proficiency (which is also useful in CS courses),
+        the Internet infrastructure, and system administration essentials.  For
+        more details and grading policy, please see the <a
+            href="syllabus.pdf">course syllabus</a>.</p>
+
+
+        <h2><a id="schedule">Schedule, slides, and labs</a></h2>
+
+        <ol>
+            <li><span class="date">(1/23)</span> Course overview; introduction
+            to UNIX and the shell (<a href="lec/lec01.pdf">slides</a>, <a
+                href="lab/lab01.pdf">lab</a>, <a
+                href="http://www.surveymonkey.com/s/2B792GP">survey</a>)</li>
+            <li><span class="date">(1/30)</span> The file system (<a
+                href="lec/lec02.pdf">slides</a>, <a
+                href="lab/lab02.pdf">lab</a>)</li>
+            <li><span class="date">(2/6)</span> Multi-user environments (<a
+                href="lec/lec03.pdf">slides</a>, <a
+                href="lab/lab03.pdf">lab</a>)</li>
+            <li><span class="date">(2/13)</span> Compiling software; package management
+                     (<a href="lec/lec04.pdf">compiling software slides</a>,
+                      <a href="lec/lec04-02.pdf">package management notes</a>,
+                      <a href="lab/lab04.pdf">lab</a>)</li>
+            <li><span class="date">(2/20)</span> <em>Academic holiday</em></li>
+            <li><span class="date">(2/27)</span> Shell scripting (<a
+                href="lec/lec06.pdf">slides</a>, <a
+                href="lab/lab06.pdf">lab</a>)</li>
+            <li><span class="date">(3/5)</span> Tricks of the trade (<a
+                href="lec/lec07.pdf">slides</a>, <a
+                href="lab/lab07.pdf">lab</a>, <a
+                href="lab/ucb.class.cs61a-2009-10.mbox.gz">mbox file</a>, <a
+                href="https://docs.google.com/spreadsheet/viewform?formkey=dEhrOFB4S2h2MzZxbWlIYV83RDJHbnc6MQ#gid=0">project
+                group signup</a>)</li>
+            <li><span class="date">(3/12)</span> Server services (<a href="lec/lec08.pdf">slides</a>, <a href="lab/lab08.pdf">lab</a>)</li>
+            <li><span class="date">(3/19)</span> Server services, cont'd (<a href="lec/lec09.pdf">mail slides</a>, <a href="lec/lec09-2.pdf">more slides</a>, <a href="lab/lab09.pdf">lab</a>)</li>
+            <li><span class="date">(3/26)</span> <em>Spring break</em></li>
+            <li><span class="date">(4/2)</span> When disaster strikes (<a href="lec/lec11.pdf">slides</a>, <a href="lab/lab11.pdf">lab</a>)</li>
+            <li><span class="date">(4/9)</span> Special topics</li>
+            <li><span class="date">(4/16)</span> Wrap up final projects</li>
+            <li><span class="date">(4/23)</span> Final project presentations!</li>
+        </ol>
+
+
+        <h2><a id="resources">Resources</a></h2>
+
+        <h3><a id="staff">Contacting the staff</a></h3>
+
+        <p>If you need help, ask on Piazza or send us an email!</p>
+
+        <h4>Piazza:</h4>
+        <ul>
+            <li><a href="http://piazza.com/class#spring2012/cs981988">http://piazza.com/class#spring2012/cs981988</a></li>
+        </ul>
+
+        <h4>General email:</h4>
+        <ul>
+            <li>Anything decal related: decal at ocf.berkeley.edu</li>
+        </ul>
+
+        <h4>Instructor's emails:</h4>
+        <ul>
+            <li>Jordan: jordan.salter at berkeley.edu</li>
+            <li>Dara: daradib+decal at ocf.berkeley.edu</li>
+            <li>Felix: waf at berkeley.edu</li>
+        </ul>
+
+        <h3><a id="connecting">Connecting from home</a></h3>
+
+        <p>GNU/Linux and Mac OS X users should already have SSH installed.
+        Windows users should use <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a>.
+        There are a few servers you can connect to:</p>
+
+        <ul>
+            <li><tt>cory.eecs.berkeley.edu</tt>, <tt>nova.cs.berkeley.edu</tt>, <tt>star.cs.berkeley.edu</tt> &mdash;
+            the most popular INST SPARC Solaris login servers (use your
+            cs198-xy class account)</li>
+            <li><tt>ssh.<a href="http://www.ocf.berkeley.edu/">ocf.berkeley.edu</a></tt> &mdash; the <a href="http://www.ocf.berkeley.edu/">OCF</a> x86 Debian GNU/Linux login server (use your <a
+                href="http://docs.ocf.berkeley.edu/wiki/Getting_an_account">OCF
+                account</a>)</li>
+            <li><tt>coupdetat.ocf.berkeley.edu</tt> &mdash; the dedicated DeCal server hosted by the <a href="http://www.ocf.berkeley.edu/">OCF</a>;
+            connect to your virtual server by SSHing first into <tt>coupdetat</tt> (use your <a href="http://docs.ocf.berkeley.edu/wiki/Getting_an_account">OCF account</a>)
+            and then again into your virtual server</li>
+        </ul>
+
+        <p class="lookitme">
+            <a href="http://validator.w3.org/check?uri=referer">valid xhtml 1.1</a>,
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">css 2.1</a></p>
+
+    </body>
+</html>

@@ -1,0 +1,61 @@
+SysAdmin Decal (Intermediate)
+Lab 1 Solutions
+
+Part I
+
+1. Displays all filenames 6 letters long that have a at the beginning,
+   followed by any 3 characters, then bc at the end. Uses the 'long format'
+   of ls to display all the extended information about each file.
+
+2. Removes all *empty* directories within the current directory.
+
+3. Creates the a/b/c directory tree, creating a and a/b if necessary before
+   creating a/b/c. This doesn't happen for free; you need to pass -p to mkdir.
+
+4. Lists the number of files in the directory containing pookie anywhere in
+   their name.
+
+5. Reads a list of directories to create from the 'dirs' file, and then makes
+   all the directories in that file if possible.
+
+6. List all files below the current directory into a file named 'file'.
+   Discards error output.
+
+Part II
+
+1. I got a lot of answers for this, but the most popular ones were
+
+   wget -b
+   wget >/dev/null
+   wget -q
+   wget -o log
+
+   These are all correct, but I was hoping everyone would come up with
+   the /dev/null solution.
+
+2. wget -O- www.cnn.com | grep sports
+
+3. wget will always print its progress bar to stderr. If you discard wget's
+   stderr with 2>/dev/null, you will not get a progress bar.
+
+Part III
+
+1. The program suspends and the download is paused.
+
+2. jobs will output a list of job numbers followed by what the job is (e.g.
+   'emacs' or 'wget'). fg (optionally followed by a %jobname) will resume
+   either the job you specify or the job that was most recently paused. bg
+   will put a suspended job into the background and resume it. (It may still
+   print stuff to the terminal, which confused many of you.)
+
+3. You should have had something like
+
+$ jobs
+[1] vi &
+[2] wget &
+[3] wget &
+
+4. ^C will terminate the program (though sometimes it may refuse to; programs
+   may choose to ignore this signal.)
+
+5. Just add an & to the end of your command line.

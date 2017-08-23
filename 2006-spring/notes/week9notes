@@ -1,0 +1,26 @@
+PHP
+
+PHP is a language for creating interactive web sites.
+It was originally called "Personal Home Page Tools"
+when it was created in 1994 by Rasmus Lerdorf to keep
+track of who was looking at his online resume.
+
+Mid-1997: Technion students Andi Gutmans and Zeev Suraski
+redesigned the PHP language engine and wrote some of the
+most popular PHP modules.
+
+At that time PHP already had its own site, php.net,
+run by the computer science community, and was powering
+thousands of Web sites. The script was just beginning
+to be recognized by developers who preferred the
+multi-platform script over its more limited
+Microsoft ASP counterpart that interfaces only
+with Windows NT.
+
+Today PHP Web developers applaud the script's simplicity,
+flexibility, and ability to generate HTML pages quickly.
+Over 5,100,000 (1/2001) sites around the world use PHP.
+
+For the rest of the lecture notes on PHP/mySQL follow the tutorial located at:
+http://www.haifux.org/lectures/43/slide7.html
+

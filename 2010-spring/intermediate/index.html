@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Intermediate Unix System Administration DeCal, Spring 2010</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<h1>Intermediate Unix System Administration Decal</h1>
+
+<hr />
+
+<h4>Contents</h4>
+<ul class="contents">
+	<li class="contents"><a href="#announcements">Announcements</a></li>
+	<li class="contents"><a href="#schedule">Schedule</a></li>
+	<li class="contents"><a href="#extra">Extra Links</a></li>
+	<li class="contents"><a href="#groups">Project Groups</a></li>
+	<li class="contents"><a href="#info">Course Information</a></li>
+	<li class="contents"><a href="#moreinfo">More Course Information</a></li>
+	<li class="contents"><a href="#resources">Resources</a></li>
+	<li class="contents"><a href="#connecting">Connecting From Home</a></li>
+
+	<li class="contents"><a href="#grades">Grades</a></li>
+</ul>
+
+<h2><a name="announcements"></a>Announcements</h2>
+
+<ul>
+	<li><span class="date">2010.04.04</span>: Because the website was down today for an extended period of time, week 7's lab will now be due by the beginning of next week's class.</li>
+	<li><span class="date">2010.03.29</span>: Sorry for not putting this link up earlier, but you can check out a project proposal from a previous semester <a href="../../2008-fall/intermediate/sample_proposal.pdf">here</a>.</li>
+	<li><span class="date">2010.02.07</span>: Updated lecture slides and lab assignments for Lecture 2 are posted. </li>
+	<li><span class="date">2010.01.31</span>: The <a href="syllabus.pdf">syllabus</a> has been posted.</li>
+	<li><span class="date">2010.01.27</span>: Updated lecture slides and lab assignments for Lecture 1 are posted. </li>
+	<li><span class="date">2010.01.22</span>: Lectures, homework/labs posted. These are from last year's course, and will be updated within the next few days.  They are available as a resource to students who are interested in taking the class and wish to see the sort of topics that will be covered.</li>
+</ul>
+
+<h2><a name="schedule"></a>Schedule</h2>
+<table class="schedule">
+	<tr>
+	 <td class="date"><span class="u">Date</span></td>
+	 <td class="info"><span class="u">Title</span></td>
+	 <td class="notes"><span class="u">Slides</span></td>
+	 <td class="labs"><span class="u">Lab</span></td>
+	 <td class="soln"><span class="u">Solutions</span></td>
+	</tr>
+	<tr>
+		<td>February 1</td>
+		<td><i>Week 1</i>: Introduction / The Shell</td>
+		<td><a href="01-lec-shell.pdf">pdf</a></td>
+		<td><a href="01-lab-shell.pdf">pdf</a>, <a href="http://www.surveymonkey.com/s/KMQFF9B">survey</a></td>
+		<td><a href="01-lab-shell-solutions.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>February 8</td>
+		<td><i>Week 2</i>: The Filesystem</td>
+		<td><a href="02-lec-filesystem.pdf">pdf</a></td>
+		<td><a href="02-lab-filesystem.pdf">pdf</a></td>
+		<td><a href="02-lab-filesystem-solutions.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>February 22</td>
+		<td><i>Week 3</i>: Compiling Software from Scratch</td>
+		<td><a href="03-lec-compiling.pdf">pdf</a></td>
+		<td><a href="03-lab-compiling.pdf">pdf</a>,<a href="../2008-fall/intermediate/nethack.diff">NetHack patch</a></td>
+		<td><a href="03-lab-compiling-solutions.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>March 1</td>
+		<td><i>Week 4</i>: User and Group Authentication</td>
+		<td><a href="04-lec-usersgroups.pdf">pdf</a></td>
+		<td><a href="04-lab-usersgroups.pdf">pdf</a></td>
+		<td><a href="04-lab-usersgroups-solutions.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>March 8</td>
+		<td><i>Week 5</i>: UNIX Power Tools <img src="New_icons_28.gif" alt="(new)" /></td>
+		<td><a href="05-lec-powertools.pdf">pdf</a></td>
+		<td><a href="05-lab-powertools.txt">txt</a></td>
+		<td><a href="05-lab-powertools-solutions.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>March 15</td>
+		<td><i>Week 6</i>: Shell Scripting</td>
+		<td><a href="06-lec-shellscripting.pdf">pdf</a></td>
+		<td><a href="06-lab-shellscripting.pdf">pdf</a></td>
+		<td><a href="06-lab-shellscripting-solutions.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>March 29</td>
+		<td><i>Week 7</i>: Network services: DNS, DHCP, SMTP, HTTP</td>
+		<td><a href="07-lec-networkservices.pdf">pdf</a></td>
+		<td><a href="07-lab-networkservices.pdf">pdf</a></td>
+		<td><a href="07-lab-networkservices-solutions.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>April 5</td>
+		<td><i>Week 8</i>: System V Init; Getting Involved</td>
+		<td><a href="08-lec-sysvinit.pdf">pdf</a></td>
+		<td>NONE</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>April 12</td>
+		<td><i>Week 9</i>: Desktop Linux Technologies (X11, udev, D-Bus..)</td>
+		<td><a href="09-lec-desktop.pdf">pdf</a></td>
+		<td>NONE</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>April 19</td>
+		<td><i>Week 10</i>: &quot;The Touch&quot;: Solving Problems You Know Nothing About</td>
+		<td><a href="10-lec-thetouch.pdf">pdf</a></td>
+		<td>NONE</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>April 26</td>
+		<td><i>Week 11</i>: Last Class - Final Project Presentations</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h2><a name="info"></a>Course Information</h2>
+<p>
+	Time: Monday 6-8PM<br />
+	Location: 310 Soda<br />
+	Facilitator: <a href="mailto:mgasidlo+decal@ocf.berkeley.edu">Michael Gasidlo</a><br />
+	Office Hours: W 12-1 PM at Terrace Cafe (roof of Bechtel).  If raining, I'll be in one of the covered alcoves near HMMB.
+	Enrollment: 2 units<br />
+	&nbsp;- Lower Division: CS 98 (26414); 20 students max (combined with Beginning section)<br />
+	&nbsp;- Upper Division: CS 198 (26624); 10 students max (combined with Beginning section)<br />
+</p>
+
+<p>
+Welcome! This <b>intermediate</b> course is targeted towards CS students,
+either with some prior Unix experience or an eager ability to learn new things
+quickly. The curriculum is somewhat similar to the <a
+href="../beginning">beginning class</a>; however, we emphasize a more bottom-up
+approach that encourages a good working knowledge and understanding of Unixes
+before starting any system administration tasks.  In fact, we spend very little
+time on what is considered stereotypical systems administration: the task of
+maintaining a web server with a database.  <i>That's just the tip of the
+iceberg.</i> Any sysadmin worth their salt will tell you that there are far
+more things you need to be good at!  See above for all the planned lecture
+topics.</p>
+
+		<p>The course is given in a lecture-lab format. After discussing the
+		material for a given week, we will follow with 45 minutes to 1 hour
+		of lab time. Many people will be able to complete the labs within
+		this time, and most people will at least be able to complete at
+		least half. So if you play your cards right, the weekly out-of-class
+		commitment is less than an hour.</p>
+
+		<p>Astute readers have already noticed that there is a <b>final
+		project</b>. This project requires you to collaborate with groups of
+		3-4 other people to develop some sort of system that shows that you
+		know how to integrate many disparate open source components together
+		into a coherent unit. However, you needn't be too ambitious. The
+		project as a whole should take about 10-15 man-hours, which is up
+		to 4 hours per person, all things being equal.</p>
+
+<h2><a name="moreinfo"></a>Menacing Stuff We Need to Say</h2>
+<ul>
+	<li>Attendance is mandatory. More than <b>four</b> unexcused absences will
+	result in a NP. Please <a href="mailto:mgasidlo+decal@OCF.Berkeley.EDU">email
+	me</a> if you have extenuating circumstances (midterm, final, etc.)</li>
+	<li>There will be weekly homework assignments, graded on a P/NP basis. There is no strict due date for each one, but you are expected to keep up and be done with all of them by the end of the term.</li>
+	<li>A final project will be given in lieu of an exam; <strong>failure to
+	complete will result in a NP</strong>.</li>
+</ul>
+
+<h2><a name="extra"></a>Extra Links</h2>
+<ul>
+	<li><a href="http://files.fosswire.com/2007/08/fwunixref.pdf">Linux Cheat Sheet from FOSSwire.com</a>:
+	contains a bunch of useful commands all on one page that will surely be
+	helpful.</li>
+	<li><a href="http://www.freeos.com/guides/lsst/">Linux Shell Scripting
+	Tutorial</a>: a guide to shell scripting that may be a useful alternative
+	to looking at the shell-scripting slides.</li>
+	<li><a href="http://tldp.org/LDP/abs/html/">Advanced Bash Scripting Guide</a>:
+	This guide is a little more in-depth -- read it if you want to go above and
+	beyond what we learned in class.</li>
+</ul>
+
+<h2><a name="groups"></a>Project Groups</h2>
+	
+<h2><a name="resources"></a>Resources</h2>
+<ul>
+	<li><a href="http://docs.ocf.berkeley.edu/wiki">OCF Wiki</a></li>
+	<li><a href="http://tldp.org">The Linux Documentation Project</a></li>
+	<li><a href="http://linuxmanpages.com">Linux man Pages</a></li>
+	<li><a href="http://google.com">Google</a></li>
+</ul>
+
+<h2><a name="connecting"></a>Connecting From Home</h2>
+<p>You can connect to the Soda lab machines from home if you wish.  To do so, you will need a program called "SSH".  SSH is included in OSX, as well as most Linux distributions.  Windows users should use a program called PuTTY. <b>If you are a Windows user and you are using the OpenSSH client to connect, we advise you to stop using OpenSSH and switch to PuTTY.  The OpenSSH client for Windows is no longer maintained and may have security vulnerabilities</b></p>
+<table class="schedule">
+      <tr>
+	<td>OS</td>
+	<td>Instructions</td>
+      </tr>
+      <tr>
+	<td>OSX</td>
+	<td>1. Open Terminal<br />2. Type "ssh cs198-xx@star.cs.berkeley.edu"<br />3. If this is your first time connecting, type "yes" when prompted<br />4. Enter your password when prompted</td>
+      </tr>
+      <tr>
+	<td>*nix</td>
+	<td>1. Open your terminal emulator of choice (gnome-terminal, konsole, etc)<br />2. Type "ssh cs198-xx@star.cs.berkeley.edu"<br />3. If this is your first time connecting, type "yes" when prompted<br />4. Enter your password when prompted</td>
+      </tr>
+      <tr>
+	<td>Windows</td>
+	<td>1. Download and install PuTTY<br />2. Open PuTTY<br />3. Enter "cs198-xx@star.cs.berkeley.edu" in the box labeled "Host Name"<br />4. If this is your first time connecting, hit "Yes" when prompted<br />5. Enter your password when prompted</td>
+      </tr>
+</table>
+
+<h2><a name="grades">Grades</a></h2>
+
+<hr class="footer" />
+
+<p class="footer"><a href="http://validator.w3.org/check?uri=referer">XHTML 1.0 Strict</a></p>
+
+</body>
+</html>

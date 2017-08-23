@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Homework 2 Solutions</title>
+    </head>
+    <body>
+        <h1>Homework 2 Solutions</h1>
+        <h2>Part 1a</h2>
+        1.  DNS = Domain Name Service, which is a protocol which maps human readable names (e.g. www.google.com) to numeric IP's (e.g. 123.123.123.123).<br>
+        TCP/IP = Transmission Control Protocol/Internet Protocol, which is a two-protocol solution to passing data between machines (IP), and also ensures that the data is correct and in the right order (TCP).<br>
+        ICMP = Internet Control Message Protocol, which is an extension to the IP protocol and i used for error messages, test packets, and informational messages.<br>
+        ARP = Address Resolution Protocol, which is a protocol which maps between MAC addresses (hardware addresses) and IP addresses.<br>
+        2.  The ping utility is most often used to see if a given host (computer) is reachable on the network, e.g. ping www.google.com will tell whether Google's website is available on the network or not.  Some modern firewall block ICMP packets (which ping uses), which reduces the usefulness of the ping utility.  Traceroute is used to find how a packet goes from host A to host B, by reporting the machines it travels through on its way over as well as how long it took to get to each machine.<br>
+        3.  The answer I was looking for here was the hosts file, often found in /etc/hosts.  This file contains a list of human readable name to IP mappings, e.g. localhost 127.0.0.1.<br>
+        4.  The /etc/hosts file is used to keep human readable domain name to IP mappings.  If you put incorrect entries, e.g. www.google.com 127.0.0.1, then accesses to the incorrecty entered website will fail because your computer will look in the wrong place for their website (same applies for ssh servers, mail severs, etc.)<br>
+        5.  rsync -avute ssh /home/randy 192.168.1.101:/home.  Other answers work as well (such as using scp), but rsync was the one I was looking for.  If you haven't tried it before, look it up.  It's a nifty utility I use to keep my desktop and laptop synchronized (if you were really hardcore, you could use a properly configured CVS system as well).<br>
+        6.  IPv6 is the 6th version of the Internet Protocol, which expands the address space to 32 bytes (the current IPv4 uses 4 bytes).  The idea is to have enough IP addresses so every device in the world can have an IP address...but there was once talk that 640kb of memory would be enough for everyone, too...The current standard is IPv4.<br>
+
+        <h2>Part 1b</h2>
+        1.  Firefox, Thunderbird, gaim, xcdroast, xcdroast (with proDVD extensions), konsole, xmms, mplayer, umbrello (UML modeling).  These answers can vary.<br>
+        2.  Answers may vary<br>
+        3.  Answers may vary<br>
+
+        <h2>Part 2a</h2>
+        1.  Sockets are used for communication through networks, and consist of an IP address with a port number.  Ports are a number between 1-65535, and are used as "addresses" which programs use to communicate with each other, e.g. port 80 is the industry standard for web browsing.<br>
+        2.  tar -cvzf test.tar file1 file2 filex; scp test.tar aoshi@ocf.berkeley.edu:~/  (note, this solution isn't ideal; I seem to have forgotten the better way to do it...)<br>
+        3.  tar -cvzf - file1 file2 filex | ssh aoshi@ocf.berkeley.edu 'gunzip - | tar xzf -'<br>
+
+        <h2>Part 2b</h2>
+        1.  Answers may vary<br>
+        2.  Answers may vary<br>
+        

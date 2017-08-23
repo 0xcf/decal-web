@@ -1,0 +1,300 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 3</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 2 notes:</h1>
+
+<h2>getting an OCF account:</h2>
+	Hopefully you've already gotten an OCF account.
+
+	This course will be taught on the Open Computing Facility's hardware.
+	If you don't have an OCF account already, you'll need to sign up for one.
+
+	You should have done this on the first day of class.  If you missed it
+	you can do it <a href=http://www.ocf.berkeley.edu/staff_hours>anytime a staff member is around</a>.
+	You can go to <a href=http://www.ocf.berkeley.edu/services/newacct.html>this page</a> to get the new account form 
+	if you'd rather print it and fill it out at home although we usually 
+	have copies in the lab.
+
+<h2>administrivia:</h2>
+	<B>Take roll</B>
+	
+	<B>:</B>  
+
+	<B>Questions?</B>	
+
+<h2>course material:</h2>
+
+	Today we will focus on getting everyone up to speed on basic unix
+	commands, and redirection.  If there is time, you should investigate 
+	file editors, and email programs.  You should use the class time to 
+	find peers that have more knowledge than you in certain areas, and 
+	who you can go to for advice and guidance.
+
+	Steve and Gabe will be leading the class, there will also be other 
+	instructors around and available to help.
+
+	Below is a list of basic unix commands we think you should be 
+	familiar and comfortable with.  
+
+	These links can help you find information about any commands you 
+	don't know already.  You can also try asking your peers, or an 
+	instructor.  
+
+	<B><a href=#unixinfo>Some hints on getting more information and explanations about unix commands</a></B>
+	
+	<b><a href=http://www.google.com/search?q=frequently+used+unix+commands&btnG=Google+Search>Google Search for "frequently used unix commands"</a></b>
+	
+	<B><a href=http://www.llnl.gov/computing/unixenviron/unix_quick_ref.shtml>LLNL's Quick Reference of Frequently used Unix Commands</a></B>
+		
+	<B><a href=http://www.nmt.edu/tcc/help/unix/unix_cmd.html>Very basic unix commands...</a></B>
+
+<center>
+<table width=60% border=2><tr><td>
+
+<UL>
+<LI>ls
+
+<LI>cp, mv, rm
+<LI>chmod, chown, chgrp
+
+<LI>cd, pwd
+<LI>mkdir, rmdir, ln
+
+<LI>cat, more, less, head, tail
+
+<LI>man, apropos
+
+<LI>sort, uniq, wc, grep
+
+<LI>vi, pico, emacs
+
+<LI>date, cal
+
+<LI>pine, elm, mutt, mail
+
+<LI>telnet, rlogin, ssh
+
+<LI>ftp, scp
+
+<LI>w, who, finger, talk, nwrite
+
+<LI>hostname, whoami, set, history
+
+<LI>passwd, quota -v, du
+
+<LI>lpr, lp
+
+<LI>ps, kill
+
+<LI>find, locate, which
+
+<LI>exit
+
+<B>redirection &gt;, &gt;&gt;, &lt;, |</B>
+<UL>
+<LI> <B>&gt;</B>  send output to file:  <B>ls > directory-listing</B>
+<LI> <B>&gt;&gt;</B>  append output to end of file (don't overwrite file)
+<LI> <B>&lt;</B> send a file as input to a command:  <B> mail friend < filename</B>
+<LI> <B>|</B>  send output of one command to input of next command: <B>ls -la | more</b>
+</UL>
+
+</UL>
+
+</td></tr></table>
+</center>
+
+<h2>Homework</h2> <UL>
+Due by next Friday (2/23/2001).  Mail your transcript and any questions to 
+jones@xcf.berkeley.edu
+
+1)  Create a transcript that shows you understand several of the commands listed above.
+Several people have asked, "what is a transcript?"  By transcript, I mean a file that 
+shows the output of your session.  <a href=lec1ex.txt>See this example.</a>
+Yours will be longer.  You can use the <b>script</b> command to create the transcript, 
+or you can cut and paste, whatever works for you.
+
+Don't bother demonstrating knowledge of editors, mail readers, or remote access programs, 
+we'll get into more details on those later, if possible, and besides, that will make your
+transcript look crufty.
+Don't print anything.  
+Use flags (options, i.e. "-l" is an option for <b>ls</b>, as in <b>ls -l</b>. 
+Do demonstrate the use of input/output redirection.
+
+2) Find another source of interesting or useful information, 
+such as the sites and books listed below.  
+Google.com's search engine could be useful for this. 
+Tell us what the source is, and describe the source briefly.
+
+i.e.<UL>
+<LI>www.sunfreeware.com - it has software packages for various sun operating systems.
+or
+<LI>www.slashdot.org - has news and information about computing and technology
+</UL>
+Mail your homework, and any questions to jones@xcf.berkeley.edu
+
+</UL>
+
+</pre>
+<HR>
+<H1>Enrichment</H1> 
+
+<B>There are several places on campus where you can get further basic unix instruction:</B><P>
+
+<UL>
+
+<a href=http://facility.berkeley.edu/classes.html#unix>W&MF walk-in courses</a><BR>
+<a href=http://cafe.berkeley.edu/~walk-in/classes/>A semester in a table from WM&F</A><P>
+
+<a href=http://www.csua.berkeley.edu/help-sessions/schedule.html>CSUA Help Sessions</a><BR>
+<a href=http://www.csua.berkeley.edu/help-sessions/tutorials/>Help Session Tutorials and Handouts</a><BR>
+<a href=http://www.me.berkeley.edu/help/unix/>Online help files from the ME dept</a><P>
+
+<a href=http://socrates.berkeley.edu/Help/Classes/>Classes offered by Berkeley's IS&T staff</a><BR>
+<a href=http://socrates.berkeley.edu/Help/>Help files on Socrates</a><P>
+
+<a href=http://cbt-www.berkeley.edu/cbtweb/curicula/mis.htm>Computer-Based Training in Management of Information Science</a> 
+(available from UCB hosts only)<P>
+
+If you are interested in running Linux at home, you should visit
+<a href=http://callug.cs.berkeley.edu/>CalLUG</a> the Cal Linux Users Group.<BR>
+They have meetings, and links to information about running Linux.<P> 
+
+</UL>
+
+<B>You can also find other good sources of information on the web:</B><P>
+
+<UL>
+
+<a href=http://www.uwsg.indiana.edu/usail/>An independent study course</a> from the University of Indiana<P>
+
+<a href=http://2cpu.com/OSs/Linux/linuxintro.html>A brief description of different Linux distributions</a><P>
+
+<a href=http://www.faqs.org/faqs/unix-faq/faq/part1/preamble.html>Unix FAQ</a>Frequently Asked Questions from the 
+comp.unix.questions newsgroup<P>
+
+<a href=http://www.stokely.com/unix.sysadm.resources/>Unix Sysadm Resources</a> - another random source<P>
+
+</UL>
+
+<a name=unixinfo>
+<B>Sources of information on using unix</b><BR>
+</a>
+<UL>
+The most used source of information on unix commands is the unix manual 
+pages.  E.g. to read the manpage for the <B>ls</B> command, you would 
+type: "<B>man ls</B>".
+
+The manual pages are divided up into different sections.  Since there are
+sections for unix commands and sections for the c programming language, and
+other sections for perl, sometimes the section that the man command will
+give you by default will not be for the command that you are looking for.  
+E.g. for "less," on some OCF sun boxes, "<B>man less</b>" will return the
+manpage for a perl pragma (which is found in section 3 of the manpage - the
+section that is being drawn from is displayed in parentheses in the upper
+righthand corner along with the commandname (i.e. for less, it looks like
+"less(3)"), rather than for the unix command.  The manpage for the unix
+command "less" is found the section 1 of the manual, so to get at that
+manpage, you would need to type "<B>man -s1 less</b>".
+
+<BR><BR>Here are some <a 
+href=http://www.cs.runet.edu/~dana/classes/cpsc137/read.html>more 
+details</a> about how to read a unix man page.<P>
+
+<UL>
+As a side note, the apropos command is useful for finding which section of 
+the manual the page you are looking for resides.  ("<b>apropos less</b>" 
+finds all the manpages which mention the word less in their description.)<P>
+
+E.g. looking for less, we see there are two commands called less, which I've
+highlighted, one in section (1) and another in section (3).<BR>
+<table border=2 bgcolor=white><TR><TD>
+<pre>
+% apropos less
+UNIVERSAL       UNIVERSAL (3)   - base class for ALL classes (blessed references)
+jpegtran        jpegtran (1)    - lossless transformation of JPEG files
+<B><font color=green>less            less (3)        - perl pragma to request less of something from the compiler</font></B>
+cldap_close     cldap_close (3n)    - dispose of connectionless LDAP pointer
+cldap_open      cldap_open (3n) - LDAP connectionless communication preparation
+cldap_search_s  cldap_search_s (3n) - connectionless LDAP search
+cldap_setretryinfo              cldap_setretryinfo (3n) - set connectionless LDAP request retransmission parameters
+min             min (9f)        - return the lesser of two integers
+<B><font color=green>less            less (1)        - opposite of more</font></B>
+lesskey         lesskey (1)     - specify key bindings for less</pre>
+</TD></TR></TABLE>
+
+<P>Since the manpage for less from section 3 didn't give us what we wanted to
+see, this suggests we look at the less manpage in the other section ("<B>man
+-s1 less</B>", even though the description "opposite of more" doesn't really
+explain anything.
+
+</UL>
+<P>
+
+It's also important to know that your shell has built in commands which will
+probably not have manual pages of their own.  For example "<B>man set</B>"  
+on the OCF will find the command "set" for the TCL scripting language, which
+is probably not what you want.  If you type "<B>which set</b>" you will be
+told that set is a built-in shell command.  To read about the set command,
+you will need to look at the manpage for your shell (e.g. "<B>man csh</b>").  
+This brings us to the problem of knowing what shell you are using.  The most 
+common default shells are <B>sh, csh, bash,</b> and less likely, <b>tcsh 
+or ksh</b>.  You can check your processes and find out which shell you are 
+using, e.g. "<B>ps</B>" will give you something like:
+
+<UL>
+<table bgcolor=white border=2><TR><TD><pre>
+% ps
+   PID TTY      TIME CMD
+ 10380 pts/4    0:00 tcsh
+ 10362 pts/4    0:00 csh</pre>
+</td></tr></table>
+</ul>
+
+In this case, the lower numbered PID (process ID) is the shell that the
+system gave me when I logged in, csh, and tcsh is a shell I ran later and am
+currently using.  To find what the behavior of set would be in my current 
+shell, tcsh, I would look at the tcsh manpage: "<B>man tcsh</b>".<P>
+
+Man pages can be difficult to read, an require some getting used to. You can
+find information about many commands online.  Try a google search for "unix
+command foo" if the manpage is unhelpful to you.<P>
+
+There are some useful unix books out there.  In particular the O'Reilly & 
+Associates "Unix in a Nutshell" is said to have a reasonable level of 
+information about commands, while not being as confusing as a manpage.
+
+</UL>
+
+<B>There are numerous good books on System Administration in circulation.</B><BR>
+
+<UL>
+
+My favorite general-purpose book is <a href=http://www.amazon.com/exec/obidos/ASIN/0130206016/>Unix System Administration
+Handbook</a> by Nemeth, Snyder, Seebass and Hein.  Now in it's third edition, this book provides excellent coverage of many
+routine system administration tasks.  For deeper understanding of a variety of topics, <a
+href=http://www.oreilly.com/>O'Reilly & Associates</a> is my favorite publisher.  Their books are nearly always high quality,
+and are usually written by reputable sources, and occasionally by the actual creators of a tool.  For example, the most famous
+book on Perl is published by O'Reilly and is called <a href=http://www.oreilly.com/catalog/pperl3/>Programming Perl</a> was
+written by Larry Wall, the creator of Perl.
+
+</UL>
+
+<B>System Administration Cultural Resources:</B><BR> 
+
+<UL>
+
+The field of unix system administration really does have it's own culture.  Being very computer-centric, there are countless
+newsgroups, email-lists, irc-channels, and websites dedicated to the task and the surrounding culture.  This culture does 
+have it's egos and social-ills, but by and large is very supportive and genial.<P>
+
+The <a href=http://www.sage.org>System Administrator's Guild</a> - SAGE, a professional organization for SysAdmins<BR>
+<a href=http://www.slashdot.org>Slashdot</a> - news of interest to the geek community<BR>
+<a href=http://www.userfriendly.org/static/>User Friendly</a> - a comic about a software company<BR>
+<a href=http://www.cybergeography.org/atlas/atlas.html>Cyberspace Atlas</a> - interesting information with a cheesy name<BR>
+</UL>

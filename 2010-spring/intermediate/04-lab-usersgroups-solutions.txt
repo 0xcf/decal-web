@@ -1,0 +1,38 @@
+CS98/198 System Administration DeCal
+Week 4: User and Group Authentication
+
+I. Playing with Users and Groups
+1a. finger cs198-ti - shows user information for cs198-ti and when he was last
+    seen on the computer you're logged into.
+1b. w - shows a list of everyone logged on right now with detailed info.
+1c. who - just shows the list of everyone logged on; very similar to w,
+    just more terse.
+1d. last - shows the history of logins to this computer.
+1e. id - shows who you are, what your user ID is, and what groups you
+    belong to.
+
+2. By default, finger foo will search for foo in everyone's real name as
+   well. This takes a long time. If you know the username of the person
+   you're trying to look up, use finger -m foo.
+
+3. uid=0(root) gid=0(root) groups=0(root)
+
+II. File System Permissions
+Only rm file2 and cat file4 should work; all others will return "Permission denied"
+
+III. Free Software Culture - Just For Fun
+1. Answer omitted
+2a. Your Mileage May Vary - I've given you a solution but it may or may
+    not work for you
+2b. There's More Than One Way To Do It - The official Perl slogan.
+2c. There Ain't No Such Thing As A Free Lunch - You must do some additional
+    work to accomplish your goal; you can't have your cake and eat it too
+2d. Problem Exists Between Chair and Keyboard - *you* are the problem,
+    i.e. a mistake was yours alone.
+2e. I Am Not A Lawyer - often seen in front of sentences expressing legal
+    opinion on mailing lists.
+2f. She Who Must Be Obeyed - programmer's wife.
+2g. Luser Attitude Readjustment Tool - the thing you use to clobber
+    insolent newbies who give you a lot of hassle just when you're trying
+    to help.
+

@@ -1,0 +1,13 @@
+--- nethack-3.4.3/win/tty/termcap.c~	2008-10-07 14:25:54.000000000 -0700
++++ nethack-3.4.3/win/tty/termcap.c	2008-10-07 14:26:06.000000000 -0700
+@@ -835,10 +835,6 @@
+ 
+ #include <curses.h>
+ 
+-#ifndef LINUX
+-extern char *tparm();
+-#endif
+-
+ #  ifdef COLOR_BLACK	/* trust include file */
+ #undef COLOR_BLACK
+ #  else

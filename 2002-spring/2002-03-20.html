@@ -1,0 +1,292 @@
+<HTML><head>
+<title>System Administration for the Web - Day 4 Notes</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="2">
+
+<font size=+2><B>System Administration for the Web</B> - Day 4
+notes</font>
+<P>
+<table width=610 border=0 cellpadding=8 cellspacing=1>
+<TR><TD Colspan=3 align=left bgcolor="#eeeeff">
+
+<font size=+2>Notes:</font><P>
+
+<B>Administrivia:</B><BR>
+<LI> No class next week.  Spring Break. 
+<LI> Quiz stats:<BR>
+<pre>
+5 points possible:
+5 2
+4 2
+3 3
+2 2
+1 1
+0 1
+</pre>
+
+<BR><BR><P><B>Course Notes:</B><BR>
+<LI> No Homework due from last week, no quiz this week.
+<LI> questions..
+<UL>
+Networking wrapup - DHCP, samba
+</UL>
+
+<LI> Installation of Software - Apache
+<UL>
+Concepts:  the filesystem, software installation, 
+daemons, runlevels, cron jobs
+
+
+</UL>
+
+
+</td></Tr></table>
+
+
+
+<pre>
+
+<h3>
+The File System
+</h3>
+
+The file system organizes the programs, user data, accounting and configuration
+information, etc.
+Different flavors of unix have different filesystem layouts, but there are many
+commonalities.  As you get more familiar with unix, you'll know the filesystem
+instinctively, but in the meantime, this is a brief overview:
+
+<pre>
+<table border=1>
+<tr>
+<td>
+<pre>/
+/bin 
+/sbin
+/dev
+/etc
+/home
+/lib
+/tmp
+/usr
+/usr/local
+/var             </pre></td>
+<td>
+<pre>the root directory
+basic system commands
+utilities and commands not used by normal users
+filesystem devices such as disks, mice, sound and terminals
+configuration files
+users' personal homedirectories
+c libraries
+temporary storage
+non-crucial programs and data 
+for things you install
+accounting information, mail and print spools</pre></td>
+</tr>
+</table>
+
+
+<h3>
+Software Installation</h3>
+
+There are several common ways of adding software to your system.  Much 
+popular software, like the Apache webserver, can be specified at 
+installation time.  Regardless, it's always helpful to know how to install 
+things.  
+
+<b>the old fashioned way</b>
+
+The basic way to get software is to download it, compile it and configure it.
+Before the web, this meant that you heard about a piece of software, probably
+from word of mouth or email, or in a usenet newsgroup, and then you downloaded
+it via ftp from a repository somewhere after finding it using archie or another
+ftp search engine (think google, but only for ftp sites).
+
+Historical interest aside, downloading and configuring software is essentially
+the same today.  What's changed is the quality of the most popular software 
+has improved tremendously, to the point where it is quite easy to install and 
+configure on most popular Unix systems, and the tools available for maintaining
+your software library have improved.
+
+For any popular Unix system, you can search the web for the software or type of
+software you need, and download the archive using your web browser.  At this point,
+you'll have a file named "filename.tar.gz"  This is a file that's been compressed 
+using gnuzip (hence the .gz extension) and archived using tar (hence the .tar 
+extension).  Without getting into what that means, here's what you'll need to
+do in order to extract the file:
+
+<ul>
+mkdir filename    (I usually make a subdirectory, in case the archive doesn't)
+mv filename.tar.gz filename
+cd filename
+gunzip filename.tar.gz   (uncompresses the archive, and removes .gz extension)
+tar xvf filename.tar     (extracts the archive)
+</ul>
+
+At this point you have the contents of the archive available to you.  
+You should look for a README or INSTALL file, and follow the directions there
+in order to compile and configure the software.  This may be as simple as 
+typing:
+
+<ul>
+./configure
+make
+make install
+</ul>
+
+or you may have to go into the Makefiles or worse and modify the program
+to suit your system.  You may also have to install additional programs
+before you can sucessfully compile or run the desired application.
+
+
+<b>the new way</b>
+
+For the most popular software, you can sidestep the occasionally troublesome 
+compilation process by downloading precompiled versions.
+
+Every advanced system has a packaging system to make software installation
+and management even easier.  Often package management will keep track of
+which version of software you have installed, and will alert you if you
+try to install software that depends on having previously installed other
+software, and give you the option of first installing the required
+software.
+
+On Solaris, it's called pkgadd.  You can get packages from sun, or from
+www.sunfreeware.com. (man pkgadd on a Sun system for more info)
+
+Redhat uses RPM <a href=http://www.redhat.com/docs/manuals/linux/RHL-7.2-Manual/custom-guide/ch-rpm.html>Redhat Package Manager</a>
+
+Debian uses apt (Advanced Package Tool), part of the <a 
+href=http://newbiedoc.sourceforge.net/system/apt-get-intro.html>Debian Package System</a>  
+(as the linked document says, "package_A may require package_B , which 
+requires package_C , and the Advanced Package Tool will take care of 
+installing package_C and package_B if you request package_A. Very nice!") 
+
+
+FreeBSD uses the <a href=http://www.freebsd.org/handbook/ports.html>"/ports" collection</a>.
+
+
+<h3>startup/shutdown, runlevels</h3>
+
+What happens when you start or shutdown a unix system?  It varies by OS, 
+but usually you can find folders or files in /etc/rc* which contain shell
+scripts.
+
+There are scripts that the computer runs every time it is started up, which do 
+things like set the name of the computer, check disks for corruption, mount 
+filesystems, turn on quotas, and do sundry other things depending on what you 
+want, or what 'runlevel' you specify.
+
+What's a <b>runlevel</b>?  A runlevel is a shorthand way to tell the system
+to get into a certain state of configuration with respects to what services
+are running (daemons, see below), whether to allow remote logins, what
+filesystems are mounted read-only or read-write, etc.
+
+There are several standard runlevels:
+0 or 6 - shut down the system
+1 or S - single user mode (no remote logins)
+2      - multiuser mode
+3      - multiuser with networking 
+5      - Linux: Graphical User Interfaces enabled
+         Solaris: shut down and power off	
+6      - Linux: shut down the system
+         Solaris: reboot
+
+On most systems you can also create your own runlevels (usually a,b,c...),
+although I haven't heard of anyone actually doing this.
+
+You can change runlevels by using the <b>telinit</b> command.  The behavior
+of telinit is dictated by the /etc/inittab configuration file, On Solaris
+and Linux systems (at least), the inittab tells the system to run a script
+which performs maintenance for changing runlevels, and starts and stops the
+appropriate services for that runlevel.  The configuration files for which
+services should be run at which level are stored in directories such as
+/etc/rc2.d /etc/rc3.d... etc.  These directories contain symlinks to scripts
+in /etc/init.d.  The symlinks have names starting with K or S depending on
+whether they should be Started or Killed at that particular runlevel.  If
+this sounds like a nightmare of complexity, don't worry, it's actually
+pretty simple, if not straightforward.
+
+<h3>
+daemons</h3>
+
+A daemon is a process that stays running on a system at all times in order
+to provide a service on that system.  Daemons do many interesting things on
+your system- allow remote access via ssh, telnet and ftp, serve webpages,
+deliver email, sync the time to other machines, execute previously 
+scheduled tasks...  
+
+Daemon programs are commonly run as root or as their own user, and their 
+command names are usually postfixed with a d, for instance, <b>sshd, 
+telnetd, ftpd,</b> and <b>httpd</b> (the webserver).
+
+As an aside, you're probably wondering why the name "daemons" rather than
+"system process," "background process," or some other more tame name.  Aside 
+from the tradition of interesting names in Unix, you may be surprised to 
+know that the word "daemon" is not synonymous with "demon." The preferred 
+definition in this case is, "a tutelary spirit or internal voice," meaning a 
+guiding spirit which is neither good nor evil.
+
+Daemons are usually started by the rc files, as described above, and run as 
+background processes for the duration the computer is up.  They usually have 
+a configuration file, either in their own directory, or in the /etc/ 
+hierarchy.  Let's look at the inetd daemon as an example.
+
+<b>inetd</b> - the Internet Services Daemon From the inetd manpage: "listens
+for connections on certain internet sockets.  When a connection is found on
+one of its sockets, it decides what service the socket corresponds to, and
+invokes a program to service the request...  Essentially, inetd allows
+running one daemon to invoke several others, reducing load on the system."
+The inet daemon knows which program to invoke according to its configuration 
+file, /etc/inetd.conf.  On AT&T systems, inet is started at the 2nd 
+runlevel, the runlevel that supports multiuser access and networking.  On 
+the OCF, you can see it's startup script linked to from /etc/rc2.d/S69inet.
+And it is stopped in the the other runlevel directories:
+/etc/rc0.d/K42inetsvc
+/etc/rc0.d/K43inet
+/etc/rc1.d/K42inetsvc
+/etc/rc1.d/K43inet
+/etc/rc2.d/S69inet
+/etc/rcS.d/K43inet
+
+
+Another example: <b>init</b>
+There is a special daemon called <b>init</b>.  It is the first real program
+that is run in the process table, and always has a process ID of 1.  It is
+responsible for maintaining accounting information about users logging in,
+it is also responsible for restarting other crucial daemons if they die so
+that the system stays functional, and it also handles the system shutdown
+process.  The folks who wrote init claim that, "The role of init is so
+critical that if it dies, the system will reboot itself automatically."
+If you kill init (see process control in a later lecture, and read the init 
+manpage) the system will be caused to reboot.
+
+
+</UL>
+</ul>	
+
+<P><font size=+2>Homework due next class:</font><P> 
+
+<LI> Install apache somewhere.  Bonus pts for ssl and php.
+<LI> Install something from source, using config files and make.  You can 
+use apache to kill two birds with one stone here.<BR><BR>
+
+If you're in the class, mail me a URL.  Note- some (most?) sysadmins will
+consider running personal daemons a violation of security policy.  Be sure
+to ask before you step on any toes.  The OCF allows local daemons, <a
+href="http://www.ocf.berkeley.edu/OCF/policies/Unattended_Processes.html">per
+this policy</a>.
+
+
+
+
+<hr width=75%>
+c.2002, Devin Jones - jones@csua.berkeley.edu<BR>
+last modified: <I><!--#flastmod file="2002-03-20.html"--></I><P>
+
+</body>
+</html>
+

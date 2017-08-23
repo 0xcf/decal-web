@@ -1,0 +1,32 @@
+<html>
+<head><title>Final Project</title></head>
+<body bgcolor="#000070" link="red" vlink="silver">
+<font face="verdana, arial, helvetica" color="white">
+<h2>Final Assignment</h2>
+</font>
+<hr>
+<table width=400px>
+<tr><td>
+<font face="verdana, arial, helvetica" color="white">
+This is the last assignment of the year, (for people taking 2 units or less) so good luck.  (If you are taking more than two you'll have to do a bit more.)  It's a bit of unix and apache work. <br>  The assignment has been exended so it' won't be due until midnight 11/21.
+<h3>UPDATE: IMPORTANT!!!!</h3>
+Those who submitted the homework before Friday, Nov 16, cannot recieve full credit for the assignment.  The cgi installed did not work and so there is no record of their output, only that they tried to turn in the project.  If you fall into this catagory, please redownload <i>assign.cgi</i> and resubmit the assignment before Thanksgiving, when the due date has been pushed back to.
+<hr>
+There's a very simple process to this:<br><br>
+1. Install a unix on a machine which you will have root on.  If it's your friends machine or yourse is of no consequence to us. <br>
+If you want to learn as little as possible install <a href="http://www.linux-mandrake.com/en/">Mandrake</a>, otherwise try <a href="http://www.debian.org">Debian</a>, <a href="http://www.slackware.org">Slackware</a>, or bsd.
+<br><br>
+2. Install apache.  (See the apache lecture)<br><br>
+3. Install this <a href="assign.cgi">CGI</a> in your root cgi-bin directory.
+4. Input the IP adress of the server
+<form method="GET" action="http://www.ocf.berkeley.edu/~calman/cgi-bin/final.cgi">
+<input name="name">Student name</input><br>
+<input name="IP">Please put your IP Adress here</input><br>
+<input name="port">Please put your port here</input><br>
+<input type="submit" value="Turn in the homework">
+</form>
+</font>
+<td><tr>
+</table>
+</body>
+</html>

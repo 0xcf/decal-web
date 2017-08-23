@@ -1,0 +1,10 @@
+How short can you make Hello World?
+
+The current record is 19 characters (not including whitespace).
+
+You may use any programming language, shell language, as long
+as it is Turing complete.
+
+It must read an argument from the command line and replace 
+World with that argument if it exists.  Otherwise, it should
+print Hello World.

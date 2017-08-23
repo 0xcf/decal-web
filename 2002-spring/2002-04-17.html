@@ -1,0 +1,87 @@
+<HTML><head>
+<title>System Administration for the Web - Day 7 Notes</title>
+
+</head>
+
+<body bgcolor="#dddddd" topmargin="2">
+
+<font size=+2><B>System Administration for the Web</B> - Day 7
+notes</font>
+<P>
+<table width=610 border=0 cellpadding=8 cellspacing=1>
+<TR><TD Colspan=3 align=left bgcolor="#eeeeee">
+
+<font size=+2>Notes:</font><P>
+
+<B>Administrivia:</B><BR>
+<LI>What topics do we want to cover for the rest of the semester?
+
+<P><B>Course Notes:</B><BR>
+
+
+
+<pre>
+
+<h3>
+Basic Security
+</h3>
+
+stopping unneeded services:
+	
+disabling telnet and ftp: 
+(after making sure ssh is up and running, even after reboot) 
+
+Why disable telnet and ftp?  Even though telnet and ftp are old services,
+there are new bugs and exploits being found for versions of these utilites
+on an ongoing basis.  Besides new problems cropping up, there is a
+fundemental problem with those two protocols in that they transmit your
+password in plaintext over the net when you log in, allowing anyone who is
+surreptitiously watching the network to learn your password as the bits zoom
+by.  The ssh and scp protocols have been created to replace telnet and ftp
+respectively and address this problem.  Be sure to install and configure 
+sshd before disabling telnet and ftp unless you don't intend to support 
+remote access.
+
+The inet daemon starts the telnet and ftp services, and the file
+/etc/inetd.conf controls which services inetd spawns on which ports. We
+commented these services out and restarted inetd as specified in the file
+itself.
+
+From a inetd.conf file in which telnet has been turned off (note the #'s 
+before the telnet line):
+
+# These are standard services.
+#
+ftp    stream  tcp     nowait  root    /usr/sbin/tcpd  in.ftpd -l -a
+<font color=red>#</font>telnet stream  tcp     nowait  root    /usr/sbin/tcpd  in.telnetd
+
+inetd then needs to be told to reload it's configuration: (kill -HUP
+<i>inetd's PID</i>).
+
+To confirm that you successfully turned off a service, try to telnet to that 
+service's port (you can find what service is running on which port by 
+looking in /etc/inet/services or /etc/services):
+
+Telnet usually lives on port 23:
+telnet localhost 23
+
+
+<h3>CGI basics</h3>
+As a website admin, it's useful to know how Common Gateway Interface (CGI) 
+scripts work.  CGI is the generic name for programs that are run on the server 
+to process forms or dynamically generate content.
+
+Some examples:
+
+<LI><a href="http://death.berkeley.edu/~jones/sysadmin-2002-cgi/echo.cgi">Prints some text.</a>
+<LI><a href="http://death.berkeley.edu/~jones/sysadmin-2002-cgi/sayhello.cgi">Creates a form and responds to different input.</a> 
+<LI><a href="http://death.berkeley.edu/~jones/sysadmin-2002-cgi/date.cgi">Displays the current time.</a>
+
+</pre>  
+
+<hr width=75%>
+c.2002, Devin Jones - jones@csua.berkeley.edu<BR>
+last modified: <I><!--#flastmod file="2002-04-17.html"--></I><P>
+
+</body>
+</html>

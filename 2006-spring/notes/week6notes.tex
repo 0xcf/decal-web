@@ -1,0 +1,56 @@
+\documentclass[10pt]{article}\usepackage{verbatim} \begin{document}
+\title{System Administration:\\ Week 6 Notes}
+\maketitle
+
+
+\section{Logs}
+\begin{itemize}
+\item Understanding what is in logs helps realize what is up with the operating system: is somebody trying to compromise my server, is a driver crashing my computer, etc
+\item Can edit file {\bf /etc/syslogd.conf} where logs should go
+\item {\bf /var/adm/messages}: a catchall file for lots of messages from the Unix kernel and other logging applications like syslogd. Also sometimes used to store miscellaneous log files, including those created by syslog for messages not written to {\bf /usr/adm/messages} or the console.
+\item {\bf var/adm/lastlog}: stores information about users who are or have logged onto the system. File is in binary and is used by {\bf last}
+\item {\bf /var/adm/sulog}: records all attempts by users to execute su.
+\item Unix makes backup files, numbering them sequentially higher
+\item Files labeled o.logname usually indicate an overflow log. If a log file overflows, all auditing put there stops.
+\item {\bf /var/adm/utmpx} - keeps information on who is currenly logged in. File used by {\bf who} command.
+\item {\bf /var/adm/wtmpx} - keeps information on who logs in/out and of when the machine reboots
+\end{itemize}
+\subsection{Log Rotation}
+\begin{itemize}
+\item When running a server, even one at home, the size of logs would become very large. Since the standard is keeping the most recent one without any additional numbers at the end, all of the logs need to be rotated down when the current ones becomes too large or the time is set to rotate it.
+\item {\bf syslogd} daemon accomplishes this
+\end{itemize}
+\subsection{Cron Jobs}
+\begin {itemize}
+\item It is an automated process which operates at preset intervals. For example, clearing out your accumulated spam at the end of the week. You can also use a daemon to do this, but it would be harder to write and would have to constantly run and take up your system's resrouces.
+\item Accomplished through {\bf crontab} command, which uses {\bf crond} daemon which constantly runs and check if its time to execute your process
+\item {\bf crontab -l} lists your current crons
+\item {\bf crontab -e} edits the file containing your crons
+\item {\bf contab -r} deletes all of your cron jobs 
+\end {itemize}
+\section{Shell Scripting}
+\begin{itemize}
+\item The first line of your shell script will start with \#!/bin/bash if you are writing a bash script. You can replace bash by your favorite shell
+\item Then you would want to have some comments about what the script does, your name, date, etc. Use \# for comments which the script will ignore.
+\item To execute a script you will need to change the permissions to make the file executable with 755 for example and then execute the script with {\bf ./}. For example to execute a script foo.sh you will need to type ./foo.sh
+\item You can reference variables by putting a {\bf \$} before them. For example, to display the terminal you are currently using, you would type {\bf echo \$TERM}.
+\item Enclose anything in {\bf " "} that you want treated as a string.
+\item Use backquotes {\bf ` `} to execute commands. Example: {\bf echo "Today is `date` "} vs {\bf echo "Today is date."} will print {\bf Today is March 13 22:53:18 PST 2006} vs {\bf Today is date}.
+\item Use {\bf read} to prompt for input and read it. For example {\bf read fname} will read whatever user inputs and stores it as fname.
+\item To put more than one command on one line of the shell script, use {\bf ;} eg {\bf who; ls}
+\end{itemize}
+\subsection{If, Else, For, While}
+\begin{itemize}
+\item A typical example of how you would use the if\\else statements. \verbatiminput{verbatim.txt}.
+\item For for loops you will need to put the regular statement in double parenthesis and a do, for example for (( i=0; i$<$5; i++)); do echo \$i; done
+\end{itemize}
+\subsection{Wild Card Characters}
+\begin{itemize}
+\item {\bf *} matches any number of characters
+\item {\bf ?} matches any single character
+\item {\bf []} matches all characters enclosed in brackets, eg ls [abc]* matches any file names that begin with a b or c. [ - ] will match a range of characters, for example [1-10] will match any number between 1 through 10.
+\item ! does not match any of the charcters following it
+\end{itemize}
+
+
+\end{document}

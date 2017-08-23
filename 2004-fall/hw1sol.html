@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Homework 1 Solutions</title>
+	</head>
+	<body>
+		<h1>Homework 1 Solutions</h1>
+		The questions in the homework assignments are intentionally vague at times.  The idea is to show you that there's more than one way about solving a problem.  If your solutions differ from mine, verify that yours work.  Mine are what I'm used to and have come to see as being somewhat standard by convention, but by no means are they absolute.<br><br>
+		<h2>Part 1</h2>
+		<p>
+		1.  man displays the manual pages for a given command, and is the most important command because it enables you to learn how to use (almost) every other command (exceptions are when no man pages have been written, something naughty coders do from time to time).<br>
+		2.  mkdir - make a directory<br>
+		rmdir - remove a directory<br>
+		rmdir'ing a directory that's not open causes the command to fail and spit a somewhat cryptic message to you.  You can use rm -rf (path) to forcibly remove everything in the directory, as well as all subdirectories, recursively.<br>
+		3.  cp - copy files<br>
+		rm - remove files<br>
+		mv - move files<br>
+		Note: in Unix/Linux, directories are actually implemented as files, so the above statements are technically correct, though semantically confusing.  While I'm on the topic, just about everything in Unix is implemented as a file, including devices.<br>
+		Recursive copying is done via cp -R (from) (to).  cp -r also sort of works, but its behavior is undefined for certain file types (see the man page for more details).<br>
+		rm -rf (path) will remove the directory as well as all files within it without prompting you.  Other answers I received include \rm -r (path), which simply means to use the system default rm instead of whatever is aliased (see the man page for the alias command).  This answer is kind of correct in that if you're on a system that has rm aliased to rm -i, you'll need to use \rm -rf (path) since the -i option takes precedence over -f (think about why this is a good thing).<br>
+		mv (from dir) (to dir) to move an entire path.<br>
+		The files inside the directory when you do this are moved along with the directory untouched.  For a better understanding of how this magic works, look on Google or take a course on systems programming (e.g. CS162/262A/262B here)<br>
+		4.  ssh ssh.test.com works for logging in as yourself.  I received some answers that included logging in as a different user.  Either 'ssh -l (login) ssh.test.com' or 'ssh login@ssh.test.com' are valid.  I personally prefer the latter because it involves a slightly nicer looking format.  Choose whichever one makes you happy.<br>
+		scp (file from) ssh.test.com:~/ will copy the file from your home directory to your home directory on the remote computer.  You could also specify the file name if you want to have it be something different, but it is unnecessary for the same file name.<br>
+		scp and cp are related in that both copy files, though scp is extended in that it can copy files remotely over ssh.  For the curious, you could actually use scp to copy local files on your computer to your local computer, but that's kind of silly.<br>
+		5.  There was nothing required for this question, as far as textual submission goes.  I'm a vim person.<br>
+		</p>
+
+		<p>
+		I will save part 2 for another day, since my CS152 and CS169 projects are breathing down my neck while CS170 is keeping me busy as well.  Huzzah for school!
+		</p>
+	</body>
+</html>

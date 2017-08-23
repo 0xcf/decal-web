@@ -1,0 +1,82 @@
+CS98/198 Intermediate Systems Administration DeCal
+Lab #2 SOLUTIONS
+
+I. Filesystems upon Filesystems
+
+1. df -h tells you about how much free space you have. The -h option specifies
+   a human readable format, i.e. it will use KB, MB, and GB to specify sizes
+   instead of bytes.
+
+   Home directories on the institutional cluster are stored on a network
+   fileserver called "ping". They are not stored individually on the client
+   machines so that your home directory is consistent every time you log in.
+
+2. In this particular case, if the mount starts with a machine name, e.g.
+   ping:/vol/vol0/home, then it is a network share. Locally available mounts
+   come from /dev.
+
+3. a. /dev/sda1 (Linux kernel image)
+   b. /dev/mapper/VolGroup00-LogVol00 (Red Hat package manager data)
+   c. /dev/mapper/VolGroup00-LogVol00 (X.org server, for graphical environment)
+   d. project:/inst/aa (for me; it may be different for you)
+
+II. The /proc filesystem
+
+1. If you have a process with ID $PID, you can find information about it
+   in the directory /proc/$PID. For example, the command line the program
+   was invoked with is in /proc/$PID/cmdline.
+
+2. ps -ef or ps ax will let you see other people's processes. You can't
+   see much information about it because the /proc/$PID directories are owned
+   by the person running the program.
+
+3. Here's an example:
+   dr-xr-xr-x  7 cs186-dp  cs186             0 2008-09-27 11:53 32225
+
+   in this case, the directory is owned by cs186-dp, so we can deduce that PID
+   32225 is being run by cs186-dp.
+
+4. /proc/kcore is the physical memory image of the computer. If you could read
+   it, you could potentially sieve passwords and other sensitive information
+   out of it, and that is insecure. So it's good that only root may read it.
+
+5. /proc/net/dev tells you about bandwidth statistics for each network device
+   on the machine. With its raw data you can calculate how many bytes per
+   second each device is pumping through.
+
+6. /proc/self represents the directory of the current process, that is, the one
+   accessing /proc/self. It is accomplished by using a symlink to your process'
+   /proc/$PID directory.
+
+   lrwxrwxrwx  1 root      root             64 2008-10-16 17:26 self -> 28143
+
+III. Device Files - The /dev directory
+
+1. program > /dev/stderr (equivalent to: program >&2, useful hint!)
+
+2. /dev/zero can be used like /dev/null, except if you read out of /dev/zero
+   it returns an infinite stream of NULL characters (ASCII character 0, not
+   the number 0.) /dev/full acts like a full storage device, so if you want
+   to trick a program into thinking your disk is full, tell it to write to
+   /dev/full!
+
+3. df -h shows this as the root partition on icom1:
+
+   /dev/mapper/VolGroup00-LogVol00      28G  22G  4.6G  83% /
+
+   If you try to cat the dev file, you will get permission denied. This is good
+   for the same reason that you can't read /proc/kcore. Actually, if you were
+   able to read it, this would undermine all sense of filesystem-level
+   permissions that you've learned about all semester!
+
+4. Device files are actual files on disk, but they don't have sizes because
+   they point to devices like hard disks, terminals, and serial ports. They
+   use a numbering system called "major/minor" to distinguish them. All
+   device files with the same major number are generally related (e.g. different
+   terminals, partitions on a hard disk, sound cards.)
+
+   You can use the mknod command to make a device file anywhere, but you
+   must be root to do it. That way, you could make a file that behaves
+   like /dev/null but it isn't in /dev at all, just by copying its major
+   and minor numbers.
+

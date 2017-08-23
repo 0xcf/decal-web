@@ -1,0 +1,16 @@
+Exercise 1
+
+1) Open up a shell. 
+2) Create a directory foo
+3) Go into foo
+4) Create an empty file bar
+5) Rename the file baz
+6) Find a way to change the permissions to ALL read, Group write and read for
+	yourself
+
+Exercise 2
+1) Use VIM to create .Xresources
+2) Change the background of the terminal to your favorite color by
+	XTerm*background: lightblue (for example)
+		Verify that this works by opening a new terminal
+3) How would we change the foreground?

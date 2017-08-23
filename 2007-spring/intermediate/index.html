@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Intermediate Unix System Administration Decal, Spring 2007</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+/* <![CDATA[ */
+
+body {
+	background: #AACCFF;
+}
+
+hr, hr.footer {
+	  width: 60%;
+	  margin-left: 0.5em;
+}
+
+hr.footer {
+		width: 20%;
+		margin-left: 0.5em;
+}
+
+ul, ul.contents {
+		margin-left: -0.5em;
+}
+
+ul.contents {
+		margin-top: -1em;
+}
+
+li.contents {
+		font-size: small;
+}
+
+p {
+		margin-left: 1em;
+}
+
+p.footer {
+		margin-left: 0em;
+}
+
+span.date {
+		font-family: Courier New;
+		font-size: small;
+
+}
+table.classes {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 1px;
+	border-style: outset outset outset outset;
+	border-color: black black black black;
+	border-collapse: collapse;
+}
+table.classes th {
+	border-width: 1px 1px 1px 1px;
+	padding: 3px 3px 3px 3px;
+	border-style: inset inset inset inset;
+	border-color: black black black black;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+table.classes td {
+	border-width: 1px 1px 1px 1px;
+	padding: 3px 3px 3px 3px;
+	border-style: inset inset inset inset;
+	border-color: black black black black;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+
+/* ]]> */
+</style>
+</head>
+<body>
+
+<h1>Intermediate Unix System Administration Decal</h1>
+
+<hr />
+
+<h4>Contents</h4>
+<ul class="contents">
+	<li class="contents"><a href="#announcements">Announcements</a></li>
+	<li class="contents"><a href="#notes">Notes/Labs</a></li>
+	<li class="contents"><a href="#grades">Grades</a></li>
+	<li class="contents"><a href="#info">Administrative Information</a></li>
+</ul>
+
+<h2><a id="announcements"></a>Announcements</h2>
+
+<ul>
+	<li><span class="date">2007.05.24:</span> <strong>Virtual servers will be deleted this weekend.</strong> If you have anything you want to save, now is the time to get it off.</li>
+	<li><span class="date">2007.04.21:</span> I think we've posted all the homeworks we have in our mailboxes. See the Grades section for more information. Also, the final version of the Final Project has been posted. The sumbission information is in the project specifications.</li>
+	<li><span class="date">2007.04.20:</span> I think I've put in grades for all the submissions I've received. I know the week 7 submissions went to dima, and I'm guessing several sent week 9 to dima as well. Dima will be grading the submissions he received soon. If after that you see that you are missing a grade, let me know.</li>
+	<li><span class="date">2007.02.28:</span> Week 5 homework posted.</li>
+	<li><span class="date">2007.02.25:</span> Week 5 lecture notes posted.</li>
+	<li><span class="date">2007.02.23:</span> Due to popular demand, we have an AIM screenname. Hit up <strong>ineedsyshelp</strong> if you have questions.</li>
+	<li><span class="date">2007.02.23:</span> Week 4 homework posted.</li>
+	<li><span class="date">2007.02.20:</span> Week 4 lecture notes posted.</li>
+	<li><span class="date">2007.02.13:</span> Week 3 homework posted.</li>
+	<li><span class="date">2007.02.12:</span> Week 3 lecture notes posted.</li>
+	<li><span class="date">2007.02.06:</span> Week 2 homework posted.</li>
+	<li><span class="date">2007.02.06:</span> Week 2 lecture notes posted.</li>
+	<li><span class="date">2007.01.28:</span> Week 1 lecture notes posted.</li>
+	<li><span class="date">2007.01.26:</span> Syllabus has been posted. Topics are subject to change based on class interest.</li>
+	<li><span class="date">2007.01.24:</span> Classes will start on 31 Jan. A syllabus will be posted shortly.</li>
+</ul>
+
+<h2><a id="notes"></a>Notes/Labs</h2>
+
+<p>
+<a href="syllabus.pdf">Syllabus</a><br /> 
+</p>
+
+<table class="classes">
+  <tr>
+    <th>Week</th>
+    <th>Topic</th>
+    <th>Notes</th>
+    <th>Lab/HW</th>
+    <th>Extra</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Introduction &amp; History</td>
+    <td><a href="notes/week1-introduction.pdf">Notes</a></td>
+    <td>No HW</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>The Shell</td>
+    <td><a href="notes/week2-shell.pdf">Notes</a></td>
+    <td><a href="homework/week2hw.pdf">HW</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>The Filesystem</td>
+    <td><a href="notes/week3-filesystem.pdf">Notes</a></td>
+    <td><a href="homework/week3hw.pdf">HW</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Authorization</td>
+    <td><a href="notes/week4-authorization.pdf">Notes</a></td>
+    <td><a href="homework/week4hw.pdf">HW</a></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Compiling Software</td>
+    <td><a href="notes/week5-software.pdf">Notes</a></td>
+    <td><a href="homework/week5hw.pdf">HW</a></td>
+    <td>Ganglia config: <a href="homework/gmond.beginning.conf">Beg</a> <a href="homework/gmond.intermediate.conf">Int</a></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Review and Questions</td>
+    <td></td>
+    <td>No HW</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Networking + Linux Kernel</td>
+    <td><a href="http://www.ocf.berkeley.edu/sysadmin-class/2006-spring/notes/notes3.pdf">Network Notes</a>&nbsp;<a href="notes/week4notes.pdf">Kernel Notes</a></td>
+    <td><a href="labs/lab3.pdf">HW</a>&nbsp;<a href="labs/week4lab.pdf">Lab</a></td> 
+    <td></td>
+</tr>
+  <tr>
+    <td>8</td>
+    <td>More Networking and Questions</td>
+    <td><a href="notes/week7-networking.pdf">Notes</a></td>
+    <td>No HW</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Mail</td>
+    <td><a href="http://www.ocf.berkeley.edu/sysadmin-class/2006-spring/notes/week7notes.pdf">Notes</a></td>
+    <td><a href="homework/week9hw.pdf">HW</a></td>
+    <td></td>
+  </tr>
+</table>
+
+<p>
+<a href="final.pdf">Final Project</a>
+</p>
+
+<h2><a id="grades"></a>Grades</h2>
+<table class="classes">
+<tr><th>Week</th><th>fa</th><th>fb</th><th>fc</th><th>fd</th><th>fe</th><th>ff</th><th>fg</th><th>fh</th><th>fi</th><th>fj</th><th>fk</th><th>fl</th><th>fm</th><th>fn</th><th>fo</th><th>fp</th><th>fq</th><th>fr</th><th>fs</th><th>ft</th></tr>
+<tr><th>2</th><td>+</td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>3</th><td>+</td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>4</th><td>+</td><td></td><td>+</td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>5</th><td>+</td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>7 HW</th><td></td><td>+</td><td></td><td></td><td></td><td>+</td><td>+</td><td></td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td></td></tr>
+<tr><th>7 Lab</th><td></td><td>+</td><td></td><td></td><td></td><td>+</td><td></td><td>+</td><td></td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td></td></tr>
+<tr><th>9</th><td>+</td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td>+</td><td>+</td><td></td><td></td><td>+</td><td></td><td></td><td></td><td>+</td><td>+</td><td></td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>HWs</th><td>P</td><td>P</td><td>P</td><td></td><td>P</td><td>P</td><td>P</td><td>P</td><td></td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td></tr>
+<tr><th>Final</th><td>P</td><td>P</td><td>P</td><td></td><td>P</td><td>P</td><td></td><td>P</td><td></td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td></tr>
+<tr><th>Class</th><td>P</td><td>P</td><td>P</td><td></td><td>P</td><td>P</td><td></td><td>P</td><td></td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td></tr>
+<tr><th>Enrolled</th><td>Y</td><td>Y</td><td>Y</td><td></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
+</table>
+
+<h4>Legend</h4>
+<table class="classes">
+<tr><td>+</td><td>Passed</td></tr>
+<tr><td>-</td><td>Not Passed</td></tr>
+<tr><td></td><td>Not Received</td></tr>
+</table>
+
+<p> I think we've posted all of the grades for the homeworks we see in our mailboxes. It looks like <strong>the number of homeworks needed to pass is 5</strong>. Most people are passing so far, but those that are not, don't dispair. If you submitted a homework and don't see a grade for it, let me know and I'll look through my mail again. Also, I'd really rather not give anyone a NP because of missing HW, so I will still be accepting homeworks until the end of class. Please do enough homeworks to pass! There is no excuse for getting a NP because of HW now.</p>
+
+<p>With regards to enrollment, I have an official list of people enrolled in the DeCal. You got a 'Y' in the Enrolled section if your name is on the enrollment sheet. It looks like everyone that has been turning in homework is enrolled. If you think there is some mistake with enrollment, please let me know as soon as possible.</p>
+
+
+<h2><a id="info"></a>Administrative Information</h2>
+<p>
+	<strong>Time:</strong> Tuesday 5-6pm<br />
+	<strong>Location:</strong> 273 Soda Hall<br />
+	<strong>Enrollment:</strong> 2 units<br /> 
+	&nbsp;- Lower Division: CCN 26389<br />
+	&nbsp;- Upper Division: CCN 26608<br />
+	&nbsp;- <strong>DO NOT enroll in more than 2 units. There will be consequences.</strong> <br />
+	<br />
+	<strong>Facilitators:</strong> <a href="mailto:aoaks+decal@ocf.berkeley.edu">Aaron Oaks</a> and <a href="mailto:dima+decal@ocf.berkeley.edu">Dima Shirchenko</a><br />
+	<strong>AIM Sceenname:</strong> ineedsyshelp<br />
+	<strong>Office Hours:</strong> See OCF <a href="http://www.ocf.berkeley.edu/staff_hours.shtml">Staff Hours</a> page.<br /> 
+	<strong>Attendance:</strong> Mandatory with 2 excused absences<br />
+	<br />
+	
+	<strong>Homework:</strong> <br />
+	&nbsp;- There will be weekly homework assignments (labs). <br />
+	&nbsp;- Each assignment will be graded on a P/NP basis. <br />
+	&nbsp;- Homework will be submitted through e-mail. <br />
+	&nbsp;- Most decal goers only care if they pass or not. Let us know if you would like feedback on your homework. <br />
+	&nbsp;- <strong>You must pass at least 2/3 of the homeworks to pass the course.</strong> <br />
+	<br />
+	<strong>Final:</strong> <br />
+	&nbsp;- There will be a final project in lieu of a final exam. <br />
+	&nbsp;- <strong>Failure to complete the final will result in a NP. </strong><br />
+</p>
+
+
+<h2>Additional Info</h2>
+<ul>
+	<li>
+		<strong>Who should take this course?</strong><br />
+		Some familiarity with the UNIX shell is recommended. Students with with little or no prior UNIX experience are welcome, though they may have difficulty with the pace in the beginning of the course. It is our goal that at the end of this course, you will be comfortable and familiar with the command line interface in order to use and administer Unix operating systems as well as setting up a basic web server. 
+	</li>
+	<li>
+		<strong>How much time should I expect to spend on this DeCal?</strong><br />
+		The workload for the intermediate section should not be hard and I expect that it will not consume too much of your time. Aside from attending lecture, working on the labs and homework should take around an hour at most and work, in general, will ease up during midterms as facilitators are students, too. It is entirely up to you as to how much you want to spend working on the projects and labs; there are always opportunities to expand upon what has been taught and the easiest way to learn Unix system administration is through doing, not just reading.
+	</li>
+</ul>
+	
+
+<hr class="footer" />
+<p>
+  <a href="http://validator.w3.org/check?uri=referer"><img
+      src="http://www.w3.org/Icons/valid-xhtml11"
+      alt="Valid XHTML 1.1" height="31" width="88" style="border:0px;" /></a>
+</p>
+
+</body>
+</html>

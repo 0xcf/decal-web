@@ -1,0 +1,834 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass powerdot
+\options style=aggie
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans cmbr
+\font_typewriter default
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize size=17
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lecture 08:
+\begin_inset Newline newline
+\end_inset
+
+When disaster strikes and all else fails
+\end_layout
+
+\begin_layout Author
+Hands-on Unix system administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-10-22
+\end_layout
+
+\begin_layout Slide
+Projects
+\end_layout
+
+\begin_layout Itemize
+groups of four people
+\end_layout
+
+\begin_layout Itemize
+submit one form per group with proposed project ideas and SSH 
+\emph on
+public
+\emph default
+ keys
+\end_layout
+
+\begin_layout Itemize
+we'll be provisioning VMs and sending out an announcement
+\end_layout
+
+\begin_layout Section
+Tools of the trade
+\end_layout
+
+\begin_layout Slide
+What's up?
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+uptime
+\family default
+: how long continuously running, what's the load average
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+1, 5, 15 min average number of processes waiting for CPU (or IO)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+w
+\family default
+, 
+\family typewriter
+who
+\family default
+: who's logged in on machine
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+write
+\family default
+: write to a logged-in user
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+wall
+\family default
+: write to all logged-in users
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+What's hosing?
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+top
+\family default
+, 
+\family typewriter
+htop
+\family default
+ (Linux), 
+\family typewriter
+ps
+\family default
+ (
+\family typewriter
+ps aux
+\family default
+, 
+\family typewriter
+ps elf
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+similarly 
+\family typewriter
+iftop
+\family default
+ for network 
+\series bold
+i
+\series default
+nter
+\series bold
+f
+\series default
+ace bandwidth, 
+\family typewriter
+iotop
+\family default
+ (Linux) for disk IO
+\end_layout
+
+\begin_layout Slide
+What's in use?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+The 
+\emph on
+action
+\emph default
+ can't be completed\SpecialChar \ldots{}
+in use
+\begin_inset Quotes erd
+\end_inset
+
+ (Windows)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+The 
+\emph on
+operation
+\emph default
+ can't be completed\SpecialChar \ldots{}
+in use
+\begin_inset Quotes erd
+\end_inset
+
+ (Mac OS X)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+lsof
+\family default
+ for files
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+lsof -i
+\family default
+ for network ports
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+see also
+\series default
+: 
+\family typewriter
+netstat -pant
+\family default
+, 
+\family typewriter
+fuser
+\end_layout
+
+\begin_layout Slide
+Too much traffic
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+netcat
+\family default
+: 
+\begin_inset Quotes eld
+\end_inset
+
+pipe
+\begin_inset Quotes erd
+\end_inset
+
+ over TCP/UDP
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+wireshark
+\family default
+, 
+\family typewriter
+tshark
+\family default
+, 
+\family typewriter
+tcpdump
+\family default
+: packet sniffer/analyzer
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nmap
+\family default
+: network scanner
+\end_layout
+
+\begin_layout Slide
+Too many files
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+du
+\family default
+, 
+\family typewriter
+df
+\family default
+: directory, filesystem disk space usage
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+scp
+\family default
+ (
+\series bold
+s
+\series default
+ecure 
+\series bold
+c
+\series default
+o
+\series bold
+p
+\series default
+y): transfer files over SSH
+\end_layout
+
+\begin_layout Itemize
+rsync (
+\series bold
+r
+\series default
+emote 
+\series bold
+sync
+\series default
+): intelligently transfer files (often over SSH)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+tar
+\family default
+ (
+\series bold
+t
+\series default
+ape 
+\series bold
+ar
+\series default
+chiver): combine files into a tarball 
+\end_layout
+
+\begin_layout Slide
+Low-level 
+\begin_inset Quotes eld
+\end_inset
+
+files
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+fdisk
+\family default
+, 
+\family typewriter
+parted
+\family default
+ (Linux): edit partition table
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+fsck
+\family default
+: check filesystem for errors
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+dd
+\family default
+: copy block devices
+\end_layout
+
+\begin_layout Slide
+Too many terminals
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+screen
+\family default
+, 
+\family typewriter
+tmux
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+metaterminal
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+access multiple terminal sessions inside a single terminal session
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+other features: persistence (after logging off), session sharing (between
+ users)
+\end_layout
+
+\begin_layout Slide
+sudo
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+sudo
+\family default
+: 
+\series bold
+s
+\series default
+witch
+\series bold
+ u
+\series default
+ser 
+\series bold
+do
+\series default
+ (usually used to give your command root powers)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lec08-sandwich.png
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+via 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+xkcd.com
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+Other tools
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ldd
+\family default
+ (shared library dependencies), 
+\family typewriter
+truss
+\family default
+ or 
+\family typewriter
+strace
+\family default
+ (trace system calls)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+md5sum
+\family default
+: file checksum
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+watch
+\family default
+: execute command and repeatedly show output
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+seq
+\family default
+: print sequence of numbers
+\end_layout
+
+\begin_layout Section
+Disasters
+\end_layout
+
+\begin_layout Slide
+Software meltdowns
+\end_layout
+
+\begin_layout Itemize
+system load (
+\family typewriter
+uptime
+\family default
+ command) too damn high
+\end_layout
+
+\begin_layout Itemize
+remote access (networking, firewall, SSH) broken
+\end_layout
+
+\begin_layout Slide
+Hardware meltdowns
+\end_layout
+
+\begin_layout Itemize
+failed hard drives
+\end_layout
+
+\begin_layout Itemize
+failed fans, power supplies, CPU, RAM
+\end_layout
+
+\begin_layout Slide
+Criminals on the loose
+\end_layout
+
+\begin_layout Itemize
+crackers will do Bad Things
+\end_layout
+
+\begin_layout Itemize
+compromised accounts
+\end_layout
+
+\begin_layout Itemize
+looks can be deceiving, uncertain what to trust
+\end_layout
+
+\begin_layout Slide
+Escalation of problems
+\end_layout
+
+\begin_layout Itemize
+we like to build systems on top of each other
+\end_layout
+
+\begin_layout Itemize
+if one thing fails, it may break other things, causing other things to fail
+\end_layout
+
+\begin_layout WideSlide
+2003 Northeast blackout
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lec08-2003_North_American_Blackout_Before.jpg
+	display false
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+August 13, 2003, 9:21pm EDT (via 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+en.wikipedia.org
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout WideSlide
+2003 Northeast blackout
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lec08-2003_North_American_Blackout_After.jpg
+	display false
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+August 14, 2003, 9:03pm EDT (via 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+en.wikipedia.org
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Section
+Alleviating the pain
+\end_layout
+
+\begin_layout Slide
+Be Prepared
+\end_layout
+
+\begin_layout Itemize
+Boy Scout motto
+\end_layout
+
+\begin_layout Itemize
+Murphy's Law: 
+\begin_inset Quotes eld
+\end_inset
+
+Anything that can go wrong, will go wrong.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+s--- happens
+\end_layout
+
+\begin_layout Slide
+Power management
+\end_layout
+
+\begin_layout Itemize
+Uninterruptible Power Supply (UPS)
+\end_layout
+
+\begin_layout Itemize
+many UPSes can remotely power cycle servers
+\end_layout
+
+\begin_layout Slide
+Out-of-band management
+\end_layout
+
+\begin_layout Itemize
+separate hardware that can be remotely accessed
+\end_layout
+
+\begin_layout Itemize
+independent from rest of hardware, dedicated NIC
+\end_layout
+
+\begin_layout Itemize
+can access BIOS, power cycle, provide visual display
+\end_layout
+
+\begin_layout Itemize
+e.g., IPMI, Dell DRAC, Sun LOM
+\end_layout
+
+\begin_layout Slide
+Redundancy
+\end_layout
+
+\begin_layout Itemize
+dual redundant power supplies typical
+\end_layout
+
+\begin_layout Itemize
+RAID
+\end_layout
+
+\begin_layout Itemize
+failover servers for high availability
+\end_layout
+
+\begin_layout Itemize
+spare parts (hard drives!) for swapping
+\end_layout
+
+\begin_layout Slide
+Monitoring
+\end_layout
+
+\begin_layout Itemize
+many large scale operations (Google, Facebook) have many failed servers
+ at any point in time, monitoring servers reroute traffic appropriately
+\end_layout
+
+\begin_layout Itemize
+monitor syslog
+\end_layout
+
+\begin_layout Itemize
+SNMP traps
+\end_layout
+
+\begin_layout Itemize
+alarm notification by email, text message
+\end_layout
+
+\begin_layout Slide
+Security
+\end_layout
+
+\begin_layout Itemize
+subscribe to OS security announcements
+\end_layout
+
+\begin_layout Itemize
+Intrusion Detection Software (e.g., snort, bro)
+\end_layout
+
+\begin_layout Itemize
+be wary of lax permissions
+\end_layout
+
+\begin_layout Itemize
+limit root access
+\end_layout
+
+\begin_layout Slide
+Backups
+\end_layout
+
+\begin_layout Itemize
+user data, system configuration
+\end_layout
+
+\begin_layout Itemize
+ideally daily, weekly, monthly rotations
+\end_layout
+
+\begin_layout Itemize
+RAID is not a backup
+\end_layout
+
+\begin_layout Itemize
+e.g., 
+\family typewriter
+rsync
+\family default
+, 
+\family typewriter
+cron
+\family default
+, 
+\family typewriter
+rsnapshot
+\end_layout
+
+\begin_layout EndSlide
+
+\end_layout
+
+\end_body
+\end_document

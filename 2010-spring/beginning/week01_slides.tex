@@ -1,0 +1,209 @@
+\documentclass[14pt]{beamer}
+
+\usetheme{Warsaw}
+\usecolortheme{lily}
+\usepackage{graphicx}
+
+\title{Beginning and Intermediate System Administration DeCal}
+\author{Week 1}
+\date{February 1, 2010}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+	\frametitle{Introduction}
+	\begin{itemize}
+		\item CS98/198-15: Beginning and Intermediate System Administration DeCal
+		\begin{itemize}
+		  \item Sponsored by the Open Computing Facility 
+		  \item Offered since way back when (2001-ish)
+		\end{itemize} 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Who are We?}
+	\begin{itemize}
+		\item Four facilitators
+		\begin{itemize}
+			\item Sanjay (\texttt{sanjayk+decal@ocf.berkeley.edu})
+			\item Alan (\texttt{alanw+decal@ocf.berkeley.edu})
+      \item Michael (\texttt{mgasidlo+decal@ocf.berkeley.edu})
+			\item Jordan (\texttt{jordan+decal@ocf.berkeley.edu})
+		\end{itemize}
+		\item Office Hours: Listed on site below, also by appointment
+		\begin{itemize}
+			\item \texttt{www.ocf.berkeley.edu/staff\_hours}
+			\item Direct the administrative questions to us
+			\item Don't hesitate to contact us about questions and concerns!
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[scale=0.5]{desktop-computer.jpg}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[scale=0.25]{dedicatedservers.jpg}
+  \includegraphics[scale=0.35]{pcservereatindata.jpg}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[scale=0.7]{netcableunplugged.jpg}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[scale=0.75]{linuxMotPoster.jpg}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[scale=0.35]{tubes.jpg}
+\end{frame}
+
+\begin{frame}
+	\frametitle{What and Why?}
+	\begin{itemize}
+		\item System Administration
+		\begin{itemize}
+			\item Not necessarily how to use a system
+			\item GUIs, how to get your modem working, etc... not covered in class. But the skills sets are!
+			\item The "magic" behind how computer labs (Like \texttt{inst}) work.
+		\end{itemize}
+		\item Aspiring sysadmin
+		\item Marketable skills (maybe)
+		\item Manage your own resources
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{What and Why?}
+	\begin{itemize}
+		\item Further understanding of ``how stuff works''
+		\begin{itemize}
+			\item Internet servers
+			\item Security, encryption, and why it matters
+			\item Communication on the network 
+		\end{itemize}
+		\item Two sections offered this semester: beginning and intermediate
+		\begin{itemize}
+		\item For beginners, black box implementation; we'll worry about the initial setup.
+			\item For the intermediate, dig a little deeper.
+		  \item Check the DeCal website for more information
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Prerequisites}
+	\begin{itemize}
+		\item None!
+		\begin{itemize}
+			\item But you may find things a bit easier if you've got some groundwork already. (Interaction with \texttt{inst} accounts)
+			\item It would help to learn a text editor; the sooner the better. 
+			\item A few choices are \texttt{nano, vim, emacs}.
+			\item \texttt{vimtutor} is an excellent guide to learn \texttt{vim}.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Expectations}
+	\begin{itemize}
+	  \item Check the website for the latest updates!
+		\item Come to class
+		\begin{itemize}
+			\item Don't sleep (Try not to)
+		\end{itemize}
+		\item Do the reading
+		\begin{itemize}
+		  \item Material builds on each other
+		  \item Helps to read the material and ask about topics while it's fresh in lecture
+		  \item Print out the notes (\texttt{inst} accounts) and mark them up
+		\end{itemize}
+		\item Do the work
+		\begin{itemize}
+			\item CS98/198, 2 units = ~6 hours of work (at least!)
+			\item \url{http://slc.berkeley.edu/ucftr/docs/unit_value.pdf}
+			\item Participation and effort in lab/homework. 
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Expectations}
+  \framesubtitle{Continued}
+  \begin{itemize}
+  	\item Work with your classmates and peers
+		\item Ask questions in class, through email, in office hours\ldots
+		\item Seek help from all the resources available to you
+		\begin{itemize}
+		  \item Peers
+		  \item Facilitators
+		  \item Internet
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Logistics and Policies}
+	\framesubtitle{Course Format}
+	\begin{itemize}
+%		\item 2 hours \emph{reserved} each week
+		\item Lecture: 0.5-1 hour
+		\item Lab: Rest of the time
+    \item Beginner will start here (310 Soda) for lecture
+    \item Intermediate go straight to lab (271 Soda)	
+		\item Homework: assigned weekly (most of the time)
+		\item Grading
+		\begin{itemize}
+			\item P/NP basis, final project 50\%, labs 30\%, homework 20\%
+			\item Submissions policy
+			\item \textbf{Final project is mandatory!}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Topics}
+	\begin{itemize}
+		\item History of UNIX, GNU/Linux
+		\item Command line interface (CLI)
+		\item The Internet
+		\item Server Daemons (web, databases, etc)
+		\item The LAMP model
+		\item Multi-user environments
+		\item Security
+		\item \emph{Special topics?}
+		\begin{itemize}
+		  \item \textbf{Your} input is needed!
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Homework \#1}
+	\begin{itemize}
+		\item Create an OCF account
+		\begin{itemize}
+			\item Lab is located in Eshleman Hall, floor G
+			\item \url{http://www.ocf.berkeley.edu/lab/labdirectionsocf.jpg}
+			\item Do this before Thursday to ensure your account is created this week.
+			\item \url{http://www.ocf.berkeley.edu}
+		\end{itemize}
+		\item Fill out the course survey (online)
+		\begin{itemize}
+		  \item \url{http://www.surveymonkey.com/s/KMQFF9B}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	Questions?
+\end{frame}
+
+\end{document}

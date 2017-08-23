@@ -1,0 +1,2115 @@
+(can be 24 lines - doesn't need to be)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*    W e l c o m e   t o   V I   T u t o r    -    V e r s i o n   2.1       *
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 1.0 *
+                             **************
+
+vi is the standard Unix editor and as such is available on EVERY Unix system.
+For this reason alone every serious Unix user should be familiar with vi.
+
+Although vi can be intimidating to the first time user, it is actually quite
+easy and logical to use.  Experienced users find it fast and powerful.
+
+The first 4 lessons cover the basics and will get you going quickly with vi.
+Lessons 5-8 cover more advanced topics. See the two excellent references at the
+end of the tutorial when you want to expand your knowledge of vi even further.
+
+The approximate time required to complete the first 4 lessons is 30-40 minutes,
+depending upon how much time is spent with experimentation.  Remember that this
+tutorial is set up to teach by use, meaning that the student should execute the
+commands to learn them properly.  Don't worry about messing up this file.
+
+Now, make sure that your Shift-Lock key is NOT depressed and press the  j  key
+to move the cursor down so that Lesson 1.1 completely fills the screen.
+
+NOTE: To exit the tutorial at any time:  Press the ESC key and enter :q!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 1.1 *
+                             **************
+                 =====>>>>> MOVING THE CURSOR <<<<<=====
+
+   ** To move the cursor, press the h,j,k,l keys as indicated. **
+                                   ^
+                                   k
+                             < h       l >
+                                   j
+                                   v
+  1. Move the cursor around the screen until you are comfortable.
+
+  2. Note that if one tries to move the cursor past the beginning or end of a
+     line (or past the beginning or end of the file), a beep is sounded.
+
+  3. Note that as you move the cursor up and down vi attempts to keep to the
+     same column.  If a line is too short, the cursor will jump to the end of
+     that line.  At the next opportunity the cursor will move back to the
+     same column.  This will be true until you explicitly change columns.
+
+  4. Hold down the down key (j) until it repeats.
+---> Now you know how to move to the next lesson.
+
+  5. Using the down key, move to Lesson 1.2.
+
+NOTE: If you are ever unsure about something you typed, press <ESC> (i.e. the
+      Escape key) to place yourself in Command Mode.  Then retype the command.
+
+      vi has two modes: Command Mode (for commands like cursor movement) and
+      Insert Mode (for inserting text).  vi starts up in Command Mode.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 1.2 *
+                             **************
+       =====>>>>> TEXT EDITING - CHARACTER DELETION <<<<<=====
+
+** While in Command Mode press  x  to delete the character under the cursor. **
+
+  1. Move the cursor to the line below marked --->.
+
+  2. To fix the errors, move the cursor until it is on top of the
+     character to be deleted.
+
+  3. Press the  x  key to delete the unwanted character.
+
+  4. Repeat steps 2 through 4 until the sentence is correct.
+
+---> The ccow jumpedd ovverr thhe mooon.
+
+  5. There is no way to get rid of a line with the x command.  To do this use
+     the line deletion command: dd
+
+     Try deleting this line by typing dd.
+
+NOTE: As you go through this tutorial, do not try to memorize, learn by usage.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 1.3 *
+                             **************
+             =====>>>>> TEXT EDITING - INSERTION <<<<<=====
+
+         ** While in Command Mode press  i  to insert text. **
+
+  1. Move the cursor to the first line below marked --->.
+
+  2. To make the first line the same as the second, move the cursor on top
+     of the first character BEFORE which text is to be inserted.
+
+  3. Press  i  to enter Insert Mode and type in the necessary additions.
+
+  4. As each error is fixed press <ESC> to return to Command Mode.
+     Repeat steps 2 through 4 to correct the sentence.
+
+---> There is text misng this .
+---> There is some text missing from this line.
+
+  5. After fixing the sentence, try inserting characters until the end of the
+     screen is reached and passed.  What happens?  The rest of the sentence
+     wraps onto the next line.  Actually it is the same line which you can
+     verify by going back to Command Mode (by pressing <ESC>) and moving the
+     cursor up and down (with j and k).  Notice the behavior of the cursor.
+
+     Conclusion: vi does no lateral screen scrolling.  All text is displayed
+     on the screen even when a line gets too wide for the screen.  Such lines
+     can be detected by the behavior of the cursor as it is moved over the
+     line by j or k commands.  Or one can issue the command: :set list which
+     will cause all end of lines to be indicated by a dollar sign ($).  Any
+     tabs will show up as ^I characters.  To turn this display off enter:
+     :set nolist .  Try this now and look at the line you forced to wrap.
+
+  6. To get a new line for text insertion simply press the RETURN key while in
+     Insert Mode.  Try this now.  Go into Insert Mode by pressing  i  and then
+     press <RETURN> a few times to see the new lines.
+
+     NOTE: In Command Mode <RETURN> moves the cursor to the first non-blank
+           character on the next line.
+
+  7. While inserting text, one may backspace over inserted text with ^H, i.e.
+     Ctrl-h (press the CONTROL key and the h key).  Depending on the setup of
+     your terminal you may also be able to press the BACKSPACE key if it also
+     emits a ^H code.  Try this now to see if your BACKSPACE key works.
+
+     NOTE: When the BACKSPACE key is pressed in Insert Mode, the cursor moves
+           backward but the characters backspaced over remain on the screen
+           even though they have been erased.  They disappear when you retype
+           the line or press <ESC>.
+
+  8. When you are comfortable inserting text, go on to the next lesson.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 1.4 *
+                             **************
+              =====>>>>> ENTERING AND EXITING VI <<<<<=====
+
+  1. To save the edited text without exiting vi type: :w <RETURN>
+     (i.e. :w plus the RETURN key)
+
+     Do this now and note the confirmation message that appears at the bottom
+     of the screen.
+
+!! NOTE: one or both of the next two commands will take you out of vi. To
+         reenter the tutorial when this happens make sure you are in your
+         HOME directory and type: vi vi.tutorial 
+                                  ^^^^^^^^^^^^^^
+         vi sessions are started this way, i.e: vi FILENAME
+
+         Or else one can reenter the tutorial using the command: vitutor
+         which makes a fresh copy of vi.tutorial in your HOME directory and
+         then executes the vi command for you: vi vi.tutorial
+
+  2. To prepare for the next command delete any character on this line with x.
+
+     To exit vi type: :q <RETURN>
+
+     Do this now.  If you changed the file since the last save (:w) command
+     as instructed, the following error message appears:
+
+     "No write since last change (:quit! overrides)"
+
+     Explanation: If the file has been changed, vi will not permit one to exit
+                  the file without saving the edits or else confirming one
+                  wants to discard all edits. "!" is the override character for
+                  exiting and discarding all edits.  Note that if no changes
+                  had been made, vi would have exited.
+
+  3. To exit vi WITHOUT saving any changes you have made type: :q! <RETURN>
+
+     Use this with care as you will lose all changes made to the file.  Try
+     this now if you like, remembering how to reenter the tutorial.
+
+  4. To exit vi AND SAVE your changes type: :wq
+
+     which combines the write and quit commands.  This forces a write even if
+     no changes have been made to the file.
+
+  5. A handy command in Command Mode is  ZZ  which does a :q if no changes
+     have been made to the file and a :wq if the file has been changed.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 1 SUMMARY *
+                          ********************
+
+  1. There are two modes in vi:
+
+     A. Command Mode for issuing commands like cursor movement (h j k l etc.),
+        text deletion (x dd etc.), saving and quitting (:q :q! :w ZZ etc.).
+
+     B. Insert Mode for entering new text after commands like  i  etc.
+
+  2. The cursor is moved using the h,j,k,l keys.
+         h (left)       j (down)       k (up)       l (right)
+
+  3. x  deletes the character under the cursor in Command Mode.
+
+  4. dd deletes the line under the cursor in Command Mode.
+
+  5. i  inserts text before the cursor.  Press <ESC> to return to Command Mode.
+
+  6. vi FILENAME <RETURN>  is the shell command to edit "FILENAME" with vi.
+
+  7. <ESC> :w  <RETURN>  saves the current state of the file; vi continues.
+
+  8. <ESC> :q! <RETURN>  exits vi and discards all changes (abort).
+     <ESC> :wq <RETURN>  exits vi saving the file first.
+     <ESC> ZZ            exits vi saving the file only if it has been changed.
+
+NOTE: Pressing <ESC> places you in Command Mode or cancels a partially
+      completed command.  There is no need to press <ESC> if you are already
+      in Command Mode.  It does not hurt to do so, a beep confirms vi was
+      already in that mode.
+
+In one lesson you have learned enough to use vi to edit text files.  However,
+with some additional commands you can become MUCH more efficient.
+
+Now continue with Lesson 2.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 2.1 *
+                             **************
+                =====>>>>> THE APPEND COMMAND <<<<<=====
+
+             ** Type  a  to insert text AFTER the cursor. **
+
+  1. Move the cursor to the end of the first line below marked ---> by typing
+     $  in Command Mode.  ($ is the vi command to move the cursor to the end
+     of a line; 0 moves the cursor to column 1, ^ moves the cursor to the
+     first non-blank character on the line).
+
+  2. Type an  a  (lowercase) to append text AFTER the character under the
+     cursor.  (Uppercase  A  appends to the end of the line, i.e. same as $a)
+
+NOTE: This avoids typing  i , the last character, the text to insert, <ESC>,
+      cursor-right (l), and finally, x , just to append to the end of a line!
+
+  3. Now complete the first line.  Note also that append is exactly the same
+     as Insert Mode, except for the location where text is inserted.
+
+---> This line will allow you to practice
+---> This line will allow you to practice appending text to the end of a line.
+
+NOTE: Similar to  A  for appending at the end of a line,  the  I  command
+      inserts at the beginning of the line (actually prior to the first
+      non-blank character on the line, i.e. same as ^i, i.e. ^ then i).
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 2.2 *
+                             **************
+                 =====>>>>> THE OPEN COMMAND <<<<<=====
+
+ ** Type  o  to open a line below the cursor and place you in Insert Mode. **
+
+  1. Move the cursor to the line below marked --->.
+
+  2. Type  o (lowercase) to open up a line BELOW the cursor and place you in
+     Insert Mode.
+
+  3. Now copy the line marked ---> and press <ESC> to exit Insert Mode.
+
+---> After typing  o  the cursor is placed on the open line in Insert Mode.
+
+  4. To open up a line ABOVE the cursor, simply type a capital  O , rather
+     than a lowercase  o.  Try this on the line below.
+Open up a line above this by typing Shift-O while the cursor is on this line.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 2.3 *
+                             **************
+                 =====>>>>> DELETE COMMANDS <<<<<=====
+
+                   ** Type  dw  to delete a word. **
+
+  1. Move the cursor to the line below marked --->.
+
+  2. Move the cursor to the beginning of each word that needs to be deleted.
+
+  3. Type   dw   to make the word disappear.
+
+---> There are a some words fun that don't belong paper in this sentence.
+
+NOTE: The letters dw will not appear on the screen as you type them, so if you
+      are unsure what you typed, press  <ESC>  and start over.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 2.4 *
+                             **************
+               =====>>>>> MORE DELETE COMMANDS <<<<<=====
+
+           ** Type  d$  to delete to the end of the line. **
+
+  1. Move the cursor to the line below marked --->.
+
+  2. Move the cursor to the end of the correct line (AFTER the first . ).
+
+  3. Type    d$    to delete to the end of the line.
+
+---> Somebody typed the end of this line twice. end of this line twice.
+
+  4. D is a shorthand for d$.  As we will see vi establishes several
+     shortcuts like this for common commands.
+
+  5. Move on to the next lesson to understand what is happening.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 2.5 *
+                             **************
+             =====>>>>> ON COMMANDS AND MOVEMENT <<<<<=====
+
+  The format for the  d  delete command is as follows:
+
+         [number]   d   movement      OR       d   [number]   movement
+  Where:
+    number   - is how many times to execute the command (optional, default=1).
+    d        - is the command to delete.
+    movement - is the cursor movement command that defines what is deleted.
+
+  A short list of movements and their effect when combined with d:
+    w - from the cursor to the beginning of the next word.
+    e - from the cursor to the end of the word, NOT including the space.
+    $ - from the cursor to the end of the line.
+    0 - from the cursor to the beginning of the line.
+    ^ - from the cursor to the first non-blank character on the line.
+    G - from the cursor to the end of the file.
+   nG - from the cursor to line n (e.g. 101G)
+    } - from the cursor to the end of the paragraph (defined to be the
+        next null line - i.e. one with no characters on it not even spaces).
+    { - from the cursor to the beginning of the paragraph (defined to the
+        previous null line).
+
+NOTE:  Try pressing just the movement character while in Command Mode to move
+       the cursor as specified in the list.  These can be more efficient at
+       times for moving the cursor than h,j,k,or l.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 2.6 *
+                             **************
+              =====>>>>> DELETING A WHOLE LINE <<<<<=====
+
+               ** Type   dd   to delete a whole line. **
+
+  In future lessons we will find several instances where doubled character
+  commands (like dd) cause an action on a line.
+
+  1. Move the cursor to the second line in the phrase below.
+
+  2. Type  dd  to delete the line.
+
+  3. Now move to the fourth line.
+
+  4. Type   2dd   to delete the two lines.
+
+      1)  Roses are red,
+      2)  Mud is fun,
+      3)  Violets are blue,
+      4)  I have a car,
+      5)  Clocks tell time,
+      6)  Sugar is sweet
+      7)  And so are you.
+
+NOTE: Numbers to indicate how many times to perform the action can be used
+      with most vi commands: 20j (go down 20 lines), 5dd (delete 5 lines),
+      2dw (delete next 2 words), 3x (delete next 3 characters), etc.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 2.7 *
+                             **************
+                 =====>>>>> THE UNDO COMMAND <<<<<=====
+
+   ** Press  u  to undo the last command,   U   to fix a whole line. **
+
+  1. Move the cursor to the line below marked ---> and place it on the
+     first error.
+
+  2. Type  x  to delete the unwanted character.
+
+  3. Now type  u  to undo the last text command executed.
+
+NOTE: The last text command executed is defined to be either:
+      A. The last text deletion (x dd dw d} D etc.)
+      B. The last text insertion beginning from the start of insertion
+         (i a etc.) to the time <ESC> is pressed.
+
+  4. This time fix all the errors on the line using the  x  command.
+
+  5. Now type a capital  U  to return the line to its original state.
+
+---> Fiix the errors oon thhis line and reeplace them witth undo.
+
+NOTE: Once the cursor has been moved from the line  U  no longer has any effect
+      while  u  will still undo the last change.  Pressing  u  twice undoes the
+      undo, i.e. it acts as a toggle on the last change.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 2 SUMMARY *
+                          ********************
+
+  1. a  inserts text AFTER the character the cursor is on.
+     A  appends text to the end of the line.
+     I  inserts text at the front of the line.
+
+  2. o  opens a line BELOW the cursor for text insertion in Insert Mode.
+     O  opens a line ABOVE the cursor for text insertion in Insert Mode.
+
+  3. dw deletes the next word (actually from the cursor up to the next word).
+
+  4. d$  or  D  deletes from the cursor to the end of the line.
+
+  5. dd deletes the line containing the cursor.
+
+  6. The format for a command in Command Mode is:
+
+     [number]   command   movement   OR     command   [number]  movement
+     where:
+       number   - is how many times to repeat the command (optional, default=1)
+       command  - is what to do, such as  d  for delete
+       movement - is what the command should act upon ($ 0 w e b { } etc.)
+
+  7. u  undoes the last text command.
+     U  undoes all changes made to a line.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 3.1 *
+                             **************
+                 =====>>>>> THE PUT COMMAND <<<<<=====
+
+  ** Type  p  (P)  to put the last deletion after (before) the cursor. **
+
+  1. Move the cursor to the line marked ---> below.
+
+  2. Type  dd  to delete the line and store it in vi's default buffer.  This
+     buffer remains intact until the next change is made to the text.
+
+  3. Move the cursor to the line AFTER which the deleted line should go and
+     type  p  to put the deleted line after the line with the cursor.
+
+     (Or move the cursor to the line BEFORE which the deleted line is to go
+      and press P )
+
+  4. Repeat until all the lines are in the correct order.
+
+---> d) Can you learn too?
+     b) Violets are blue,
+     c) Intelligence is learned,
+     a) are Roses red,
+
+  5. In line a) above delete the word Roses by placing the cursor on the R and
+     pressing dw.  Now move the cursor to the "a" of "are" and press P.  This
+     demonstrates the behavior of put when the object deleted is not a line.
+
+  6. Now for a quick demonstration of the power of vi.  Let's move paragraph
+     5 above below this paragraph (6) and preserve the correct spacing.
+
+     a) Place the cursor onto the null line just ahead of paragraph 5.
+     b) Press  d}  to delete the null line, paragraph 5, but NOT the null
+        line after the paragraph.
+     c) Move the cursor to the last line of paragraph 6 and press  p  to put 
+        the buffer.  Note the correct blank line spacing.
+     d) Thus it is as easy to move paragraphs in vi as it is to move words or
+        lines.  Try this with your favorite text editor.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 3.2 *
+                             **************
+               =====>>>>> THE REPLACE COMMAND <<<<<=====
+
+  ** Type  r  and a character to replace the character under the cursor. **
+
+  1. Move the cursor to the first line below marked --->.
+
+  2. Move the cursor so that it is on top of the first error.
+
+  3. Type   r   and then the character which should replace the error.
+
+  4. Repeat steps 2 and 3 until the first line is correct.
+
+--->  Whan this lime was tuoed in, someone presswd some wrojg keys!
+--->  When this line was typed in, someone pressed some wrong keys!
+
+NOTE: this command leaves you in Command Mode.
+
+  5. How would one do this using  x  and  i  ?   r is quicker.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 3.3 *
+                             **************
+        =====>>>>> THE MULTI-CHARACTER REPLACE COMMAND >>>>>=====
+
+      ** Type a capital  R  to replace more than one character. **
+
+  1. Move the cursor to the first line below marked --->.
+
+  2. Place the cursor at the beginning of the first word that is different
+     from the second line marked ---> (the word 'next').
+
+  3. Now type  R  and replace the remainder of the text on the first line by
+     typing over the old text to make the first line the same as the second.
+
+---> To make the first line the same as the next line, use the R command key.
+---> To make the first line the same as the second, type R and the new text.
+
+  4. Note that when you press <ESC> to exit, any unaltered text remains.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 3.4 *
+                             **************
+                =====>>>>> THE CHANGE COMMAND <<<<<=====
+
+            ** To change part or all of a word, type  cw **
+
+  1. Move the cursor to the first line below marked --->.
+
+  2. Place the cursor on the u in lubw.
+
+  3. Type  cw  and the correct word (in this case, type  'ine'.)
+
+  4. Press <ESC> and move to the next incorrect word.
+
+  5. Repeat steps 3 and 4 until the first sentence is the same as the second.
+
+---> This lubw has a few wptfd that mrrf changing usf the change command.
+---> This line has a few words that need changing using the change command.
+
+NOTE:  the change command places you into Insert Mode.  Notice also that a
+       "$" character is placed by vi at the end of the text which is being
+       changed.  Press <ESC> to return to Command Mode when done.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 3.5 *
+                             **************
+               =====>>>>> MORE CHANGES USING c <<<<<=====
+
+   ** The change command is used with the same movements as delete. **
+
+  1. The change command works in the same way as delete.  The format is:
+
+       [number]   c   movement       OR       c   [number]   movement
+
+  2. The objects are also the same, such as   w (word), $ (end of line), etc.
+
+  3. Move to the first line below marked --->.
+
+  4. Move the cursor to the first error.
+
+  5. Type  c$  to make the rest of the line like the second and press <ESC>.
+
+---> The end of this line needs some help to make it like the second.
+---> The end of this line needs to be corrected using the  c$  command.
+
+  6. As with dd, cc affects the whole line.
+
+  7. As with D for d$ , C is the shorthand for c$.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 3.6 *
+                             **************
+                 =====>>>>> COPYING USING y <<<<<=====
+
+   ** Use the y command to copy text into the vi default buffer **
+
+   1. y (for yank) operates very similarly to d (for delete) except that
+      instead of deleting text into the vi default buffer it copies it.
+
+   2. Similarly to dd, yy copies a whole line into the default buffer.  Y is
+      a short hand for yy.  (There is no short hand for yanking from the
+      cursor to the end of the line which is always: y$)
+
+   3. Move to the line below marked --->.
+
+   4. Press Y (or yy) and then p or P to copy the line after or before itself.
+
+--> This line can be easily copied by pressing YP.
+
+NOTE: There is an inconsistency among d&c and y in the use of D/C/Y short cuts:
+      command:                d (delete) c (change) y (yank)
+      whole line operation:  dd         cc         yy
+      whole line shortcut:                          Y
+      rest of line:          d$         c$         y$
+      rest of line shortcut:  D          C
+
+      Why is this?  While vi has a lot of command consistency, in some cases
+      exceptions were made for convenience.  In this case vi expects that it
+      is more common to want to copy a whole line than part of a line.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 3 SUMMARY *
+                          ********************
+
+  1. p  puts text from the default buffer after the cursor.
+     P  puts text from the default buffer before the cursor.
+
+  2. r  replaces the character under the cursor with the next character
+        typed.  Command Mode remains in effect.
+
+  3. R  enters replace (overtype) mode until  <ESC>  is pressed to exit.
+
+  4. cw changes the next word.
+
+  5. c$  or  C  changes text from the cursor to the end of the end of the line.
+
+  6. cc changes the entire line.
+
+  7. The change (c) commands put one into Insert Mode.  Press <ESC> when done.
+
+  8. yw copies (yanks) the next word into the default buffer.
+
+  9. y$ copies from the cursor to the end of the line.
+
+ 10. yy  or  Y  copies the entire line into the default buffer.
+
+ 11. The format for the change and yank commands is the same as for d:
+
+         [number]   c   movement      OR        c   [number]   movement
+         [number]   y   movement      OR        y   [number]   movement
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 4.1 *
+                             **************
+               =====>>>>> SCROLLING AND PAGING <<<<<=====
+
+    ** ^D and ^U  scroll by half screens; ^F and ^B page by full screens **
+
+  1.  Press ^D (Down) to scroll the screen down by one half of the screen.
+
+  2.  Press ^U (Up)   to scroll the screen up   by one half of the screen.
+
+  3.  Press ^F (Forward) to scroll the screen forward by one full page.
+
+  4.  Press ^B (Back)    to scroll the screen back    by one full page.
+
+  5.  Try pressing these commands a few times to see how they make moving
+      through the file quicker.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 4.2 *
+                             **************
+             =====>>>>> LOCATION AND FILE STATUS <<<<<=====
+
+  ** Type ^G (Ctrl-g) to show the location in the file and the file status.
+     Type nG to move to line n in the file. **
+
+NOTE: Read this entire lesson before executing any of the steps!!
+
+  1. Hold down the Ctrl key and press  g  (i.e. ^G).  A status line will
+     appear at the bottom of the page with the filename and the line you are
+     on.  Remember this line number for Step 3.
+
+  2. Press G to move you to the bottom of the file (note this is a capital G).
+
+  3. Type in the number of the line you were on and then G.  This will
+     return you to the line you were on when you first pressed ^G.
+     (When you type in the numbers, they will NOT be displayed on the screen.)
+
+  4. If you feel confident to do this, execute steps 1 through 3.
+
+NOTE: What did you see after the last line in the file?  If there are no more
+      lines in the file, vi simply puts the  ~  character on the screen to
+      indicate a null line.  When one starts editing a new file, the screen
+      will come up full of these lines indicating the file is empty.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 4.3 *
+                             **************
+                =====>>>>> THE SEARCH COMMAND <<<<<=====
+
+         ** Type  /  followed by a phrase to be searched for **
+
+  1. In Command Mode type the  /  character.  Notice that it and the cursor
+     appear at the bottom of the screen as with the  :  command.
+
+  2. Now type  errroor<RETURN>.  This is the word you want to search for.
+
+  3. To search for the same phrase again, simply type  n .
+     To search for the same phrase in the opposite direction, type  Shift-N .
+
+  4. If you want to search for a phrase in the backwards direction, use the
+     command  ?  instead of  /.  n  searches backward again after the ? and
+     N searches forward (i.e. in the opposite direction).
+
+     When the search reaches the end or beginning of the file, it continues
+     the search at the opposite end of the file.  :set nowrapscan  causes the
+     search to stop when the end or beginning of the file is reached.
+
+---> "errroor" is not the way to spell error;  errroor is an error.
+
+NOTE: By default vi uses Unix regular expressions.  Although this subject is
+      beyond the scope of this tutorial, you should be aware that the
+      following characters have special meaning in search commands: /\^$.*[]
+      To search for a string containing one of these characters, simply
+      precede the character with a backslash (\) to remove its special
+      meaning.  One can also turn off the special meaning of these characters
+      with :set nomagic  To turn regular expressions back on: :set magic.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 4.4 *
+                             **************
+            =====>>>>> MATCHING PARENTHESES SEARCH <<<<<=====
+
+              ** Type  %  to find a matching ),], or } . **
+
+  1. Place the cursor on any (, [, or { in the line below marked --->.
+
+  2. Now type the  %  character.
+
+  3. The cursor should be on the matching parenthesis, bracket, or brace.
+
+  4. Type  %  to move the cursor back to the first character of the pair.
+
+---> This ( is a test line with ('s, ['s ] and {'s } in it. ))
+
+NOTE: This is very useful in debugging a program with unmatched parentheses!
+      If no match is found, the terminal beeps.  To actively show the match
+      while entering text set the showmatch command: :set showmatch
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 4.5 *
+                             **************
+               =====>>>>> PATTERN SUBSTITUTION <<<<<=====
+
+        ** Type  :s/old/new/g  to substitute 'new' for 'old'. **
+
+  1. Move the cursor to the line below marked --->.
+
+  2. Type  :s/thee/the <RETURN> .  Note that this command only changes the
+     first occurrence on the line.
+
+  3. Now type  :s/thee/the/g     meaning substitute globally on the line.
+     This changes all occurrences on the line.
+
+---> thee best time to see thee flowers is in thee spring.
+
+  4. To change every occurrence of a character string between two lines,
+     Type   :#,#s/old/new/g    where #,# are the numbers of the two lines.
+     Type   :%s/old/new/g    to change every occurrence in the whole file.
+     Type   :%s/old/new/gc   to change every occurrence in the whole file but
+       generate a prompt for each occurrence found.  Reply "y" to change the
+       occurrence, <RETURN> to go to the next one, ^C to interrupt and stop.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 4 SUMMARY *
+                          ********************
+
+  1. ^D  moves down 1/2 page in the file.
+     ^U  moves up   1/2 page in the file.
+
+  2. ^F  moves down 1   page in the file.
+     ^B  moves up   1   page in the file.
+
+  3. ^G (Ctrl-g)  displays your location in the file and the file status.
+
+  4. G  moves the cursor to the end of the file.
+
+  5. nG (e.g. 41G) moves the cursor to line n.
+
+  6. /pattern  searches FORWARD  for "pattern".
+     ?pattern  searches BACKWARD for "pattern".
+
+     n  repeats the pattern search in the same     direction as the last / or ?
+     N  repeats the pattern search in the opposite direction as the last / or ?
+
+     Watch out for the special characters used in Unix regular expressions:
+     /\^$.*[]  Quote them with  \  or turn them off completely w/ :set nomagic
+
+  7. %  locates the matching pair of one of: () [] {}
+        To show the matches as text is typed in: :set showmatch
+
+  8. To substitute new for the first old on a line type    :s/old/new/
+     To substitute new for all 'old's on a line type       :s/old/new/g
+     To substitute phrases between two line #'s type       :#,#s/old/new/g
+     To substitute all occurrences in the file type        :%s/old/new/g
+     To ask for confirmation each time add 'c'             :%s/old/new/gc
+
+We're getting into some advanced topics now which you may want to save for
+another session after you have used what you have learned for a while.  Don't
+forget to continue as there is still much useful information to learn.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 5.1 *
+                             **************
+          =====>>>>> HOW TO EXECUTE A UNIX COMMAND <<<<<=====
+
+   ** Type  :!  followed by a UNIX command to execute that command. **
+
+  1. Type the familiar command  :  to set the cursor at the bottom of the
+     screen.
+
+  2. Now type the  !  (exclamation point) character.  This allows you to
+     execute a UNIX shell command.
+
+  3. As an example type :!ls .  This will show you a listing of your directory,
+     just as if you were at the shell prompt.
+
+NOTE:  It is possible to execute any shell command this way.
+
+  4. To escape out to a shell prompt type  :sh<RETURN>
+     Type "exit" when you want to return to the vi session.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 5.2 *
+                             **************
+              =====>>>>> MORE ON WRITING FILES <<<<<=====
+
+     ** To save the changes made to the file, type  :w FILENAME. **
+
+  1. Type  :!ls  to get a listing of your directory.
+
+  2. Choose a filename that is not already in your area, such as TEST.
+
+  3. Now type:   :w TEST   (where TEST is the filename you chose.)
+
+  4. This saves the whole file  (vi.tutorial)  under the name TEST.
+     To verify this, type   :!ls   again to see your directory
+
+NOTE: If you were to exit vi and enter again with the filename TEST, the file
+      would be an exact copy of the tutorial when you saved it.
+
+  5. Now remove the file from your area by typing:     :!rm TEST
+
+  6. To append to an existing file: :w >> FILENAME
+
+  7. If a file already exists, vi will not permit you to overwrite it with
+     :w FILENAME.  If you want to override this, use :w! FILENAME.
+
+  8. If a file does not exist, vi will not permit you to append to it.  If
+     you want to override this: :w! >> FILENAME
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 5.3 *
+                             **************
+            =====>>>>> A SELECTIVE WRITE COMMAND <<<<<=====
+
+         ** To save part of the file, type   :#,# w FILENAME **
+
+  1. Once again, type    :!ls    to obtain a listing of your directory and
+     choose a suitable filename such as TEST.
+
+  2. Move the cursor to the top of this page and type  Ctrl-g  to find the
+     number of that line.  REMEMBER THIS NUMBER!
+
+  3. Now move to the bottom of the page and type  Ctrl-g again.  REMEMBER THIS
+     LINE NUMBER ALSO!
+
+  4. To save ONLY a section to a file, type   :#,# w TEST   where #,# are
+     the two numbers you remembered (top,bottom) and TEST is your filename.
+
+  5. Again, see that the file is there with  :!ls  but DO NOT remove it.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 5.4 *
+                             **************
+                  =====>>>>> INSERTING FILES <<<<<=====
+
+       ** To insert the contents of a file, type   :r FILENAME **
+
+  1. Type   :!ls   to make sure your TEST filename is present from before.
+
+  2. Place the cursor at the top of this page.
+
+NOTE:  After executing Step 3 you will see Lesson 5.3.  Then move DOWN to
+       this lesson again.
+
+  3. Now read and insert your TEST file using the command   :r TEST   where
+     TEST is the name of the file.
+
+NOTE:  The file you read is placed after the line where the cursor is located.
+
+  4. To verify that a file was retrieved, cursor back and notice that there
+     are now two copies of Lesson 5.3, the original and the inserted version.
+
+  5. u (undo) will undo an immediately preceding text insertion.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 5.5 *
+                             **************
+         =====>>>>> INSERTING TEXT FROM A UNIX COMMAND <<<<<=====
+
+   ** To insert the output of a Unix command, type: :r! unix_command **
+
+  1. Type   :r! ls   to include the output of the ls command after the line
+     containing the cursor.
+
+  2. To delete the included text, immediately press u to undo the change.
+
+  3. Try this now, :r! ls <RETURN> u
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 5.6 *
+                             **************
+      =====>>>>> PROCESSING TEXT THROUGH A UNIX COMMAND <<<<<=====
+
+  ** To pass text through a Unix command use the !<movement> command **
+
+  1. Any portion of the text being edited can be processed (filtered) by a
+     Unix command.  One simply enters an  !  followed by a movement command
+     indicating the extent of the text to be processed followed by the Unix
+     command, i.e:  !<movement>command
+
+     If one wants to process one line use:  !!command
+
+  2. Demonstrate this capability by placing the cursor on the line AFTER the
+     ---->
+
+  3. To sort these lines enter: !}sort<RETURN>
+
+---->
+      spade
+      heart
+      diamond
+      club
+
+  4. The action of this command can be interpreted as:
+     !  -  start up a filtering command
+     }  -  include all text between the line with the cursor and the next
+           paragraph boundary (note how an  !  appears at the bottom of
+           the screen awaiting the entry of the Unix command).
+     sort - the name of the Unix command to be executed.
+     <RETURN> - executes the command.
+
+  5. The change to the text can be reversed with the undo (u) command.
+
+  6. Suppose one wants to process the whole document.  Let's count the number
+     of lines, words, and characters in this file.  After entering the
+     command, remember to press  u  to undo the command.  You will also wind
+     up at the top of the file and so will have to find your way back to this
+     location. As before one could press ^G to see the current line number
+     and then later issue #G to return (where # is the line number).  Instead
+     let's use another feature of vi: the text mark.  Mark your current
+     location with: mh This establishes a marker called  h  at the cursor
+     location (one can use markers a to z with the marker (m) command). 
+     After you find yourself at the top of the file, press  u  to restore the
+     text, and then enter 'h to return to the line with the h marker.
+
+     a. Press  mh  to mark this location.
+     b. Enter 1G to go to the top of the file.
+     c. Enter !Gwc<RETURN> to pass the file through the wc (word count) Unix
+        command remembering to press  u  to restore the text afterwards and 
+        'h (' = single quote or apostrophe) to return to this location.
+
+     Are you back?  Did the first number reported by wc correspond to the
+     number of lines returned by ^G?  It should have.
+
+     A shorthand for processing the entire file is to start with a :%
+     :%!wc<RETURN>
+
+  7. This capability is one of the most powerful features of vi as it permits
+     one to augment the capabilities of vi with any system or user supplied
+     program or script.  Another example is using the system
+     utility "fmt" to flow a paragraph.
+     Simply put your cursor on the first
+     line of this paragraph and press !}fmt -c<RETURN>
+     Try this now on this paragraph to see if fmt is available on your system.
+     If it isn't found, press  u  to get the paragraph back.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 5 SUMMARY *
+                          ********************
+
+  1.  :!command  executes a unix system command.
+
+      Some useful examples are:
+          :!ls  -  shows a directory listing of your area.
+          :!rm FILENAME  -  removes file FILENAME from your area.
+
+  2.  :w FILENAME  writes the current vi file to disk with name FILENAME.
+
+  3.  :#,# FILENAME  saves the lines # through # in file FILENAME.
+
+  4.  :w >> FILENAME  appends current file to file FILENAME.
+
+  5.  :r FILENAME  inserts file FILENAME after the cursor position.
+
+  6.  :r!command  places the output of the Unix command after the cursor.
+
+  7.  !<movement>command  passes the text indicated by the movement command
+      through a Unix command.  Examples: !Gsort   !}fmt
+
+      !!command   processes one line.
+
+      :%!command  processes the whole file.
+
+  8.  mx  establishes a text marker x (of a to z).  
+      'x  returns the cursor to column 1 of the line containing marker x.
+
+NOTE:  'x is a movement command and can be combined with d,c,y etc.  d'x
+       deletes lines from the cursor to the line with the x marker;
+       :'b,'ew FILE  writes lines from marker b to marker e to FILE.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 6.1 *
+                             **************
+              =====>>>>> SET ENVIRONMENT OPTION <<<<<=====
+
+           ** Setting and reviewing vi environment options **
+
+  1. In several of the preceding lessons we have referred to the setting of
+     various vi environment options.  These include:
+
+     :set nomagic   - to turn off use of regular expressions in searches (/ ?).
+     :set showmatch - to cause matching ( { [ to be shown as they are entered.
+     :set list      - turn on end of line marker ($) and show tabs (^I).
+
+  2. Here are some others you may wish to set:
+
+     :set showmode     - show on the last line of the screen the mode the
+                         editor is in (blank for command mode, INPUT MODE for
+                         input mode, REPLACE MODE for replace mode, etc.)
+     :set ignorecase   - to ignore letter case in searches.
+     :set nowrapscan   - to prevent a search  (/ or ?) from wrapping around
+                         the beginning or end of a file.
+     :set wrapmargin=2 - to cause the word being typed to be automatically
+                         moved to a new line when within "wrapmargin" (e.g. 2)
+                         characters of the end of the line.
+     :set autoindent   - to turn on automatic indentation where the cursor is
+                         automatically indented to the same column as the
+                         first non-blank on the preceding line.
+     :set autowrite    - automatically saves a file before starting to edit
+                         a new file with the "next" command (:n described in
+                         lesson 7.2)
+
+NOTE: The showmode option works on the /sys5.3/usr/bin/vi but not the
+      /bsd4.3/usr/ucb/vi version of vi on Apollo DomainOS.
+
+  3. To see the setting of all of the vi options type: :set all
+     Try this now to see the available options in vi and their defaults.
+
+  4. Most of the options can be turned off by adding "no" to the front of the
+     option name, e.g: noshowmatch noignorecase noautoindent etc.
+
+  5. Options that are of the form :set option=number (e.g. wrapmargin) can
+     only be changed by setting them to another number: :set wrapmargin=0  sets
+     this option back to its default which is not to do word wrap.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 6.2 *
+                             **************
+     =====>>>>> AUTOMATICALLY SETTING OPTIONS AT VI STARTUP <<<<<=====
+
+      ** Use the file, ~/.exrc, to store desired vi option settings **
+
+  1. To have your preferred vi options automatically invoked at the time vi is
+     started, create a file in your HOME directory called .exrc.
+
+  2. In that file add set commands (without the leading ":") to set the
+     desired options.
+
+  3. Example contents of a .exrc file:
+
+" my .exrc file: lines that begin with a double quote (") are comments
+set showmode
+set showmatch
+set autoindent
+set autowrite
+set ignorecase
+set nowrapscan
+set wrapmargin=2
+
+  4. If you like, let's create your .exrc file and put these lines into it for
+     starters.  You, of course, can later modify this file with vi.
+
+     a. Set up a text marker on the line "my .exrc file:..." by typing: mb
+
+     b. Now move to the last set command and type: :'b,. w! >> ~/.exrc
+
+        I.e. write from the line with marker b ('b) up to and including the
+        the current line (.), to the file ~/.exrc.
+
+NOTE: Compare this method of writing out a portion of the file using markers to
+      that using line numbers in lesson 5.3.  This may be a little easier.
+
+     c. To verify that this all worked, exit and reenter the tutorial and check
+        the setting of the above options.  Note that we appended these lines to
+        .exrc ( w! >>) in case you already had a .exrc file.  The  !  forces
+        creation of .exrc if it does not exist.
+
+  5. ~/.exrc is also the file into which new key maps can be stored.  Go to the
+     next lesson to learn a little bit about this capability.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 6.3 *
+                             **************
+            =====>>>>> SETTING YOUR OWN KEY MAPS <<<<<=====
+
+     ** Use the :map and :map! commands to set your own key maps **
+
+  1. Defining your own keymaps is a very powerful capability in vi.  It will
+     be described briefly.  See the references for more detail.
+
+  2. Although most keys can be redefined to perform other functions, it is
+     recommended that one stick to defining keys that are not used by vi. 
+     These include:
+
+     In Command Mode:  ^A ^I ^K ^N ^O ^P ^R ^V ^W ^X
+                       F1-F12 g K q v V = \ * #
+
+                       On some keyboards: ^/     (displays as ^_)
+                                          ^\
+                                          DELETE (displays as ^?)
+                                          TAB    (displays as ^I)
+
+NOTE: You may not have noticed it but by default vi only uses the ASCII keys,
+      the RETURN key, the SHIFT key, the CONTROL key, the ESC key, the TAB
+      (^I) key, and the BACKSPACE (^H) key.  vi was designed to be used on
+      many different keyboards and, therefore, uses universal keys.
+
+      Most versions of vi also provide default mappings for the arrow keys in
+      Command Mode to correspond to h,j,k,l.  Use of the arrow keys will slow
+      you down and it is strongly recommended to stick with h,j,k,l.
+
+  3. For example, suppose one wants to map g to be 1G (i.e. go to the first
+     line in the file, analogous to G which takes one to the last line):
+
+     :map g 1G
+
+     Try this out to see if it works (remember the current line number or
+     put a marker (e.g. mh) here so you can easily return).
+
+     Suppose one wants to map ^W (Ctrl-w) to do a file save:
+
+     :map ^V^W :w!^V<RETURN>
+
+     Explanation: the ^W (Ctrl-w NOT the characters ^ and W), like other non-
+     ascii characters, must be preceded by a ^V (Ctrl-v) in a mapping
+     statement. The mapping says to write (:w!) the current version back out
+     to the file and stay inside vi (i.e. do a save).  The sequence ^V<RETURN>
+     puts an actual RETURN command into the map (<RETURN> == RETURN key).
+
+     Suppose one wants to establish a shorthand for y$ (remember that Y is a
+     short hand for yy, i.e. copy a whole line to the default buffer).  Let's
+     use  K  for Kopy since K is an unused letter in Command Mode:
+
+     :map K y$
+
+---> Try out the K map by pressing KP anywhere on this line.
+
+  3. To see the settings of any map commands type: :map
+     The output so far would look like:
+
+     :map
+     g  1G
+     ^W :w!^M
+     K  y$
+
+     From which we can see that vi does not show the ^V quoting character and
+     that further the <RETURN> key actually generates a ^M.
+
+  4. One can also build key maps for multiple characters.  For example:
+     :map \x d'b
+
+     maps the two character sequence "\x" to a function which deletes the
+     lines between marker b ('b) and the current cursor location.
+
+     The ability to do this kind of mapping greatly extends the number of key
+     maps that can be built.
+
+     NOTE: In building multiple character key maps, make sure the first
+           character is from the list of unused characters above and that the
+           character chosen is not itself mapped.  Also, when the macro is
+           used, the two characters must be pressed within about a second of
+           each other, otherwise vi will interpret them separately.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 6.4 *
+                             **************
+                 =====>>>>> MORE ON KEY MAPS <<<<<=====
+
+  ** Function keys can be mapped and one can define Insert Mode maps **
+
+  1. On many keyboards the function keys may also be defined using the :map
+     command.  To map one of these keys type: :map ^V<Fn> mapping
+     where <Fn> means to actually press the desired function key at this point
+     in the map command.  This captures the actual keycode sequence generated.
+
+     Let's see if this works for your keyboard:
+
+     enter: :map ^V<F1> ^V^G
+
+     where <F1> means to press your F1 key.  Then press F1 to see if it
+     behaves like ^G.
+
+NOTE: You can use this technique to define maps for many keys on your
+      keyboard that are not used by default.  In some cases, depending on
+      your terminal, a particular key may not emit a code and so after
+      entering ^V the following key produces nothing.  In that case you will
+      not be able to map that key.
+
+  2. To define keys for Insert Mode use the :map! command.
+     To view any :map! settings type: :map!
+
+     Since ascii keys are used in Insert Mode, it is best to stick to function
+     keys and unused control type keys in this mode.
+
+  3. One of the best uses for Insert Mode map commands (:map!) is to define
+     the arrow keys so they will move the cursor while in Insert Mode.
+
+NOTE: some versions of vi have already made these definitions.
+
+     :map! ^V<up_arrow>    ^V<ESC>ka
+     :map! ^V<down_arrow>  ^V<ESC>ja
+     :map! ^V<right_arrow> ^V<ESC>la
+     :map! ^V<left_arrow>  ^V<ESC>ha
+
+NOTE: <up_arrow> means push the up arrow key here, ^V is Ctrl-v.  Notice how
+      the ESC key is included in the mapping to return to the Command Mode for
+      the cursor movement commands h,j,k,l and then how we return to inserting
+      text with the append command (a).  You will also find that the <ESC>
+      key shows up as  ^[  in the key maps shown by :map and :map!.
+
+      Be aware that unlike the set commands in an earlier lesson, you will
+      not be able to copy the map commands in this tutorial into your .exrc
+      file since these commands are written using ascii characters instead of
+      the actual control characters needed by vi.  You will need to generate
+      the maps yourself using the actual control keys.  (See the very bottom
+      of the tutorial for an attached .exrc file that contains many of these
+      key maps.)
+
+  4. Any desired map or map! commands can be placed into the .exrc file along
+     with the set commands.  As with the set commands omit the leading ":".
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 6 SUMMARY *
+                          ********************
+
+  1.  :set all - shows setting of all vi environment options
+
+  2.  :set option - to turn on an option (e.g. showmode)
+
+  3.  :set nooption - turn off an option (e.g. noshowmode)
+
+  4.  :set option=number - to set a numerical option (e.g. wrapmargin=2)
+
+  5.  :map <key> mapping - to map "key" in Command Mode to possibly many
+                           characters of action.  Use ^V to quote non-ascii
+                           characters like Function keys or control keys.
+
+  6.  :map! <key> mapping - to map "key" in Insert Mode to an action.  Stick
+                            to Function keys and unused control keys here.
+
+  7.  :map  shows all Command Mode maps
+      :map! shows all Insert Mode maps
+
+  8.  Use the file ~/.exrc (i.e. $HOME/.exrc) to store all desired set and
+      map commands.  Omit the leading ":".
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 7.1 *
+                             **************
+         =====>>>>> ADJUSTING THE SCREEN BY ONE LINE <<<<<=====
+
+        ** ^E and ^Y move the screen up and down by one line **
+
+  1.  Press ^E (Expose) to expose one more line at the bottom of the screen,
+      i.e. scroll the screen up by one line.
+
+  2.  Press ^Y to expose one more line at the top of the screen.
+
+  3.  Try pressing these commands to see their effect.  Notice that the cursor
+      remains on the same character until the line moves off of the screen.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 7.2 *
+                             **************
+               =====>>>>> EDITING MULTIPLE FILES <<<<<=====
+
+   ** Startup vi as: vi file1 file2 file3 etc. to edit multiple files **
+
+  1.  When vi is entered with more than one filename as arguments, the edit
+      session begins on the first file.
+
+  2.  When that file has been edited and saved (with :w), one may move to the
+      next file by typing :n
+
+      Type :n! to go to the next file and discard edits to the current file.
+
+  3.  If the autowrite option (:set autowrite) is set, :n will cause the
+      current file to be automatically saved before starting up the edit on
+      the next file without having to type :w
+
+  4.  One may also use a filename with :n at any time to edit a file not
+      in the argument list: :n newfile
+
+  5.  To return to the file that had been edited just previously use the ^^
+      command, i.e. Ctrl-^, i.e. press the CONTROL key and the ^ key (usually
+      the 6 key).  The autowrite option is also effective for this command.
+
+  6.  At any time to see the list of files being edited with an indication
+      of what the current file is enter :arg
+
+      To go back to the very first file enter :rewind
+
+  7.  Let's try editing two files and toggling between them.
+
+      A. First, either set the autowrite option (:set autowrite) or else save
+      the current file (:w).
+
+      B. Now, let's edit another file, say TEMP.  Before entering the command
+      to go to the new file remember that to get back we will press ^^ (i.e
+      Ctrl-^).  Now enter: :n TEMP and enter a few lines in the other file.
+
+      C. Now press ^^ to return (remembering that you may have to save that
+      file (:w) if you did not set the autowrite option).
+
+      D. Press ^^ to return again to the TEMP file; and ^^ to return back to
+      this file.  When you returned to the TEMP file, were the lines you 
+      entered still there?  They should have been.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 7.3 *
+                             **************
+        =====>>>>> RECOVERING A CRASHED EDIT SESSION <<<<<====
+
+     ** To recover an interrupted edit session: vi -r filename **
+
+  1.  If one is editing a file when the system crashes (power failure, OS
+      crash, etc.), one will usually be able to recover most of the edits done
+      up to that point.  The reason is that vi operates on a copy of the file,
+      not the file itself, AND it keeps a relatively up to date version in one
+      of the machine's system directories.  In the event of a crash this
+      temporary file will still exist and vi will send you an email message
+      letting you know there is a saved file.  VERY useful.
+
+  2.  After such a crash to see if a file has been saved, type: vi -r
+
+  3.  If there is a file indicated, type: vi -r FILENAME 
+      which restarts the edit session very close to where the failure occurred.
+
+IMPORTANT: Once the session is restarted IMMEDIATELY save the contents into
+           another file with and exit with  :wq NEWFILENAME.
+
+  4.  If you want to try this out, simply kill this vi process (with the Unix
+      kill command from another window or else close the window).  Entering
+      vi -r should show "vi.tutorial" saved and ready to be restarted with:
+      vi -r vi.tutorial.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 7.4 *
+                             **************
+                 =====>>>>> BROWSING A FILE <<<<<=====
+
+        ** To browse a file that is not to be changed use view **
+
+  1.  If one wants to browse a file and not change it, one can use the view
+      command instead of vi.  The view command actually invokes vi but sets
+      the readonly option (:set readonly or :set ro).
+
+  2.  The readonly option prevents vi from saving the text back to the file
+      unless an override is given, e.g: :w!  instead of  :w
+
+  3.  One can also issue the :set noreadonly or :set noro command to convert
+      the view session back to a standard vi session.
+
+  4.  One thing some do to make use of view and to prepare backup copies of
+      files is to start edit sessions with view and, when they decide to
+      change the file, push a special key to create a backup copy and put the
+      session into edit (noreadonly or noro) mode.  An example key map to
+      perform this function:
+
+      :map ^V^P :set noro^V<RETURN>:w! %.bak^V<RETURN>
+
+      Thus, if one is editing a file called xyz and presses ^P (Ctrl-p), edit
+      (noro) mode is turned on and a copy of the file is put into a new file
+      called xyz.bak (vi replaces the "%" with the name of the file).
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 7 SUMMARY *
+                          ********************
+
+  1.  ^E moves the screen up   one line.
+      ^Y moves the screen down one line.
+
+  2.  vi file1 file2 etc.   edits multiple files sequentially.
+
+  3.  :n  goes to the next file in the vi argument list (may need :w first).
+
+  4.  :set autowrite  makes :w unnecessary before using :n for the next file.
+
+  5.  :n NEWFILE  starts editing the file "NEWFILE".
+
+  6.  :arg  show the list of files to be edited.
+      :rewind  returns to the first file in the vi argument list.
+
+  7.  ^^ (i.e Ctrl-^)  toggles back to the just previously edited file.
+
+  8.  vi -r  shows if any edit sessions were saved after a system crash.
+      vi -r FILENAME  restarts the saved edit session on "FILENAME".
+      :wq NEWFILENAME<RETURN>  immediately upon restarting the old session.
+
+  9.  view  starts a vi session with the readonly option set (i.e. browse).
+
+      :w!  forces a file save in a view session.
+      :set noro  converts a view session into a vi session.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 8.1 *
+                             **************
+          =====>>>>> REPEATING THE LAST TEXT CHANGE <<<<<=====
+
+          ** To repeat the last change to the text press . **
+
+  1.  . is one of the most useful vi commands.  It repeats the immediately
+      preceding text modification command whether it was a text insertion,
+      text deletion, text change, text put, etc.
+
+  2.  To see how this works move the cursor to the line containing the ---->.
+
+  3.  Move to the first of the extra words and press dw to delete the word.
+
+  4.  Press . to repeat the deletion.
+
+  5.  If one presses . once too many times, u undoes the last change.
+
+----> There are extra extra extra extra extra extra words on this line.
+
+  6.  Here's another way to make selective changes to text in the file:
+      go to the next line marked ---> by entering the search command /abc
+
+  7.  Change the word to "new" by typing: cwnew<ESC>
+
+  8.  Now press n to go to the next occurrence of the string and press .
+      to make the same change again.
+
+  9.  Press n to go to the next occurrence and then press n again to leave
+      this occurrence alone.  Press . to change the last occurrence.
+
+--->  Change abc and abc but not abc and finally change abc.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 8.2 *
+                             **************
+              =====>>>>> USING OTHER TEXT BUFFERS <<<<<=====
+
+   ** In addition to the default vi buffer there are 26 more labeled a-z **
+
+  1.  Any time a text deletion, copy, or change is done the affected text is
+      placed into the default (unnamed) vi buffer.  There it is accessible by
+      a put command (p P) until the next change is made.
+
+  2.  If one wants to save some changed/deleted text past the next set of
+      changes, one can use the 26 other named buffers vi provides.  These
+      buffers, a through z, are referred to by a preceding double quote (").
+
+  3.  For example, to delete a line into buffer j: "jdd
+      To paste buffer j after the cursor: "jp
+
+  4.  To see how this works go to the line marked ---> and enter "bY to copy
+      the line into buffer b.  Now press  p  to put a copy of the line after
+      itself to show that the default buffer is loaded with the same text.
+
+  5.  Now, delete a word on one of the lines with dw and press p.  Note that
+      it is now the word that is in the default buffer.
+
+  6.  Press "bp to recover the text from the b buffer.
+
+--->  Copy this line into the b buffer by pressing: "bY
+
+  7.  Let's try one more thing: go to the next line marked ---> and press "BY
+
+  8.  Then press "bp
+
+--->  Add this line to the b buffer by pressing: "BY
+
+  9.  What happened?  Right.  The new line was added to the b buffer.  By
+      using a capital B one indicates that the text is to be appended to
+      the b buffer instead of replacing the contents of the buffer.
+
+NOTE: When editing multiple files as described in an earlier lesson, one must
+      use the named buffers to move text between files.  The default vi buffer
+      resets when a new file is to be edited.  The named buffers remain intact.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 8.3 *
+                             **************
+              =====>>>>> RECOVERING DELETED TEXT <<<<<=====
+
+   ** Use the sequence "1pu.u.u.u to recover previously deleted text **
+
+  1.  It sometimes happens that some deleted lines get away from you that
+      cannot be recovered by the undo (u) command which only undoes the
+      immediately preceding text change.  vi provides a mechanism to help.
+
+  2.  In addition to the default buffer (the one into which the d and y
+      commands place deleted or copied text for example) and the 26 named
+      buffers (a-z), vi also provides 9 backup line buffers.  Each time a
+      line or lines are deleted into the default buffer, they are also copied
+      into backup buffer 1; line(s) in buffer 1 are moved to buffer 2; etc.
+
+Note: Partial line deletions (e.g. D dw) are not copied to backup buffer 1.
+
+  3.  To recover lines from buffer 4 type: "4p
+
+  4.  To systematically search back through the buffers: "1pu.u.u.u.u.u.u.u.
+      Each u undoes the previous put; each . puts text from the next buffer.
+      Stop when your deleted text appears or the 9th buffer is reached.
+
+  5.  To try this out go to the line marked ---> and successively delete it and
+      the following lines with dd commands.  Then enter the sequence "1pu.u.u.
+      to see each line recovered from its backup buffer.
+
+---> line 1
+     line 2
+     line 3
+     line 4
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 8.4 *
+                             **************
+                       =====>>>>> TABS <<<<<=====
+
+  ** ^I inserts tabs into text, and the Unix expand command removes them **
+
+  1.  Generally it is not recommended to put tab characters into your text.
+      Operations down stream, including other readers of your text and
+      printers, may not use the same definition of a tab spacing as does vi.
+      This would make your "perfectly" aligned text look strange.
+
+      The vi default for the tabstop is 8.  This does not mean that a tab is 8
+      spaces rather it defines the column where the next character will go
+      after a tab.
+
+      For example for :set tabstop=8 (the default), the tab stop columns are
+      1 9 17 25 etc.
+
+NOTE: On most keyboards the TAB key also generates ^I.
+
+  2.  The best use for tabs is to help you build a table with aligned columns.
+      You may want to remove the tabs after the table is built for the reason
+      stated above.
+
+  3.  To easily remove tabs and keep the same character spacing use the Unix
+      expand command.  To process your complete file use the Unix filtering
+      mechanism described in an earlier lesson: :%!expand<RETURN>
+
+  4.  If you want to add tabs back in use  :%!unexpand -a<RETURN>
+
+      Both expand and unexpand, like vi, use 8 for the tabstop by default.
+
+  5.  Be aware that in some cases vi will insert tabs for you.  This can happen
+      when the autoindent option is on (:set autoindent) or when the << and >>
+      commands are used to shift lines left and right respectively (the amount
+      of the shift is controlled by the "shiftwidth" vi option, default=8).
+
+  6.  To see if your file contains any tabs use the search command: /^I
+
+      Or you can turn on the list option as described earlier: :set list
+      Tabs will show in the text as ^I.  Do this now and look at the line
+      ---> below which contains tab characters.
+
+---> This	line	contains	tab	characters.
+
+  7.  Enter :set nolist to turn this style display off.  Run your cursor over
+      the line with the h and l cursor movement keys.  Notice the behavior of
+      the cursor.
+
+  8.  Now let's get rid of tabs on this line by entering: !!expand<RETURN>
+      To verify the tabs are gone re-enter:  :set list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 8.5 *
+                             **************
+                   =====>>>>> ODDS AND ENDS <<<<<=====
+
+                ** A short collection of useful vi tips **
+
+  1.  If the screen ever becomes corrupted, it can be redrawn with ^L.
+
+  2.  To quickly reverse two characters place the cursor on the first one and
+      type:  xp
+
+      Try reversing "xp" and back again.
+
+  3.  To reverse two words position the cursor in the space in front of the
+      first word and press:  deep
+
+      Try reversing the last two words on this line.
+
+  4.  To join two lines into 1: J
+
+      Try joining the line after this line
+      to make one line.
+
+  5.  ~  reverses the case of a letter.  Try ~ on this sentence.
+
+  6.  B, E, and W operate like their lower case cousins (b to move cursor
+      back to previous beginning of word, e for next end of word, w for
+      beginning of next word) but instead of just considering certain
+      characters to be parts of words (i.e. alphanumeric plus underscore _)
+      they consider all non-whitespace (whitespace being blanks, tabs, and
+      end of lines) to be parts of a word.  To see how these movement
+      characters behave move the cursor to the next line and use w and W to
+      examine the cursor movement.
+
+--->  This name, /usr/home/user/filename, is several words (w) AND 1 word (W).
+
+  7.  If you ever find yourself stuck at the bottom of the screen at a ":"
+      prompt, you may have accidentally pressed  Q  which is the command to go
+      into the ex line editor.  vi is actually built on top of this editor and
+      one has access to all of its capabilities.  All of the commands starting
+      with a colon (:) are actually ex commands.  To return to full screen
+      editing with vi simply enter  vi  after the :
+
+  8.  If you ever find your vi session locked up, you may have accidentally
+      pressed the ^S key which is typically the terminal command to stop.
+      Press ^Q to resume the session.
+
+  9.  Another key to watch out for is ^Z, which is typically the terminal
+      suspend command.  If pressed, this suspends vi and throws you back out to
+      the shell prompt.  To restart vi (from a c or Korn shell) simply type fg.
+      Actually, ^Z/fg can be handy to use at times.
+
+ 10.  To define an abbreviation that will be expanded automatically in Input
+      Mode:  :ab xy expansion of the abbreviation
+
+      Thus, any time xy<blank> is typed it will be replaced with "expansion of
+      the abbreviation".  These abbreviations may be added to your .exrc file.
+
+      Try this now:
+
+      In Commmand Mode type:  :ab xy Xabc Ydef
+
+      Then insert xy<blank> here to see what happens.
+
+ 11.  To shift a line "shiftwidth" columns to the  left: <<
+      To shift a line "shiftwidth" columns to the right: >>
+
+      Use :set shiftwidth=n to change the default setting which is 8.
+
+----> Try shifting this line to the right with >> and back with <<.
+
+      As with most other vi Command Mode commands one can precede these
+      commands by numbers; to shift 4 lines: 4>>  Try this on this paragraph.
+      What happens when the right end of the line is closer than "shiftwidth"
+      columns of the edge of the screen?
+
+      Since > and < are text commands for shifting lines, one might guess that
+      since >> and << apply to lines, other movement commands can be used.
+      Correct.  To shift the next paragraph to the right: >}     Etc.
+
+ 12.  When using the autoindent option (:set autoindent) a new line
+      automatically starts at the same level of indentation as the last line.
+      To increase the indentation by "shiftwidth" characters press ^T in
+      Insert Mode before any characters are typed on the line.  To decrease
+      the level of indentation by "shiftwidth" characters use ^D.
+
+      Let's try out autoindent:
+
+      a. Press :set autoindent<RETURN>
+      b. Press  o  to open a line below this one.  Note how the level
+         of indentation matches the prior line.
+      c. Press ^D and ^T to see how the level of indentation decreases and
+         increases by shiftwidth characters (default=8 characters).
+      d. Enter a few input characters and press <RETURN> to see how the 
+         level of indentation is maintained.
+
+ 13.  '' returns the cursor to the line where the last marker was set or
+      where the last text change was made whichever was last.  This makes it
+      very convenient, for example, to edit in two locations of the file and
+      easily toggle between the two locations.
+
+ 14.  If in the midst of typing a : command (e.g. :q!) or a search command
+      (e.g. /pattern or ?pattern) and you want to abort the command, use the
+      BACKSPACE or ^H key to back up over all of the entered text.  Pressing
+      <ESC> has the same effect in this situation as pressing <RETURN> which
+      may not be what you want.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             * Lesson 8.6 *
+                             **************
+                  =====>>>>> USEFUL KEY MAPS <<<<<=====
+
+             ** A short collection of useful vi key maps **
+
+  1.  The goal of this lesson is to provide several examples of key maps that
+      supplement the basic vi capabilities.  One will find some of them
+      useful while others may suggest ideas for other maps.  All of these key
+      maps plus some additional ones are contained in a "uuencode" file
+      attached at the bottom of the tutorial.  There are instructions there
+      for extracting the file and using it as your starting point for your
+      own $HOME/.exrc file.
+
+  2.  Let's list a few maps described earlier that provide handy functions:
+
+NOTE: We use ^V (Ctrl-v) before any non-ascii character such as ^K (Ctrl-k),
+      or <RETURN> (RETURN key) or <ESC> (ESC key).  As mentioned earlier none
+      of these key maps will work as listed below since they are built
+      entirely from ascii keys.  Use the attached .exrc file as a source for
+      the "real" maps.  Note also that when using any of the multi-character
+      maps (\P =x =1 etc.) the two characters must be pressed quickly (< 1
+      second) otherwise vi interprets the two characters separately.  If you
+      hear a beep when using them, you have probably been too slow.
+
+      " a shorthand for copy to end of line
+      map K y$
+      " go to the top of the file, complements G
+      map g 1G
+      " map arrow keys so they work in Insert Mode
+      map! ^V<up_arrow>    ^V<ESC>ka
+      map! ^V<down_arrow>  ^V<ESC>ja
+      map! ^V<right_arrow> ^V<ESC>la
+      map! ^V<left_arrow>  ^V<ESC>ha
+      " line copy using mb to mark beginning and cursor position to mark end
+      map ^V^K "py'b^V<RETURN>
+      " line delete using mb to mark beginning and cursor position to mark end
+      map ^V^X "pd'b^V<RETURN>
+      " put contents of buffer p after or before the cursor
+      map \p "pp
+      map \P "pP
+      " save the file
+      map ^V^W :w!V<RETURN>
+      " create a backup copy of the file
+      map ^V^P :set noro^V<RETURN>:w! %.bak^V<RETURN>
+
+      Usage:
+
+      K in Command Mode copies from the cursor to the end of the line into
+        the default buffer where it is available for putting with  p  or  P.
+
+      g in command mode moves the cursor to the first line in the file.
+
+      Arrow keys in Insert Mode move the cursor without leaving Insert Mode.
+                 Useful for editing tables.  Minor point: moving the cursor
+                 into column 1 or past the last column on a line, puts you
+                 back to Command Mode (indicated by a beep).  The maps in
+                 the .exrc file are done for an xterm and may need to be
+                 redone if you terminal emits different codes.
+
+      ^K copies all lines between the line with marker b (use  mb  on the
+         first line to be copied) and the line with the cursor (move the
+         cursor to the last line to be copied).  The lines go into the
+         default buffer for immediate access with  p  or  P  AND they go into
+         the "p" buffer where they can be accessed later on with  \p  or \P
+         which put the contents of the "p" buffer after or before the cursor.
+
+      ^X is same as ^K except it deletes the lines instead of copying them.
+
+      \P puts the contents of buffer "p" (which was loaded by ^K or ^X)
+         before the cursor location.
+
+      \p same as \P but after the cursor position.
+
+      ^W in Command mode saves the file without exiting vi.
+
+      ^P sets noreadonly mode (i.e. converts a "view" session into a vi
+         session) and creates a backup copy of the current file with the same
+         name but with ".bak" appended.
+
+  3.  Let's define a map to complement the Insert Mode arrow keys:
+
+      " <DELETE> key deletes characters in Command Mode AND Insert Mode
+      map ^V<DELETE> x
+      map! ^V<DELETE> ^V<ESC>lxi
+
+      Usage: 
+
+      <DELETE> deletes the character under the cursor in Command Mode or
+               Insert mode (one remains in Insert Mode when using <DELETE>).
+               Most terminals will display the DELETE key as ^?.
+
+  4.  Let's define a few keys to help clean up the file:
+
+      " remove all trailing blanks in the file
+      map =b :%s/ *$//^V<RETURN>1G
+      " remove tabs (default: tab=8 spaces)
+      map =e :%!expand^V<RETURN>
+      " text flow paragraph
+      map =1 {j!}fmt -c^V^V|expand<RETURN>}+
+
+      Usage:
+
+      =b causes all trailing blanks on all lines to be removed.  Besides
+         making the file shorter, this makes sure that "blank" lines around
+         paragraphs are in fact null lines so that  {  and  }  work properly.
+
+      =e expand all tabs in the file to the correct number of spaces.
+
+      =1 flows the paragraph containing the cursor to maintain a straight
+         left edge (actually the -c option allows lines 1 and 2 to be at
+         different left margins with lines 3 to n lining up with line 2). 
+         The right margin is set by default to 72 which means that a line
+         will be broken when a character would go past column 72.  To change
+         this default to say 75: fmt -c -75 .  fmt also uses tabs if it can
+         so the map pipes the output through expand to remove the tabs.
+
+         NOTE: the right edge will be "ragged" and not aligned.  This is the
+               correct behavior when using a fixed width text font.
+
+               Some computer systems do not offer fmt (e.g. HPUX).  If you
+               would like a function to do this, send email to the address
+               shown at the bottom of this tutorial.
+
+  5. A few more useful maps:
+
+     " split the line at the cursor
+     map =2 i^V<RETURN>^V<ESC>k$
+     " edit file under cursor; use ^^ (i.e. Ctrl-^) to return
+     map =5 ^V^WmoI ^V<ESC>^[`olT i:e! ^V<ESC>3h"od2Wu@o^V<RETURN>
+     " append lines between b marker and cursor position to file
+     map =9 :'b,.w!>>
+     " spell check
+     map =s ^V^W:!spell %>~/_^V<RETURN>:e!~/_^V<RETURN>^V<RETURN>
+     " next two maps are non-functional in HPUX
+     " find next occurrence of text under cursor (try mapping this to ^V^/)
+     map =/ moI ^[`olT moi/^["odEu`o@o^M
+     " find previous occurrence of text under cursor (try mapping this to ^V^\)
+     map =? moI ^[`olT moi?^["odEu`o@o^Mn
+
+     Usage:
+
+     =2 splits the line at the cursor position leaving the cursor at the
+        original position in Command Mode.
+
+     =5 edits file name on which cursor rests.  To return to original file
+        press ^^ (i.e. Ctrl-^).  ^^ takes you back again to the new file.
+        Note the use of a previously defined map (^W) to shorten the map.
+
+     =9 appends the lines between the  b  marker (type  mb  on the first line
+        to be copied) and the cursor position to the file entered at the
+        prompt at the bottom of the screen.
+
+     =s spell checks your file using the unix "spell" command.  The errors
+        are put into the file ~/_ and vi is switched to that file.  Pressing
+        ^^ (Ctrl-^) returns you to the original file to correct an error,
+        ^^ takes you back to the list of errors, etc.
+
+     =/ finds the next occurrence of the text string under the cursor.  To
+        find the next occurrence press  n.
+
+     =? finds the previous occurrence of the text string under the cursor. To
+        find the previous occurrence again press  n.
+
+     NOTE:  These last two maps work on most versions of vi except HPUX.
+
+            These two keys are useful with =s spell checking. Place the
+            cursor on the spelling error and press  =/  then press ^^ to
+            return to the original file. Press n (or N) to find the error(s).
+
+  6. Finally, let's set up a rectangular cut and paste system for vi which is
+     one of the only serious omissions in the design of vi.  However, it is
+     one that is easy to add using the ability of vi to pipe text through an
+     external program.  A program called "rcut" has been written to perform
+     this function and should be available in the same directory as the
+     "vitutor" command.  If it is not there, source code is available from
+     the email address at the end of the tutorial.  This system allows us to
+     copy and delete and put columns selected from the text.  Here are the
+     associated key maps:
+
+     " use mb to mark the top corner, cursor to mark lower, rectangular copy
+     map =k meo^[256i ^[`ejr^:m'b-^M`bkr^!'ercut -k^M^V^G
+     " same as =k except cut instead of copy
+     map =x meo^[256i ^[`ejr^:m'b-^M`bkr^!'ercut -x^M^V^G
+     " to paste rectangular text from =x or =k before cursor position
+     map =P moO^[256i ^[`okr^!Grcut -P^M^V^G
+     " same as =P except paste after cursor position
+     map =p moO^[256i ^[`okr^!Grcut -p^M^V^G
+
+     NOTE: in the interest of space the above key maps show ^[ instead of
+           ^V<ESC>, ^M instead of ^V<RETURN>.  Other uses of "^" are for the
+           ascii character  ^  itself.  The complete key maps are in the
+           attached .exrc file.
+
+     Usage:
+
+     =k copies a rectangular section of the text delimited by the  b  marker
+        at one of the top corners of the of the block and the cursor position
+        at the opposite lower corner.  The cursor may be in the same column
+        as the marker in which case only a single column will be copied.  The
+        buffer for the copied text is the file $HOME/.rcut.
+
+     =x operates identically to =k except that the rectangular section is
+        deleted instead of being copied.
+
+     =P puts the rectangular section created by =k or =x before the cursor
+        location.
+
+     =p is the same as =P except the section goes after the cursor location.
+
+EXERCISE: As an exercise extract the .exrc from the attached uuencode file at
+          the end of the tutorial and make it your $HOME/.exrc file.  Then:
+          1) Try out each of the above maps to see how they behave
+          2) Consider changing the map to a different key if you like.  E.g.
+             you may want to remap =1 =2 etc. to F1 F2 etc.
+          3) Consider defining your own key maps to simplify repetitive tasks
+             or to provide a function the editor is missing.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ********************
+                          * LESSON 8 SUMMARY *
+                          ********************
+
+  1.  . repeats the last change made to the text.  Use it, it will save many
+      unnecessary keystrokes.
+
+  2.  Use the named buffers a-z to save text in for later use.
+
+      "cdd deletes a line into the c buffer
+      "cp  pastes the line from the c buffer
+      "Cdd deletes a line and appends it to the c buffer.
+
+  3.  To recover previously deleted text check the backup buffers by using the
+      sequence: "1pu.u.u.u.u.u.u.u.
+
+  4.  Tabs may be inserted into the text with ^I or the TAB key.  vi itself can
+      insert tabs if the "autoindent" option is on or whenever the shift
+      commands (> <) are used. Use the Unix expand command to convert tabs into
+      the correct number of substitute spaces:  :%!expand<RETURN>
+
+  5.  Use BACKSPACE or ^H to back up over text entered after a  :  or  /  or
+      ?  to abort the command.  Don't use <ESC> which will do a <RETURN>.
+
+  6.  Other useful commands:
+
+      ^L  - refresh the screen
+      ^Q  - to restart a session stopped by ^S
+      ^Z  - suspends vi and returns to shell prompt; to return to vi: fg
+      xp  - reverse two characters
+    deep  - reverse two words (start at the space in front of first word)
+       J  - join 2 lines
+       B  - same as b but ignores all characters except blanks, tabs, and
+            newlines in finding start of previous word.
+       E  - same relation to e as B to b.
+       W  - same relation to w as B to b.
+       ~  - reverse case
+     :vi  - return to vi from ex : prompt
+     :ab  - define an Insert Mode abbreviation
+      >>  - shift line "shiftwidth" characters to the right.
+      <<  - shift line "shiftwidth" characters to the left.
+      ^T  - increases indentation level when using autoindent option
+      ^D  - decreases indentation level when using autoindent option
+      ''  - return to last created marker or text change location.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             *  SUMMARY   *
+                             **************
+
+                        ** vi command summary **
+
+Startup and save:
+================
+
+vi file    - edits file (noreadonly)          :wq saves and quits; :q! aborts
+view file  - browses file (readonly)          :set noro converts to vi session
+:w saves file but does not quit               ZZ quits saving file if necessary
+vi -r - check for any saved files             :w file  to write to a new file
+vi -r file - restarts interrupted session     :w >> file  to append to file
+:n file  edits a new file                     ^^ toggles between two files
+
+Cursor movement:
+===============
+
+^F (^B) pages forward (backward)              ^D (^U) half pages down (up)
+h j k l moves the cursor left down up right   G (1G) goes to end (top) of file
+w (b) moves to next (previous) word           e moves to next end of word
+0 ($) puts cursor at start (end) of line      ^ moves to first nonblank on line
++ (-) first nonblank on next (previous) line  n| moves to column n on line
+<RETURN> is same as +                         ma sets position marker "a"
+{ (}) moves cursor before (after) paragraph   `a returns to marker "a"
+/pattern searches forward for pattern         'a returns to 1st of line w/ "a"
+?pattern searches backward for pattern        '' returns to last marker/change
+n (N) redo / ? in same (reverse) direction    ^E to move screen up   1 line
+% shows matching () {} []                     ^Y to move screen down 1 line
+
+Inserting/replacing text (press <ESC> when done):
+================================================
+
+i inserts text before the cursor              I inserts text at front of line
+a appends text after the cursor               A appends text to end of line
+o opens a new line below cursor               O opens a new line above cursor
+c changes text ( cw c} ... )                  C changes to end of line (c$)
+R replaces multiple characters                cc changes the whole line (S)
+s substitute multiple characters for one      S substitutes for whole line (cc)
+
+Modifying text:
+==============
+
+x (X) deletes next (prior) character          r replaces one character
+d deletes text ( dw d} ... )                  D deletes to end of line (d$)
+dd deletes a line                             J joins two lines
+y yanks/copies text ( yw y} y$ )              Y yanks a line into buffer (yy)
+p (P) puts buffer after (before) cursor       << (>>) shifts line left (right)
+u undoes last operation                       U undoes all changes to line
+:r filename  adds filename to text            ~ toggles character's case
+:r!command  adds Unix command output          . repeats last text change
+
+Pattern substitution:
+====================
+
+:s/pattern1/pattern2/     - substitute pattern2 for first pattern1 on line
+:s/pattern1/pattern2/g    - all occurrences of pattern1 on line
+:%s/pattern1/pattern2/g   - all occurrences of pattern1 in file
+:%s/pattern1/pattern2/gc  - prompt for each change
+
+Other:
+=====
+
+ESC returns to Command Mode                   BACKSPACE backs up in Insert Mode
+^G shows file name and relative position      ^L refreshes screen
+:map key key_sequence for Command Mode maps   :map! for Insert Mode maps
+^V quotes a following non-ascii key in maps   :ab abbreviation expansion
+"add deletes line into buffer a (of a-z)      "aP puts buffer a before cursor
+"Add appends deleted line to buffer a         "ap puts buffer a after cursor
+:set list - show end of lines and tabs        :set all - show option settings
+!}command - filter text through command       :!command - execute a command
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             **************
+                             *   .exrc    *
+                             **************
+
+  ** Attached below is a .exrc file containing key maps from the tutorial **
+
+  To extract the file:
+
+  1. Make sure there is no .exrc file you want to keep in the working
+     directory since it will be replaced.
+
+  2. Put the cursor on the "begin 644 .exrc" line below.
+
+  3. Press  !}uudecode
+     to create the .exrc file in your working directory.
+
+  4. To make this your default .exrc file, copy it to your HOME directory.
+
+NOTE: There are comments in the file to help you identify a few key maps
+      that use xterm codes for certain keys (like the arrow keys and DELETE).
+      There is also a brief explanation for how to convert these few maps
+      for the terminal you are using if it isn't an xterm.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+begin 644 .exrc
+M(B N97AR8R!D969I;FET:6]N<R!F;W(@5$5233UX=&5R;0HB(&%U=&AO<CH@
+M4F]B97)T($-O;&]N(&9R8T!D861D+G1I+F-O;2 *(B!O<F=A;FEZ871I;VXZ
+M($1E<VEG;B!!=71O;6%T:6]N($1I=FES:6]N+"!497AA<R!);G-T<G5M96YT
+M<R!);F,N"B(@=7!D871E9#H@,3-!<'(Y,R Q-CHU,3HP-PHB('1O(&%U=&]M
+M871I8V%L;'D@<V%V92!F:6QE(&EF(#IN('5S960@=&\@9V\@=&\@;F5X="!F
+M:6QE(&EN(&QI<W0*<V5T(&%U=&]W<FET90HB('1O(&EG;F]R92!C87-E(&EN
+M('-E87)C:&5S.B O(&]R(#\*<V5T(&EG;F]R96-A<V4*(B!T;R!P<F5V96YT
+M(&9I;F1S(&9R;VT@=W)A<'!I;F<@87)O=6YD(&5N9',@;V8@9FEL90IS970@
+M;F]W<F%P<V-A;@HB('1O('!R979E;G0@<WES=&5M(&UE<W-A9V5S(&9R;VT@
+M8V]R<G5P=&EN9R!D:7-P;&%Y"G-E="!N;VUE<V<*(B!T;R!S:&]W(&UA=&-H
+M:6YG("@I('M](%M=.R!U<V4@)2!T;R!S964@;6%T8VAI;F<@<&%I<@IS970@
+M<VAO=VUA=&-H"B(@9F]L;&]W:6YG('-E="!O<'1I;VX@9&]E<R!N;W0@=V]R
+M:R!I;B!!<&]L;&\@1&]M86EN($]3($)31#0N,PHB('-H;W<@=FD@;6]D92 H
+M:6YP=70L(&%P<&5N9"P@<F5P;&%C92P@971C+BD[(%Y,(&-L96%R<R!U<"!S
+M8W)E96X*<V5T('-H;W=M;V1E"B(@875T;VUA=&EC86QL>2!S=&%R="!N97<@
+M;&EN92!W:&5N(&-U<G-O<B!G971S('1O('=I=&AI;B!W<F%P;6%R9VEN(&]F
+M(&5N9 IS970@=W)A<&UA<F=I;CTR"B(@;6%P(&%R<F]W(&ME>7,@9F]R(&EN
+M<V5R="!M;V1E("AM87D@;F5E9"!T;R!R961O('1H96T@:68@5$5232 A/2!X
+M=&5R;2D*(B @('1O(")R961O(B!K97D@;6%P<R!F;W(@;W1H97(@=&5R;6EN
+M86QS+"!R97!L86-E('1H92!L969T(&AA;F0@<VED92!O9@HB(" @=&AE(&UA
+M<" H92YG+B!>6T]!(&EN('1H92!M87 @8F5L;W<I('=I=&@@7E8\>6]U<E]K
+M97D^("A>5B ]($-T<FPM=BD*;6%P(2 ;3T$@&VMA"FUA<"$@&T]"(!MJ80IM
+M87 A(!M/0R ;;&$*;6%P(2 ;3T0@&VAA"B(@/$1%3$5413X@:V5Y(&1E;&5T
+M97,@:6X@0V]M;6%N9"]);G-E<G0@36]D97,@*')E9&\@:68@5$5232 A/2!X
+M=&5R;2D*;6%P('\@> IM87 A('\@&VQX:0HB(&=O('1O('1O<"!O9B!F:6QE
+M("T@8V]U;G1E<G!A<G0@=&\@1PIM87 @9R Q1PHB(&-O<'D@=&\@96YD(&]F
+M('1H92!L:6YE("AA;F%L;V=O=7,@=&\@9&5L971E('1O(&5N9"!O9B!L:6YE
+M.B!$*0IM87 @2R!Y) HB(&YE>'0@='=O(&UA<',@87)E(&YO;BUF=6YC=&EO
+M;F%L(&EN($A055@*(B!F:6YD(&YE>'0@;V-C=7)R96YC92!O9B!T97AT('5N
+M9&5R(&-U<G-O<@IM87 @/2\@;6])(!M@;VQ4(&UO:2\;(F]D175@;T!O#0HB
+M(&9I;F0@<')E=FEO=7,@;V-C=7)R96YC92!O9B!T97AT('5N9&5R(&-U<G-O
+M<@IM87 @/3\@;6])(!M@;VQ4(&UO:3\;(F]D175@;T!O#6X*(B!T97AT(&9L
+M;W<@<&%R86=R87!H"FUA<" ],2![:B%]9FUT("UC%GQE>'!A;F0-?2L*(B!S
+M<&QI="!T:&4@=&5X="!A="!T:&4@8W5R<V]R(&QO8V%T:6]N"FUA<" ],B!I
+M#1MK) HB(&5D:70@9FEL92!U;F1E<B!C=7)S;W([('5S92!>7B H:2YE+B!#
+M=')L+5XI('1O(')E='5R;@IM87 @/34@%VUO22 ;8&]L5"!I.F4A(!LS:")O
+M9#)7=4!O#0HB(&%P<&5N9"!B;&]C:R!O9B!L:6YE<R!T;R!F:6QE.B!M8B!T
+M:&5N(#TY('1H96X@96YT97(@1DE,14Y!344\4D5455)./@IM87 @/3D@.B=B
+M+"YW(3X^"B(@<F5M;W9E(&%L;"!T<F%I;&EN9R!B;&%N:W,*;6%P(#UB(#HE
+M<R\@*B0O+PTQ1PHB(')E;6]V92!T86)S("AD969A=6QT.B!T86(]."!S<&%C
+M97,I"FUA<" ]92 Z)2%E>'!A;F0-"B(@=7-E(&UB('1O(&UA<FL@;VYE(&]F
+M('1H92!T;W @8V]R;F5R<RP@8W5R<V]R('1O(&UA<FL@;&]W97(L(')E8W1A
+M;F=U;&%R(&-O<'D*;6%P(#UK(&UE;QLR-39I(!M@96IR7CIM)V(M#6!B:W)>
+M(2=E<F-U=" M:PT'"B(@=&\@<&%S=&4@<F5C=&%N9W5L87(@=&5X="!F<F]M
+M(#UX(&]R(#UK(&)E9F]R92!C=7)S;W(@<&]S:71I;VX*;6%P(#U0(&UO3QLR
+M-39I(!M@;VMR7B%'<F-U=" M4 T'"B(@<V%M92!A<R ]4"!E>&-E<'0@<&%S
+M=&4@869T97(@8W5R<V]R('!O<VET:6]N"FUA<" ]<"!M;T\;,C4V:2 ;8&]K
+M<EXA1W)C=70@+7 -!PHB('-P96QL(&-H96-K("AT;R!R971U<FX@=&\@;W)I
+M9VEN86P@9FEL92!P<F5S<R!>7BD[(#TO("8@/3\@;6%P<R!U<V5F=6P@"FUA
+M<" ]<R 7.B%S<&5L;" E/GXO7PTZ92%^+U\-#0HB('-A;64@87,@/6L@97AC
+M97!T(&-U="!I;G-T96%D(&]F(&-O<'D*;6%P(#UX(&UE;QLR-39I(!M@96IR
+M7CIM)V(M#6!B:W)>(2=E<F-U=" M> T'"B(@<F5G=6QA<B!L:6YE(&-O<'D@
+M=7-I;F<@;6(@=&\@;6%R:R!B96=I;FYI;F<@86YD(&-U<G-O<B!P;W-I=&EO
+M;B!T;R!M87)K(&5N9 IM87 @"R B<'DG8@T*(B!S879E('1E>'0@86YD(&-R
+M96%T92!B86-K=7 @8V]P>0IM87 @$" Z<V5T(&YO<F\-%SIW(2 E+F)A:PT*
+M(B!S879E('1E>'0*;6%P(!<@.G<A#0HB('-A;64@87,@7DL@97AC97!T(&-U
+M="!I;G-T96%D(&]F(&-O<'D@;&EN97,*;6%P(!@@(G!D)V(-"B(@<&%S=&4@
+M=&5X="!C;W!I960@;W(@8W5T(&)Y(%Y8(&]R(%Y+"FUA<"!<4" B<% *;6%P
+((%QP(")P< II
+ 
+end
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  This concludes the VI Tutor.  The first 4 lessons gave you a brief overview
+  of the vi editor, just enough to allow you to use the editor fairly easily.
+  The last 4 lessons covered several intermediate to advanced topics and take
+  you well down the road to using the editor effectively.
+
+  For more information on the vi editor please refer to:
+
+      Learning the vi Editor, Linda Lamb,
+        O'Reilly & Associates, Inc., 1990.
+
+      The Ultimate Guide to the vi and ex Text Editors, Hewlett Packard,
+        The Benjamin/Cummings Publishing Company, 1990.
+
+  This tutorial was extensively revised and augmented by Robert Colon, Design
+  Automation Division, Texas Instruments Inc. and is based on the tutorial
+  written by Michael C. Pierce and Robert K. Ware, Colorado School of Mines
+  using ideas supplied by Charles Smith, Colorado State University.
+
+  E-mail: frc@dadd.ti.com                 Last updated: 13Apr93 16:55:14
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

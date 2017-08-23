@@ -1,0 +1,259 @@
+System Administration for the Web: Week 2 Lab Solutions
+
+[2.2] IP Addresses
+
+# Exercise 1
+256*256 addresses. However, this is only a theorectical value. Many of the addresses in this space are normally reserved for special purposes such as broadcast addresses.
+
+
+# Exercise 2
+256*256*256*256 addresses.
+
+
+# Exercise 3
+No, there are only about 4.3 billion addresses possible. A new standard for IP addresses, IPv6, is being proposed to solve the problem of IP address shortage.
+
+
+
+[2.3] DNS
+
+# Exercise 1
+$ host solar.cs.berkeley.edu
+solar.cs.berkeley.edu has address 128.32.42.39
+solar.cs.berkeley.edu mail is handled (pri=5) by imail.EECS.berkeley.edu
+solar.cs.berkeley.edu mail is handled (pri=10) by moebius.cs.berkeley.edu
+
+
+# Exercise 2
+$ host 128.32.42.39
+39.42.32.128.IN-ADDR.ARPA domain name pointer solar.CS.Berkeley.EDU
+
+
+# Exercise 3
+$ host www.berkeley.edu
+www.berkeley.edu is a nickname for arachne.berkeley.edu
+arachne.berkeley.edu has address 169.229.131.109
+
+
+# Exercise 4
+You can find a list of DNS record types at http://en.wikipedia.org/wiki/Domain_Name_System#Types_of_DNS_records
+
+The primary ones you should know are: A, CNAME, MX, PTR, and NS.
+
+
+# Exercise 5
+$ dig www.berkeley.edu
+
+; <<>> DiG 8.3 <<>> www.berkeley.edu
+;; res options: init recurs defnam dnsrch
+;; got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 2
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 6, ADDITIONAL: 7
+;; QUERY SECTION:
+;;      www.berkeley.edu, type = A, class = IN
+
+;; ANSWER SECTION:
+www.berkeley.edu.       4m14s IN CNAME  arachne.berkeley.edu.
+arachne.berkeley.edu.   9h44m36s IN A   169.229.131.109
+
+;; AUTHORITY SECTION:
+berkeley.edu.           3M IN NS        ns.v6.berkeley.edu.
+berkeley.edu.           3M IN NS        dns2.ucla.edu.
+berkeley.edu.           3M IN NS        adns1.berkeley.edu.
+berkeley.edu.           3M IN NS        adns2.berkeley.edu.
+berkeley.edu.           3M IN NS        phloem.uoregon.edu.
+berkeley.edu.           3M IN NS        ucb-ns.NYU.edu.
+
+;; ADDITIONAL SECTION:
+ns.v6.berkeley.edu.     2h33m48s IN A   128.32.206.65
+dns2.ucla.edu.          12m4s IN A      164.67.128.2
+adns1.berkeley.edu.     2h31m34s IN A   128.32.136.3
+adns2.berkeley.edu.     2h31m34s IN A   128.32.136.14
+phloem.uoregon.edu.     3h31m45s IN A   128.223.32.35
+ucb-ns.NYU.edu.         2d16h7m5s IN A  192.76.177.132
+ns.v6.berkeley.edu.     2h33m48s IN AAAA  2001:468:e21:0:2a0:c9ff:fea0:110d
+
+;; Total query time: 4 msec
+;; FROM: apocalypse.OCF.Berkeley.EDU to SERVER: default -- 192.58.221.242
+;; WHEN: Sun Oct  2 01:12:19 2005
+;; MSG SIZE  sent: 34  rcvd: 334
+
+
+# Exercise 6
+You can do this yourself.
+
+
+
+[2.4] Ping
+
+# Exercise 1
+$ ping solar.cs.berkeley.edu
+solar.cs.berkeley.edu is alive
+
+
+# Exercise 2
+$ ping www.cnn.com
+no answer from www.cnn.com
+
+
+
+[2.5] Traceroute
+
+# Exercise 1
+$ traceroute blizzard.ocf.berkeley.edu
+traceroute to blizzard.ocf.berkeley.edu (192.58.221.217), 30 hops max, 40 byte packets
+ 1  blizzard (192.58.221.217)  2.015 ms  0.894 ms  0.705 ms
+
+
+# Exercise 2
+$ traceroute www.stanford.edu
+traceroute to www.LB-A.stanford.edu (171.67.16.89), 30 hops max, 40 byte packets 1  fast2-9.inr-230-spr.Berkeley.EDU (192.58.221.1)  1.157 ms  1.082 ms  0.663 ms
+ 2  vlan227.inr-201-eva.Berkeley.EDU (128.32.255.109)  0.713 ms  0.882 ms  0.668 ms
+ 3  ge-1-2-0.inr-001-eva.Berkeley.EDU (128.32.0.32)  5.129 ms  0.865 ms  0.870 ms
+ 4  svl-dc1--ucb-egm.cenic.net (137.164.23.65)  2.132 ms  1.996 ms  1.914 ms
+ 5  dc-stan--svl-dc1-ge.cenic.net (137.164.23.38)  2.532 ms  2.279 ms  2.221 ms
+ 6  bbr2-rtr.Stanford.EDU (171.64.1.133)  2.245 ms  2.400 ms  2.396 ms
+ 7  sweet-rtr.Stanford.EDU (171.64.1.166)  2.462 ms  2.783 ms  2.590 ms
+ 8  www3.Stanford.EDU (171.67.16.89)  2.688 ms  2.635 ms  2.822 ms
+
+
+# Exercise 2 (oops, screwed up the numbering on the lab)
+$ traceroute www.mit.edu
+traceroute to www.mit.edu (18.7.22.83), 30 hops max, 40 byte packets
+ 1  fast2-9.inr-230-spr.Berkeley.EDU (192.58.221.1)  1.166 ms  1.007 ms  0.479 ms
+ 2  g3-6.inr-202-reccev.Berkeley.EDU (128.32.255.113)  0.525 ms  0.560 ms  0.468 ms
+ 3  ge-1-3-0.inr-002-reccev.Berkeley.EDU (128.32.0.38)  0.556 ms  0.597 ms  0.557 ms
+ 4  hpr-oak-hpr--ucb-ge.cenic.net (137.164.27.129)  0.811 ms  0.801 ms  0.721 ms 5  sac-hpr--oak-hpr-10ge.cenic.net (137.164.25.17)  2.626 ms  2.524 ms  2.420 ms
+ 6  lax-hpr--sac-hpr-10ge.cenic.net (137.164.25.10)  12.659 ms  12.714 ms  12.574 ms
+ 7  abilene-LA--hpr-lax-gsr1-10ge.cenic.net (137.164.25.3)  12.558 ms  12.705 ms  12.565 ms
+ 8  snvang-losang.abilene.ucaid.edu (198.32.8.95)  24.011 ms  20.127 ms  20.246 ms
+ 9  dnvrng-snvang.abilene.ucaid.edu (198.32.8.2)  44.812 ms  85.336 ms  48.634 ms
+10  kscyng-dnvrng.abilene.ucaid.edu (198.32.8.14)  55.475 ms  55.448 ms  55.528 ms
+11  iplsng-kscyng.abilene.ucaid.edu (198.32.8.80)  64.651 ms  64.738 ms  64.617 ms
+12  chinng-iplsng.abilene.ucaid.edu (198.32.8.76)  68.405 ms  68.472 ms  68.475 ms
+13  nycmng-chinng.abilene.ucaid.edu (198.32.8.83)  88.581 ms  92.900 ms  88.512 ms
+14  nox230gw1-PO-9-1-NoX-NOX.nox.org (192.5.89.9)  93.695 ms  93.727 ms  93.840 ms
+15  nox230gw1-PEER-NoX-MIT-192-5-89-90.nox.org (192.5.89.90)  93.983 ms  93.835 ms  93.831 ms
+16  W92-RTR-1-BACKBONE.MIT.EDU (18.168.0.25)  94.978 ms  94.051 ms  94.051 ms
+17  WWW.MIT.EDU (18.7.22.83)  94.419 ms  94.466 ms  94.561 ms
+
+
+# Exercise 3
+As you probably guessed, the number of 'hops' is usually directly related to the distance a packet must travel. Unless two computers are on the same local area network (as in the case of the blizzard), data packets must travel through routers to reach their destination. The farther two computers are apart, the more routers a packet must pass through.
+
+
+# Exercise 4
+You can do this yourself.
+
+
+
+
+[2.6] Whois
+
+# Exercise 1
+$ whois berkeley.edu
+
+Whois Server Version 1.3
+
+Domain names in the .com and .net domains can now be registered
+with many different competing registrars. Go to http://www.internic.net
+for detailed information.
+
+   Domain Name: BERKELEY.EDU
+   Registrar: EDUCAUSE
+   Whois Server: whois.educause.net
+   Referral URL: http://www.educause.edu/edudomain
+   Name Server: PHLOEM.UOREGON.EDU
+   Name Server: DNS2.UCLA.EDU
+   Name Server: UCB-NS.NYU.EDU
+   Name Server: ADNS1.BERKELEY.EDU
+   Name Server: ADNS2.BERKELEY.EDU
+   Name Server: NS.V6.BERKELEY.EDU
+   Status: ACTIVE
+   Updated Date: 18-aug-2005
+   Creation Date: 24-apr-1985
+   Expiration Date: 24-apr-2006
+
+
+>>> Last update of whois database: Sun, 2 Oct 2005 02:22:51 EDT <<<
+
+I have snipped away the disclaimer. Unfortunately, the Sun Microsystems version of whois doesn't report all the information possible. The following is the whois information I get when I use Linux whois, again with the disclaimer snipped:
+
+$ whois berkeley.edu
+
+Domain Name: BERKELEY.EDU
+
+Registrant:
+   University of California at Berkeley
+   Information Systems & Technology
+   Communication and Network Services 2484 Shattuck #1640
+   Berkeley, CA 94720-1640
+   UNITED STATES
+
+Contacts:
+
+   Administrative Contact:
+
+   University of California, Berkeley
+   Communication and Network Services
+   2484 Shattuck Ave, #1640
+   Berkeley, CA 94720-1640
+   UNITED STATES
+   (510) 643-3267
+   noc@nak.berkeley.edu
+
+
+   Technical Contact:
+   Same as above
+
+Name Servers:
+   ADNS1.BERKELEY.EDU   128.32.136.3
+   ADNS2.BERKELEY.EDU   128.32.136.14
+   UCB-NS.NYU.EDU               192.76.177.132
+   PHLOEM.UOREGON.EDU   128.223.32.35
+   DNS2.UCLA.EDU                164.67.128.2
+   NS.V6.BERKELEY.EDU   2001:468:e21:0:2a0:c9ff:fea0:110d, 128.32.206.65
+
+Domain record activated:    24-Apr-1985
+Domain record last updated: 18-Aug-2005
+
+As you can see, Berkeley has provided the address of Communication and Network Services. As you'll see in the next exercise, individuals aren't so lucky...
+
+# Exercise 2
+Using the Linux whois, here's my personal domain information:
+
+$ whois evilcoder.com
+
+Registrant:
+   Stephen Le
+   7A30A
+   2700 Hearst Avenue
+   Berkeley, California 94720
+   United States
+
+   Registered through: GoDaddy.com
+   Domain Name: EVILCODER.COM
+      Created on: 08-Sep-01
+      Expires on: 08-Sep-06
+      Last Updated on: 08-Sep-05
+
+   Administrative Contact:
+      Le, Stephen  zeroion+domain@gmail.com
+      7A30A
+      2700 Hearst Avenue
+      Berkeley, California 94720
+      United States
+      5106641234      Fax --
+   Technical Contact:
+      Le, Stephen  zeroion+domain@gmail.com
+      7A30A
+      2700 Hearst Avenue
+      Berkeley, California 94720
+      United States
+      5106641234      Fax --
+
+   Domain servers in listed order:
+      NS1.COLDRAY.COM
+      NS3.COLDRAY.COM
+
+Oh no! Now you can stalk me (or send me cookies). There is a lot of controversy regarding the amount of information that is available to whois. Spam your Congressional representative if you're concerned.

@@ -1,0 +1,53 @@
+CS98/198 System Administration Decal
+Week 6: Shell Scripting
+
+For all of these, there are many (if not infinitely many) possible answers.
+The following are simply *my* code.
+
+I. TV Episode Renamer
+
+#!/bin/bash
+counter=1
+while read line; do
+	episode=$((counter+100))
+	if [ counter -lt 10 ]
+		mv s01e0$counter.avi "$episode - $line.avi"
+	else
+		mv s01e10.avi "$episode - $line.avi"
+	fi
+	let counter+=1
+done
+
+II. Pig Latin Revisited
+
+#!/bin/bash
+sentence=$@
+newsentence=''
+for word in $sentence; do
+	case "$word" in
+		[AaEeIiOoUu]*) word=${word}ay;
+		[[:upper:]]*) word=$(echo $word|tr [A-Z] [a-z])
+		word=$(echo ${word:1:1}|tr [a-z] [A-Z])${word:2}${word:0:1}ay;;
+		[[lower]]*) word=${word:1}${word:0:1}ay;;
+	esac
+	newsentence='$newsentence $word'
+done
+echo $newsentence
+
+III. FizzBuzz!
+
+#!/bin/bash
+
+for i in {1..100}; do
+        if [ $(($i%3)) -eq 0 ]; then
+                if [ $(($i%5)) -eq 0 ]; then
+                        echo "FizzBuzz"
+                fi
+                echo "Fizz"
+        elif [ $(($i%5)) -eq 0 ]; then
+                echo "Buzz"
+        else
+                echo "$i"
+        fi
+done
+

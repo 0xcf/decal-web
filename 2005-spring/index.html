@@ -1,0 +1,309 @@
+<html>
+	<head>
+		<title>System Administration for the Web</title>
+	</head>
+	<body>
+		<h1>System Administration for the Web</h1>
+		<p>
+		Instructor: <a href="mailto:sysadmin-decal@ocf.berkeley.edu">Randy Chung and Matthew Fong</a><br>
+		Time: Mondays 3-4, 5-6, Thursdays 11-12 <br>
+		Location: 275 Soda (61b lab) <br>
+		Units: 2 <br>
+		</p>
+		<p>
+		<h2>Enrolling</h2>
+		There are three sections for this course.  If one section is full when you show up, you might want to try coming to the other ones.<br>
+		Section 1: M 3-4<br>
+		Section 2: M 5-6<br>
+		Section 3: Th 11-12<br>
+<br>
+<b>CCN's:</b><br>
+Mon 3-4 98: 26442 / 198: 27367<br>
+Mon 5-6 98: 27373 / 198: 27370<br>
+Th 11-12 98: 27379 / 198L 27376<br>
+
+<h2><a href="quiz.html">Commands Quiz</a></h2>
+
+<h2>Announcements</h2>
+<p>5/8/2005 - No class this week.  If your group is having problems, please contact us via email for help.</p>
+<p>4/25/05 - If you aren't in a group, e-mail us NOW.  If you're having trouble with the packages you've been assigned, give up and install one or both of the following (depending on how many you still need):  a statistics/log analyzer/counter package for your apache installation or install a news/rss aggregator.  If you need help, e-mail us or find us in class.  You MUST finish by next week (week of the 9th). 
+<p>4/18/05 - All group projects are due on the week of the 25th!  The week of the 2nd will be for testing and the 9th will be the last class.
+<p>3/31/05 - Due to a brilliant mistake on my part, the old class webpage was killed.  This is a backed up copy.  Incidentally, homework 6 is up.</p>
+<p>3/5/05 - Homework 4 is up!  This i a group  homework, so get together with your group now!  Contact us if you need your group info.  Incidentally, the homework is extneded until Friday, 3/11.</p>
+<p>2/17/05 - Sorry for the late notice, but there will be no class for today's section (Th 11-12) because I'm feeling a bit under the weather.  Hopefully if you've shown up to class without me you've left on your own already after realizing it's a bit late and I haven't shown up.  Again, I apologize to everyone in the section for the late notice (but we never plan these things do we).</p>
+<p>If you are having problems with enrollment, download the add/drop form at "http://registrar.berkeley.edu/GeneralInfo/elecforms.html" and bring it to class for a signature.  This week is the last week to add!  </p>
+
+<h2>Homeworks</h2>
+<a href="hw6.html"><b>Homework 6</b></a> - Due 4/8, Friday
+<a href="hw4.html"><b>Homework 4</b></a> - Due 3/11, Friday (Group)
+<br>
+<br>
+
+<h2>Submission Guidelines</h2>
+<p>
+Please read <a href="submit.html">this page</a> for instructions on how to register for the class and submit homework.  If you've been having problems with submitting homeworks, this is the page to read!
+</p>
+
+<b>SSH Instructions <a href="http://www.ocf.berkeley.edu/~mattfong/decal/ssh.html" target="_blank">here</a>.<br></b>
+<!-- <b>HW Submission Instructions <a href="http://www.ocf.berkeley.edu/~mattfong/decal/submit.html" target="_blank">here</a>.<br></b> -->
+
+<!--		The first course meeting will be held in the second week of classes (1/24 and 1/27, respectively), and will be in 275 Soda.  Come to the class to receive the CCN as well as other enrollment information. -->
+		</p>
+
+		<h2>Course Requirements</h2>
+		<p>
+<b>Grading:</b><br>
+<br>
+Homework 20%<br>
+Project  40%<br>
+Other    40%<br>
+(attendance, participation, other assignments, etc)<br>
+<br>
+
+
+		There are no technical requirements for this course.  However, you should be ready to learn a fair amount of computer concepts.  The content of the course is geared towards non-CS majors, and enrollment tends to be about 50% humanities majors, 50% CS majors.  Technically detailed concepts are occasionally touched on, even if for nothing more than the sake of breaking the usual pace of things, but in those cases students will not be held responsible for having a firm grasp of the concepts (e.g. stack exploitation, threads versus processes, etc.)<br><br>
+		If you're not technically proficient, please be prepared to learn a lot.  The intention is not to overwhelm all of you with a huge amount of work (homeworks are actually made to be done within the span of an hour's time), but instead to push you hard and let you grow into it.  Think of it as being akin to weight-training; it's going to hurt, but it's not going to be more than you can do.  If you run into some problems, your course coordinators are here to spot you.
+		</p>
+		<h2>Course Outline</h2>
+		<p>
+<br>
+topics:<br>
+shells & scripting<br>
+filesystems & layout<br>
+editors<br>
+system tools<br>
+networking<br>
+apache<br>
+<br>
+
+suggestions:<br>
+DNS servers<br>
+tomcat<br>
+<br>
+<br><hr><br>
+
+<b>Week 1:</b><br>
+<br>
+What this class is.<br>
+What this class is not.<br>
+<br>
+
+Linux Distributions:<br>
+- red hat/fedora/mandrake<br>
+- debian/gentoo/ubuntu<br>
+- knoppix (live distributions)<br>
+- lfs (linux from scratch)<br>
+<br>
+
+Assignment 1:<br>
+<br>
+- get an OCF account<br>
++ www.ocf.berkeley.edu<br>
++ in MLK Student Union, Heller Lounge<br>
+<br>
+- <a href="http://www.ocf.berkeley.edu/~mattfong/decal/" target="_blank">self introduction</a> (do it here!)<br>
++ name<br>
++ photo<br>
++ description<br>
++ class<br>
++ major<br>
++ intrests<br>
+<br>
+- learn an editor<br>
++ vi/vim<br>
++ emacs<br>
++ pico<br>
++ nano<br>
++ sed<br>
+<br><br>
+<hr><br>
+
+<b>Week 2:</b><br>
+Unix commands to know:<br>
+man &lt;command> = help page<br>
+ls = list directory<br>
+ls -l = list in long format<br>
+ls -la = list all in long format<br>
+cd &lt;directory> = change directory<br>
+cd = change to home directory<br>
+. = current directory<br>
+.. = directory one level down<br>
+mkdir = make directory<br>
+rmdir = remove directory<br>
+pwd = print working directory<br>
+chmod &lt;type> &lt;file> = change file permissions<br>
+chown &lt;owner> &lt;file> = change file owner<br>
+chgrp &lt;group> &lt;file> = change file group<br>
+touch &lt;filename> = create a file<br>
+cp &lt;original> &lt;destination> = copy<br>
+rm &lt;file> = remove file<br>
+alias &lt;name> &lt;command> = give short name to long command<br>
+unalias &lt;name> = take away alias<br>
+ln -s &lt;original> &lt;shortcut> = create shortcut to a file<br>
+<br>
+text editors (learn them!  you'll need it!)<br>
+<br>
+Assignment 2:<br>
+<a href="hw2.html" target="_blank">click here</a><br>
+<a href="http://www.ocf.berkeley.edu/~mattfong/decal/submit.html" target="_blank">HW Submission Instructions</a>
+<br><br>
+<hr>
+<br>
+<b>Week 3:</b><br>
+
+<pre>
+Networking:
+
+**********************************************************************
+
+ssh = remote connection to server
+ssh: solar.cs.berkeley.edu
+ssh into po to change password
+
+**********************************************************************
+
+OSI 7-layer model
+---
+|7| applications
+|6| applications
+|5| applications
+|4| applications
+|3| IP address (router)
+|2| MAC (switch)
+|1| Physical (hub)
+---
+
+1 = wiring
+2 = Media Access Control address
+      - hardwired into hardware
+3 = software
+      - DHCP - dynamic host configuration protocol
+            - step 1. DHCP discover (computer requests address)
+            - step 2. DHCP offer (server offers address)
+            - step 3. DHCP request (computer accepts address)
+            - step 4. DHCP acknowledgment (server confirms address)
+
+
+Process:
+boot the pc --> get an IP address --> start the server --> start serving
+
+**********************************************************************
+
+DNS/IP:
+
+DNS = Domain Name Service
+      - tree structure
+            - 7 root servers
+            - 2nd tier DNS servers
+            - 3rd tier 
+            - ...
+            - your ISP
+      - DNS entries cached at every level
+      - how it works
+            - give it a web address
+            - look up ip address in DNS database
+            - it gives you an address to connect to
+
+
+IP(v4) = Internet Protocol
+      - 255.255.255.255
+      - different blocks of IP addresses in different areas of the world
+      - every device on the internet has a different IP
+      - used as phone book for every computer
+
+**********************************************************************
+
+webserver   <--->  internet  <--->  router <---> pc
+
+"nslookup www.google.com"
+nslookup = looks up ip address
+www.google.com = website
+
+"telnet www.google.com 80"
+telnet = text based networking app
+www.berkeley.edu = website
+80 = standard web port
+
+"GET / HTTP/1.1"
+get = transfer command
+/ = directory
+http/1.1 = protocol
+
+==> downloads index.html from www.google.com
+
+**********************************************************************
+
+dorm networks:
+      big switch --> dhcp server
+       |      |
+       v      v
+  computer   computer
+
+throw in another dhcp server & all hell breaks loose
+
+**********************************************************************
+
+home webservers
+      - running from behind a router
+            - go to 192.168.0.1
+            - port forwarding
+            - TCP port 80, forward --> My PC (ip address)
+            - ipconfig (windows) or ifconfig (linux) to get ip address
+            - bind mac address of computer to static ip address
+      - using a dynamic ip address
+</pre>
+
+Assignment 3:
+<a href="hw3.html" target="_blank">click here</a><br><br><hr>
+<br>
+
+
+<b>Lecture 4: </b><br><br>
+<pre>
+Clarifications:
+
+OCF                 vs     class accounts
+
+login = name        vs     login = cs198-xx
+
+ocf.berkeley.edu    vs     solar.cs.berkeley.edu
+
+run web server      vs     submit hw ("submit")
+
+- bring add/drop form if you're not enrolled
+- get an OCF account by next week
+- fill out the course survey or you'll be dropped
+
+****************************************************************
+
+Dynamic DNS
+www.dyndns.com
+
+- lets you use a dynamic ip address to run a web server
+- ip's go to the dyndns sever which forwards to your home ip
+
+1.  Install a server
+2.  Start a sever
+3.  Set up up port forwarding
+4.  Set up DDNS
+      a. go to www.dyndns.com
+      b. make an account
+      c. register a dynamic DNS
+      d. set up a DDNS client on your web server
+
+
+****************************************************************
+
+Apache:
+
+- web server software
+      - most popular web server package on the internet
+- open source & modular
+- next week: download it & install on OCF
+</pre>
+
+
+		</p>
+
+	</body>
+</html>

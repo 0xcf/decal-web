@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>System Administration for the Web:
+Week 4 Lab</TITLE>
+<META NAME="description" CONTENT="System Administration for the Web:
+Week 4 Lab">
+<META NAME="keywords" CONTENT="decal_lab_week4">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="decal_lab_week4.css">
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive" SRC="nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png">   
+<BR>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<P>
+
+<P>
+<H1 ALIGN="CENTER">System Administration for the Web:
+<BR>
+Week 4 Lab</H1>
+<DIV CLASS="author_info">
+
+<P ALIGN="CENTER"><STRONG>3 October 2005</STRONG></P>
+</DIV>
+
+<P>
+
+<H1><A NAME="SECTION00010000000000000000">
+Notes</A>
+</H1>
+
+<P>
+Some of you have complained that it's difficult to read Adobe Acrobat
+documents on the Sun Rays. If you feel that the lag is unbearable,
+you can print the lab using the printers located down the hall; your
+inst account has a print quota of 100 pages. If you want to save trees,
+we've also posted an HTML version of this lab on the class website.
+
+<P>
+You should be quite familiar with and capable of using Unix-based
+systems at this point. In this lab, as well as the last, I did not
+provide the syntax for any commands. From now on, it is your responsibility
+to read the man pages or use a search engine to determine the syntax
+for any of the commands presented in this lab.
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+Submitting the Lab</A>
+</H1>
+
+<P>
+Email your responses, the output of a command, or the commands you
+used to perform a certain exercise (as appropriate) to <TT>dima@ocf.berkeley.edu</TT>
+along with your inst account login, your OCF login, and your preferred
+contact email address.
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+Lab for Week 4</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00031000000000000000"></A><A NAME="sub:FTP"></A>
+<BR>
+FTP
+</H2>
+
+<P>
+As explained in lecture, File-Transfer Protocol (FTP) is one of the
+most common ways of distributing files over the Internet. Many FTP
+servers allow anonymous access - that is, access to the general public.
+In this section, you're going to connect to an FTP server and retrieve
+a file.
+
+<P>
+As mentioned last week, the world's most popular DNS server is BIND,
+the Berkeley Internet Name Domain. As you can probably figure out
+from its name, BIND was developed at UC Berkeley. We're going to download
+version 9.3.1 of BIND.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Use the <SPAN  CLASS="textit">ftp</SPAN> command to connect to <TT>ftp.isc.org</TT>,
+the FTP server that hosts the BIND program. For anonymous access,
+you must often provide &#34;anonymous&#34; as the login
+and a random email address as the password.
+</DD>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Once you have successfully connected to the FTP server,
+you will be able to get help by inputting - you guessed it - <SPAN  CLASS="textit">help</SPAN>.
+Use <SPAN  CLASS="textit">help</SPAN> to determine what kind of commands you can use.
+</DD>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>List the files in the current directory on the FTP server.
+</DD>
+<DT><STRONG>[4]</STRONG></DT>
+<DD>There shouldn't be anything interesting in the default directory.
+The BIND program files can be found in the <TT>isc/bind9/9.3.1/</TT>
+directory. Navigate to that path.
+</DD>
+<DT><STRONG>[5]</STRONG></DT>
+<DD>Once you're there, download the <TT>bind-9.3.1.tar.gz</TT>
+file.
+</DD>
+<DT><STRONG>[6]</STRONG></DT>
+<DD>Suppose you wanted to get <TT>bind-9.3.1.tar.gz</TT> and
+<TT>bind-9.3.1.tar.gz.asc</TT> from the FTP server. You could use
+the command you used in the previous exercise twice, but there is
+an easier way. Figure out how to get multiple files at once.
+</DD>
+</DL>
+FTP works in both directions. You can download files from a server,
+and you can upload files to a server.
+
+<P>
+<DL>
+<DT><STRONG>[7]</STRONG></DT>
+<DD>Change to another directory. Try to upload a file into that
+directory. What happens?
+</DD>
+</DL>
+In most FTP server configurations, anonymous users are not allowed
+to upload files. If they were allowed to upload files, anybody could
+post any obscene or illegal file they wanted and get the server administrator
+into trouble or consume all the server's disk space. In the final
+project of this course, you'll be setting up an FTP server which will
+allow authenticated users to download and upload files, so it's important
+that you understand how FTP works.
+
+<P>
+<DL>
+<DT><STRONG>[8]</STRONG></DT>
+<DD>Disconnect from <TT>ftp.isc.org</TT>.
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00032000000000000000">
+Archive Manipulation</A>
+</H2>
+
+<P>
+In Section <A HREF="#sub:FTP"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> you downloaded a copy of BIND. The file
+you downloaded had the extension <SPAN  CLASS="textit">tar.gz</SPAN>, which means that it
+is a gzipped tar archive. In the UNIX world, <SPAN  CLASS="textit">gzip</SPAN> is the equivalent
+of zip compression, and <SPAN  CLASS="textit">tar</SPAN> is a method of packing files together.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Use <SPAN  CLASS="textit">gzip</SPAN> to decompress the BIND file.
+</DD>
+</DL>
+You should now have a file named <TT>bind-9.3.1.tar</TT>. A tar archive
+is a way of packing multiple files and directories together into a
+single file. Unfortunately, <SPAN  CLASS="textit">tar</SPAN> does not support compression,
+so people often compress tar archives with <SPAN  CLASS="textit">gzip</SPAN> or <SPAN  CLASS="textit">bzip2</SPAN>.
+
+<P>
+<DL>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Extract <TT>bind-9.3.1.tar</TT> using <SPAN  CLASS="textit">tar.</SPAN>
+</DD>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>Navigate to the <TT>bind-9.3.1</TT> directory that was formed
+when you extracted the tar archive.
+</DD>
+<DT><STRONG>[4]</STRONG></DT>
+<DD>There should be a <TT>make</TT> directory inside the <TT>bind-9.3.1</TT>
+directory. Create a tar archive named <TT>make.tar</TT> of the make
+directory and move the archive to your home directory.
+</DD>
+<DT><STRONG>[5]</STRONG></DT>
+<DD>Delete the <TT>bind-9.3.1</TT> directory and any other files
+related to BIND except for the archive that you just created. The
+most efficient way to do this is to use the <SPAN  CLASS="textit">rm</SPAN> command with
+the <SPAN  CLASS="textit">recursive</SPAN> and <SPAN  CLASS="textit">force</SPAN> parameters and a <SPAN  CLASS="textit">wildcard</SPAN>.
+Ask your instructor for assistance if any of these terms confuse you. 
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00033000000000000000">
+SSH</A>
+</H2>
+
+<P>
+Last week we had you use SSH to log into your OCF account from Soda
+Hall. SSH was described as a nifty tool that allows you to log into
+remote servers over an encrypted connection, among other things. We'll
+be introducing those &#34;other things&#34; in this section.
+
+<P>
+SSH is a package of three tools: <SPAN  CLASS="textit">ssh</SPAN>, <SPAN  CLASS="textit">scp</SPAN>, and <SPAN  CLASS="textit">sftp</SPAN>.
+You used the first tool last week to log into your OCF account. <SPAN  CLASS="textit">scp</SPAN>
+is short for Secure CoPy, and <SPAN  CLASS="textit">sftp</SPAN> stands for Secure FTP.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD><SPAN  CLASS="textit">scp</SPAN> can be used to copy files between computers.
+Use <SPAN  CLASS="textit">scp</SPAN> to copy <TT>make.tar</TT> to your OCF account. Delete
+<TT>make.tar</TT> from your inst account.
+</DD>
+<DT><STRONG>[2]</STRONG></DT>
+<DD><SPAN  CLASS="textit">sftp</SPAN> operates very much like regular FTP. Use <SPAN  CLASS="textit">sftp</SPAN>
+to connect to your OCF account and download <TT>make.tar</TT>.
+</DD>
+</DL>
+The aforementioned operations are the most common uses for SSH, and
+most system administrators use SSH on a daily basis. When you're working
+on the final project, you'll find the need to transfer files to and
+perform actions on your server, and SSH will make it possible. Consequently,
+it is important that you become familiar and comfortable with SSH.
+
+<P>
+SSH has many other features such as <SPAN  CLASS="textit">tunneling</SPAN>. If you're interested,
+you can search the web for information on how to use these features.
+
+<P>
+
+<H2><A NAME="SECTION00034000000000000000">
+UNIX Filesystems</A>
+</H2>
+
+<P>
+UNIX filesystems have many features that are not present in Windows
+file-systems. For the purposes of this class, the only feature that
+you need to know is the <SPAN  CLASS="textit">link</SPAN>. In a UNIX filesystem, files and
+directories do not have to be unique - they can be placeholders that
+point to other files or directories. There are two types of links:
+<SPAN  CLASS="textit">hard</SPAN> and <SPAN  CLASS="textit">soft.</SPAN> We'll only focus on soft-links. If you
+want to know the difference between the two types of links, please
+consult your friendly search engine.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Locate the command to create links between files. Hint:
+Using <SPAN  CLASS="textit">apropos</SPAN> is a good way to start.
+</DD>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Create a new text file and create a link to that file.
+</DD>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>Edit the file by running a text editor on its link. Open
+the actual file in a text editor. Compare what you see.
+</DD>
+<DT><STRONG>[4]</STRONG></DT>
+<DD>Create a new directory and create a link to that directory.
+Move the text file you just created into that directory.
+</DD>
+<DT><STRONG>[5]</STRONG></DT>
+<DD>Print the contents of the directory using the link to that
+directory. What do you see?
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00040000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG>System Administration for the Web:
+<BR>
+Week 4 Lab</STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2002-2-1 (1.71)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 -local_icons decal_lab_week4.tex</TT>
+<P>
+The translation was initiated by zeroion on 2005-10-03
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive" SRC="nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png">   
+<BR></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+zeroion
+2005-10-03
+</ADDRESS>
+</BODY>
+</HTML>

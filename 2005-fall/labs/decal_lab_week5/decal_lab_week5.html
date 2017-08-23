@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>System Administration for the Web: Week 5 Lab</TITLE>
+<META NAME="description" CONTENT="System Administration for the Web: Week 5 Lab">
+<META NAME="keywords" CONTENT="decal_lab_week5">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="decal_lab_week5.css">
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive" SRC="nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png">   
+<BR>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<P>
+
+<P>
+<H1 ALIGN="CENTER">System Administration for the Web:
+<BR>
+Week 5 Lab</H1>
+<DIV CLASS="author_info">
+
+<P ALIGN="CENTER"><STRONG>10 October 2005</STRONG></P>
+</DIV>
+
+<P>
+
+<H1><A NAME="SECTION00010000000000000000">
+Notes and Errata</A>
+</H1>
+
+<P>
+I've noticed that some of you have not properly setup your shells.
+During the second week of class, students were asked to input the
+following commands into a terminal:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>cp&nbsp;~cs198-ec/public_html/setup.sh&nbsp;.
+
+<P>
+sh&nbsp;setup.sh
+</DD>
+</DL>
+The following week, students were asked to change their default login
+shell to bash. If you have not done so or are unsure if you did, please
+refer to the Section 1: Pre-Lecture Tasks of the Week 3 Lab for more
+information.
+
+<P>
+As a reminder, it is in your best interest to complete each laboratory
+assignment. Knowledge of and familiarity with every technique and
+tool presented in the laboratories will be necessary to complete the
+final project. The 5-6 section instructors are here to help - don't
+be afraid to ask them for help!
+
+<P>
+The lab submission policies for this lab are the same as previous
+labs.
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+Lab for Week 5</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00021000000000000000">
+Don't Panic!</A>
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>List the top three things that confuse you the most. We'll
+collate all your responses and address the most common problems at
+the beginning of lecture next week.
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00022000000000000000">
+Log Files</A>
+</H2>
+
+<P>
+As explained in lecture, log files are the most important tool for
+auditing the performance, stability, security, and overall health
+of a server. You can be pretty sure that, if something goes wrong,
+there'll something about it in the logs.
+
+<P>
+All log files mentioned in this section can be found in <TT>~cs198-ec/labs/lab5</TT>.
+These log files are actual log files taken from a variety of Linux
+servers.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Let's take a look at <TT>daemon.log</TT>. This file is actually
+the first 100 lines of a log file I took from a server in Europe this
+morning. How is the log file organized? How can you distinguish different
+log entries? What is the general format of each log entry?
+</DD>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>The primary purpose of log files is to help system administrators
+locate and diagnose errors. Most of the lines in the sample <TT>daemon.log</TT>
+are error messages. What is the most common error? Use a search engine
+to determine what this error message means and see if you can find
+a way to fix the problem.
+</DD>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>Sometimes log files can record too much information. <TT>auth.log</TT>
+demonstrates this problem. At first glance, it seems that the log
+file just contains entries from the cron daemon. However, upon closer
+inspection, you will notice that there are a number of entries indicating
+that a malicious person has attempted to break into the server. Find
+some way to filter out the useless cron daemon entries so you can
+find these important log entries. Hint: <SPAN  CLASS="textit">grep</SPAN> can be instructed
+to ignore (the inverse of match) lines that satisfy a certain pattern.
+</DD>
+</DL>
+As demonstrated in the previous exercise, knowledge of text manipulation
+tools is very important for system administrators. One of the most
+popular and powerful programming languages for UNIX platforms, Perl,
+the Practical Extraction and Report Language, was originally designed
+for the expressed purpose of text manipulation. System administrators
+often write Perl programs to <SPAN  CLASS="textit">parse</SPAN> or process log files to
+find important log entries and alert them of major problems. You'll
+be learning the basics of Perl in the coming weeks.
+
+<P>
+<DL>
+<DT><STRONG>[4]</STRONG></DT>
+<DD>The last two log files you will be analyzing are Apache
+log files. Every time you visit a web page hosted on an Apache web
+server, Apache makes a log entry with the time, your IP address, your
+request, and other information. Take a look at <TT>access.log</TT>
+and describe its format.
+</DD>
+<DT><STRONG>[5]</STRONG></DT>
+<DD>Sometimes you'll notice strange entries in your Apache logs.
+There are <SPAN  CLASS="textit">worms</SPAN> (malicious automated programs) that search
+the Internet for web servers and try to hack into them. Microsoft's
+web server, IIS, is especially prone to these worms. Thankfully, Apache
+is not vulnerable to most of the worms that target Microsoft servers,
+but, as explained in the previous exercise, Apache will generate a
+log entry for every request it receives. These attack requests, while
+ineffective against Apache, usually result in log entries composed
+of strange character sequences. Look in <TT>access.log.2</TT> and
+find an example of such an entry.
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00023000000000000000">
+Shell Scripts</A>
+</H2>
+
+<P>
+System administrators are lazy people. They will attempt to automate
+their jobs as much as possible. One of the tools they use to reduce
+the amount of work they have to do is a shell script.
+
+<P>
+In its simplest form, a shell script is a file that begins with a
+<SPAN  CLASS="textit">shebang</SPAN> line that identifies the file as a shell script and
+contains a list of commands after it. For those familiar with Windows
+scripting, a UNIX shell script is the equivalent of a batch script.
+Traditionally, the extension of a shell script file is <TT>sh</TT>.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Take a look at <TT>~cs198-ec/public_html/setup.sh</TT>.
+You ran this shell script at the beginning of the second week to setup
+your inst account. What is the <SPAN  CLASS="textit">shebang</SPAN> line? What is the format
+of this shell script?
+</DD>
+</DL>
+As you have probably guessed, a shell script is composed of the same
+type of commands you would normally type into a command prompt, with
+each command on its own line. You should note that <TT>setup.sh</TT>
+is a very basic shell script; shell scripts actually support loops
+and other constructs that you would expect in a high-level programming
+language. If you're interested in learning more, consult the Internet
+or O'Reilly's <SPAN  CLASS="textit">Learning the bash shell</SPAN>.
+
+<P>
+<DL>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Write a shell script to do Exercise 1 of the Week 2 lab.
+</DD>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>Execute your shell script to see if it works. Reminder:
+you may need to change the permissions of your shell script so that
+you can execute it.
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00024000000000000000">
+Crontab</A>
+</H2>
+
+<P>
+Shell scripts are a godsend for lazy system administrators - they
+allow system administrators to wrap complex and repetitive tasks into
+a simple program. However, a system administrator's laziness does
+not end there. For tasks that occur at regular intervals, system administrators
+don't want to sit around and wait to execute a shell script at the
+right time. Thus, <SPAN  CLASS="textit">crontab</SPAN> was created.
+
+<P>
+<SPAN  CLASS="textit">Crontab</SPAN> is a UNIX daemon that executes a command at regular
+intervals. It reads a user's configuration file and executes any listed
+commands at the specified time or interval. 
+
+<P>
+NOTE: Unfortunately, the inst computers have disabled <SPAN  CLASS="textit">crontab</SPAN>.
+In order to perform the following exercises, you'll need to SSH into
+your OCF account. On the OCF computers, the default editor for the
+crontab configuration file is <SPAN  CLASS="textit">ed</SPAN>. Since most of you probably
+do not know how to use <SPAN  CLASS="textit">ed</SPAN> or dislike it, I suggest you change
+the <TT>EDITOR</TT> environment variable to a more user-friendly text
+editor, such as <SPAN  CLASS="textit">vim</SPAN> or <SPAN  CLASS="textit">nano</SPAN>. Hint: You'll need to use
+either <SPAN  CLASS="textit">export</SPAN> or <SPAN  CLASS="textit">setenv</SPAN> to set the environment variable.
+Please refer to last week's homework for more information regarding
+environment variables.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Write a shell script that does something you can observe,
+other than generating output. For example, you could write a shell
+script that creates a file. You do remember the command to create
+a blank file, right? Test your shell script to make sure it works,
+and once you have confirmed that it works, reset whatever you had
+the script do (ex., if the script created a file, delete it).
+</DD>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Edit your crontab to execute the command within the next
+5 minutes. Wait for 5 minutes to pass and see if the script was executed
+by <SPAN  CLASS="textit">crontab</SPAN>. If not, try again or ask for help. 
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG>System Administration for the Web:
+<BR>
+Week 5 Lab</STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2002-2-1 (1.71)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 -local_icons decal_lab_week5.tex</TT>
+<P>
+The translation was initiated by zeroion on 2005-10-10
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive" SRC="nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png">   
+<BR></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+zeroion
+2005-10-10
+</ADDRESS>
+</BODY>
+</HTML>

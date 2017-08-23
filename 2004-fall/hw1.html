@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Homework 1</title>
+	</head>
+	<body>
+		<h1>Homework 1</h1>
+		<p>
+		Look at <a href="http://www.ocf.berkeley.edu/sysadmin-class/2002-fall/0925.html">this page</a>.  On it, you will see a list of commands that you can run from the Unix prompt.  Hopefully, at this point you have access to a computer which has a Unix-like shell on it (recall the common shells covered during lecture: bash, tcsh, zsh, etc.).  For those of you who don't, you can sign up for an account at the OCF.</p>
+		<p>
+		The purpose of this homework is to familiarize you with the commands on that page, since it's a pretty good coverage of the most common commands.  For your homework, send in your answers via email (the sysadmin one, not my or Eleen's personal address).  The subject should be "Homework 1", the first line should be your name, the second line your SID, followed by a blank line, and then your homework answers.  An example is below:</p>
+		<p>
+		Subject: Homework 1<br>
+		Randy Chung<br>
+		12345678<br>
+		<br>
+		1.  The answer is...
+		</p>
+		<p>
+		The homework breaks down as follows: Everybody is required to do part 1 (basic commands).  Those of you who feel up to the challenge (and would like the extra practice), feel free to try part 2.  If I get some particularly creative or cleanly written examples I'll post them up and briefly talk about them during the next course meeting.  If yours isn't selected it's not because yours wasn't done well, but simply because of time constraints (i.e. don't feel bad).
+		</p>
+		<h2>Part 1</h2>
+		1.  One of the most important commands you can learn is 'man' (no, this is not a sexist thing).  To find out what man does, type 'man man' at the command prompt (no quotes).  What does this command do, and why is it one of the most important commands?<br>
+		2.  Directories (a.k.a. Folders in Windows) are a great way to organize your data.  The Unix commands to manipulate directories include mkdir and rmdir.  What does mkdir do?  What does rmdir do?  What happens if you try to rmdir a directory that's not empty?  How do you fix this problem?<br>
+		3.  Having directories isn't very useful if you can't move files around!  Look at the cp, rm, and mv commands.  What do they do?  How do you recursively (hint hint) copy an entire directory?  How do you remove an entire directory and all the files in it at once without being prompted for each file?  How do you move a directory from one location to another location?  What happens to the files inside the directory when you do this?<br>
+		4.  It's great being able to move files around locally, but what about over a network?  For that matter, what about accessing other computers in general?  Read about ssh (the remote login program) and scp (the remote copy program).  How would you log in to a computer called ssh.test.com as yourself?  How about copying a file from your home directory to your home directory on the remote machine (hint: it's related to cp)?  What can you say about the similarities between scp and cp?<br>
+		5.  You'll have to do some hand-editing of configuration files later in the semester.  To do this, you need to know how to use a text editor.  There are a number of text editors for the Unix platform, including vi (and its superior cousin, vim), emacs (and its X Windows cousin, Xemacs), and various derivatives such as nano.  Pick an editor and learn how to use its basics.  My personal favorite is vim, but I don't recommend learning it unless you're willing to commit some time to it.  However, if you do commit the time to do it, its efficiency will pay off in the end.  Emacs is easier to use initially, but it has its disadvantages as well.  There's nothing to turn in for this part of the homework, but I assure you it's for your benefit.  If you'd rather use a different, graphical editor that's fine as well; just remember that there will come times when the GUI is broken too and you'll have to edit configurtion files in a console (command prompt).<br>
+		<h2>Part 2</h2>
+		This is for the adventerous students of the class who found part 1 tedious and boring.  This section deals with shell scripting.  The goal is to write a parser for this homework assignment.  Given a file with all the emails from the students in it in mbox format (google for details), write a shell script that will parse the file and generate files sorted by people.  This is a single input (the mail file), multiple output (lots of small files, one per student) script.  You may write this script in whatever shell you feel most comfortable with.  You can choose to generate filenames based on their name or their SID; however, the contents of the file must include both.  The message text can be copied verbatim.  <br>
+		Some tools you might find useful: sed, awk.  Also, there are many resources on the web which provide tutorials on shell scripting in a variety of shells.  You can find some at <a href="http://www.tldp.org">www.tldp.org</a><br>
+		Coding the script as a Perl or Python or (insert your favorite language here) and calling it via a shell script is not considered valid.<br>
+		As an extra bonus, think about whether or not your shell script is really secure.  Can you think of at least one way to exploit it to do something naughty?  I will be randomly selecting one submission to present during class and we can all find holes to exploit together (the entry will be posted anonymously unless you write in saying you want your name posted wiht it).  Writing secure software is really really really hard, so don't take having holes in your script pointed out as a bad thing.  It's a great opportunity to learn, and learning is more important than ego.<br>
+		</p>
+		Good luck!<br>
+	</body>
+</html>

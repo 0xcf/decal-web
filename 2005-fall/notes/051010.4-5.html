@@ -1,0 +1,47 @@
+<html>
+ <head><title>System Administration for the Web</title>
+ <style>
+ td {
+ border:1px inset black;
+ padding:0 1em 0 1em;
+ }
+ </style>
+ </head>
+ <body bgcolor="lightblue">	
+ <body text="black">
+ <dir>
+ <br><br><br>
+ <font size=7>Notes for 10/10/2005</font><br>
+ The 4-5 Section
+ <hr width=80% align=left>
+
+<br>
+<br>
+
+<dir>
+
+<h3>Lecture notes</h3>
+<ul>
+<li>Processes
+
+<ul>
+<li>"Processes" refer to running programs.
+<li>If you run a process, you might want your command prompt back before the process finishes. To do this, type Ctrl-Z. This pauses the process.
+<li>To let the process resume in the background, use the 'bg' command. To let it resume in the foreground, use 'fg'.
+<li>If you know on the outset that you want the program to start in the background, when you first call the command, append '&amp;' to it. For example, "grep -r / jerjou &amp;"
+<li>To see a list of the processes currently running, use the 'ps' command. The 'ps' command has useful options, like '-u'. See the man page for details.
+<li>If you know the pid (= process id) of a process, you can kill it with the command 'kill'. Other useful commands include 'killall' and 'pkill'. They also have useful flags, one of which is '-KILL' :)
+</ul>
+
+<li>Telnet &amp; Protocols
+<ul>
+<li>I do this 'cuz I found it interesting when I first learned it.
+<li>I went through some examples of how you can test a web and mail server by telnet'ing into the port of the machine the server's running on.
+<li>Even if you don't know the protocol for the server you're connecting to, telnet'ing to the appropriate port will at least let you know that there's a service running there.
+</ul>
+
+</ul>
+
+</dir>
+</body>
+</html>

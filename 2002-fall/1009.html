@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>Basic Networking</title>
+</head>
+<body>
+<h2>Basic Networking: Because Talking To Yourself Sucks</h2><br><br>
+
+<b>Things You Will (Should) Know:<br><br>
+
+<li>IP Addresses<br>
+<li>Ports<br>
+<li>DNS<br>
+<li>Gateway<br>
+<li>Netmask<br>
+<li>DHCP<br>
+<li>Assorted utilities<br>
+
+</b><br><br>
+
+<h3>IP Addresses</h3><br>
+<li>What are they?
+<p>
+IP addresses are a set of four groups of 8 bit fields (from 0.0.0.0 to 255.255.255.255) which uniquely identify your computer on a given network.  As a side note, there are usually two sorts of IP addressing you will run into: static IP, and dynamic IP.  Information on the differences and how they will affect things will be covered in class.
+</p>
+<li>What's my IP address?
+<p>
+Look below at "Assorted utilities" to find out what you can use, depending on what OS you're using.
+</p>
+<br>
+
+<h3>Ports</h3><br>
+<li>What are they?
+<p>
+While having an IP address is great, it won't be able to do anything by itself.  It needs different places for connections to be opened, and what makes these connections possible are things called <i>ports</i>.  Every IP address has up to 65536 ports available to them (give or take a few; it's 2^16).  A certain number of them are reserved (mostly the lower numbers, up to a few thousand) for certain uses (e.g. 113 for identd, 22 for SSH, 80 for HTTP, etc. etc.).  IF yo'ure doing some sort of network programming, ports 10,000+ are usually fair game (though some other programs, such as Norton Anti Virus, will have certain ports they usually use as well).
+</p>
+<li>What ports am I connected on?<p>
+More on this in utilities as well.
+</p>
+<br>
+
+<h3>DNS</h3><br>
+<li>What is DNS?
+<p>
+DNS stands for Domain Name Service.  The development of DNS came around when peopel realized that memorizing IP addresses (e.g. 113.106.12.1) is really painful, and that words are infinitely easier for people to remember.  What DNS does is associate a certain domain name (e.g. www.yahoo.com, www.google.com, www.amihotornot.com, etc.) with an IP address.
+</p>
+<li>Problems with DNS
+<p>
+One problem with getting DNS to work arises with dynamic IP addressing.  In a static IP world, everything makes sense, and nothing changes when machines are logged on or off the net.  With dynamic IP addressing, however, a given server might not receive the same IP address each time it accesses the network, and the DNS binding won't work!  What would be an amusing (but bad) thing to happen would be for the following situation:<br>
+Server A has IP address 111.110.109.108<br>
+Server B has IP address 111.110.109.107<br>
+Server A hosts Sesame Street.  Server B hosts adult material.  Both Server A and Server B are on dynamic IP adressing (this is bad).<br>
+For some reason, both servers get knocked offline.  When they try to reconnect, the ISP gives Server A the IP address 111.110.109.107 and Server B 111.110.109.108.<br>
+What does this mean?  Anytime someone tries to access the Sesame Street website, it will pass them over to the adult website.  As you can probably imagine, this is not a good thing.<br>
+Moral of the story: Don't use dynamic IP addressing to host websites.
+</p>
+
+<h3>Gateway</h3><br>
+<li>What's a gateway?
+<p>
+A gateway is a computer, a router, etc. etc. that a given computer uses to gain access to the network when it doesn't have a direct connection.
+</p>
+<li>Why use a gateway?
+<p>
+A gateway adds a bit of security by being a middleman between one computer and the internet at large.  The gateway can thus also function as a firewall of sorts and add a bit of security to the network.
+</p>
+<li>Why would you not want to use a gateway?
+<p>
+If the gateway goes down, your internet goes down.  Not fun.
+</p>
+<br>
+<h3>Netmask</h3><br>
+<li>What's a netmask?
+<p>
+A netmask just tells you what network you're on.  That's all you need to know about netmasks.
+</p>
+<br>
+<h3>DHCP</h3><br>
+<li>What is DHCP?
+<p>
+DHCP stands for Dynamic Host Control Protocol.  It automatically configures IP settings, DNS settings, etc. ec.
+</p>
+<li>What is it used for?
+<p>
+In the olden days of yore, configuring internet connections were an excercise in misery.  Not only did all sorts of DNS and IP settings have to be written down, but WINS servers and a smorgasbord of other server settings as well.  People eventually decided it was a system that had to go, and DHCP was created.  And DHCP was.  And it was good.
+</p>
+<br>
+<h3>Assorted utilities</h3><br>
+<p>
+<li>Windows users
+<p>
+<li>winipcfg (win98) / ipconfig (win2k/XP) - See IP settings, DNS server, MAC addresses, etc. etc.<br>
+<li>whois - Find out who owns a given domain name<br>
+<li>ping - See if a computer is connected to the network (won't work if a firewall is blocking ping connections)<br>
+<li>tracert - See how many hops (and where those hops are, and how long they take) to get to different sites<br>
+<li>netstat - See active connections<br>
+</p>
+<li>Linux users
+<p>
+<li>ifconfig - Down to the lowest level of network connection utilities.  As with all things Linux, read the man pages.<br>
+<li>netstat - Check for current connections.  Try it with -tuln.  Read the man pages.<br>
+<li>Assorted vendor packages - See your specific vendor for details<br>
+</p>
+
+
+
+</html>

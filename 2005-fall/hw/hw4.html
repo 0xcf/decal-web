@@ -1,0 +1,50 @@
+
+<html>
+	<head>
+		<title>Homework 4</title>
+	</head>
+	<body>
+		<h1>Homework 4</h1>
+        <p>
+        <b>Important: </b>Please submit your homework in plain text, not Word document, not RTF, not (insert your favorite document format here).  Ideally, you should send an email which follows the specifications below exactly, since this helps me filter and sort the homework submissions.  Plain text email is preferred over HTML email (no pretty formatting necessary here).  Typing your answers directly into an email (or copying and pasting it in) works best.  Except for explicit instructions to include an attachment (there's one part in this homework that says to do that), it's generally not a good idea to do it.<p>
+        The purpose of this homework is to further familiarize you with working with the Linux shell and also to prime you for the first phase of the project.  Part 1a will be reminiscent of homework 1, and part 1b will hold your hand through an installation of Apache from source.  The homework this week will be a little longer than usual, in part because there is a lot of time spent letting the computer crunch numbers and compile software (this is a good time to go to dinner, watch a movie, go out and get some sunshine instead of locking yourself in your room all day and only talking to people online, etc.).  For the more technically proficient students, this part should be a breeze.  For those of you who aren't as proficient, this part should (hopefully) be a straightforward recipe that will be easy to follow.  Try to understand as much of it as you can; a lot of it you can take as simply being magic that "just works."  As an aside, this is actually pretty close to the truth; anyone who's ever had to dig around in configure.ac, Makefile.am, and other autoconf/automake tools and files can tell you how much of a nightmare it is to have to deal with them.</p>
+        <p>
+        Something to keep in mind is that the project will be building off of this homework, and is, in some sense, dependent upon this part working.  <b>This homework is not meant to be hard</b>.  If something goes wrong or simply following the directions doesn't work, <b>please let us know</b>.  The purpose isn't to force you all to become familiar with library dependencies, interlocks, and other ugly things, but just to follow the configure, make, make install dance (more on what this means later).  Also, if you ever get stuck, do remember that you will have other group members later who will be able to help you out too (unless you're the most technically proficient one).
+        </p>
+        <p>
+		For your homework, send in your answers via email.  The subject should be "Homework 4", the first line should be your name, the second line your inst login (for example cs198-xx), then your ocf login, followed by a blank line, and then your homework answer.<p>
+		The homework breaks down as follows: Everybody is required to do part 1 (basic commands).  Those of you who feel up to the challenge (and would like the extra practice), feel free to try part 2.  <b>At least attempting part 2 is strongly recommended</b>.  Part 2 is not meant to be impossible, and shouldn't take more than an hour or two to complete.  Even if you can't finish it, send me a partial response.
+		</p>
+        <h2>Part 1a: More Linux Commands</h2>
+        <p>
+        1.  What does the cat command do?  How about the less command?  How is less related to the more command?  <p>
+        2.  What does the grep command do?  What are regular expressions?  Regular expressions are a very large topic, so we won't cover them in depth here.  You should, however, familiarize yourself with at least what ? and * mean in a regular expression.  What do each of those characters mean in a regular expression, i.e. what do they match? <p>
+        3.  What does the alias command do?  How might this be useful?  <p>
+        4.  Something else you might find useful as well are environment variables.  These are variables you can define and use in both interactive (i.e. you type a command, it spits out something at you, yu type in more commands, etc.) and non-interactive (e.g. a shell script) shells.  If you're using tcsh (find out with 'echo $SHELL'), you can set an environment variable using the setenv command, e.g. setenv INSTALL_DIR '/tmp' (not that you'd actually do this, I hope).  For bash, the analog is the export command, e.g. export INSTALL_DIR='/tmp' (note that there is an equal sign this time).  For added fun, you can even nest them together, e.g. export INSTALL_DIR="$HOME/newpath" (be careful to use double quotes instead of single quotes in case you want to use an environment variable).  Write a line that will set the INSTALL_DIR environment variable to a directory in your home directory, i.e. /(your home directory)/install.  As an added bonus, can you say why we use double quotes when we want to do environment variable substitution?  What else gets expanded in double quotes?  What happens within single quotes?  We'll be using environment variables more later in the class, so you should get to know them.
+		</p>
+        <h2>Part 1b: Compiling Apache: The Virginous Run</h2>
+        <p>
+        This part of the homework involves a few steps, namely:<p>
+        1. Download the source tarball (for those of you who've forgotten, "tarball"'s a term used to refer to source files that have been packaged with tar and gzip/bzip'ed).<p>
+        2. Extract the source tarball<p>
+        3. Run the configure script, which will automatically configure the compile process for us<p>
+        4. Compile the source code<p>
+        5. Install the binary files created in step 4.<p>
+        This sounds a lot more complicated than it is.<p>
+        Step 0: Get shell access somewhere.  The OCF is one possibility; a home machine that is running Linux/BSD/MacOS/etc. works as well.  If you don't have this, it will be VERY difficult to do the rest of the assignment.<p>
+        Step 1: Go to <a href="http://www.apache.org">www.apache.org</a> and download the source for the 1.3 branch.<p>
+        Step 2: Things get a little more complicated here, since there are a variety of tools out here.  I'll try t outline the most likely ones you'll be using.  If you're at the OCF, try to go during staff office hours and someone will be there who can help you with some of the steps if you get stuck.  If you're doing this assignment at the OCF, be sure to use one of the Unix machines (the non-Windows machines in the lab).  If you're doing this from home, I assume you know enough Linux to get by.  At the OCF, open a terminal (which runs a shell), such as xterm or rxvt.  From there, navigate to the directory you downloaded the tarball to (refer to homework 1 if you don't remember the commands).  From there, issue the following command: <code>'gtar -xvzf (the filename)'</code> if you downloaded a gzip'ed file (.tar.gz), or issue the following command: <code>'gtar -xvjf (the filename)'</code> if you downloaded a bzip'ed file (.tar.bz2).  This will extract the tarball into the current directory.  Don't worry about it messing up your directory structure; all the files in the source tarball are contained within a subdirectory. If you're working from home on a Linux distribution, use tar instead of gtar.  The reason for this is the machines at the OCF run Solaris, which does not use the GNU tools by default.  Linux, however, does, which is part of the reason you often see "GNU/Linux" rather than just Linux by itself.<p>
+        Step 3: Navigate to the new subdirectory (varies depending on which version of Apache you downloaded).  Type: <code>./configure --prefix=$HOME/apache</code>.  This will run the autoconfiguration script, and also tell it to (eventually) install the files in (your home directory)/apache.  If you're familiar with the configure script, feel free to install elsewhere.<p>
+        Step 4: Once the configure script runs and finishes successfully, type <code>make</code> and press enter.  This will run the automatic compilation scripts.  This step will take a while, so this is a good time to take a break.<p>
+        Step 5: Once the compile process completes, we have to install the program.  Since we're installing into our home directory, we don't need superuser (i.e. root) privleges to do this.  It will be sufficient to type in <code>make install</code> and hit enter.  If you decided to install Apache into a system directory instead, you'll need to become root first (but I assume if you've done that you know enough to also know how to become root).  The OCF does not allow installing into system directories, which is why these instructions suggest you install it into your home directory instead.<p>
+        If you run into any problems along the way (especially if you're working on it at the OCF), please don't hesitate to email us.  For the homework submission, we're going to redo part of Step 5, only with a slight change.  Rather than running make install, issue the following command: <code>make install | tee install.log</code>.  This will create a file "install.log" in the current directory which contains the output of the installation attempt.  Attach that file in your homework submission.
+		</p>
+        <h2>Part 2: More Apache</h2>
+        <p>
+        1.  Where are the Apache configuration files installed?<br>
+        2.  Which file would you edit to have the webserver run on port 12345 instead of the default 80?  What line would you change/add to that file?  A unified diff ("diff -u") between the default file and your modification will be sufficient for this question, but an explanation in words will work as well.<br>
+        3.  Change the Apache configuration file so the webserver starts on port 12345 instead.  Start the webserver.  Open a web server and type in the following url: http://localhost:12345.  What do you see?
+		</p>
+		Good luck!<br>
+	</body>
+</html>

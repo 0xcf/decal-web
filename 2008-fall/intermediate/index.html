@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Intermediate Unix System Administration DeCal, Fall 2008</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<h1>Intermediate Unix System Administration Decal</h1>
+
+<hr />
+
+<h4>Contents</h4>
+<ul class="contents">
+	<li class="contents"><a href="#announcements">Announcements</a></li>
+	<li class="contents"><a href="#schedule">Schedule</a></li>
+	<li class="contents"><a href="#extra">Extra Links</a></li>
+	<li class="contents"><a href="#groups">Project Groups</a></li>
+	<li class="contents"><a href="#info">Course Information</a></li>
+	<li class="contents"><a href="#moreinfo">More Course Information</a></li>
+	<li class="contents"><a href="#resources">Resources</a></li>
+	<li class="contents"><a href="#grades">Grades</a></li>
+</ul>
+
+<h2><a name="announcements"></a>Announcements</h2>
+
+<ul>
+	<li><span class="date">2008.12.01</span>: Holy crap, welcome to December!
+	Since everyone seems to be doing something web-related for their project,
+	HTTP and HTTPS ports for all virtual servers have been opened. If your
+	server is <tt>iXY</tt>, your HTTP port is 2XY80 and your HTTPS port is
+	2XY43. You must configure Apache properly to use those ports (hint: there
+	is a conspicuously named file in /etc/apache2 that you can use to configure
+	these things.).</li>
+	<li><span class="date">2008.11.17</span>: If you're having trouble coming
+	up with a project proposal, check out <a href="sample_proposal.pdf">a
+	proposal from last semester</a>. Yours doesn't have to be this detailed,
+	but it may help you figure out what you should include in your own
+	project proposal. This one is just the role model :)</li>
+	<li><span class="date">2008.10.28</span>: <b>Class is cancelled today</b>
+	because I'm sick. Your homework is to come up with a project proposal. See
+	your email for details. (You should come to class anyway to talk with
+	your group about it, at least for a little bit.)</li>
+	<li><span class="date">2008.10.21</span>: Solutions have been posted for
+	labs 1-3, and more are coming. Also I've added links to some shell
+	scripting guides in the Links section.</li>
+	<li><span class="date">2008.10.09</span>: I have set up a screen name
+	for DeCal questions. If I am online you may ask me anything. The screen
+	name is <b>JoshDecal</b>. Also, to clarify for the lab, you may use apt-get
+	to install the build-essential package for Lab 4.</li>
+	<li><span class="date">2008.10.07</span>: If you still have problems
+	accessing man pages for labs, remember that you can always google for
+	"(command) man page" and generally you can find an online version.
+	Also, please note that <b>all labs up to and including lab 3 are now due
+	next Tuesday, the 14th.</b> Finally, I am discontinuing my Friday office
+	hour due to poor attendance.</li>
+	<li><span class="date">2008.09.24</span>: Here's a
+	<a href="fwunixref.pdf">Linux cheat sheet</a> that I think will be helpful
+	during the course of this class. Also, I realized the class time was
+	wrong on the course info below. It is 5PM as I'm sure most of you have
+	figured out.</li>
+	<li><span class="date">2008.09.23</span>: I am trial running an extra
+	office hour on Friday, same time/place (Brewed Awakening 1-2P.) This is
+	because some people can't make the Thursday one. Feel free to come to
+	whichever one is more convenient for you, and please come, especially
+	if I asked you in an email to! It could become permanent if y'all
+	<i>bother to show up.</i> I would especially like it if those who missed
+	the first lecture could come, but if you can catch up by yourself, then
+	feel free to. I'm willing to invest the time it takes to get everyone
+	up to speed.</li>
+	<li><span class="date">2008.09.17</span>: Some of you have noticed that
+	there is no man page for <tt>wget</tt> on the Soda lab machines. Try
+	using SSH (ssh in a Terminal on OS X, or use
+	<a href="http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe">PuTTY</a>
+	on Windows) to log in with your username and password to
+	<tt>ilinux1.eecs.berkeley.edu</tt>.</li>
+	<li><span class="date">2008.09.08</span>: The first class will be on
+	<b>September 16</b>. Prospective students should be able
+	to enroll through <a href="http://telebears.berkeley.edu">Tele-Bears</a>
+	using the given CCNs: 26208 (lower), 26207 (upper). The class is two (2)
+	units. Any questions regarding the course should be emailed to the
+	facilitators or <a
+	href="mailto:sysadmin-decal@ocf.berkeley.edu">sysadmin-decal@ocf</a>.</li>
+</ul>
+
+<h2><a name="schedule"></a>Schedule</h2>
+<table class="schedule">
+	<tr>
+	 <td class="date"><span class="u">Date</span></td>
+	 <td class="info"><span class="u">Title</span></td>
+	 <td class="notes"><span class="u">Slides</span></td>
+	 <td class="labs"><span class="u">Lab</span></td>
+	 <td class="soln"><span class="u">Solutions</span></td>
+	</tr>
+	<tr>
+		<td>09/16</td>
+		<td><i>Week 1</i>: Introduction / The Shell</td>
+		<td><a href="week01_slides1.pdf">Intro (pdf)</a>, <a href="week01_slides2.pdf">The Shell (pdf)</a></td>
+		<td><a href="week01_lab.pdf">pdf</a></td>
+		<td><A href="week01_soln.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>09/23</td>
+		<td><i>Week 2</i>: The Filesystem</td>
+		<td><a href="week02_slides.pdf">pdf</a></td>
+		<td><a href="week02_lab.pdf">pdf</a></td>
+		<td><a href="week02_soln.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>09/30</td>
+		<td><i>Week 3</i>: User and Group Authentication</td>
+		<td><a href="week03_slides.pdf">pdf</a></td>
+		<td><a href="week03_lab.pdf">pdf</a></td>
+		<td><a href="week03_soln.txt">txt</a></td>
+	</tr>
+	<tr>
+		<td>10/7</td>
+		<td><i>Week 4</i>: Compiling Software from Scratch</td>
+		<td><a href="week04_slides.pdf">pdf</a></td>
+		<td><a href="week04_lab.pdf">pdf</a>, <a href="nethack.diff">NetHack patch</a></td>
+		<td>none</td>
+	</tr>
+	<tr>
+		<td>10/14</td>
+		<td><i>Week 5</i>: UNIX Power Tools <img src="New_icons_28.gif" alt="(new)" /></td>
+		<td><a href="week05_slides.pdf">pdf</a></td>
+		<td><a href="week05_lab.txt">txt</a></td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<td>10/21</td>
+		<td><i>Week 6</i>: Shell Scripting</td>
+		<td><a href="week06_slides.pdf">pdf</a></td>
+		<td><a href="week06_lab.txt">txt</a></td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<td>10/28</td>
+		<td><i>Week 7</i>: <b>CLASS CANCELLED, JOSH IS SICK</b></td>
+		<td>none</td>
+		<td>none</td>
+		<td>none</td>
+	</tr>
+	<tr>
+		<td>11/04</td>
+		<td><i>Week 8</i>: Network services: DNS, DHCP, SMTP, HTTP</td>
+		<td><a href="week08_slides.pdf">pdf</A></td>
+		<td><a href="week08_lab.txt">txt</a></td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<td>11/11</td>
+		<td>Veteran's Day, no class!</td>
+		<td>none</td>
+		<td>none</td>
+		<td>none</td>
+	</tr>
+	<tr>
+		<td>11/18</td>
+		<td><i>Week 9</i>: System V Init; Getting Involved</td>
+		<td><a href="week09_slides1.pdf">System V Init (pdf)</a><br/>
+		<a href="week09_slides2.pdf">Getting Involved (pdf)</a></td>
+		<td>none</td>
+		<td>none</td>
+	</tr>
+	<tr>
+		<td>11/25</td>
+		<td><i>Week 10</i>: Desktop Linux Technologies (X11, udev, D-Bus..)</td>
+		<td><a href="week10_slides.pdf">pdf</a></td>
+		<td>none</td>
+		<td>none</td>
+	</tr>
+	<tr>
+		<td>12/02</td>
+		<td><i>Week 11</i>: &quot;The Touch&quot;: Solving Problems You Know Nothing About</td>
+		<td><a href="week11_slides.pdf">pdf</a></td>
+		<td>none</td>
+		<td>none</td>
+	</tr>
+	<tr>
+		<td>12/09</td>
+		<td><i>Week 12</i>: Last Class - Final Project Presentations</td>
+		<td>-</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
+</table>
+
+<h2><a name="info"></a>Course Information</h2>
+<p>
+	Time: Tuesday, 5:00-6:30pm<br />
+	Location: 275 Soda<br />
+	Facilitator: <a href="mailto:joshk.decal@triplehelix.org">Joshua Kwan</a><br />
+	AIM Screenname: <a href="aim:goim?screenname=JoshDecal">JoshDecal</a><br />
+	Office Hours: Thursday <s>and Friday</s>, 1:00-2:00pm at <a href="http://maps.google.com/maps?f=q&amp;hl=en&amp;geocode=&amp;q=brewed+awakening&amp;sll=37.346564,-122.072764&amp;sspn=0.012521,0.014613&amp;ie=UTF8&amp;ll=37.876208,-122.26058&amp;spn=0.012432,0.014613&amp;z=16&amp;iwloc=A">Brewed Awakening</a><br />
+	Enrollment: 2 units<br />
+	&nbsp;- Lower Division: CS 98 (CCN 26208); 10 students max<br />
+	&nbsp;- Upper Division: CS 198 (CCN 26207); 10 students max<br />
+</p>
+
+<p>
+Welcome! This <b>intermediate</b> course is targeted towards CS students,
+either with some prior Unix experience or an eager ability to learn new things
+quickly. The curriculum is somewhat similar to the <a
+href="../beginning">beginning class</a>; however, we emphasize a more bottom-up
+approach that encourages a good working knowledge and understanding of Unixes
+before starting any system administration tasks.  In fact, we spend very little
+time on what is considered stereotypical systems administration: the task of
+maintaining a web server with a database.  <i>That's just the tip of the
+iceberg.</i> Any sysadmin worth their salt will tell you that there are far
+more things you need to be good at!  See above for all the planned lecture
+topics.</p>
+
+		<p>The course is given in a lecture-lab format. After discussing the
+		material for a given week, we will follow with 45 minutes to 1 hour
+		of lab time. Many people will be able to complete the labs within
+		this time, and most people will at least be able to complete at
+		least half. So if you play your cards right, the weekly out-of-class
+		commitment is less than an hour.</p>
+
+		<p>Astute readers have already noticed that there is a <b>final
+		project</b>. This project requires you to collaborate with groups of
+		3-4 other people to develop some sort of system that shows that you
+		know how to integrate many disparate open source components together
+		into a coherent unit. However, you needn't be too ambitious. The
+		project as a whole should take about 10-15 man-hours, which is up
+		to 4 hours per person, all things being equal.</p>
+
+<h2><a name="moreinfo"></a>Menacing Stuff We Need to Say</h2>
+<ul>
+	<li>Attendance is mandatory. More than <b>four</b> unexcused absences will
+	result in a NP. Please <a href="mailto:joshk.decal@triplehelix.org">email
+	me</a> if you have extenuating circumstances (midterm, final, etc.)</li>
+	<li>There will be weekly homework assignments, graded on a P/NP basis. There is no strict due date for each one, but you are expected to keep up and be done with all of them by the end of the term.</li>
+	<li>A final project will be given in lieu of an exam; <strong>failure to
+	complete will result in a NP</strong>.</li>
+</ul>
+
+<h2><a name="extra"></a>Extra Links</h2>
+<ul>
+	<li><a href="fwunixref.pdf">Linux Cheat Sheet from FOSSwire.com</a>:
+	contains a bunch of useful commands all on one page that will surely be
+	helpful.</li>
+	<li><a href="http://www.freeos.com/guides/lsst/">Linux Shell Scripting
+	Tutorial</a>: a guide to shell scripting that may be a useful alternative
+	to looking at the shell-scripting slides.</li>
+	<li><a href="http://tldp.org/LDP/abs/html/">Advanced Bash Scripting Guide</a>:
+	This guide is a little more in-depth -- read it if you want to go above and
+	beyond what we learned in class.</li>
+</ul>
+
+<h2><a name="groups"></a>Project Groups</h2>
+	
+<h2><a name="resources"></a>Resources</h2>
+<ul>
+	<li><a href="http://docs.ocf.berkeley.edu/wiki">OCF Wiki</a></li>
+	<li><a href="http://tldp.org">The Linux Documentation Project</a></li>
+	<li><a href="http://linuxmanpages.com">Linux man Pages</a></li>
+	<li><a href="http://google.com">Google</a></li>
+</ul>	
+
+<h2><a name="grades">Grades</a></h2>
+
+<hr class="footer" />
+
+<p class="footer"><a href="http://validator.w3.org/check?uri=referer">XHTML 1.0 Strict</a></p>
+
+</body>
+</html>

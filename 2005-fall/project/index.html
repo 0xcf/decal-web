@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-1 (1.68)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>System Administration for the Web: Final Project</TITLE>
+<META NAME="description" CONTENT="System Administration for the Web: Final Project">
+<META NAME="keywords" CONTENT="final_project">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="final_project.css">
+
+</HEAD>
+
+<BODY >
+
+<H1 ALIGN="CENTER">System Administration for the Web:
+<BR>
+Final Project</H1>
+
+<H1><A NAME="SECTION00010000000000000000">
+1 Introduction</A>
+</H1>
+
+<H2><A NAME="SECTION00011000000000000000">
+1.1 Notes</A>
+</H2>
+
+Whether or not you pass this course will be determined in large part
+by how well you do on this project. This project is meant to bring
+together all the system administration skills you have learned this
+semester and to give you a taste of real-life system administration
+work. If you have kept up with all the lectures and laboratories,
+this project should not be difficult. However, this project will be
+different from previous laboratories in the sense that we expect you
+to make appropriate decisions by yourself. There will be almost no
+``hand-holding.''
+
+<H2><A NAME="SECTION00012000000000000000">
+1.2 Submission Guidelines</A>
+</H2>
+
+Please mail all relevant commands, explanations, output, and information
+to dima+decal@ocf.berkeley.edu. It should be clear from your submission
+that you understand the purpose of the commands you performed and
+can interpret their output. If you feel that some part of your submission
+may be unclear, please attach an explanation. The due date for this
+project will be announced in class.
+
+<H1><A NAME="SECTION00020000000000000000">
+2 Final Project</A>
+</H1>
+
+The final project will be specified as a series of goals that you
+must accomplish. You may accomplish these goals in any way you wish,
+although we highly recommend that you heed the provided suggestions.
+
+<DL>
+<DT><STRONG>Goal&nbsp;1</STRONG></DT>
+<DD>Create a new user account and activate web-hosting for that
+account by creating a <TT>public_html</TT> directory in the account's
+home directory. The directory will require at least user execute,
+read, and write and world execute permissions. Determine how to access
+this directory from the Internet.
+</DD>
+<DT><STRONG>Goal&nbsp;2</STRONG></DT>
+<DD>Create a new MySQL database and MySQL user. Although you
+may use the command-line interface to MySQL, we highly recommend using
+<I>phpMyAdmin</I>, which should be available at 
+<BR>
+<TT>http://pileup.ocf.berkeley.edu:1##80/phpmyadmin</TT>
+<BR>
+where <TT>##</TT> is your group's number.
+</DD>
+<DT><STRONG>Goal&nbsp;3</STRONG></DT>
+<DD>Upload a copy of the WordPress blog software to the user
+account you created and extract the files. Modify the WordPress configuration
+files to include the MySQL database and user information you created
+in the previous goal.
+</DD>
+<DT><STRONG>Goal&nbsp;4</STRONG></DT>
+<DD>Install WordPress. It may be necessary to change the permissions
+on the <TT>wp-config.php</TT> file to allow Apache to read the file.
+</DD>
+<DT><STRONG>Goal&nbsp;5</STRONG></DT>
+<DD>Create a new post using the WordPress software to demonstrate
+that you have successfully installed and configured the software.
+</DD>
+<DT><STRONG>Goal&nbsp;6</STRONG></DT>
+<DD>Set a quota on the user account.
+</DD>
+<DT><STRONG>Goal&nbsp;7</STRONG></DT>
+<DD>Write a shell script to backup the home directory of the
+user you created. Install this script into <TT>crontab</TT> to have
+it execute every day. Ideally, your script should use <TT>tar</TT>
+to create the backup. For a challenge, write the shell script in such
+a way that each backup file is labeled with the date it was created.
+</DD>
+</DL>
+<H1><A NAME="SECTION00030000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG>System Administration for the Web:
+<BR>
+Final Project</STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2002-1 (1.68)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 -show_section_numbers -no_navigation final_project.tex</TT>
+<P>
+The translation was initiated by Stephen Le on 2005-11-21
+<BR><HR>
+<ADDRESS>
+Stephen Le
+2005-11-21
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,32 @@
+body {
+	padding-left: 75px;
+	padding-right: 75px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+}
+
+h2 {
+	margin-top: 25px;
+}
+
+tt {
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Courier New", Courier, mono;
+}
+
+span.date {
+	font-size: small;
+}
+
+p.lookitme {
+	font-size: small;
+}
+
+a:link, a:visited {
+	color: #5683cd;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}

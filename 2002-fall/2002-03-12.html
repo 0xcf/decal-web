@@ -1,0 +1,475 @@
+<HTML><head>
+<title>System Administration for the Web - Day 3 Notes</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="2">
+
+<font size=+2><B>System Administration for the Web</B> - Day 3
+notes</font>
+<P>
+<table width=610 border=0 cellpadding=8 cellspacing=1>
+<TR><TD Colspan=3 align=left bgcolor="#ffffee">
+
+<font size=+2>Notes:</font><P>
+
+<P><B>Course Notes:</B><BR>
+<LI> Homework check in, quiz, questions..
+
+<LI> <a 
+href=http://netfilter.samba.org/documentation/HOWTO/networking-concepts-HOWTO.html>Networking 
+talk</a> <UL>
+<I> What's a hub, a router, a switch?  </I>
+
+These are all networking hardware that provide slightly different 
+functionality.  Each of them pass bits from one part of a network to 
+another.  <a 
+href=http://www.practicallynetworked.com/networking/bridge_types.htm>Details 
+here</a>.
+
+</UL>
+<LI> <a 
+href=http://netfilter.samba.org/documentation/HOWTO//NAT-HOWTO.html>NAT</a> 
+- Network Address Translation.  Among other uses, used to pass packets 
+between private internal networks and the internet.
+<LI> <a href=http://www.dhcp.org/>DHCP</a> - Dynamic Host Configuration 
+Protocol - typically used in small networking situations to
+automatically assign IP addresses and deliver TCP/IP stack configuration
+parameters such as the subnet mask and default router.  <a 
+href=http://www.linuxdoc.org/HOWTO/mini/DHCP/>Follow 
+this kink for more information about setting up dhcp</a>.
+<LI> <a href="http://searchnetworking.techtarget.com/sDefinition/0,,sid7_gci212080,00.html">Ethernet</a>, 
+<a href="http://searchnetworking.techtarget.com/sDefinition/0,,sid7_gci211752,00.html">Cat5</a>, 
+10baseT, 100baseT, RJ45, AUI...
+<BR><UL>These are all network cabling, terms.</UL>
+
+<LI>Password file basics, basic user management, file perms.
+
+</td></Tr></table>
+
+<pre>
+
+Let's get familiar with the configuration files that UNIX uses to store
+information about accounts:
+    /etc/passwd, /etc/shadow, /etc/group, /etc/skel
+
+
+The /etc/passwd file is a list of all users recognized by the system.
+
+7 Fields in the form of:
+login:password:UID:default GID:GECOS information:homedir:login shell
+
+Take for example, all the joneses on the OCF:
+
+jones:*NP*:10667:20:Devin Jones,Web,6642098,:/home/j/jo/jones:/bin/csh:*NP*
+jenjones:*NP*:12733:20:Jennifer Jones,The Web,,:/home/j/je/jenjones:/usr/local/adm/shells/sorry:*NP*
+bjones:*NP*:1040:20:Brandy Jones,The OCF,,:/home/b/bj/bjones:/bin/csh:*NP*
+ajani:*NP*:1810:20:Bem Ajani Jones-Bey,The OCF,,:/home/a/aj/ajani:/opt/really-local/bin/tcsh:*NP*
+imj:*NP*:2408:20:Ian Jones,The OCF,,:/home/i/im/imj:/opt/really-local/bin/tcsh:*NP*
+mcj:*NP*:2553:20:Malica Jones,The OCF,,:/home/m/mc/mcj:/opt/really-local/bin/tcsh:*NP*
+lilrhett:*NP*:3184:20:Rhett W. Jones Jr.,The OCF,,:/home/l/li/lilrhett:/opt/really-local/bin/tcsh:*NP*
+dforj:*NP*:3440:20:Derek Felton O'Reilly-Jones,The OCF,,:/home/d/df/dforj:/opt/really-local/bin/tcsh:*NP*
+laljb:*NP*:5175:20:Lal Jones-Bey,The OCF,,:/home/l/la/laljb:/opt/really-local/bin/tcsh:*NP*
+cljones:*NP*:5201:20:Clifton Jones,The OCF,,:/home/c/cl/cljones:/opt/really-local/bin/tcsh:*NP*
+
+
+Anatomy of the file, /etc/passwd:
+
+login: login names, aka usernames, are alphanumeric, 8 characters long, and
+unique. Windows and some Linux distributions allow for longer login names, and
+names which use spaces or other special characters.  To insure portability between
+operating systems, it is practical to cater to the lowest common denominator and
+limit it to 8 charaters.  They are case sensitive and best kept all lowercase,
+especially since sendmail and other mailers expect lowercase logins.
+
+encrypted password: 
+13 characters, of which the random first 2 are the salt; 
+an empty field means that *no* password is required to access the account
+-or- placeholder "x" when using shadow passwords: mandatory under solaris, 
+the passwords are kept in the /etc/shadow; this file is readable only by root, 
+contains encrypted passwords, and is autonomous from /etc/passwd 
+
+UID: 
+
+unique 32-bit Integer user identifier, (root has a UID 0) usually the
+UID's between 0-100 are reserved for non-human users such as daemon.  The
+System Administrators Handbook suggests, for the sake of preserving the
+interoperability between systems, keeping below most systems' limit of
+32,767 in that field, although Linux can go up to 65,535; it further
+recommends against recycling UIDs of purged users because if a file of the
+deleted user is restored from tape, and another user now has the orginal
+user's UID, the new user will now own those files regardless of the login
+name being different.
+
+default GID: similar to UID, it is a 16 or 32-bit integer where GID 0 is
+for the root group, aka wheel (on a DECsystem-20 mainframe running
+TOPS-20, it was the wheel-bit that gave users omnipotence) --the GID in
+/etc/passwd seems mostly historical since group membership is now defined
+in /etc/group, which supports membership to multiple groups.  /etc/group 
+is described in more detail below.
+
+GECOS information: personal user information that finger can expand to the
+login.  If you need to know like I do: General Electric Comprehensive
+Operating System, and the field in /etc/passwd is all that remains.
+
+
+Devin Jones,Web,6642098,
+
+Your real name is grabbed for the output of finger and for programs such 
+as email the want to use your real name, the other fields are seldom used.
+e.g.: 
+
+	death [279] finger -m jones
+	Login name: jones                       In real life: Devin Jones
+	Directory: /home/j/jo/jones             Shell: /bin/csh
+	On since Apr  1 12:09:11 on pts/25 from soda.csua.berkeley.edu
+	New mail received Sun Apr 14 20:39:36 2002;
+	  unread since Sat Mar  9 02:43:16 2002
+	No Plan.
+
+
+home directory: specifies the location of the user's home within the os and is 
+placed here by the login program
+ 
+login shell: it's a command interpreter such as: sh (Bourne shell), csh (C
+shell), tcsh (Extended C shell), bash (GNU Bourne-Again SHell), or ksh
+(David Korn's shell), or any program that is executed at login
+
+========================
+
+The /etc/group file contains group names, their corresponding GID's, and 
+the usernames of each group's members
+
+4 Fields in the form of:
+group-name:password:GID:comma-separated,list,of,names
+
+e.g.:
+death [283] niscat group
+domo::111:alanc,davidf
+operator::116:
+ftp::122:psb,goldfarb,jules,mehlhaff,marc,aswan,asucexec,nevman,alanc,gopher,jen
+ni,asucpres,helper
+docs::124:marco,peterm,jules,mehlhaff,marc,coganman,ahilan,shyguy,nevman,tee,ala
+nc,wlam,marto,jeph,chaos,kennish,gong,pbhuang,katster,peterson,jhillman
+bod::125:chaos,kennish,jenni,gong,land,dunnthat,ahilan,alanc,aubie,jentsoi,jhill
+man,katster,runes,dgs,dleite,tee,saarp,naimstin,jones,kenao,ajani,smcc,akopps,ce
+ugene,calman,suztang,kaow,jeffe,castello,gmg,bac,cpfeyh,drew,eek,ivan,stephhou,w
+yc,fho,sasfaw,dsrogers,dwc,smacian,tiv,jhs
+dead_parrots::12345:psb,gwh,cgd
+gopher::140:jenni,alanc,runes,chaos
+secy::300:
+gm::301:chaos,dunnthat,alanc,jones,smcc,gmg,calman
+sm::302:tee,katster,alanc,akopps,smcc,wyc
+perldc::137:ajani,darin,smcc
+grpacct::21:
+asuc::138:lshen
+scanner::7476:
+lprng::12347:lprng,akopps,calman,wyc,dsrogers
+cvs::139:ajani
+tedit::141:ajani,bac
+sysadmin::14:alanc,jenni,kenji
+
+========================
+
+The /etc/shadow file is a file only root can read that contains the encrypted
+passwords that would otherwise be in the world readable /etc/passwd
+
+9 Fields in the form of:
+login:password:lastchg:min:max:warn:inactive:expire:flag
+
+e.g.:
+barbie:OlNcTJJjGhUJ2:9083:0:::90::
+-or-
+ken:NJ2Wu.dJWLYTo::::::11474:
+
+_______________________
+
+Anatomy of the file, /etc/shadow:
+
+ login: username
+
+ password: 13 character encrypted password
+
+ lastchg: number of days from Jan 1, 1970 to the last password change
+
+ min: minimum number of days required between password changes
+
+ max: maximum number of days the password is valid
+
+ warn: number of days before expiring the password that the user is warned
+
+ inactive: number of days of inactivity allowed for the user
+
+ expire: absolute date after which the login may no longer be used
+
+ flag: unused
+
+========================
+
+To rehash:
+
+Anatomy of a UNIX account:
+
+ login (or user) name: see above
+
+ password: see above
+
+ numeric user identifier or UID: see above
+
+ GID, a default numeric group identifier: see above
+ N.B. accounts can and usually do belong to more than one group 
+ but all accounts have one default group
+
+ home directory: see above
+
+ login shell: see above
+
+ startup files, or dot (.) files: filenames that start with a dot [.] that are
+usually placed in the user's home directory that dictate how certain commands
+such as bash (.bashrc) behave when they are first executed
+
+ ~/.forward or mail alias (maybe)
+
+ mail file
+
+If you wanted to create a user's account by hand, you would have to:
+1. pick a unique username and UID (must not conflict with another user, 
+	or any existing mail alias)
+2. create a homedirectory for them, and give them appropriate dotfiles
+3. add the entry to the passwd file
+4. run "passwd user" for that user and give them a password
+(their mail file will be created automatically by your mail program)
+
+Which is why there are scripts such as "adduser" and "useradd" on most systems.
+
+<HR>
+
+<h3>File Permissions</h3>
+
+Examine your home directory with the command, "ls -l"
+ex:
+
+% ls -l
+total 20
+drwxr-xr-x   4 bac      ocf          512 Mar  7 13:45 Blackbox/
+drwx------   2 bac      ocf          512 Mar 19 00:24 Mail/
+drwx------   2 bac      ocf          512 Sep 30 18:39 mail/
+drwxr-xr-x   3 bac      ocf          512 Feb 28 13:33 ns_imap/
+drwx------   2 bac      ocf          512 Oct 25 15:28 nsmail/
+drwxr-xr-x   3 bac      ocf          512 Nov 16 18:42 office52/
+lrwxrwxrwx   1 bac      www           26 Oct 22 13:20 public_html -> /services/http/users/b/bac/
+drwxr-xr-x   2 bac      ocf          512 Mar 18 15:12 Python/
+-rw-r--r--   1 bac      ocf          644 Feb  4 16:17 README.x
+-rw-r--r--   1 bac      ocf          573 May  7  2000 StarOffice52
+
+You've probably seen this kind of output before, did you ever wonder 
+what that information on the left is?  "drwxr-xr-w"?  This information
+tells us who has permission to read, write or execute this file.
+
+It can be divided into four groups:  drwxrwxrwx -> d rwx rwx rwx
+				or:  l--s--s--s    _ ___ ___ ___
+What do they mean?				   |  |	  |   |
+		  1 	directory or symlink?... _/   |	  |   |
+		  2	owner's permissions........../    |   |
+		  3	group permissions................/    |
+                  4     everyone else's permissions........../
+
+
+Going left to right:
+1.  If the filename refers to a directory, or a symlink, this will be 
+	"d" or "l" respectively.  A symlink is a file that points to 
+	another file, just like a shortcut in Microsoft Windows.  It
+	it can point to a file or a directory.
+
+2.  The owner's permissions:  the owner of the file is listed in the 3rd
+       column (in this case, "bac"):
+ 
+	       \
+		|
+		v
+drwx------   2 bac      ocf          512 Mar 19 00:24 Mail/
+			 ^
+			 |
+			/
+3.  The group permissions:  the group is listed in the 4th column (here "ocf").
+
+4.  Everyone else's permissions.
+
+In each of these cases, rwx stands for "read," "write," and "execute"
+specifically:
+read = enables the file to be read, important for text files and scripts, 
+	but not for programs.
+write = allows writing to, or deleting of files.
+execute = allows a program file to be executed, asuming it can be evaluated as
+	an executable binary file or a parsable script  (scripts also need to
+	be read-enabled, because the file is "read" as it is interpreted).
+
+	<B>Note:</b>  for directories, the executable bit indicates that files inside
+	the directory can be accessed and read (if their permissions permit),
+	even if the directory cannot be "read" (which would mean that you will 
+	not be able to get a file listing, but you will be able to access files
+	if you know their names).
+
+
+Here are some examples:
+
+For the following file: 
+	-rw-r--r--   1 bac      ocf          644 Feb  4 16:17 README.x
+	Anyone can read this file, but only the owner can write to it.
+
+For the following directory:
+	drwx------   2 bac      ocf          512 Oct 25 15:28 nsmail/
+	Only the owner can read or write files in this directory.
+
+<hr width=50%>
+
+<B>How do you affect the permission bits?</B>
+
+The <b>chmod</b> utility:
+
+By this point, you've looked at baffeling and useless man pages before, but the
+<b>chmod</b> manpage is actually useful and comprehensible, you should check it
+out.
+
+To summarize, chmod has two ways of changing file permission bits, the 
+easy-to-remember way, and the fast way.
+
+<h3>The easy to remember way</h3>
+
+The easy to remember way involves abbreviations.  The first rwx triad is called the 
+user triad, abbreviated "u," the second and third are "g"roup and "o"ther.
+
+To add a permission to the user triad for a file:
+chmod u+x filename
+(allow the user to execute filename)
+
+You can add more than one type of permission at a time:
+chmod u+rwx filename
+(allow the user to read, write and execute filename)
+
+You can also reference more than one group at a time:
+chmod ug+rx filename
+(allow user and group to read and execute filename)
+	Note that if this is the same file that we just gave user rwx permissions,
+	the user will still have rwx.  <i>Adding</i> rx doesn't imply <i>removing</i> w.
+	
+To remove permissions from a file:
+chmod o-wx filename
+(disallow others (users not either the owner or a member of the file's group) from
+writing/deleting or executing the file)
+
+To exactly set the permissions bits, regardless of their current status:
+chmod u=rwx,go=r filename
+
+<h3>The fast way</h3>
+
+The fast way involves thinking of each triad as an octal number.  Since each triad 
+is made up of three bits, the three triads can be expressed as three octal numbers:
+
+where the alphabetic version is binary, where a letter represents a 1, and a dash a 
+zero:
+
+binary		octal
+------		-------
+rwx = 111	7
+r-x = 101	5
+r-- = 100	4
+
+In this manner, each permission has it's own octal value:
+
+permission	octal
+----------	-----
+read    (r--)	4
+write   (-w-)	2	
+execute (--x)	1
+
+And combined permissions are expressed by summing the octal values of each 
+permission, as seen above.
+
+Each triad then has it's own octal value, and you can completely determine the 
+permissions for a file in one small command:
+
+chmod 755 filename
+(give the file's owner (aka user) rwx permissions, everyone else rx permissions)
+(equivalent to "chmod u=rwx,go=rx")
+
+chmod 644 filename
+(give the owner rx, everyone else gets read-only access)
+
+chmod 400 filename
+(give the owner read perms, everyone else can't read the file)
+
+<h3>other useful commands</h3>
+
+<b>chown</b> - change the owner of a file:
+
+	# ls -l
+	-rw-rw-r--    1 bob      user            2 Oct  3 01:46 filename
+	# chown jones filename
+	-rw-rw-r--    1 jones    user            2 Oct  3 01:46 filename
+	(this command can only be run by root, or else to gain full permissions
+	 to a file, you would just have to declare yourself the owner!)
+
+<b>chgrp</b> - change a file's group ownership:
+
+        # ls -l
+        -rw-rw-r--    1 jones    user            2 Oct  3 01:46 filename
+        # chgrp foobar filename
+        -rw-rw-r--    1 jones    foobar          2 Oct  3 01:46 filename
+        (this command also can only be run by root)
+
+<hr>
+
+<h2>The root account</h2>
+
+What is the difference between user accounts and the root account?
+
+Any process run by the root account, or any account with UID 0, has special
+privileges, as do any processes started by those processes.  Specifically, 
+root has read and write acccess to every file, directory, and device.
+
+It's important to be careful when using the root account.  It's easy to
+make simple mistakes that can cause a lot of damage.  
+
+Since the root shell has extra powers, it is conventional for the root
+prompt to be "#" rather than the default "%"
+
+<h3>How do you access the root account?</h3>
+
+The root account can be accessed by logging in, like any other account, but this is
+seldom a good idea for several reasons.  If you are not sitting in front of your
+system's console, and you are accessing you system across the network, you will
+have to send your password over the net.  The telnet protocol sends the password
+over the net in plain text, meaning anyone listening on any system inbetween where
+you are and the system you are logging into will be able to intercept your
+password.  An ssh client will encrypt your transmission making it much harder to
+intercept, but there are still security concerns.
+
+One way around the problem of sending your system's root password over the
+network is to use sudo, from the University of Colorado.  This is a utility
+that allows certain specified users to execute commands as root by typing:
+
+% <b>sudo</b> command -flags 
+
+it checks to see if the user is approved to use sudo (in the "sudoers" file), and
+then prompts the user for the user's own password (rather than the root passwd).
+
+sudo use can be logged, which provides some degree of accountability if you have 
+multiple people acting as root.
+
+Another method is to use "su" which is an older command that will give you a 
+root shell after prompting you for the root password.  Su use is also logged,
+and on many systems users are required to be explicitly allowed to use "su"
+in a configuration file.
+
+</UL>
+
+</pre>	
+
+<hr width=75%>
+c.2002, Devin Jones - jones@csua.berkeley.edu<BR>
+last modified: <I><!--#flastmod file="2002-03-12.html"--></I><P>
+
+</body>
+</html>
+

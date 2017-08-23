@@ -1,0 +1,92 @@
+<html>
+<HEAD><title>Sysadmin Decal: lecture 1</title>
+</head>
+<body>
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 1 notes:</h1>
+2001-10-26 (Fri)
+
+<h2>NFS</h2>
+
+To export to other machines, use:
+/etc/exports
+
+However, on Solaris, use:
+/etc/dfs/dfstab
+
+File usage:
+directory machine1 (options) machine2 (options)
+
+Example:
+/mp3      192.168.0.5(ro)    192.221.58.0/255.255.255.0(ro,rw)
+
+where ro = Read Only
+      rw = Read/Write
+
+- Can be used as comma seperated values to select more that one option.
+- Machine2's usage allows access to any machine that begins with
+  192.221.58.x
+
+How to mount a shared directory:
+mount -t nfs server:/mp3  /server/mp3
+
+filesystem  | mountpoint  | ftype |    options   | dump | pass
+server:/mp3   /server/mp3   nfs     ro, defaults    0      0
+
+On Solaris:
+share -Fnfs /mp3     // to share
+unshare /mp3         // to unshare
+
+
+<h2>Networking</h2> 
+
+- Check out CS61c's <a
+  href="http://www-inst.eecs.berkeley.edu/~cs61c">calendar</a> page for info about networking.
+
+
+<h2>IP Addresses</h2>
+
+24.20.160.210  // Calman's IP address, good place for a DoS attack...
+
+IP Addresses are written at four numbers that range from 0 to 255 and
+are broken up into 5 classes:
+
+First Field  Class  8-bit   8-bit  8-bit   8-bit
+   0-127       A    Net     Host   Host    Host
+ 128-191       B    Net     Net    Host    Host
+ 192-223       C    Net     Net    Net     Host
+
+Special Reserved IP's:
+10.0.0.0 / 255.0.0.0        // For class A
+127.0.0.1                   // Loopback - always points to your machine
+198.168.0.0 / 255.255.255.0 // For class C
+
+
+<h2>Subnets</h2>
+
+A subnet is a group of machines that have a direct connection to each
+other, i.e., they are all on the same switch or router.  In order to
+talk to a computer outside of your subnet, you have to go through a
+gateway.
+
+Suppose you have a class C IP:
+128.32.42.x
+
+128.32.42.0 and 128.32.42.255 are reserved
+
+So you have 256 - 2 or 254 free IPs on your subnet.
+
+How do you tell who is on your subnet?  Use a subnet mask.
+
+For our example, the subnet mask 255.255.255.0 will allow us to access
+all machines in our subnet.  The 255.255.255's only alows one value
+each, or 128.32.42 and the O allows any value between 0 and 255 to
+pass through.
+
+</body> 
+</html>
+
+
+

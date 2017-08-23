@@ -1,0 +1,29 @@
+\documentclass[10pt]{article}\usepackage{html}\begin{document}
+\title{System Administration:\\ Week 4 Lab/HW\\ Compiling a Linux Kernel\\ Due Monday March 6th at 5pm}
+\maketitle
+
+\section{Introduction}
+I realize that most of the people are having midterms right now, so this lab should be pretty straightforward. The goal of the lab is to familiarize you with how the Linux kernel is structured and to learn how to compile one. This is a open-minded lab, as I will not provide you with the exact commands, and its your job to find a way to accomplish the given tasks. Please email sysadmin-decal@ocf.berkeley.edu if you have any questions, or get stuck, and I will try and help you. 
+
+\section{Preparation}
+\subsection{Getting the Source}
+Download the kernel of your choice from \htmladdnormallink{http://www.kernel.org}. I would recommend getting the latest one to see the latest features, but its entirely up to you.
+\subsection{Un-g/bzip the Kernel Into a Directory}
+Traditionally the software you compile by hand goes into /usr/local/src but if you have another favorite location -- you should use that instead.
+\section{Compiling}
+\subsection{Menu}
+Compile the menu which will allow you to choose the options for your kernel. \mbox {make menuconfig}. Then look through the options and choose the ones you think you will need.
+\subsection{Modules}
+Compile the modules that you asked for in the config. Where is the config file stored that you just edited? Did you even have to use the menu?
+\subsection{Actual Compiling}
+Compile the Kernel! Where is the kernel located now? Where would you need to move the kernel if you were going to want to boot it? How would you allow your computer to boot from different kernels?
+
+
+\section{Lab Submission}
+Please send the commands that you used and answers to questions to dima+decal@ocf.berkeley.edu.
+
+
+
+
+
+\end{document}

@@ -1,0 +1,303 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage[margins=normal,lists=normal]{savetrees}
+\usepackage{fullpage}
+\end_preamble
+\use_default_options true
+\begin_modules
+enumitem
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth -1
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lab 04
+\begin_inset Newline newline
+\end_inset
+
+File management: starting from /
+\end_layout
+
+\begin_layout Author
+Hands-on Unix system administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-09-24, due 2012-10-01
+\end_layout
+
+\begin_layout Standard
+Your answers should only contain commands or brief responses.
+ Please save trees, don't print out your computer's output.
+\end_layout
+
+\begin_layout Standard
+If you don't know what a command does, skim the manpage, e.g.
+ 
+\family typewriter
+man tee
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+What's the maximum length of a Unix filename? What characters cannot be
+ used in a filename (hint: there are two)?
+\end_layout
+
+\begin_layout Enumerate
+How would you find the human-readable size of 
+\family typewriter
+/etc
+\family default
+? Why does 
+\family typewriter
+ls -ldh /etc
+\family default
+ not work?
+\end_layout
+
+\begin_layout Enumerate
+We have a directory 
+\family typewriter
+/tmp/test
+\family default
+.
+ How can we recursively (directory and all files contained within it including
+ subdirectories) change its owner to be user root and group root?
+\end_layout
+
+\begin_layout Enumerate
+What does the command 
+\family typewriter
+umask
+\family default
+ do, and why might you use it in your 
+\family typewriter
+.bashrc
+\family default
+ (assuming you use 
+\family typewriter
+bash
+\family default
+)?
+\end_layout
+
+\begin_layout Enumerate
+What is a symbolic link (symlink)?
+\end_layout
+
+\begin_layout Enumerate
+How can you create a symlink pointing to 
+\family typewriter
+/etc
+\family default
+ named 
+\family typewriter
+etcfiles
+\family default
+ in your current working directory? Hint: use 
+\family typewriter
+ln
+\family default
+ with an option.
+\end_layout
+
+\begin_layout Enumerate
+What happens if you delete a symlink? Is the target file affected? What
+ about if you were to use a hard link instead of a symlink?
+\end_layout
+
+\begin_layout Enumerate
+Show the octal representation of these permissions:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family typewriter
+rwxr-xrw-
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+rw-r-----
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+--x-w-r--
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Why might you not want to have a file with permissions 
+\family typewriter
+777
+\family default
+ in your home directory?
+\end_layout
+
+\begin_layout Section
+NFS
+\end_layout
+
+\begin_layout Standard
+NFS, the Network File System, is a ubiquitous way to share data between
+ servers.
+ The OCF and EECS' Instructional Computing each have centralized NFS servers
+ that store user data and often software.
+ For this part of the lab, you will need to first SSH into the OCF using
+ your OCF account if you haven't already:
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ssh user@ssh.ocf.berkeley.edu
+\end_layout
+
+\begin_layout Enumerate-Resume
+Run 
+\family typewriter
+df -h
+\family default
+ at a command prompt.
+ What does this command do? What machine is your home directory stored on?
+\end_layout
+
+\begin_layout Enumerate-Resume
+How can you tell whether a particular mount is a network share or a local
+ drive? Take a guess as to what the different network shares in 
+\family typewriter
+df
+\family default
+'s output are used for.
+\end_layout
+
+\begin_layout Enumerate-Resume
+The 
+\family typewriter
+mount
+\family default
+ command gives you information about locally-mounted devices.
+ What's the difference between the output of 
+\family typewriter
+mount
+\family default
+ and 
+\family typewriter
+df -h
+\family default
+, and when would you want to use one over the other? What are mount options,
+ and how are they represented in the output of 
+\family typewriter
+mount
+\family default
+?
+\end_layout
+
+\begin_layout Subsection
+Extra for Experts™!
+\end_layout
+
+\begin_layout Enumerate-Resume
+What is meant by setuid, setgid, and sticky bit? How are they represented
+ in octal notation?
+\end_layout
+
+\begin_layout Enumerate-Resume
+Use the 
+\family typewriter
+find
+\family default
+ command with the 
+\family typewriter
+-perm
+\family default
+ option to print all setuid binaries on the system.
+\end_layout
+
+\begin_layout Enumerate-Resume
+
+\family typewriter
+stat
+\family default
+ will give you some useful attributes and permissions about a file.
+ How is the access time impacted by the 
+\family typewriter
+noatime
+\family default
+ mount option?
+\end_layout
+
+\end_body
+\end_document

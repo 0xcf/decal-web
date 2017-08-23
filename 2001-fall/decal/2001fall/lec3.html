@@ -1,0 +1,82 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 3</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 3 notes:</h1>
+
+<h2>administrivia:</h2>
+
+	<B>Getting Help</B>
+	If you have trouble, please email me, or one of the other teachers.
+	The OCF staffers are often around the lab, and can be helpful.
+	Don't forget your classmates can also be helpful.  
+
+<hr width=50%>
+
+<h2>class notes:</h2>
+
+<h3>/etc</h3>
+
+blah,blah,blah...
+
+
+<h3>Cron Jobs</h3>
+
+The <B>cron</B> daemon is a process that executes prescheduled tasks on an automated basis.
+
+cron is typically used to run automated backups, do system accounting, clean up
+temporary files, distribut data to remote computers, remind people about
+important dates, and anything that needs to be done on a routine basis.
+
+There are several different versions of cron, and unfortunately the OCF
+doesn't allow general-user access to cron.  Access to cron is controlled
+with the <b>/etc/cron.d/cron.allow</B> and <b>/etc/cron.d/cron.deny</b>
+files.
+
+A brief introduction nonetheless:
+
+on AT&T style systems, a user submits a file (called a crontab) by:
+<b>crontab</b> <i>mycrontab</i> 
+
+if the user already has a crontab, she can retrieve it with:
+<b>crontab -l > mycrontab</b>
+
+The crontab file contains entries in the following format:
+
+			minute hour  day   month  weekday <i>command</i>
+with the ranges:	0-59   0-23  1-31  1-12   1-7
+
+the command is a command or script recognizable by <b>sh</b>.
+
+Examples (from the crontab manpage): Mail a birthday greeting:
+(at noon, on Feb. 14th)
+
+     0 12 14 2 * mailx john%Happy Birthday!%Time for lunch.
+
+
+     0 0 * * 1 command
+     (would run a command only on Mondays.)
+
+
+</UL>
+
+
+</ul>	
+
+<h2>enrichment</h2>
+
+Check out the manpages for cron, crontab, init, telinit, inetd, inetd.conf.
+
+Look at the /etc/rc2.d/README and read some of the scripts in
+the /etc/rc folders to get a feeling for <b>sh</b>-style shell 
+scripting.
+
+On different systems you may have access to, check out which daemons
+are running using the <b>ps</b> command.
+
+<hr>

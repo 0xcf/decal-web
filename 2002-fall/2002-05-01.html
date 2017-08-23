@@ -1,0 +1,219 @@
+<HTML><head>
+<title>System Administration for the Web - Day 9 Notes</title>
+
+</head>
+
+<body bgcolor="#dddddd" topmargin="2">
+
+<font size=+2><B>System Administration for the Web</B> - Day 9
+notes</font>
+<P>
+<table width=610 border=0 cellpadding=8 cellspacing=1>
+<TR><TD Colspan=3 align=left bgcolor="#eeeeee">
+
+<font size=+2>Notes:</font><P>
+
+<B>Administrivia:</B><BR> 
+<LI> Last class for the semester, good luck on finals, and I hope to see 
+you in the OCF as staff!
+
+<P><B>Course Notes:</B><BR>
+
+
+
+<pre><h3>Security through "hacking"</h3>
+
+<i>Obligatory note on the use of the term "hack:"</i> My understanding is
+that the term "hacker" comes from the MIT Model Railroad Club (see Stephen
+Levy's book <u>Hackers</u>), which used the term to describe ad-hoc
+futzing with a huge model train setup in the clubhouse.  People that were
+taken to immethodical experimentation with the setup were eventually
+labeled 'hackers.' Later, as computers proliferated to the extent that
+people could sometimes play around with them by breaking into labs late at
+night, some members of the Model Railroad Club started playing around with
+those computers in the same manner, and the term mapped as was adopted by
+the greater community of people that were using computers at MIT in their
+leisure time.  All of these people were scruffy and nobody trusted them,
+especially because sometimes their experimentations would break the
+system.  In computing communities, the term "hack" continues to refer to a
+quick-fix or alternately an interesting or clever trick, and the term
+"hacker" to a person who is likely to employ a quick fix, or come up with
+a clever trick -a person who doesn't go "by the book."  Perhaps because of
+their capacity to break things, or because of their irreverent attitudes,
+the term "hacker" has, in the mainstream, come to mean a person who
+engages in the use of computers towards malicious ends.  Regardless of
+malice, the hacker mindset is useful to understand, especially when
+considering matters of practical unix security.
+
+To weeks ago we talked about the basic things to do in order to lessen the
+chances that your linux box will be broken into by nefarious characters.  
+This week we will go over some of the more advanced techniques, and the
+supporting resources out on the web.  I'll also tell a funny story,
+because security, especially when done poorly, is actually fairly amusing.
+
+to review, some things we already went over and won't be touching on 
+today: 
+
+stopping unneeded services (disabling telnet and ftp)
+using ssh and scp
+the inetd
+CGI basics
+basic webserver security
+the .htaccess model (not a good way to do it)
+
+
+A great way to understand system security is by understanding the 
+techniques and mindsets of those attempting to break into your system.  
+The vast majority of hack attempts appear to be either exploratory 
+attempts by novice users or bored teenagers, or automated attacks being 
+carried out by one of the many microsoft-outlook borne viruses.
+
+These "attacks" are generally fairly unsophisticated, but exploit some
+loophole or misconfiguration that is likely to be widespread, and thus
+easily noticable from experimental interaction with a hacker's home
+system.  For instance, if you ever got a voice-mail box, especially from
+AT&T or sprint on your cellphone service, you probably had "1234" as your
+initial password.  Some people never change this password -perhaps they
+don't realize that everyone else has this password initially, so it's
+obvious, or they just never figure out the menu system enough to change
+it.  Either way, if a bored teenager tries to break into your voicemail,
+that's the first thing they'd try.
+
+<h2>Unsophisticated Techniques</h2>
+
+There are many unsophisticated ways of attacking a system, and in the 
+traditional sense, it's a shame to call these techniques "hacking," 
+because they really aren't very clever:
+
+<LI> gaining access via defaults
+<li> gaining access via common misconfiguration
+<ul>
+<li> running unnecessary services
+<li> running unconfigured/untested firewalls
+<li> not running any current anti-virus software
+<li> running microsoft?
+</ul>
+<li> gaining access via well-known problems for which fixes are available 
+<dd> note: automated attacks are often called 'exploits,' 
+<dd> and their users 'script-kiddies'
+
+<li> gaining access via intercepted information 
+<ul>
+<li> sniffed passwords
+<li> passwords written down in obvious insecure places (on your monitor?)
+<li> passwords given out to 'technician' on the phone (social engineering)
+</ul>
+<li> denying access by flooding aka DOS (Denial of Service)
+<ul>
+<li> mailbombing
+<li> packet flooding (to a machine, or a router)
+<LI> service overloading
+<li> service confusing
+</ul>
+
+A special note on virus software/email.  Many virii use the above methods 
+to propagate.  Well known and mostly unresolved problems with the way 
+Microsoft handles executable code and address books in Outlook have 
+enabled the most widespread viruses of the last several years.
+
+
+<h2>More sophisticated techniques:</h2>
+<li> buffer overflow
+<li> setuid
+<li> various inappropriate access to data/command execution (perms/shell)
+<ul>
+<LI> uudecode
+<LI> "filename|sh ..."
+</UL>
+<li> insecure tmp files
+<li> coredump/logs with passwords
+<li> crypto...
+
+
+That covers access and propagation, what happens next?  
+Typically bored teenagers executing a scripted attack (downloaded from any 
+one of many sites on the net) will poke around the system, perhaps running 
+irc or stashing some MP3 or pirated software.  More malicious intruders 
+will attempt to gain superuser access, and perhaps change your 
+web-content, read and/or delete files, and install backdoors.
+
+What's a backdoor?  It's a way of facilitating re-entering the system 
+perhaps even after security problems have been noticed and fixed.  For 
+instance installing a modified "login" program to accept a magic password 
+as valid for any user.
+
+
+<h2>The Hacker/Security Expert Mythos</h2>
+
+The wild attitudes of malicious hackers and security experts alike have
+given the field a strange reputation.  Perhaps computer security's status
+as a quasi-legal undertaking, or it's reputation as a lucrative field has
+attracted more than it's share of interesting characters.  If you become
+interested in this topic, you'll notice a huge range of personalities
+publishing material on the web and in print- everything from slick and
+businesslike, to hip and in-your-face.  As with most popular areas in
+computer science, like animation-graphics and e-business, the people who
+are in it just for the money often turn out to be just as poorly informed
+and misguided as the poseurs that are in-it to look cool to their
+high-school buddies. The end result is a lot of misinformation and in some
+cases, mistrust.
+
+<h2>hacker tools</h2>
+<li> practices
+<li> firewall
+<UL>
+<LI> sandboxing
+<li> sudo
+<li> hardening - COPS
+</ul>
+<LI> automated scanners
+<UL>
+<LI> crack
+<LI> tripwire
+<LI> nmap
+<li> SATAN
+</ul>
+<li> monitoring and log analysis
+<ul>
+<li> active response to portscanning
+<li> snort
+<li> keeping an eye on outbound traffic
+</ul>
+<li> encryption
+<li> VPN (Virtual Private Network)
+<LI> honeypot
+<li> anti-spam tools
+<li> anti-virus tools
+<LI> code auditing
+<LI> Forensic tools
+<LI> bootable business card
+
+Interesting tidbits:
+
+A very good professional-looking site run by folks who understand the 
+mindset of malicious hackers: <a href=http://www.securityfocus.com/> Security Focus</a>
+
+A site specifically geared towards linux: <a href=http://www.linuxsecurity.com/resources/index.html>LinuxSecurity.com</a>
+
+A well made personal site, run by hackers, linking to other like-minded 
+sites: <a href=http://www.wiretrip.net/rfp/pages/resources.asp/i2/>Rain Forest Puppy</a>
+
+There is a site called Attrition, which used to keep an archive of defaced 
+websites (websites that had their data modifed maliciously).  They 
+eventually removed the archive because of complaints from the defacers, 
+who wanted more fame and less criticism, and the defaced sites, who wanted 
+to escape embarassment and not have their security problems highlighted.
+<a href=http://www.wired.com/news/infostructure/0,1377,43991,00.html>See this story on wired.</a>
+<a href=http://defaced.alldas.org/?archives=complete>Alldas Defacement Archive</a>
+
+<a href=http://www.insecure.org/sploits_linux.html>An exploit list for linux</a>.
+It's interesting to see how many exploits are buffer overflows...
+
+</pre>  
+
+<hr width=75%>
+c.2002, Devin Jones - jones@csua.berkeley.edu<BR>
+last modified: <I><!--#flastmod file="2002-05-01.html"--></I><P>
+
+</body>
+</html>

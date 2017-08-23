@@ -1,0 +1,121 @@
+questions
+
+who has their own box?
+
+we recommend setting up your own box with linux.
+
+we can provide boxes for those who don't have them. 
+
+depending on the population, we'll set aside lab machines
+or set up some experimental boxes in the server room.
+
+what prereqs?
+-what's unix
+-basic user functionality
+-powerusers
+
+
+10 meetings, 1.5 hours each.
+topics?
+
+basic commands test?
+
+/bin
+
+bash
+cat
+chgrp
+chmod
+chown
+cp
+csh
+date
+df
+dir
+*dmesg
+echo
+ed
+*egrep
+false
+*fgrep
+*fuser
+grep
+gunzip
+gzip
+hostname
+kill
+ln
+*loadkeys
+*login
+ls
+mkdir
+*mknod
+more
+mount
+*mt
+mv
+*netstat
+ping
+ps
+pwd
+rm
+rmdir
+sed
+sh
+sleep
+*stty
+su
+sync
+tar
+touch
+true
+*umount
+*uname
+uncompress
+zcat
+zsh
+
+shell-built-in commands	
+alias
+
+
+filetree - what is stored where
+
+help sources
+	- manpages
+	- howtos
+	- google?
+	- people
+
+installing software
+	- compiling
+		- when something goes wrong?
+			- where are the libs?
+				- recursive grep
+				- find -xargs/-exec
+			- did it use gcc?			 
+	- installation - where?
+	- configuration
+	- alternate methods
+		- rpms
+		- pkgs
+		- apt-get
+		
+installing updates/patches
+	- why?
+		- security
+		- bug fixes
+		- improved features
+
+
+
+editors - vi
+	- beware pico, others
+	- mention emacs
+
+
+
+philosophy
+-anything not explicitly denied is permitted
+-
+

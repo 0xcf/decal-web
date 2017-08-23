@@ -1,0 +1,161 @@
+<html>
+<head>
+<title> Homework 5 </title>
+</head>
+
+<body>
+<h1>Homework 5: MySQL and PHP magic </h1>
+Yes, you really can do it too...<br>
+<h3> Part 1:MySQL</h3>
+<ol>
+  <li> Install MySQL: For a personal installation, you may find this page 
+
+  useful: <a href="http://www.linuxguruz.com/z.php?id=31"> Installation Guide 
+
+  </a> or <a href="http://dev.mysql.com/doc/mysql/en/Installing.html"> Official 
+
+  MySQL installation guide </a>.  If you would rather not deal with 
+
+  installation dependencies and such, you may just want to use your OCF 
+
+  account.  The OCF already has MySQL and PHP installed.  Just type 
+
+  '<b>makemysql</b>' command at the command line.  For help, refer<a href="
+
+  http://www.ocf.berkeley.edu/support/webspace/phpsql.html"> here </a>.  </li>
+    <li> Load your database: When you have mysql loaded up so what you see is: 
+
+    "mysql> ", type '<b>use dbname</b>' in order to load your db.  </li>
+      <li> Create a table: You can have multiple tables within a db so that you 
+
+      can link certain fields to each other.  By having this linkage, you can run 
+
+      useful queries.  For example, if you had a friends table with all of the 
+
+      contact info for your friends, and then had a classmates table with a list 
+
+      of all the people that you have class with, you can then run a query to find 
+
+      out which of your friends share the same classes with you.  In order to 
+
+      create this functionality, you just need to specify certain attributes when 
+
+      you create a table.  The primary source would have the attribute of being a 
+
+      <i>primary key</i>,and the table that links to the source will have the 
+
+      attribute of being a </i> foreign key </i>.  For example, in our case, the 
+
+      name field of your friend in the friends table would be a primary key, and 
+
+      the name field of your friend in the classmates table would just be a 
+
+      foreign key that refers to the primary key in your friends table.<br>
+	     CREATE TABLE tblname (columnName columnType, columnName columnType, 
+
+	     ...);<br>
+		If you wanted to use the primary and foreign key attributes, just 
+
+		write it after all of your column declarations.  Here are some examples of 
+
+		how I setup the db for this class: <br>
+			CREATE TABLE students (sid int, name char(30), email char(50), 
+
+			rateUnix int, rateProg int, rateHTML int, grp int, PRIMARY KEY (sid))
+
+			;<br>
+				CREATE TABLE hw (student int, hw1 bool, hw2 bool, ..., FOREIGN 
+
+				KEY (student) REFERENCES students(sid));<br> 
+					For more column types refer <a href="http://dev.mysql.com/doc/mysql
+
+					/en/Column_types.html"> here<a>, and for more contraints refer to the ones 
+
+					they have listed with the create table command <a href="http://dev.mysql.
+
+					com/doc/mysql/en/CREATE_TABLE.html">here</a>.<br>
+						For the assignment, <b>create 3 columns.</b></li>
+						   <li> Insert rows (aka tuples):<br>
+							   INSERT INTO tblname VALUES (blah, blah, ...); <br>
+								   For example: <br>
+									   INSERT INTO students VALUES (00000000, "Randy Chung", "sysadmin-
+
+									   decal@ocf.berkeley.edu", 5, 5, 5, 0);<br> For the assigment, <b>insert 5 
+
+									   rows</b>.</li>
+									      <li> Make a query:<br>
+										SELECT * FROM tblname WHERE conditions...; <br> For example: <br>
+											SELECT * FROM students; //This will return all the rows you have 
+
+											entered already.<br>
+												SELECT * FROM students WHERE name="Randy Chung";  //This returns the 
+
+												row that Randy appears in.<br>
+													SELECT grp FROM students WHERE sid=00000000; //This returns the 
+
+													group number that Randy's in. </li>
+													   <li> Extras: There are some things you need to be aware of when you're 
+
+													   using mysql, like: <br>
+														<ul>
+															   <li>Make sure you have a semicolon (;) at the end of all your 
+
+															   mysql statements.  If you forget, you'll notice that it shows this:<br>
+																mysql> whatever you typed...<br>
+																	    -></li>
+																		   <li><b>show tables</b> will show you all the table names that you 
+
+																		   created.</li>
+																			   <li><b>describe tblname</b> will list out all the attributes of a 
+
+																			   table(columnNames, columnTypes, their default values, etc.).</li>
+																				   <li><b>quit</b> to exit mysql.</li>
+																					   <li>For this assignment, after you have tested stuff and pretty 
+
+																					   much know what commands do what, run a script in order to record what you 
+
+																					   type.  You can start the script with '<b>script hw5.script</b>' and stop it 
+
+																					   with '<b>exit</b>'.  What do you need to show?  Create a database, a table 
+
+																					   with 3 columns and 5 rows with at least 2 different data types, then query 
+
+																					   for a row and a value.</li>
+																						   <li>You don't have to type mysql commands in all caps, it's just 
+
+																						   convention here to show you what the commands are and what variables you 
+
+																						   enter and modify.</li>
+																							   <li>Also, with the tables that you create, you can make them 
+
+																							   about anything you want except for students, sids, etc.  In order words, 
+
+																							   create your own data.  Don't just bindly copy the examples I gave you here.
+
+																							   </li>
+																								</ul>
+																								</ol>
+
+
+																								<h3> Part 2:PHP</h3>
+																								<ol>
+																									<li> Install PHP, refer to <a href="http://www.php.net/manual/en/"
+
+																									>The Official PHP manual</a> or just use your OCF account which already has 
+
+																									PHP installed.</li>
+																										<li> Take a look at the manual and for the assignment, write in the 
+
+																										body of the email:
+																												<ul>
+																														  <li>What version of PHP you have installed</li>
+																																  <li>A feature that the version you installed supports/
+
+																																  doesn't support </li>
+																																		  <li>The php line that shows which browser your viewer is 
+
+																																		  using to access your page. </li>
+																																				</ul>
+																																				</ol>
+																																				</body>
+																																				</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>System Administration for the Web:
+Project Introduction</TITLE>
+<META NAME="description" CONTENT="System Administration for the Web:
+Project Introduction">
+<META NAME="keywords" CONTENT="1">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="1.css">
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev_g.png">   
+<BR>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<P>
+
+<P>
+<H1 ALIGN="CENTER">System Administration for the Web:
+<BR>
+Project Introduction</H1>
+<DIV CLASS="author_info">
+
+<P ALIGN="CENTER"><STRONG>17 October 2005</STRONG></P>
+</DIV>
+
+<P>
+
+<H1><A NAME="SECTION00010000000000000000">
+Login and Password</A>
+</H1>
+
+<P>
+You and your partner(s) have been assigned the following login information
+for the project:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>Login:&nbsp;group0
+
+<P>
+Password:&nbsp;p4ssw0rd
+</DD>
+</DL>Your login and password will allow you to connect to your server's
+<SPAN  CLASS="textit">virtual console</SPAN> via SSH, and your password is the root password
+to your server. You can change your server's root password, but you
+cannot change the password you use to access your <SPAN  CLASS="textit">virtual console</SPAN>.
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+Server Introduction</A>
+</H1>
+
+<P>
+In order to provide the most realistic environment for your project,
+we are giving you unrestricted access to your own private <SPAN  CLASS="textit">virtual</SPAN>
+<SPAN  CLASS="textit">server</SPAN>. For the purposes of the project, the <SPAN  CLASS="textit">virtual
+server</SPAN> will behave exactly as if you purchased your own server from
+some manufacturer (Dell, IBM, Sun Microsystems, etc) and connected
+it to the Internet. You have <TT>root</TT> access to your server;
+that is, you have the most powerful user account on a server - there
+is nothing you cannot do. For example, as <TT>root</TT>, you are able
+to modify any file on the server, and you can even reboot it.
+
+<P>
+We have preinstalled Debian GNU/Linux 3.1 ( http://www.debian.org
+) on your virtual server. Debian Linux is very similar to Solaris,
+the operating system that you have been using on your inst and OCF
+accounts. However, some commands behave differently or use different
+syntax on Linux; if something unexpected occurs when you're trying
+to use a command, please refer to its manpage.
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+Connecting to Your Server</A>
+</H1>
+
+<P>
+Initially, your virtual console is the only method you can use to
+connect to your server. To open a connection to your virtual console,
+use the following command:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>ssh&nbsp;group0@192.58.221.232
+</DD>
+</DL>Enter your password when prompted. You'll be dropped into what appears
+to be a terminal on your server. In reality, what you see is the system
+console, the thing you would see if you plugged a monitor and keyboard
+directly into a server.
+
+<P>
+You will need to log into your server as <TT>root</TT> using the same
+password as before. You are now at a root command prompt. When you
+wish to disconnect, type <TT>exit</TT> to logout and <TT>Ctrl-]</TT>
+to disconnect from your server.
+
+<P>
+
+<H1><A NAME="SECTION00040000000000000000">
+Installing SSH</A>
+</H1>
+
+<P>
+We have intentionally provided you with a very bare server configuration
+since most servers will NOT come preinstalled with all the tools you
+need. It is often the system administrator's job to prepare a server
+for real-world use.
+
+<P>
+The first thing you will do is install SSH to provide you with a second
+method to connect to your server. There are three reasons why a system
+administrator would want to do this:
+
+<P>
+
+<OL>
+<LI>Remote connectivity. We've configured your virtual console so that
+you can connect to it using the Internet, but, in reality, a virtual
+console usually requires a monitor and keyboard directly connected
+to the server. Since system administrators do not like spending their
+lives inside the server room, they install SSH so they can work on
+the server without actually being near it.
+</LI>
+<LI>Redundancy. In the case that the virtual console breaks, SSH provides
+a backup method for a system administrator to fix a server.
+</LI>
+<LI>Multiple Access. There is only one virtual console and only one person
+can use it at a time. SSH allows multiple system administrators to
+work at the same time by opening a different terminal for each login.
+</LI>
+</OL>
+Debian GNU/Linux provides a very useful tool for managing software
+on a server: <TT>apt-get</TT>. <TT>apt-get</TT> can install, remove,
+and upgrade software using very simple commands with little intervention
+required from a system administrator. You'll learn more about <TT>apt-get</TT>
+as you complete your project, but, for now, type in the following
+commands:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>apt-get&nbsp;update
+
+<P>
+apt-get&nbsp;install&nbsp;ssh
+</DD>
+</DL>Agree to any prompts and accept all defaults if you are presented
+with a choice. If you didn't see any error messages, you have successfully
+installed SSH! Wasn't that easy?
+
+<P>
+
+<H1><A NAME="SECTION00050000000000000000">
+Configuring SSH</A>
+</H1>
+
+<P>
+As you learned in a previous lecture, SSH is a network daemon that
+binds to an Internet port and waits for a connection. In the case
+of SSH, the default Internet port is port 22.
+
+<P>
+The actual server hosting everyone's virtual server only has one IP
+address. Each IP address has only one set of ports, 1-65535. Unfortunately,
+only one program can control a certain port at a time, and since everyone
+is running a default configuration of SSH, everyone will be trying
+to take control of port 22 on the server.
+
+<P>
+Our solution to this dilemma is to assign every group their own private
+range of ports. Each group is assigned 100 Internet ports, <TT>1##00</TT>
+to <TT>1##99</TT>, where <TT>##</TT> is your group number, padded
+by a 0 if it is less than 10. For example, <TT>group1</TT> would have
+the Internet ports from <TT>10100</TT> to <TT>10199</TT> and <TT>group11</TT>
+would have the Internet ports from <TT>11100</TT> to <TT>11199</TT>.
+
+<P>
+You need to configure your SSH daemon to listen on port <TT>1##22</TT>.
+Your SSH daemon configuration file is located at <TT>/etc/ssh/sshd_config</TT>.
+Edit this file as necessary (read the manpage or search the Internet
+for help if you need it), and instruct your SSH daemon to reload its
+configuration by executing the following command:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>/etc/init.d/ssh&nbsp;restart
+</DD>
+</DL>
+<P>
+
+<H1><A NAME="SECTION00060000000000000000">
+Connecting to Your Server Via SSH</A>
+</H1>
+
+<P>
+If you have properly configured your SSH daemon, you should be able
+to connect to your server from any computer by using the following
+command:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>ssh&nbsp;root@192.58.221.232&nbsp;-p&nbsp;1##22
+</DD>
+</DL>Open a new terminal window and see if this works. Have your partner(s)
+do the same. From now on, SSH should be your preferred method for
+connecting to your virtual server.
+
+<P>
+
+<H1><A NAME="SECTION00070000000000000000">
+Creating User Accounts</A>
+</H1>
+
+<P>
+<TT>root</TT> access can be dangerous. The system will never ask you
+to confirm a command as root, and thus, it is very easy for accidents
+to occur. Consequently, smart system administrators login as a non-privileged
+or regular user and only become <TT>root</TT> when absolutely necessary.
+
+<P>
+Locate the command for adding a regular user to the server and have
+each person in your group create their own account. Once the accounts
+are created, you'll be able to log into your server using your regular
+account via SSH (as described in the previous section, replacing <TT>root</TT>
+with your username). Use your regular account to experiment with your
+server.
+
+<H1><A NAME="SECTION00080000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG>System Administration for the Web:
+<BR>
+Project Introduction</STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2002-2-1 (1.71)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 1.tex</TT>
+<P>
+The translation was initiated by zeroion on 2005-10-16
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev_g.png">   
+<BR></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+zeroion
+2005-10-16
+</ADDRESS>
+</BODY>
+</HTML>

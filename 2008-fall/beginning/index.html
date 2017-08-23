@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Beginning Unix System Administration DeCal, Fall 2008</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<h1>Beginning Unix System Administration Decal</h1>
+
+<hr />
+
+<h4>Contents</h4>
+<ul class="contents">
+	<li class="contents"><a href="#announcements">Announcements</a></li>
+	<li class="contents"><a href="#schedule">Schedule</a></li>
+	<li class="contents"><a href="#extra">Extra Links</a></li>
+	<li class="contents"><a href="#groups">Project Groups</a></li>
+	<li class="contents"><a href="#info">Course Information</a></li>
+	<li class="contents"><a href="#moreinfo">More Course Information</a></li>
+	<li class="contents"><a href="#resources">Resources</a></li>
+	<li class="contents"><a href="#grades">Grades</a></li>
+</ul>
+
+<h2><a name="announcements"></a>Announcements</h2>
+
+<ul>
+	<li><span class="date">2008.12.10</span>: Class is finished! Any missing/late
+	homework/labs need to be turned in as soon as possible before the grade
+	deadline (will be posted here as soon as we find out). Thanks for a great
+	semester, have a good winter break, and hope to see you in the
+	intermediate/advanced sections!</li>
+	<li><span class="date">2008.12.01</span>: Network connectivity has been
+	restored on the vservers.</li>
+	<li><span class="date">2008.11.12</span>: Project specs are posted 
+	below. Note the dates in the timeline. If you have questions, email us
+	and we will address them in clas.</li>
+	<li><span class="date">2008.11.05</span>: It appears that no one has
+        successfully completed the ganglia homework assignment yet. If you are having
+        troubles setting up ganglia, let us know. Here's a hint: During compilation,
+        ganglia will complain about no being able to find a file apr<something>.h. .h
+        are C header files that belong to some development library package. In this case,
+        you would search for some library package related to apr. Check out 'apt-cache
+        search libapr' and find the developmental header package.</li>
+	<li><span class="date">2008.10.28</span>: OCF mail is slow at the
+	moment, please also include our alternative email addresses in your
+	submissions: JonathanRChu@b.e, calvin@b.e</li>
+	<li><span class="date">2008.10.25</span>: After our unexpected dowtime when
+	our building had a scheduled power outage, we forgot to boot up the vservers.
+	Everything is back up and running now.</li>
+	<li><span class="date">2008.10.20</span>: Week 4 slides and week 6 materials
+	(slides to come) have been posted. From the intermediate class website, a <a
+	href="/sysadmin-class/2008-fall/intermediate/fwunixref.pdf">Linux cheat
+	sheet</a> may be helpful for you.</li>
+	<li><span class="date">2008.10.13</span>: Week 5 notes, slides, hw, and lab
+	posted.</li>
+  <li><span class="date">2008.10.06</span>: Week 4 notes and lab posted.</li>
+	<li><span class="date">2008.10.04</span>: On Week 3 Lab Section 3, you might
+	find that you do not have enough quota disk space on inst. There are three
+	solutions: 1) If you have a home linux box, you should complete that section
+	using your home box. 2) If you have an OCF account, you should complete that
+	senction on your OCF account. 3) Run the command: /share/b/bin/mkhometmpdir.
+	This will create a tempororary directory at /home/tmp/USERNAME. Use that
+	directory to complete the lab section.</li>
+	<li><span class="date">2008.09.29</span>: Week 1 slides, week 3 notes,
+	homework, and lab have been posted to the website. Remember to sign up for an
+	OCF account this week. It takes about 1 week to create accounts so start
+	early! -Update: week 3 slides available</li>
+	<li><span class="date">2008.09.08</span>: Prospective students should be able
+	to enroll through <a href="http://telebears.berkeley.edu">Tele-Bears</a>
+	using the given CCNs: 26436 (lower), 26631 (upper). The class is two (2)
+	units. Any questions regarding the course should be emailed to the
+	facilitators or <a
+	href="mailto:sysadmin-decal@ocf.berkeley.edu">sysadmin-decal@ocf</a>.</li>
+	<li><span class="date">2008.08.28</span>: We are still obtaining CCN's. If
+	you are sure you are taking this course, you can begin by <a
+	href="http://docs.ocf.berkeley.edu/wiki/Getting_an_account">obtaining an OCF
+	account</a>. <em>Note</em>: Since the lab isn't open yet, print out the form,
+	fill it in, and come by during <a href="/staff_hours">staff hours</a> or
+	email <a href="mailto:staff@ocf.berkeley.edu">staff@ocf.berkeley.edu</a> to
+	schedule an appointment.</li>
+</ul>
+
+<h2><a name="schedule"></a>Schedule</h2>
+<table class="schedule">
+	<tr>
+	 <td class="date"><span class="u">Date</span></td>
+	 <td class="info"><span class="u">Title</span></td>
+	 <td class="notes"><span class="u">Notes</span></td>
+	 <td class="hw"><span class="u">HW</span></td>
+	 <td class="labs"><span class="u">Lab</span></td>
+	</tr>
+	<tr>
+	 <td class="date">9/15</td>
+	 <td class="info">1 Introduction to System Administration</td>
+	 <td class="notes"><a href="week01_slides.pdf">Slides</a></td>
+	 <td class="hw"><a href="http://docs.ocf.berkeley.edu/wiki/Getting_an_account">OCF Account</a></td>
+	 <td class="labs">--</td>
+	</tr>
+	<tr>
+	 <td class="date">9/22</td>
+	 <td class="info">2 Introduction to UNIX</td>
+	 <td class="notes"><a href="week02_notes.pdf">Notes</a></td>
+	 <td class="hw">--</td>
+	 <td class="labs"><a href="week02_lab.pdf">Lab</a></td>
+	</tr>
+	<tr>
+	 <td class="date">9/29</td>
+	 <td class="info">3 UNIX Commands</td>
+	 <td class="notes"><a href="week03_notes.pdf">Notes</a>, <a href="week03_slides.pdf">Slides</a></td>
+	 <td class="hw"><a href="week03_hw.pdf">HW</a></td>
+	 <td class="labs"><a href="week03_lab.pdf">Lab</a></td>
+	</tr>
+	<tr>
+	 <td class="date">10/6</td>
+	 <td class="info">4 The Internet</td>
+	 <td class="notes"><a href="week04_notes.pdf">Notes</a>, <a href="week04_slides.pdf">Slides</a></td>
+	 <td class="hw"><a href="week04_hw.pdf">HW</a></td>
+	 <td class="labs"><a href="week04_lab.pdf">Lab</a></td>
+	</tr>
+	<tr>
+	 <td class="date">10/13</td>
+	 <td class="info">5 Server Daemons</td>
+	 <td class="notes"><a href="week05_notes.pdf">Notes</a>, <a href="week05_slides.pdf">Slides</a></td>
+	 <td class="hw"><a href="week05_hw.pdf">HW</a>, <a href="gmond.conf">Ganglia Config</a></td>
+	 <td class="labs"><a href="week05_lab.pdf">Lab</a></td>
+	</tr>
+	<tr>
+	 <td class="date">10/20</td>
+	 <td class="info">6 Simplifying Week: Package Management Systems</td>
+	 <td class="notes"><a href="week06_notes.pdf">Notes</a>, <a href="week06_slides.pdf">Slides</a></td>
+	 <td class="hw"><a href="week06_hw.pdf">HW</a></td>
+	 <td class="labs"><a href="week06_lab.pdf">Lab</a></td>
+	</tr>
+	<tr>
+	 <td class="date">10/27</td>
+	 <td class="info">7 LAMP Model</td>
+	 <td class="notes"><a href="week07_notes.pdf">Notes</a>, <a href="week07_slides.pdf">Slides</a></td>
+	 <td class="hw">--</td>
+	 <td class="labs"><a href="week07_lab.pdf">Lab</a></td>
+	</tr>
+	<tr>
+	 <td class="date">11/3</td>
+	 <td class="info">8 Multi-User Environments</td>
+	 <td class="notes"><a href="week08_notes.pdf">Notes</a>, <a href="week08_slides.pdf">Slides</a></td>
+	 <td class="hw">--</td>
+	 <td class="labs">--</td>
+	</tr>
+	<tr>
+	 <td class="date">11/10</td>
+	 <td class="info">9 Security</td>
+	 <td class="notes"><a href="week09_slides.pdf">Slides</a></td>
+	 <td class="hw">--</td>
+	 <td class="labs">--</td>
+	</tr>
+	<tr>
+	 <td class="date">11/17</td>
+	 <td class="info">10 Special Topics: PGP</td>
+	 <td class="notes"><a href="week10_slides.pdf">Slides</a></td>
+	 <td class="hw">--</td>
+	 <td class="labs">--</td>
+	</tr>
+	<tr>
+	 <td class="date">11/24</td>
+	 <td class="info">11 Overview</td>
+	 <td class="notes"><a href="week11_slides.pdf">Slides</a></td>
+	 <td class="hw"></td>
+	 <td class="labs"></td>
+	</tr>
+	<tr>
+	 <td class="date">12/1</td>
+	 <td class="info">12 Project: Work Day</td>
+	 <td class="notes"></td>
+	 <td class="hw"></td>
+	 <td class="labs"></td>
+	</tr>
+	<tr>
+	 <td class="date">12/8</td>
+	 <td class="info">13 Project: Presentations</td>
+	 <td class="notes"></td>
+	 <td class="hw"></td>
+	 <td class="labs"></td>
+	</tr>
+</table>
+
+<h2><a name="extra"></a>Extra Links</h2>
+<ul>
+	<li><a href="week00_syllabus.pdf">Course Syllabus</a></li>
+	<li><a href="http://www.ocf.berkeley.edu/sysadmin-class/2008-fall/intermediate/fwunixref.pdf">Linux cheat sheet</a></li>
+	<li><a href="final_project.pdf">Final Project</a></li>
+</ul>
+
+<h2><a name="groups"></a>Project Groups</h2>
+
+<h2><a name="info"></a>Course Information</h2>
+<p>
+	Time: Monday, 5:30-7:30pm<br />
+	Location: 320 Soda<br />
+  Facilitators: <a href="mailto:cardi+decal@ocf.berkeley.edu">Calvin Ardi</a> and <a href="mailto:jchu+decal@ocf.berkeley.edu">Jonathan Chu</a><br />
+	Office Hours: See <a href="http://www.ocf.berkeley.edu/staff_hours">OCF Staff Hours</a><br />
+	Enrollment: 2 units<br />
+	&nbsp;- Lower Division: 26436<br />
+	&nbsp;- Upper Division: 26631<br />
+</p>
+
+<p>
+This course is open for students with little or no prior Unix experience. It
+is our goal that at the end of this course, you will be comfortable and
+familiar with the command line interface in order to use and administer Unix
+operating systems as well as setting up a basic web server. 
+</p>
+
+<h2><a name="moreinfo"></a>More Course Information</h2>
+<ul>
+	<li>Attendance is mandatory.</li>
+	<li>There will be weekly homework assignments, graded on a P/NP basis.</li>
+	<li>A final project will be given in lieu of an exam; <strong>failure to
+	complete will result in a NP</strong>.</li>
+</ul>
+
+<ul>
+	<li>
+		<strong>How much time should I expect to spend on this DeCal?</strong><br />
+		The workload for this beginning section should not be hard and I expect
+		that it will not consume too much of your time. Aside from attending
+		lecture, working on the labs and homework should take around an hour at
+		most and work, in general, will ease up during midterms as facilitators are
+		students, too. It is entirely up to you as to how much you want to spend
+		working on the projects and labs; there are always opportunities to expand
+		upon what has been taught and the easiest way to learn Unix system
+		administration is through doing, not just reading.
+	</li>
+</ul>
+	
+<h2><a name="resources"></a>Resources</h2>
+<ul>
+	<li><a href="http://docs.ocf.berkeley.edu/wiki">OCF Wiki</a></li>
+	<li><a href="http://tldp.org">The Linux Documentation Project</a></li>
+	<li><a href="http://linuxmanpages.com">Linux man Pages</a></li>
+	<li><a href="http://google.com">Google</a></li>
+</ul>	
+
+<h2><a name="grades">Grades</a></h2>
+<p>
+<a href="beggrades.html">Click here</a>
+</p>
+
+<hr class="footer" />
+
+<p class="footer"><a href="http://validator.w3.org/check?uri=referer">XHTML 1.0 Strict</a></p>
+
+</body>
+</html>

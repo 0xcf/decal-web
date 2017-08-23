@@ -1,0 +1,48 @@
+<html>
+ <head><title>Lab</title>
+ </head>
+ <body>
+<h1>Week Ihavenoidea Lab</h1>
+<ul>
+<li>First, some useful functions:
+ <ul>
+ <li><tt>grep</tt>
+ <li><tt>less</tt>
+ <li><tt>cut</tt>
+ <li><tt>wc</tt>
+ </ul>
+<li>If you don't know what a command does, read the man page first!
+<li>Search engines are also a happy way to figure things out (ie what the below <tt>LogFormat</tt> means).
+<li>Your task:
+ <ul>
+ <li>There is a file in <tt>/home/jerjou</tt> called <tt>access_log</tt>. This is a real apache access log taken from the ocf. It is 1G of text. In case you don't know, that's HUGE. You'll never be able to search it by hand, so we need to use the text utilities that Unix provides (some of them listed above). If you don't know how to use them, look at the man page (ie run the command "<tt>man command_name</tt>" where "<tt>command_name</tt>" is the name of the command you want to know about).
+ <li>FYI, within the OCF's httpd.conf are the following lines:
+<blockquote style="font-face:monospace;">
+<pre>
+#LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %v" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+#LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+</pre>
+</blockquote>
+<br>
+ <li>You want to answer the following questions from this file (email me (jerjou(at)ocf) with your answers):
+  <ul>
+  <li>How many times was amanb's <tt>makeSched</tt> program accessed?
+  <li>In comparison, how many times was jerjou's <tt>schedule2</tt> program accessed?
+  <li>(Note: this comparison isn't <i>quite</i> accurate, because schedule2 doesn't access the server for as many operations as makeSched does. Which is why you should use schedule2!*cough cough*)
+  <li>Say you're a systems administrator, and you've been told that the account <tt>cks</tt> has been hacked. Find the line(s) in the log file that may have caused this.
+  <li>You've also been told that account coeses has been hacked. Find the line that may have caused this. (Oh, and let's say this hack happened between 7-8am on August 18th)
+  <li>For the more bold or the more experienced, explain to me what these lines are doing, why they were (at least could be) effective, and how they could have been prevented.
+  </ul>
+ </ul>
+<li>Now, looking at earthquake's normal logs, please answer the following:
+ <ul>
+ <li>Earthquake has been randomly turned off by naughty users over the past week. When did these unexpected shutdowns occur? (Just give a range if you can't figure out the exact time) When was it subsequently turned back on?
+ </ul>
+<!--li>Your homework this week is to learn how to restrict access to your webspace through apache (ie you'll be prompted for a username/password when you access http://earthquake.ocf.berkeley.edu:yourPort/). Make an account for yourself for your group's webspace (so that each of you can go through/learn the process). If you're feeling adventurous, you can also look at the <tt>Rewrite</tt> operations that you can put into your <tt>httpd.conf</tt-->
+</ul>
+</body>
+</html>

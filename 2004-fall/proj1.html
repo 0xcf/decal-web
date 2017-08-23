@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Project Phase 1</title>
+    </head>
+    <body>
+        <h1>Project Phase 1</h1>
+        <h3>Due: Wednesday, 11/3/2004</h3>
+
+        <h2>Purpose</h2>
+        <p>
+        The purpose of this phase of the project is to take care of administrivia and get your group's webserver up and running.</p>
+
+        <h2>What to Submit</h2>
+        <p>
+        For easier reference, the things you should submit are being posted at the top of the page; see below for details.<br>
+        1.  Group Details<br>
+        2.  Webserver Details<br>
+        3.  Statement of Purpose<br>
+	4.  Workload Distribution<br>
+	When you submit, your webserver should be up and running, like it was in homework 4.  We will be verifying completion of the homework by actually accessing your webserver (among other things)!</p>
+
+        <h2>Group Details</h2>
+        <p>
+        The first thing your group should do is get together and elect a group leader.  Your group leader will be the point of contact between us and your group.  Also, your group should determine a group name.  Submit your group number, group name, and group leader.</p>
+        <h3>Potential Problems</h3>
+        <p>
+        Roles established early on tend to last.  If you're having problems with your group, bring it up, get over it, and work it out.  There are more important things in life than bickering (it'll give you white hairs too).</p>
+
+        <h2>Webserver Detals</h2>
+        <p>
+        Determine whose computer you will be using to run your webserver.  Decide what distribution you want to use for your webserver (if you're feeling adventurous, doing this on Windows is fine too).  If possible, try to find a computer with a static IP (an IP that doesn't change).  If you're using DSL (especially the PPPoE variety, which is the work of the devil), you probably don't have a static IP.  Consider getting some sort of DNS information registered.  Using dyndns (see below) is an option.  Submit your webserver's IP, DNS (not 100% necessary, but really really strongly suggested), and Linux/Windows/BSD/etc. distribution.</p>
+        <h3>Potential Problems</h3>
+        <p>
+        If you don't have a computer with a static IP, consider getting dynamic DNS service from an organization such as <a href="http://www.dyndns.org">dyndns.org</a>.  You'll have to update your DNS information manually if you can't find a way to have it automatically update (via a home router, software, or otherwise).  It's a bit more work getting everything running properly without a static IP, and introduces another point of failure, but it's not very complex to get things working.</p>
+        <p>
+        If you don't have a computer at all, you can use the OCF's resources for this course.  If you intend to go this route, please contact us and let us know so we can assign you a port number to use (so groups don't clobber each other).  To run the apache webserver on the OCF, compile and install it into your home directory as you did in the earlier homework assignments.  Then, before you start the webserver, edit your Apache configuration file to listen on the port we assign you.  Do NOT start a webserver on the machine without setting the port to one we assign you!  Root staff tends to get very mad at people who do things like that.  If you mess up and do it accidentally, shut down your webserver again and hope nobody noticed.  Machines you may want to consider using are firestorm.ocf.berkeley.edu, sandstorm.ocf.berkeley.edu, blizzard.ocf.berkeley.edu, and hurricane.ocf.berkeley.edu.  See <a href="http://www.ocf.berkeley.edu/~smcc/ruptime/ruptime.cgi">here</a> for more information on what machines are up.  I suggest using the Blade 100 machines, since the Ultra 1s and the Ultra 5s are painfully slow.</p>
+        <p>
+        If the machine hosting the webserver is behind a router, you will have to set up port forwarding in your router.  To ensure that things work properly, there are a few things that need to be taken care of: 1) The machine that hosts the webserver needs a statically assigned internal IP, 2) Port 80 on the WAN side needs to be forwarded to port 80 on the machine on the internal network.  How to do this varies by router.  First, set your webserver to receive a static IP from the router by using IP assignment according to MAC address.  As an example, you could set the machine with MAC address 12:34:56:78:9a:bc to receive the 192.168.1.101 IP address.  Then, set up port forwarding to go from port 80 (just TCP will do, UDP is unnecessary) to go to the assigned IP address (continuing this example, set port 80 to go to 192.168.1.101).  That should be all you need to do to set up port forwarding.</p>
+        <p>
+        An extra warning: Don't try to access your webserver from the machine it's running on unless you go to localhost.  For example, if www.myserver.com points to your webserver, trying to open www.myserver.com from a web browser on that machine will probably not work.</p>
+        <p>
+        If you are running the webserver on a non-standard port, e.g. you are using one of the OCF machines, you will have to access the webserver by passing a port number after the address.  For example, if the webserver is running on port 5000 on firestorm.ocf.berkeley.edu, you would have to open http://firestorm.ocf.berkeley.edu:5000 in your web browser.</p>
+
+        <h2>Statement of Purpose</h2>
+        <p>
+        Write a statement of what your webserver is going to do.  While it can be argued that this is tangential to server administration (administration enables content, but doesn't actually produce content), for the purposes of adding a bit of visual appeal and context we will be adding some content to the webserver.  Based on your webserver's purpose, you should include a list of modules you'll probably want to install, such as PHP, database backends, or anything else you might find useful.  This list does not have to be exhaustive, and it's malleable.  Project requirements change; this is just to give us an idea of what it is you're trying to do (and whether we think you'll run into any nastiness or not).  Also, include in your statement a few sentences justifying the workload.  What we're looking for is an argument that the amount of work you'll be doing is actually going to take a team of 4-5 people a few weeks to do (taking into consideration you have other classes that are probably more important to your academic future than this one).</p>
+        <h3>Potential Problems</h3>
+        <p>
+        Hopefully there aren't any.  If there's something I'm overlooking and you run into a snag here, please let us know.</p>
+
+
+        <h2>Workload Distribution</h2>
+        <p>
+        Write a quick breakdown of how your group will be splitting the work, if you'll be splitting it at all (working together for everything = everyone wins!).  Working in pairs or triples is strongly suggested, since you'll learn from each other and it will be beneficial for everyone.  For the more technical people, please be kind and patient to the less technical people.  For the less technical people, please don't be afraid to ask your other group members questions.  Contrary to popular belief, most technical people are, when confronted face to face, actually quite amiable and won't bite your head off for asking simple questions (they tend to do this to you online, though...the possibility of you actually kicking their smart-talking asses in if they give you lip in person might account for this).</p>
+        <h3>Potential Problems</h3>
+        <p>
+        Don't try to take on more than you can really do.  If you can't do much, work with someone else.  The goal is to learn, not prove to the world that you're the bestest greatest person in the whole wide world and anyone who challenges you on that is a racist.  Work together, get to know your teammates, have fun with them.</p>
+
+        <h3>Remember, don't stress out and don't work too hard.  If you're not having fun, you're probably working too hard.  As always, feel free to email us if you have questions or get stuck somewhere.  Good luck!</h3>
+    </body>
+</html>

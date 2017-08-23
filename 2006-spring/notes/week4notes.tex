@@ -1,0 +1,49 @@
+\documentclass[10pt]{article}\begin{document}
+\title{System Administration:\\ Week 4 Notes}
+\maketitle
+\section{Review}
+Last week we went over the OSI Model. Few questions that I have not given a good answer to.
+\begin{itemize}
+\item What is the difference between terminal and shell? A shell is a piece of software which allows you to interact with the computer. A terminal is a term which was used when the only way to connect to a computer was via a so-called teleprinter, and was the only way to communicate with a computer. Nowadays a terminal is a synonym for a terminal emulator, which allows you to interact with a computer without being physically connected to it. 
+\item What is the difference between Network Layer and Transport Layer? A Network Layer is concerned with delivering information from point-to-point, working it out with the routers, switches, etc. IP lives in the Network Layer. A Transport Layer is concerned with providing data transfer between users. TCP lives in the Transport Layer.
+\end{itemize}
+\section{Linux Kernel}
+\begin{itemize}
+\item Strictly speaking, one does not necessarily need an operating system to run on hardware, and can run the software directly. However, the software has to be smart and able to resolve conflicts over memory, scheduling, etc. 
+\item One of the major advantages of Linux is that it comes with the source code, and if a need shall arise -- you can recompile it yourself. Some may argue that having the source code allows virus writers to flourish, however, I think its pretty clear how the 'security through obscurity' approach is working out for Microsoft.
+\end{itemize}
+\subsection{General Information}
+\begin{itemize}
+\item Started by Linus Torvalds in 1991
+\item Written in C with a little bit of assembly
+\item Kernel is the core of the Linux operating system
+\item About 6 million lines of code
+\item Is not a microkernel, which was a topic of a famous "flame war" between Linus and Andy Tanenbaum
+\item Extremely portable -- used to run on all kinds of architectures.  
+\item Takes care of virtual memory
+\end{itemize}
+\subsection{Linux kernel vs Windows}
+\begin{itemize}
+\item Linux does not have a built-in graphics environment. You can run any of your choosing: GNOME, KDE, Blackbox, etc
+\item Windows has the graphics environment built-in
+\item Linux creates a separate partition for swap -- virtual memory, while Windows stores the stuff in a file
+\end{itemize}
+\subsection{Kernel and OSI}
+\begin{itemize}
+\item Manages handshakes with low-level devices
+\item Builds TCP/IP packets
+\item Converts packets into sockets and passes them into the right application
+\item A socket is a software abstraction, designed to provide a standard application programming interface for sending and receiving data across a computer network. (Source: wikipedia.org)
+\end{itemize}
+\subsection{Kernel Modules}
+\begin{itemize}
+\item a module is a piece of software (driver, filesystem) which you can add at run-time to the kernel. 
+\item use {\bf modprobe} command to load a module, or {\bf insmod} if you want to give the parameters are argument
+\end{itemize}
+\subsection{proc root directory}
+\begin{itemize}
+\item Contains important kernel values
+\item {\bf /proc/sys/kernel} contains useful values, like your OS-type, bootloader type, etc
+\item {\bf /proc/sys/net} contains important network stuff
+\end{itemize}
+\end{document}
