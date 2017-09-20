@@ -20,10 +20,15 @@ try {
             step([$class: 'WsCleanup'])
             unstash 'src'
 
-            sshagent (credentials: ['decal-ssh-key']) {
-                sh '''
-                    ssh -o StrictHostKeyChecking=no -l decal ssh.ocf.berkeley.edu uname -a
-                '''
+            stage('deploy') {
+                sshagent (credentials: ['decal-ssh-key']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no -l decal ssh.ocf.berkeley.edu "
+                            cd public_html &&
+                            git pull --rebase origin master
+                        "
+                    '''
+                }
             }
         }
     }
