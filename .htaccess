@@ -10,7 +10,8 @@ RewriteRule ^piazza$	https://piazza.com/class/j6tnwydlhx62jp [R=302,L]
 RewriteRule ^slides/0$	https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing [R=302,L]
 RewriteRule ^labs/0$	https://goo.gl/forms/ZHTwEjofI9eiLh113 [R=302,L]
 RewriteRule ^slides/1$	https://docs.google.com/presentation/d/1PnW4EcN7nJ2g8LD_45IPNiq6d0e5p5ma6-bJVOJutSs/edit?usp=sharing [R=302,L]
-RewriteRule ^labs/1$	https://docs.google.com/document/d/1oEcFVvBFZqA-K7WAMTCRf0kL-dJyAaQMHAtXM85G3yQ/edit?usp=sharing [R=302,L]
+RewriteRule ^labs/1$	labs/1.html
+# https://docs.google.com/document/d/1oEcFVvBFZqA-K7WAMTCRf0kL-dJyAaQMHAtXM85G3yQ/edit?usp=sharing [R=302,L]
 
 
 RewriteRule ^s0$	https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing [R=302,L]
