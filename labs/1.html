@@ -34,7 +34,7 @@
 <pre><code>ssh-keygen -t rsa -b 4096
 </code></pre>
 
-<p>Note: it’s good practice to protect your ssh-keys with strong passwords, to protect against attackers who might briefly use... or completely steal... your computer.</p>
+<p>Note: it's good practice to protect your ssh-keys with strong passwords, to protect against attackers who might briefly use... or completely steal... your computer.</p>
 
 <p><code>ssh-keygen</code> will create files <code>id_rsa</code>  and <code>id_rsa.pub</code> inside the <code>.ssh</code> directory.  View the file with <code>cat</code> or <code>less</code> later when viewing them to copy into a browser.</p>
 
@@ -45,7 +45,7 @@ id_rsa id_rsa<span class="hljs-preprocessor">.pub</span></code></pre>
 
 <p>You can rename these files, but keep the public-private distinction, and make sure the base name matches (some tools expect this). Running <code>ssh-keygen -t rsa -b 2048</code> instead is OK too.</p>
 
-<p><strong>Note</strong>: 1024-bit RSA keys are considered too short nowadays. They are not <em>yet</em> broken, but have no margin for safety. DSA and it’s cousin ECDSA are considered secure, but have some secondary security risks. I make it a policy not to use them, though I’ll likely never be bitten by corner cases. New implementations of ssh include new algorithms. These are </p>
+<p><strong>Note</strong>: 1024-bit RSA keys are considered too short nowadays. They are not <em>yet</em> broken, but have no margin for safety. DSA and it's cousin ECDSA are considered secure, but have some secondary security risks. I make it a policy not to use them, though I'll likely never be bitten by corner cases. New implementations of ssh include new algorithms. These are </p>
 
 <hr>
 
@@ -86,7 +86,7 @@ id_rsa id_rsa<span class="hljs-preprocessor">.pub</span></code></pre>
 <li><code>^D</code> - Control - D - EOF/End-of-File character.</li>
 <li>Proceed from step 2 of <strong>All command line</strong>.</li></ol></li>
 <li>The <code>ssh-copy-id</code> utility performs the same setup.  <br>
-<ul><li>Linux, Windows with Ubuntu users: it’s available from your package manager. <code>apt install ssh-copy-id</code></li>
+<ul><li>Linux, Windows with Ubuntu users: it's available from your package manager. <code>apt install ssh-copy-id</code></li>
 <li>macOS users: <a href="https://brew.sh">homebrew</a> will also allow you to install it with 1 command, <code>brew install ssh-copy-id</code></li></ul></li></ul></li>
 </ul>
 
