@@ -12,8 +12,12 @@ RewriteRule ^slides/1$	https://docs.google.com/presentation/d/1PnW4EcN7nJ2g8LD_4
 RewriteRule ^labs/1$	labs/1.html
 RewriteRule ^slides/2$	https://docs.google.com/presentation/d/1UPDQhmav2N3zxjaobXFnk9-Pq2bnQtFN8QYk6FgfeM0/edit?usp=sharing [R=302,L]
 
-RewriteRule ^lec/2$ https://goo.gl/forms/eFqNzQu1V8AHfdVz2 [R=302,L]
-RewriteRule ^lecture/2$ https://goo.gl/forms/eFqNzQu1V8AHfdVz2 [R=302,L]
+
+# RewriteRule ^signin/9-21$ https://goo.gl/forms/w8YM9czRH9YahB5W2 [R=302,L]
+# RewriteRule ^signin/9-21$ https://goo.gl/forms/w8YM9czRH9YahB5W2 [R=302,L]
+
+RewriteRule ^lec/w2$ https://goo.gl/forms/eFqNzQu1V8AHfdVz2 [R=302,L]
+RewriteRule ^week2$ https://goo.gl/forms/eFqNzQu1V8AHfdVz2 [R=302,L]
 
 
 RewriteRule ^s0$	https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing [R=302,L]
