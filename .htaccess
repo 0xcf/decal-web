@@ -10,6 +10,9 @@ RewriteRule ^slides/0$	https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX
 RewriteRule ^labs/0$	https://goo.gl/forms/ZHTwEjofI9eiLh113 [R=302,L]
 RewriteRule ^slides/1$	https://docs.google.com/presentation/d/1PnW4EcN7nJ2g8LD_45IPNiq6d0e5p5ma6-bJVOJutSs/edit?usp=sharing [R=302,L]
 RewriteRule ^labs/1$	labs/1.html
+
+
+RewriteRule ^labs/2$    labs/2.html
 RewriteRule ^slides/2$	https://docs.google.com/presentation/d/1UPDQhmav2N3zxjaobXFnk9-Pq2bnQtFN8QYk6FgfeM0/edit?usp=sharing [R=302,L]
 
 
