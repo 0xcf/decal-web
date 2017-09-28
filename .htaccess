@@ -16,3 +16,9 @@ RewriteRule ^slides/{{item.id}}$ {{item.slides}} [R=302,L]
 {% endif %}{% if item.lab %}
 RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
 {% endif %}{% endfor %}
+
+{% for item in site.data.signin %}
+{% if item.primary %}
+RewriteRule ^signin$ {{item.link}} [R=302,L]
+{% endif %}
+{% endfor %}
