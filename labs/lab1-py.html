@@ -1,0 +1,102 @@
+<h1>Unix SysAdmin Decal</h1>
+<h2>Lab 1: Unix, the Shell, OSS {#lab1}</h2>
+<p><a href="https://ocf.io/decal/slides/1">Slides</a> and <a href="https://ocf.io/decal/labs/1">lab</a> links for Tuesday 9-12-2017.</p>
+<h3>Table of Contents {#toc}</h3>
+<ol>
+<li><a href="#ssh-create">Create ssh key</a></li>
+<li><a href="#vps-hosting">VPS hosting provider</a><ul>
+<li>We'll be providing the machines, one of<ul>
+<li>Amazon Web Services</li>
+<li>Google Cloud Platform - account provided by us</li>
+<li>Digital Ocean</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#ssh-setup">Set up ssh key &amp; login</a><ul>
+<li>Set up ssh key / password<ul>
+<li>All command line</li>
+<li>With web interface</li>
+<li><code>ssh-copy-id</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#feedback">Send feedback email</a><ul>
+<li>trouble encountered</li>
+<li>favorite things learned from reading <code>man</code> pages</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>1. Create ssh key {#ssh-create}</h3>
+<p>Run the following command, and accept prompts in order to create an ssh keypair:</p>
+<pre><code>ssh-keygen -t rsa -b 4096
+</code></pre>
+<p>Note: it's good practice to protect your ssh-keys with strong passwords, to protect against attackers who might briefly use...or completely steal...your computer.</p>
+<p><code>ssh-keygen</code> will create files <code>id_rsa</code>  and <code>id_rsa.pub</code> inside the <code>.ssh</code> directory.  View the file with <code>cat</code> or <code>less</code> later when viewing them to copy into a browser.
+<code>~ $ ls .ssh/
+id_rsa id_rsa.pub</code>
+You can rename these files, but keep the public-private distinction, and make sure the base name matches (some tools expect this). Running <code>ssh-keygen -t rsa -b 2048</code> instead is OK too.</p>
+<p><strong>Note</strong>: 1024-bit RSA keys are considered too short nowadays. They are not <em>yet</em> broken, but have no margin for safety. DSA and it's cousin ECDSA are considered secure, but have some secondary security risks. I make it a policy not to use them, though I'll likely never be bitten by corner cases. New implementations of ssh include new algorithms. These are </p>
+<hr />
+<p><a href="#toc">top</a></p>
+<h3>2. VPS hosting provider {#vps-hosting}</h3>
+<p><strong>Enrolled students</strong> will have a Virtual Private Server (VPS) hosted on Amazon Web Services (AWS) provided for them.</p>
+<hr />
+<p><strong>Auditing users</strong> may wish to acquire a VPS from Amazon, Google, or Digital Ocean. Free service credits for AWS and DigitalOcean may be claimed at <a href="https://education.github.com/pack">education.github.com/pack</a> after creating/logging in to a GitHub account and associating it with a '.edu' email address. </p>
+<p>However, a VPS may not be required for the first few weeks of class, as many of the labs can be completed on our login server, tsunami, reachable at <code>tsunami.ocf.berkeley.edu</code> with the <code>ssh</code> command-line utility, or in a browser via the web-shell interface we provide at <a href="https://ssh.ocf.berkeley.edu">ssh.ocf.berkeley.edu</a>.</p>
+<p><strong>Fun facts</strong>:  We configure DNS so that <code>tsunami</code> and <code>ssh</code> are both valid names for our public login server, by resolving to the same IP address. <code>dig [host]</code> to see more.</p>
+<p><a href="#toc">top</a></p>
+<h3>3. Set up ssh key &amp; login {#ssh-setup}</h3>
+<ul>
+<li>Set up ssh key / password<ul>
+<li><strong>All command-line</strong> (e.g. from the OCF to VPS or your computer's shell to OCF or VPS, hereafter <code>[target]</code>). <ol>
+<li>Copy your public key, <code>id_rsa.pub</code> from where you created it to the server you want to have accept the key for authentication.<ul>
+<li><code>scp .ssh/id_rsa.pub [target]:</code><ul>
+<li>read <code>man scp</code>, the command uses <code>[host]:[path]</code>format, e.g. <code>ssh.ocf.io:~/.ssh/mbp_id.pub</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Login to the target machine<ul>
+<li><code>ssh infamous@ssh.ocf.io</code></li>
+</ul>
+</li>
+<li>Add your public key to the authorized keys file<ul>
+<li><code>cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</code></li>
+</ul>
+</li>
+<li><strong>Test it</strong><ul>
+<li><code>ssh infamous@ssh.ocf.io</code> should not ask for a password.</li>
+<li><em>Extra: try <code>ssh -v</code> to see debug information</em></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>With web interface</strong><ol>
+<li><code>cat &gt; public_key</code></li>
+<li>Copy/Paste key from local to remote terminal</li>
+<li><code>^D</code> - Control - D - EOF/End-of-File character.</li>
+<li>Proceed from step 2 of <strong>All command line</strong>.</li>
+</ol>
+</li>
+<li>The <code>ssh-copy-id</code> utility performs the same setup. <ul>
+<li>Linux, Windows with Ubuntu users: it's available from your package manager. <code>apt install ssh-copy-id</code></li>
+<li>macOS users: <a href="https://brew.sh">homebrew</a> will also allow you to install it with 1 command, <code>brew install ssh-copy-id</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="#toc">top</a></p>
+<h3>4. Send feedback email {#feedback}</h3>
+<ul>
+<li><a href="mailto:lab1@decal.ocf.berkeley.edu">Email feedback and cool findings</a><ul>
+<li>lab1@decal.ocf.berkeley.edu⧸⧸</li>
+<li>trouble encountered</li>
+<li>favorite things learned from reading <code>man</code> pages</li>
+</ul>
+</li>
+</ul>
+<p><a href="#toc">top</a></p>
