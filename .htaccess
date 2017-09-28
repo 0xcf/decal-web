@@ -16,11 +16,3 @@ RewriteRule ^slides/{{item.id}}$ {{item.slides}} [R=302,L]
 {% endif %}{% if item.lab %}
 RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
 {% endif %}{% endfor %}
-
-# Redirect to the authoritative host, not http://ocf.berkeley.edu/~decal, but
-# the vhost at https://decal.ocf.berkeley.edu
-RewriteCond %{HTTP_HOST} !^decal\.ocf\.berkeley\.edu$ [NC]
-RewriteRule (.*) https://decal.ocf.berkeley.edu/$1 [R=302,L]
-
-# Deny web access to anything in .git
-RewriteRule ^.git - [F]
