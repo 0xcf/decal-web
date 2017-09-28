@@ -17,10 +17,14 @@
   week: 2
   lecture: 2
   lab: 2
+  signin: "https://goo.gl/forms/eFqNzQu1V8AHfdVz2"
 
 - date: 2017-09-21
+  signin: "https://goo.gl/forms/w8YM9czRH9YahB5W2"
 
 - date: 2017-09-26
   week: 3
   lecture: 3
   lab: 3
+  signin: "https://goo.gl/forms/alDgjYUQ9T4A52Mt2"
+  primary: True
