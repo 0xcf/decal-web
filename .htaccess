@@ -17,8 +17,8 @@ RewriteRule ^slides/{{item.id}}$ {{item.slides}} [R=302,L]
 RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
 {% endif %}{% endfor %}
 
-{% for item in site.data.signin %}
+{% for item in site.data.calendar %}
 {% if item.primary %}
-RewriteRule ^signin$ {{item.link}} [R=302,L]
+RewriteRule ^signin$ {{item.signin}} [R=302,L]
 {% endif %}
 {% endfor %}
