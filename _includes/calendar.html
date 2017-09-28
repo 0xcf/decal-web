@@ -17,7 +17,7 @@
 	  <td>{{ entry.date | date: "%a. %m/%d" }}</td>
 	  <td>
 	    {% if entry.lecture %}
-	      <a href='/slides/{{ entry.lecture }}'>
+	      <a href='slides/{{ entry.lecture }}'>
 		{% for item in site.data.materials %}
 		  {% if item.id == entry.lecture %}
 		    {{ item.name }}
@@ -31,7 +31,7 @@
 	  </td>
 	  <td>
 	    {% if entry.lab %}
-	      <a href='/labs/{{ entry.lab }}'>Lab {{entry.lab }}</a>
+	      <a href='labs/{{ entry.lab }}'>Lab {{entry.lab }}</a>
 	    {% else %}-{% endif %}
 	  </td>
 	</tr>
