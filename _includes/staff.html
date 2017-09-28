@@ -1,0 +1,15 @@
+<!-- Team Members Row -->
+<div class="row" id='staff'>
+  <div class="col-lg-12">
+    <h2 class="page-header">Course Staff</h2>
+  </div>
+  {% for member in site.data.staff %}
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="{{ member.img }}" {% if member.style %}style="{{member.style}}"{% endif %} alt="">
+      <h3>{{ member.name }}
+	<small>{{ member.title }}</small>
+      </h3>
+      <p>{{ member.description }}</p>
+    </div>
+  {% endfor %}
+</div>

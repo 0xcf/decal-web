@@ -1,0 +1,41 @@
+<div class="segment">
+  <h2 class="page-header" id="calendar">Calendar</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+	<th>Week</th>
+	<th>Date</th>
+	<th>Lecture (Tu/Th)</th>
+	<th>Lab</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for entry in site.data.calendar %}
+	<tr>
+	  <td>{{ entry.week | default: - }}</td>
+	  <td>{{ entry.date | date: "%a. %m/%d" }}</td>
+	  <td>
+	    {% if entry.lecture %}
+	      <a href='/slides/{{ entry.lecture }}'>
+		{% for item in site.data.materials %}
+		  {% if item.id == entry.lecture %}
+		    {{ item.name }}
+		  {% endif %}
+		{% endfor %}
+	      </a>
+	    {% elsif entry.lecturenote %}
+	      {{ entry.lecturenote }}
+	    {% else %} -
+	    {% endif %}
+	  </td>
+	  <td>
+	    {% if entry.lab %}
+	      <a href='/labs/{{ entry.lab }}'>Lab {{entry.lab }}</a>
+	    {% else %}-{% endif %}
+	  </td>
+	</tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

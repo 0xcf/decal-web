@@ -5,3 +5,7 @@
 
 # Ignore subversion files
 .svn*
+
+_site
+.sass-cache
+.jekyll-metadata

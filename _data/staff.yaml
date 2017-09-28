@@ -1,0 +1,45 @@
+- name: Abizer Lokhandwala
+  title: Head Facilitator
+  img: https://nyx.ocf.io/gravatar.png
+  description: I am a junior CS major. Please include your favorite color, mother's maiden name, and social security number when signing up for this course.
+  style: "height: 200px;"
+
+- name: Douglas Wong
+  title: Head Facilitator
+  img: images/ldw.png
+  description: I am a super senior CS major from Hong Kong. When I'm not working I enjoy tennis, table tennis and kpop.
+
+- name: Ian McDonald
+  title: Facilitator
+  img: images/ian.jpg
+  description: I’m a senior studying computer science. I started using Linux after taking some bad advice and I haven’t looked back since.
+
+- name: Harrison Kuo
+  title: Facilitator
+  img: images/kuoh.png
+  description: I'm a senior studying EECS/MSE and I like messing with old or broken computers on my free time. I'm also a deputy manager at the OCF.
+
+- name: Jason Perrin
+  title: Facilitator
+  img: images/jvperrin.jpg
+  description: I'm a junior EECS major who enjoys security, systems, webcomics, and running, though hopefully not running away from angry decal students!
+
+- name: Brian Sang
+  title: Facilitator
+  img: images/baisang.jpg
+  description: Hi everyone! My name is Brian and I'm a senior CS major from Cleveland, Ohio. Feel free to hit me up for boba or if you want to talk about our Lord and Savior, LeBron James
+
+- name: Daniel Kessler
+  title: Facilitator
+  img: images/dkessler.png
+  description: I'm a junior studying computer science and economics. I've been messing around with Linux servers for years, and I'm excited to help out with this DeCal!
+
+- name: Tony Situ
+  title: Facilitator
+  img: images/tonyc2.jpg
+  description: California born and raised; chasing whatever catches my curiosity at the time. On the side, I love tabletop, hiking, photography, and value (especially value).
+
+- name: Loren McIntyre
+  title: Facilitator
+  img: images/mcint.jpg
+  description: I'm a 4th-year CS major who took some time off along the way. I like to talk about software philosophy, life, and living in the co-ops.
