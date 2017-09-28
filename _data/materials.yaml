@@ -1,3 +1,5 @@
+# If links to slides or labs are included here, those pages will redirect to the
+# provided link.
 - id: 0
   name: Info Session
   slides: https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing
