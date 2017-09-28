@@ -4,7 +4,7 @@ RewriteEngine On
 
 # Redirect signups to the google form
 RewriteRule ^signup$	https://drive.google.com/open?id=1eNfytADVE3P2oJukUWHXzr_DPFFFe8Q0ytEGn1KUvGo [R=302,L]
-RewriteRule ^syllabus$	https://decal.ocf.berkeley.edu/syllabus.pdf [R=302,L]
+RewriteRule ^syllabus$	syllabus.pdf [R=302,L]
 
 RewriteRule ^piazza$	https://piazza.com/class/j6tnwydlhx62jp [R=302,L]
 
