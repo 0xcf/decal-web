@@ -20,14 +20,24 @@ try {
             step([$class: 'WsCleanup'])
             unstash 'src'
 
+            stage('bundle') {
+                steps {
+                    sh 'bundle install --deployment'
+                }
+            }
+
+            stage('build') {
+                steps {
+                    sh 'bundle exec jekyll build --verbose --trace'
+                }
+            }
+
             stage('deploy') {
                 sshagent (credentials: ['decal-ssh-key']) {
-                    sh '''
-                        ssh -o StrictHostKeyChecking=no -l decal ssh.ocf.berkeley.edu "
-                            cd public_html &&
-                            git pull --rebase origin master
-                        "
-                    '''
+                    // The positions of the slashes are important here:
+                    // There should be a slash after _site BUT not after
+                    // public_html.
+                    sh 'rsync -avzp --del _site/ decal@ssh.ocf.berkeley.edu:public_html'
                 }
             }
         }

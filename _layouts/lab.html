@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
+
+<article class="markdown-body">
+  {% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
+  {{ content }}
+
+  <br>
+{% include footer.html %}
+</article>
+

@@ -1,0 +1,36 @@
+# There should be an entry here for each day of class.
+# Lecture and Lab IDs should correspond to IDs in materials.yaml.
+# The lecturenote key can be used to display a message about the lecture
+# (which will probably be a cancellation).
+# Whichever day is marked as primary will be the day that the sign-in link
+# is active for.
+- date: 2017-09-05
+  week: 0
+  lecture: 0
+  lab: 0
+
+- date: 2017-09-07
+
+- date: 2017-09-12
+  week: 1
+  lecture: 1
+  lab: 1
+
+- date: 2017-09-14
+  lecturenote: Cancelled, MLK building closed.
+
+- date: 2017-09-19
+  week: 2
+  lecture: 2
+  lab: 2
+  signin: "https://goo.gl/forms/eFqNzQu1V8AHfdVz2"
+
+- date: 2017-09-21
+  signin: "https://goo.gl/forms/w8YM9czRH9YahB5W2"
+
+- date: 2017-09-26
+  week: 3
+  lecture: 3
+  lab: 3
+  signin: "https://goo.gl/forms/alDgjYUQ9T4A52Mt2"
+  primary: True
