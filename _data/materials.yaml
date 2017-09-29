@@ -1,0 +1,19 @@
+# If links to slides or labs are included here, those pages will redirect to the
+# provided link.
+- id: 0
+  name: Info Session
+  slides: https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing
+  lab: https://goo.gl/forms/ZHTwEjofI9eiLh113
+
+- id: 1
+  name: Intro to Unix, shell, and OSS
+  slides: https://docs.google.com/presentation/d/1PnW4EcN7nJ2g8LD_45IPNiq6d0e5p5ma6-bJVOJutSs/edit?usp=sharing
+
+- id: 2
+  name: Intro to Shell
+  slides: https://docs.google.com/presentation/d/1UPDQhmav2N3zxjaobXFnk9-Pq2bnQtFN8QYk6FgfeM0/edit?usp=sharing
+
+- id: 3
+  name: Shell Scripting
+  slides: https://docs.google.com/presentation/d/1jYLICb69ja0NXJ0FWZggYPL0JDMxUNWr0plgC6Q1kA0/edit?usp=sharing
+

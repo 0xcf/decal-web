@@ -5,3 +5,10 @@
 
 # Ignore subversion files
 .svn*
+
+_site
+.sass-cache
+.jekyll-metadata
+
+# Bundler vendor folder
+vendor
