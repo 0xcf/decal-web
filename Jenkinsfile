@@ -6,32 +6,21 @@ try {
             checkout scm
         }
 
+        stage('bundle') {
+            sh 'bundle install --deployment'
+        }
+
+        stage('build') {
+            sh 'bundle exec jekyll build --verbose --trace'
+        }
+
         // TODO: Add a testing step to lint any HTML, etc.
         // stage('test') {
         //     sh 'make test'
         // }
 
-        stash 'src'
-    }
 
-
-    if (env.BRANCH_NAME == 'master') {
-        node('deploy') {
-            step([$class: 'WsCleanup'])
-            unstash 'src'
-
-            stage('bundle') {
-                steps {
-                    sh 'bundle install --deployment'
-                }
-            }
-
-            stage('build') {
-                steps {
-                    sh 'bundle exec jekyll build --verbose --trace'
-                }
-            }
-
+        if (env.BRANCH_NAME == 'master') {
             stage('deploy') {
                 sshagent (credentials: ['decal-ssh-key']) {
                     // The positions of the slashes are important here:
@@ -42,7 +31,6 @@ try {
             }
         }
     }
-
 } catch (err) {
     def subject = "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - Failure!"
     def message = "${env.JOB_NAME} (#${env.BUILD_NUMBER}) failed: ${env.BUILD_URL}"
