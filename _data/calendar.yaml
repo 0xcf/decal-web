@@ -34,6 +34,9 @@
   lab: 3
   signin: "https://goo.gl/forms/alDgjYUQ9T4A52Mt2"
   
+- date: 2017-09-28
+  lecturenote: Facebook Guest Lecture: Networking at Scale
+  
 - date: 2017-10-05
   week: 4
   lecture: 4
