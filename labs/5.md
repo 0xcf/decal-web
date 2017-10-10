@@ -330,7 +330,7 @@ Please run `git clone https://github.com/c2tonyc2/sysadmin-decal.git` before sta
 3. Is the IP address from the above question a public or private one? Based on whether it's public or private, could someone in San Francisco ping its IP address over the internet?
 4. What does your machine's routing table look like?
 5. What does your machine's arp table look like? Can you print out the arp table so that it displays IP addresses?
-6. Launch `ninja_port.py`, by running `python3 ninja_port.py` and then locate the port where the ninja is hiding and send it a `hello world` message.  What does it say back, how did you find out what port is was hiding on?
+6. Launch `ninja_port.py`, by running `python3 ninja_port.py` and then locate the port where the ninja is hiding and send it a `found you` message.  What does it say back, how did you find out what port is was hiding on?
 7. Launch `ninja_port.py` again and this time use `tcpdump` to monitor the loopback interface. What sort of packets arrive?
 8. What IP address does `google.com` resolve to?
 9. What types of records do you get when you do a DNS lookup of `facebook.com`, how about `www.facebook.com`?
