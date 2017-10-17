@@ -1,6 +1,4 @@
-properties properties: [
-    disableConcurrentBuilds(),
-]
+options { disableConcurrentBuilds() }
 
 try {
     node('slave') {
