@@ -48,9 +48,10 @@
   lecture: 5
   lab: 5
   signin: https://goo.gl/forms/oUQjqB4sDEABGb1o1
-  primary: True
 
 - date: 2017-10-17
   week: 6
   lecture: 6
   lab: 6
+  signin: https://goo.gl/forms/mCJEXJtOdNcxo0xj2
+  primary: True
