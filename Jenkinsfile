@@ -1,7 +1,7 @@
+options { disableConcurrentBuilds() }
 
 try {
     node('slave') {
-        options { disableConcurrentBuilds() }
         step([$class: 'WsCleanup'])
 
         stage('check-out-code') {
