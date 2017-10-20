@@ -1,3 +1,7 @@
+properties properties: [
+    disableConcurrentBuilds(),
+]
+
 try {
     node('slave') {
         step([$class: 'WsCleanup'])
