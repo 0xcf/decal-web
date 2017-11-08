@@ -67,4 +67,9 @@
   lecture: 8
   lab: 8
   signin: https://goo.gl/forms/qpMF6bH7Mre81n1n1
+
+- date: 2017-11-07
+  week: 9
+  lecture: 9
+  lab: 9
   primary: True
