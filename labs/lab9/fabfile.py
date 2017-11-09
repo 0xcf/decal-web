@@ -57,8 +57,6 @@ def nginx():
 
 
 
-def get_files():
-    pass
 
 
 
