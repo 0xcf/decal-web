@@ -48,6 +48,14 @@ def uwsgi():
     else:
         print("You passed checkpoint uwsgi!")
 
+def nginx():
+    check = run('curl 127.0.0.1:80')
+    if "Flask" not in check:
+        print("Failed checkpoint Nginx")
+    else:
+        print("You passed checkpoint Nginx!")
+
+
 
 def get_files():
     pass
