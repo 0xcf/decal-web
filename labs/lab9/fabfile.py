@@ -37,16 +37,28 @@ def basicapp():
     check1 = run('curl 127.0.0.1:5000')
     #print(check1)
     if "Flask" not in check1:
-        print("Failed Checkpoint basicapp")
+        print("127.0.0.1:5000 is not up")
     else:
-        print("You passed checkpoint basicapp!")
+        print("127.0.0.1:5000 is up")
+    if "basicapp.py" in run("ps a"):
+        print("basicapp.py is in process")
+    else:
+        print("basicapp.py is not in processes")
+
 
 def uwsgi():
     check = run('curl 127.0.0.1:8370')
     if "Flask" not in check:
-        print("Failed checkpoint uwsgi")
+        print("Server at 127.0.0.1:8370 does not contain the word Flask. Might be down")
     else:
-        print("You passed checkpoint uwsgi!")
+        print("Server at 127.0.0.1:8370 is up")
+    if "uwsgi" in run("ps -A | grep uwsgi"):
+        print("uwsgi is running in processes")
+    else:
+        print("uwsgi is not running in processes")
+    if "no app loaded" in sudo("tailj -n 15 /var/log/uwsgi/app/uwsgi.log"):
+        print("The term 'no app loaded' appeared in uwsgi.log")
+
 
 def nginx():
     check = run('curl 127.0.0.1:80')
@@ -54,6 +66,10 @@ def nginx():
         print("Failed checkpoint Nginx")
     else:
         print("You passed checkpoint Nginx!")
+    if "nginx" in run("ps -A | grep nginx"):
+        print("nginx is running in process")
+    else:
+        print("nginx is not running in proccesses")
 
 
 
