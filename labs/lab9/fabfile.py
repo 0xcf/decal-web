@@ -27,9 +27,31 @@ def clone_files():
     run('mv decal/labs/lab9/* /opt/basicapp/')
     run('pip install -r requirements.txt')
 
-def serve_basicapp():
-    #run('python basicapp.py &')
-    run('python basicapp.py')
+def runlab9(): # does not work because it's a persistent process
+    run('python lab9.py')
+
+def install_uwsgi():
+    sudo("apt install uwsgi uwsgi-plugin-python")
+
+def uwsgi_configs():
+    sudo("mv /opt/lab9/lab9.ini /etc/uwsgi/app-available/")
+    sudo("ln -s /etc/uwsgi/app-available/lab9.ini /etc/uwsgi/app-enabled/lab9.ini")
+    run("touch /opt/lab9/lab9.log")
+
+def uwsgi_restart():
+    sudo("systemctl start uwsgi")
+
+
+def deploy():
+    setup()
+    virtualenv_setup()
+    clone_files()
+    #runlab9()
+    install_uwsgi()
+    uwsgi_configs()
+    uwsgi_restart()
+
+
 
 def basicapp():
     env.warn_only = True
