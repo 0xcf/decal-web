@@ -36,3 +36,11 @@
 - id: 8
   name: Security Fundamentals
   slides: https://docs.google.com/presentation/d/1104qhPHeQixJyjqzJ9NopWxS7fXL8nUtR2NIvW7Qha4/edit?usp=sharing
+  
+- id: 9
+  name: Web Applications
+  slides: https://docs.google.com/presentation/d/11lG3XbHMupxFU6H1YDkFzQpsGr2L9MILcK0K1fjiJ3c/edit?usp=sharing
+  
+- id: 10
+  name: Special Topics
+  slides: https://docs.google.com/presentation/d/14lS85IfJ1nlwuleciDrBki2MNPZBTKrmYQBO-wn-GSA/edit?usp=sharing
