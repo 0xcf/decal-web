@@ -72,4 +72,10 @@
   week: 9
   lecture: 9
   lab: 9
+
+- date: 2017-11-14
+  week: 10
+  lecture: 10
+  lab: 10
   primary: True
+  signin: https://goo.gl/forms/HMtkThja0XriLeeX2
