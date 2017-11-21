@@ -43,3 +43,9 @@
   title: Facilitator
   img: images/mcint.jpg
   description: I'm a 4th-year CS major who took some time off along the way. I like to talk about software philosophy, life, and living in the co-ops.
+
+- name: Kevin Peng
+  title: Facilitator
+  img: images/kpengboy.jpg
+  description: Kevin is a 5th-year EECS master's student, OCF Deputy Site Manager, and the only person who understands the OCF's constitution and by-laws.
+  style: "height: 200px;"
