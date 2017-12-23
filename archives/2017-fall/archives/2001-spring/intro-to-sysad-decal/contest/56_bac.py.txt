@@ -1,4 +1,0 @@
-#!/opt/local/bin/python
-import sys
-try:print 'hello',sys.argv[1]
-except:print 'world'
