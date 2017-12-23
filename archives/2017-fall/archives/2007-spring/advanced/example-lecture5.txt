@@ -1,0 +1,20 @@
+1. Examine the output of running ldd(1) on a binary linking lots of shared
+   libraries.
+2. Examine the output of running `objdump -p` (from GNU binutils; might be
+   installed as gobjdump on Solaris systems) on the same binary.  Note the
+   NEEDED lines.  Do they agree with the ldd output?
+3. Examine the output of running objdump on a shared library.  What
+   new entries do you see?
+
+The output from ldd (which invokes the dynamic linker to resolve the symbols
+in the binary) does not in general match the output from objdump (which
+only displays the output from the ELF header), since shared libraries can
+themselves depend on other shared libraries.  You may also have noted a
+RUNPATH or RPATH line; this controls the search path for the dynamic linker
+(see documentation for more details).
+
+Shared libraries have an SONAME field, which is used as the name that is
+linked into the binary (in the NEEDED header), regardless of what the file
+on disk is actually named.  This is primarily to enforce the use of ABI
+versioning (the ABI version is the number usually following .so; for example,
+libc.so.6 has ABI version 6).

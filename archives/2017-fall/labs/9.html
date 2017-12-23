@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 9 - Web Application - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 9 - Web Application</h1>
+  <h2 id="overview">Overview</h2>
+
+<p>We’re going to set up a flask app. And we are going to call it lab9</p>
+
+<p>There are 3 main component to this lab. We will install Nginx, uWSGI, and Flask through the <code class="highlighter-rouge">apt</code> command. Then we will git clone an example app and config files from class repository. Next, we will modify the configuration files. If configured correctly, we’ll go through the startup procedure. Then end it with some debugging tips and tricks.</p>
+
+<h3 id="the-setup">The Setup</h3>
+
+<p>Virtualenv is a python tool that lets you create a custom python execution environment that is specific to your project. This practice is to prevent custom libraries or dependencies from polluting your main coding environment. We need virtualenv for staging. Run</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install build-essential python-dev 
+sudo apt install virtualenv
+</code></pre></div></div>
+
+<p>Next, we’ll create the directory where our project will be located. We’ll just call it [lab9] and we’ll place it in /opt/.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mkdir /opt/lab9
+sudo chown $USER:www-data /opt/lab9/
+</code></pre></div></div>
+
+<p>Let’s create the virtualenv for this project and activate it. But first we chown the group to www-data before we setup virtualenv. That way all the new files created will inherit this ownership. The reason we give group ownership to www-data is because our Nginx and uWSGI belongs to this group.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chown -R :www-data lab9
+cd /opt/lab9
+virtualenv venv
+source venv/bin/activate
+</code></pre></div></div>
+
+<p>You can see a (venv) in the beginning of your prompt. Now all your python code will execute the venv version of python. Located in “/opt/lab9/venv/bin/python”. It will add venv to your python path, that means python execuation procedure will search venv first before search global library directory.</p>
+
+<p>To exit the virtual environment, type</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div></div>
+
+<p>Let’s git clone from my repository. It contains a very basic Flask app and very standard config file for Nginx and uwsgi.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/doku/basic_flask_demo
+mv basic_flask_demo/* /opt/lab9/ 
+</code></pre></div></div>
+
+<p>Inside the directory, there is a requirements.txt file. This is a list of my python libraries for my flask app. Let’s install it.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install -r requirements.txt
+</code></pre></div></div>
+
+<p>Notice, that these packages are installed into your venv directory. They are only available when your virtual environment is activated.</p>
+
+<p>Before we move on, lets change project folder owner to yourself and to group ‘www-data’. This is to give uwsgi server processes access to project files. Next change project folder permission to give groups and owner read, write, and execute permission. Make sure these commands is run with recursive tag, so all subdirectory will have the correct permission. Now all processes belongs to group “www-data” will now have access to read, write, and execute files in application folder.</p>
+
+<h3 id="three-little-servers">Three little Servers</h3>
+
+<p>Let’s test your lab9.py.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python lab9.py
+</code></pre></div></div>
+
+<p>In your browser, go to your server domain with port 5001. [username].decal.xcf.sh:5001 You should see “Hello from Flask!” on your browser. Leave the server running on terminal. Lets’ do a quick self check using our Fabric file. A Fabric file is a python script that automates bash scripting. It has features that lets you run bash scripts over the internet in parallel.</p>
+
+<hr />
+<ul>
+  <li>Self Check Station : lab9</li>
+</ul>
+
+<p>Run this command in your virtual environment
+    fab -R check lab9</p>
+
+<hr />
+
+<p>You can change ports on this development server by editing lab9.py file. In the line “app.run()”, try adding argument port=5001, or debug=True. Control-C to exit.</p>
+
+<p>To get our uWSGI running, let’s install it through apt.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install uwsgi uwsgi-plugin-python
+</code></pre></div></div>
+
+<p>Next, we need to edit lab9.ini, your uWSGI config file. Then we’ll move it to a location accessible to the uwsgi server.</p>
+
+<p>Check uwsgi.py exist in your directory. This file contains your callable function named app. This function is called by uWSGI to access your app. A callable function is an entry point into the application where the web server can call a function with two parameter. One is dictionary of environmental variables and the other is a callable provided by uWSGI. The callable function will return an iterable that will be used to generate the html response.</p>
+
+<p>Open ‘lab9.ini’ file. This is the config file for uWSGI. Look for ‘wsgi-file’ variable. This is set to your uwsgi.py file. The ‘callable’ variable should be set to ‘app’. Equivalently, ‘module = lab9:app’ should give you the same result.</p>
+
+<p>The ‘chdir’ variable should be set to your project directory. uWSGI startup file will change the working directory to this assigned location. Any other relative file path will be relative to this location.</p>
+
+<p>If you have project name different than ‘lab9’, change every instance of ‘lab9’ to your app name.</p>
+
+<p>‘pythonpath’ and ‘virtualenv’ helps uWSGI to find the right packages.</p>
+
+<p>In Debian based systems, Apache2 and Nginx are assigned ‘www-data’ for their user and group. In our uwsgi config, we set ‘gid’ and ‘uid’ to ‘www-data’. That way when systemd runs the startup script, it would know what user and group to set uWSGI process to.</p>
+
+<p>‘master = true’ respawns processes if the processes die. uWSGI starts a master processes that spawn application server processes, and it monitors these children processes in case of failure.</p>
+
+<p>‘processes’ and ‘threads’ tells uWSGI master the number of processes to spawn and how many threads per process. It’s arbitrary set at this point. It should increase as your application demand increase, up to your system resource limit.</p>
+
+<p>‘socket’ is where uWSGI and Nginx communicates. It can be Unix sockets or network sockets. As long as nginx is set to the same location. Right now, 0.0.0.0:8370 is assigned. The IP 0.0.0.0 tells the uWSGI server to bind to all available interfaces. It can be used to communicate with a reverse proxy located on a different physical server. Reverse proxying is the pocess of retrieving resources on behalf of a client from one or more server.</p>
+
+<p>For testing purposes, lets comment out the ‘socket’ line. And add a line for http-socket.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http-socket = :8370
+</code></pre></div></div>
+
+<p>Save this file and we run uWSGI with this configuration. First, check if a uwsgi process is already running. If so kill it. Either by <code class="highlighter-rouge">systemctl stop uwsgi</code> or <code class="highlighter-rouge">kill -9</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uwsgi --ini lab9.ini
+</code></pre></div></div>
+
+<p>You should be able to see your app running on port 8370. (ports I choose is arbitrary, Just as long as it’s not occupied by another process or below 1024. Some systems does not give none root user with permission to accesss ports below 1024)</p>
+
+<p>If you do not see your flask app, one reason might be because we have not changed our project folder owner and groups yet. Chown the folder to the www-data group, and give that group read, write, and execute permission. Rerun uwsgi after the changes.</p>
+
+<hr />
+<ul>
+  <li>Self Check Station: uWSGI</li>
+</ul>
+
+<p>Run this command in your virtual environment
+    fab -R check uwsgi</p>
+
+<hr />
+
+<p>First kill uWSGI processes. I use <code class="highlighter-rouge">ps aux | grep uwsgi</code> to locate the process, and <code class="highlighter-rouge">kill -9 [pid]</code> to kill the process or use top/htop. You might notice only killing one of the processes is effective. That’s the master process respawning the server back up. Use your lab6 instruction to view a process tree to help determine the master process.</p>
+
+<p>If you see your app running in the browser, change the config file back to socket. Comment out <code class="highlighter-rouge">http-socket</code> and add line <code class="highlighter-rouge">socket = 127.0.0.1:8370</code>. This binds the server to the loopback interface, which only processes running on the local machine have access to this port. We’ll call [uwsgi_port] = 8370 for future reference.</p>
+
+<p>To make this file accessible to the uwsgi server at startup, let’s put it in the default config location in “/etc/uwsgi/app-available/” and symbolic link it to “/etc/uwsgi/app-enabled/”.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mv /opt/lab9/lab9.ini /etc/uwsgi/app-available/
+sudo ln -s /etc/uwsgi/app-available/lab9.ini /etc/uwsgi/app-enabled/lab9.ini
+</code></pre></div></div>
+
+<p>Let’s also touch the log file just so we have it.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch /opt/lab9/lab9.log
+</code></pre></div></div>
+
+<p>Start uWSGI server. This time we’ll use systemctl to start the server. First, make sure all uwsgi process is killed. Then in command prompt type.
+B
+    sudo systemctl start uwsgi</p>
+
+<p>Check for uwsgi processes. Then check the logs.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo tail -n 15 /var/log/uwsgi/app/lab9.log
+</code></pre></div></div>
+
+<p>Decipher if it’s working or not and what’s wrong.</p>
+
+<h4 id="nginx">Nginx</h4>
+
+<p>Nginx by default serves to port 80. To avoid conflicts, let’s shut down other services running on port 80, such as Apache2. First, install Nginx. Run the command if you’re not sure.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install nginx
+</code></pre></div></div>
+
+<p>We’ll edit the config file from GitHub then move it to the right location. First, let’s go over some of the configuration options for ‘lab9.conf’.</p>
+
+<p>For the line “listen 80;”, change it to an available [port].</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#for a public HTTP server:
+listen [port];
+</code></pre></div></div>
+
+<p>In line 6,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#server_name localhost ...;
+</code></pre></div></div>
+
+<p>Change it to your server domain. [username].decal.xcf.sh</p>
+
+<p>On line 10,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uwsgi_pass 127.0.0.1:[usgi_port]
+</code></pre></div></div>
+
+<p>Change the port to your uwsgi port from steps above.</p>
+
+<p>On line 24 and 27 with alias,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       location /static {
+           alias /opt/lab9/static;
+       }
+       location /favicon.ico {
+           alias /opt/lab9/static/favicon.ico;
+       }
+</code></pre></div></div>
+
+<p>Change alias file directory to your app directory.</p>
+
+<p>Move the file to nginx’s virtual host config folder and make a symbolic link, aka soft link.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mv /opt/lab9/lab9.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/lab9.conf /etc/nginx/sites-enabled/lab9.conf
+</code></pre></div></div>
+
+<p>Before we start nginx, lets check the default file in nginx’s virtual host config folder and make sure it’s not listening on port 80. <code class="highlighter-rouge">/etc/nginx/sites-available/lab9.conf</code> Change the port if its on 80.</p>
+
+<p>Let’s start nginx.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl start nginx
+</code></pre></div></div>
+
+<p>The systemd starts nginx on apt install. We never shut it down. Instead lets run</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl restart nginx
+</code></pre></div></div>
+
+<p>If everything is running, Check your server on your browser with the port you set.</p>
+
+<hr />
+<ul>
+  <li>Self Check Station: Nginx</li>
+</ul>
+
+<p>Run this command in your virtual environment
+    <code class="highlighter-rouge">fab -R check nginx</code></p>
+
+<hr />
+
+<p>Useful commands and locations for debugging</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo tail -n 15 /var/log/syslog
+/var/log/syslog
+/var/log/nginx/error.log
+/var/log/uwsgi/emperor.log
+journalctl -xf
+</code></pre></div></div>
+
+<p>Unix socket debug</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uwsgi --connect-and-read
+</code></pre></div></div>
+
+<h3 id="challange-optional">Challange (Optional)</h3>
+
+<p>Here’s some flask app I found on github.</p>
+
+<p>https://github.com/pallets/flask/tree/master/examples/flaskr
+https://github.com/akprasad/flask-forum
+https://github.com/codelucas/flask_reddit
+https://github.com/vinceprignano/chatapp
+https://github.com/rochacbruno/quokka_ng</p>
+
+<p>For example
+Make a uwsgi.py file
+Make a flaskr.ini file for uwsgi
+Put it in apps-available
+Make a flaskr.conf file for Nginx
+Put it in sites-available</p>
+
+<p>Make one run!</p>
+
+<h3 id="bonus-section-optional">Bonus Section (Optional)</h3>
+<hr />
+<p>Python’s fabric library is a simple automation tool. It allows system admin to easily write mantaince automation scripts for remote server. A basic ‘fabfile.py’ contains a series of bash commands with python function wrapper. The fab file will run the commands on any list of ssh address and can execute scripts in parallel. For example, you can do “sudo(‘apt-get upgrade’)” on all database server in parallel, and reducing scheduled down time. This allows system admins to manage large server farms with ease. The self check station in this lab was created using fabric.</p>
+
+<p>I started an auto_deploy function according to this instruction set in fabric.py. See if you can finish it.</p>
+
+<h3 id="references">references</h3>
+
+<p>https://uwsgi-docs.readthedocs.io/en/latest/Options.html
+https://github.com/humiaozuzu/awesome-flask#build_with_flask
+https://www.digitalocean.com/community/tutorials/how-to-deploy-python-wsgi-applications-using-uwsgi-web-server-with-nginx
+https://nginx.org/en/docs/
+http://flask.pocoo.org/docs/0.12/
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04
+http://uwsgi-docs.readthedocs.io/en/latest/Nginx.html</p>
+
+
+
+  <br>
+<footer>
+  <div class="row">
+	<div class="col-lg-12">
+	  <p class='text-center'>
+	  <a href="https://www.ocf.berkeley.edu">
+		<img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+	   alt="Hosted by the OCF" style="border: 0;" />
+	  </a>
+	  Copyright &copy; Open Computing Facility, eXperimental Computing Facility 2017.
+	  </p>
+	</div>
+	<!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

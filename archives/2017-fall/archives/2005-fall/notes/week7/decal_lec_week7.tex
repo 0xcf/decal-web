@@ -1,0 +1,555 @@
+%% LyX 1.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ \newenvironment{lyxlist}[1]
+   {\begin{list}{}
+     {\settowidth{\labelwidth}{#1}
+      \setlength{\leftmargin}{\labelwidth}
+      \addtolength{\leftmargin}{\labelsep}
+      \renewcommand{\makelabel}[1]{##1\hfil}}}
+   {\end{list}}
+ \newenvironment{lyxcode}
+   {\begin{list}{}{
+     \setlength{\rightmargin}{\leftmargin}
+     \setlength{\listparindent}{0pt}% needed for AMS classes
+     \raggedright
+     \setlength{\itemsep}{0pt}
+     \setlength{\parsep}{0pt}
+     \normalfont\ttfamily}%
+    \item[]}
+   {\end{list}}
+
+\usepackage{babel}
+\makeatother
+\begin{document}
+
+\title{System Administration for the Web:\\
+Week 7 Lecture Notes\\
+Basic Programming and Perl}
+
+
+\date{October 24, 2005}
+
+\maketitle
+
+\section{What is Programming?}
+
+Most computer scientists would define programming as implementing
+an abstract algorithm using a programming language to produce a set
+of instructions that a computer can understand.
+
+I think that's a dull and very difficult to understand definition.
+Programs are like recipes for making food, and, using that analogy,
+programming is the process of organizing the production of a certain
+type of food into a set of consistent and reproducible steps.
+
+Some recipes are quite simple and linear, like those for mixing drinks.
+You take a certain amount of various ingredients and combine them
+in a certain order. Other recipes are more complicated and usually
+require making decisions: to flip or not to flip a steak on a grill
+or whether to take cookies out of an oven.
+
+Regardless of the complexity of a certain computer program, though,
+programming is almost always accomplished in 4 steps:
+
+\begin{enumerate}
+\item Planning
+\item Prototyping and Coding
+\item Testing and Debugging
+\item Release
+\end{enumerate}
+Step 2 is often repeated after Step 3 upon the discovery of programming
+errors.
+
+
+\section{Why Program?}
+
+Simple: \emph{fame}, \emph{fortune}, or \emph{laziness}.\\
+In the context of system administration, programming usually falls
+under laziness. As you've seen with shell scripts, programs can automate
+repetitive tasks and save system administrators a ton of work.
+
+
+\section{Perl}
+
+The programming language you will be learning is Perl, the Practical
+Extraction and Reporting Language. Perl was originally created by
+Larry Wall, a one-time graduate student at UC Berkeley, and is currently
+maintained by programmers all over the world. Perl was originally
+designed to manipulate text files such as log files -- hence \emph{extraction}
+and \emph{reporting} -- but has evolved into an extremely-versatile
+language for everything from shell scripts to corporate websites.
+
+
+\subsection{Perl's Strengths}
+
+\begin{itemize}
+\item Excellent text manipulation
+\item Fast prototyping
+\item Flexible syntax
+\item No artificial limits
+\end{itemize}
+
+\subsection{Perl's Weaknesses}
+
+\begin{itemize}
+\item Interpreted language
+\item Flexible syntax
+\end{itemize}
+
+\subsection{How is Perl Used?}
+
+\begin{itemize}
+\item Amazon.com
+\item MovableType
+\item Slashdot
+\item Sweden's pension system
+\item A server near you
+\end{itemize}
+
+\section{Data and Data Structures}
+
+Data is anything your program must track, be it user-input, dates,
+values, quantities, colors, etc. \emph{Scalar data} is the basic unit
+of data in Perl. 
+
+Scalar data can be anything from letters, words, numbers, sentences,
+paragraphs, punctuation marks, or any combination of these categories.
+To Perl, scalar data is a merely a stream of characters, such as letters,
+numbers, spaces, and symbols. Additionally, there is a category of
+characters that require special representation in Perl through the
+use of \emph{escape-sequences}; common examples of such characters
+are found in Table \ref{tab:Common-Perl-Escape-Sequences}.
+
+Scalar data in Perl is held in three types of basic containers or
+data structures: \emph{variables}, \emph{arrays}, and \emph{hashes}.
+
+%
+\begin{table}
+\begin{center}\begin{tabular}{|c|c|}
+\hline 
+Escape-Sequence&
+Meaning\tabularnewline
+\hline
+\hline 
+\texttt{\textbackslash{}n}&
+Newline\tabularnewline
+\hline 
+\texttt{\textbackslash{}t}&
+Tab\tabularnewline
+\hline 
+\texttt{\textbackslash{}\textbackslash{}}&
+Backslash (\texttt{\textbackslash{}})\tabularnewline
+\hline 
+\texttt{\textbackslash{}''}&
+Double quote (\texttt{{}``})\tabularnewline
+\hline
+\end{tabular}\end{center}
+
+
+\caption{\label{tab:Common-Perl-Escape-Sequences}Common Perl Escape-Sequences}
+\end{table}
+ 
+
+\begin{description}
+\item [NOTE:]Perl is a very context-sensitive language. This means that
+it will try to automatically understand how you wish to use a piece
+of scalar data. For example, the scalar data {}``\texttt{45}'' could
+be interpreted as either the number 45 or a string composed of the
+characters 4 and 5. Unlike other programming languages, where you
+much always specify the context under which you are using a piece
+of scalar data, Perl will automatically decide for you depending on
+what you do to the data.
+\end{description}
+
+\subsection{Variables}
+
+Variables are the simplest type of data structure in Perl; they hold
+a single piece of scalar data. Variable names begin with a dollar
+sign (\texttt{\$}) followed by characters that uniquely identify each
+variable -- \texttt{\$sample\_variable}.
+
+
+\subsubsection*{Assignment}
+
+Assigns a piece of scalar data to a variable
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{=}
+\item [Example:]\texttt{\$sample\_variable = {}``sdf343fd'';}
+\item [Result:]\texttt{\$sample\_variable = {}``sdf343fd''}
+\end{lyxlist}
+
+\subsubsection*{Concatenation}
+
+Joins pieces of scalar data together
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{.}
+\item [Example:]\texttt{\$sample\_variable = {}``year'' . {}``2005'';}
+\item [Result:]\texttt{\$sample\_variable = {}``year2005''}
+\end{lyxlist}
+
+\subsubsection*{Chomp\label{sub:Chomp}}
+
+Removes a newline from the end of a piece of scalar data
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{chomp}
+\item [Example:]\texttt{\$sample\_variable = {}``This a sentence.\textbackslash{}n'';}~\\
+\texttt{chomp \$sample\_variable;}
+\item [Result:]\texttt{\$sample\_variable = {}``This is a sentence.''}
+\end{lyxlist}
+
+\subsubsection*{Mathematical Functions}
+
+Performs mathematical operations on numeric scalar data\\
+Note: Addition is the example presented, but other mathematical operators
+(\texttt{{*}}, \texttt{/}, \texttt{-}) work too.
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{+}
+\item [Example:]\texttt{\$sample\_variable = {}``10'';}~\\
+\texttt{\$another\_variable = \$sample\_variable + 1;}
+\item [Result:]\texttt{\$sample\_variable = {}``10''}~\\
+\texttt{\$another\_variable = {}``11''}
+\end{lyxlist}
+
+\subsection{Arrays}
+
+Arrays are data structures that hold multiple pieces of scalar data,
+each \emph{indexed} by a number. Arrays are best described as a numbered
+list of scalar data pieces. Array names begin with an at-sign (\texttt{@})
+followed by characters that uniquely identify each array -- \texttt{@sample\_array}.
+Elements of an array are referenced by a dollar sign followed by the
+name of the array and the index of the element in square brackets
+-- \texttt{\$sample\_array{[}0{]}}. Indices numbering begins at zero.
+
+\begin{description}
+\item [NOTE:]Most variable operations can be performed on individual array
+elements.
+\end{description}
+
+\subsubsection*{Assignment Method \#1}
+
+Assigns scalar data to an array
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{=}
+\item [Example:]\texttt{\$sample\_array{[}0{]} = {}``data\_piece\_0'';}~\\
+\texttt{\$sample\_array{[}1{]} = {}``data\_piece\_1'';}
+\item [Result:]\texttt{@sample\_array =}~\\
+\texttt{0 -> {}``data\_piece\_0''}~\\
+\texttt{1 -> {}``data\_piece\_1''}
+\end{lyxlist}
+
+\subsubsection*{Assignment Method \#2}
+
+Assigns scalar data to an array
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{()}
+\item [Example:]\texttt{@sample\_array = ({}``data\_piece\_0'', {}``data\_piece\_1'');}
+\item [Result:]\texttt{@sample\_array =}~\\
+\texttt{0 -> {}``data\_piece\_0''}~\\
+\texttt{1 -> {}``data\_piece\_1''}
+\end{lyxlist}
+
+\subsubsection*{Pop}
+
+Removes the last element of an array and returns it
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{pop}
+\item [Example:]\texttt{@sample\_array = ({}``data\_piece\_0'', {}``data\_piece\_1'');}~\\
+\texttt{\$temp = pop @sample\_array;}
+\item [Result:]\texttt{@sample\_array =}~\\
+\texttt{0 -> {}``data\_piece\_0''}~\\
+\texttt{\$temp = {}``data\_piece\_1''}
+\end{lyxlist}
+
+\subsubsection*{Push}
+
+Adds an element to the end of an array
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{push}
+\item [Example:]\texttt{@sample\_array = ({}``data\_piece\_0'', {}``data\_piece\_1'');}~\\
+\texttt{push @sample\_array, {}``data\_piece\_2'';}
+\item [Result:]\texttt{@sample\_array =}~\\
+\texttt{0 -> {}``data\_piece\_0''}~\\
+\texttt{1 -> {}``data\_piece\_1''}~\\
+\texttt{2 -> {}``data\_piece\_2''}
+\end{lyxlist}
+
+\subsubsection*{Shift and Unshift}
+
+Removes and adds an element to the beginning of an array, respectively\\
+Similar syntax as \texttt{pop} and \texttt{push} 
+
+
+\subsection{Hashes}
+
+Hashes are the most flexible basic data structure available in Perl.
+They are similar to arrays in that they hold multiple pieces of scalar
+data, but rather than having elements indexed by a number, they are
+indexed by words or, more appropriately, \emph{keys}. Hash names begin
+with a percentage sign (\texttt{\%}) followed by characters that uniquely
+identify each hash -- \texttt{\%sample\_hash}. Elements of an array
+are referenced by a dollar sign followed by the name of the array
+and the key of the element in curly brackets and quotation marks --
+\texttt{\$sample\_hash\{''key\_name''\}}.
+
+\begin{description}
+\item [NOTE:]Most variable operations can be performed on individual hash
+elements.
+\end{description}
+
+\subsubsection*{Assignment Method \#1}
+
+Assigns scalar data to a hash
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{=}
+\item [Example:]\texttt{\$sample\_hash\{''name''\} = \char`\"{}stephen\char`\"{};}~\\
+\texttt{\$sample\_hash\{''location''\} = \char`\"{}berkeley\char`\"{};}
+\item [Result:]\texttt{\%sample\_hash =}~\\
+\texttt{{}``name'' -> \char`\"{}stephen\char`\"{}}~\\
+\texttt{{}``location'' -> \char`\"{}berkeley\char`\"{}}
+\end{lyxlist}
+
+\subsubsection*{Assignment Method \#2}
+
+Assigns scalar data to a hash
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{=, =>}
+\item [Example:]\texttt{\%sample\_hash = (}~\\
+\texttt{{}``name'' => \char`\"{}stephen\char`\"{},}~\\
+\texttt{{}``location'' => {}``berkeley'',}~\\
+\texttt{);}
+\item [Result:]\texttt{\%sample\_hash =}~\\
+\texttt{{}``name'' -> \char`\"{}stephen\char`\"{}}~\\
+\texttt{{}``location'' -> \char`\"{}berkeley\char`\"{}}
+\end{lyxlist}
+
+\subsubsection*{Keys}
+
+Returns an array of the keys of a hash (in no particular order)
+
+\begin{lyxlist}{00.00.0000}
+\item [Operator:]\texttt{keys}
+\item [Example:]\texttt{\%sample\_hash = (}~\\
+\texttt{{}``name'' => \char`\"{}stephen\char`\"{},}~\\
+\texttt{{}``location'' => {}``berkeley'',}~\\
+\texttt{);}~\\
+\texttt{@my\_array = keys \%sample\_hash;}
+\item [Result:]\texttt{@my\_array =}~\\
+\texttt{0 -> {}``location''}~\\
+\texttt{1 -> {}``name''}
+\end{lyxlist}
+
+\subsection{Advanced Data Structures}
+
+It is possible to \emph{nest} one type of data structure inside of
+another data structure or even inside the same type of data structure;
+that is, it is possible to create arrays of hashes or hashes of hashes.
+However, the syntax and theory for doing so is beyond the scope of
+this Perl introduction. Please refer to the command \texttt{perldoc
+perlreftut} or any other documentation on Perl \emph{references}.
+
+
+\section{Control Structures and Comparison Operators}
+
+Sometimes it is necessary to make a decision in a program or to perform
+a set of actions multiple times. \emph{Control structures} provide
+the facility to do both of these things.
+
+Control structures are blocks of Perl code enclosed in curly brackets
+whose execution is dependent on some kind of \emph{test(s)}. These
+tests are usually performed using \emph{comparison operators} to make
+some sort of comparison, but they can also be the value of some variable.
+The most commonly used control structures in Perl are \texttt{if},
+\texttt{while}, and \texttt{foreach}.
+
+
+\subsection{The if Control Structure}
+
+The basic structure of an \texttt{if} control structure is:
+
+\begin{lyxcode}
+if~(TEST)~\{
+
+~~~~~CODE\_IF\_TRUE
+
+\}
+\end{lyxcode}
+where \texttt{TEST} is some sort of comparison or value, that, if
+true, results in the execution of \texttt{CODE\_IF\_TRUE}, which can
+be multiple Perl operations.
+
+
+\subsection{Comparison Operators}
+
+Perl provides a group of comparison operators that can be used in
+test conditions for control structures. Comparison operators are divided
+into two categories, numeric and string operators (Table \ref{tab:Numeric-and-String}).
+It is important that you use the correct type of comparison operator;
+using the improper type of comparison operator will result in unexpected
+program behavior. 
+
+%
+\begin{table}
+\begin{center}\begin{tabular}{|c|c|c|}
+\hline 
+Comparison&
+Numeric&
+String\tabularnewline
+\hline
+\hline 
+Equal&
+\texttt{==}&
+\texttt{eq}\tabularnewline
+\hline 
+Not equal&
+\texttt{!=}&
+\texttt{ne}\tabularnewline
+\hline 
+Less than&
+\texttt{<}&
+\texttt{lt}\tabularnewline
+\hline 
+Greater than&
+\texttt{>}&
+\texttt{gt}\tabularnewline
+\hline 
+Less than or equal to&
+\texttt{<=}&
+\texttt{le}\tabularnewline
+\hline 
+Greater than or equal to&
+\texttt{>=}&
+\texttt{ge}\tabularnewline
+\hline
+\end{tabular}\end{center}
+
+
+\caption{\label{tab:Numeric-and-String}Numeric and String Comparison Operators}
+\end{table}
+
+
+I mentioned earlier that test conditions could also be values. In
+Perl, any value other than \texttt{0} or \emph{null} (an undefined
+variable) is true. Consequently, you can provide a variable name as
+a test condition, and, depending upon its value or whether it's defined,
+the test will return true or false.
+
+
+\subsection{The while Control Structure}
+
+The basic structure of a \texttt{while} control structure is:
+
+\begin{lyxcode}
+while~(TEST)~\{
+
+~~~~~CODE\_IF\_TRUE
+
+\}
+\end{lyxcode}
+where \texttt{TEST} is some sort of comparison or value, that, if
+true, results in the execution of \texttt{CODE\_IF\_TRUE}, which can
+be multiple Perl operations. \texttt{CODE\_IF\_TRUE} will be repeated
+until \texttt{TEST} is false, so it is important that \texttt{CODE\_IF\_TRUE}
+does something to modify the test condition so that the program does
+not execute \texttt{CODE\_IF\_TRUE} forever -- creating an infinite
+loop.
+
+
+\subsection{The foreach Control Structure}
+
+The basic structure of a \texttt{foreach} control structure is:
+
+\begin{lyxcode}
+foreach~\$TEMP\_VAR~(@ARRAY)~\{
+
+~~~~~CODE\_PER\_ARRAY\_ELEMENT
+
+\}
+\end{lyxcode}
+where \texttt{\$TEMP\_VAR} is the name of a temporary variable that
+will hold an element of \texttt{@ARRAY}. foreach will copy an element
+of \texttt{@ARRAY} into \texttt{\$TEMP\_VAR}, and execute \texttt{CODE\_PER\_ARRAY\_ELEMENT}
+for each -- hence the name -- element of array. \texttt{foreach} control
+structures are the best way to perform some action on each element
+of an array. 
+
+
+\section{Basic Input and Output}
+
+
+\subsection{Input}
+
+You can get input from a user by using the assigning the value \texttt{<STDIN>}
+to a variable. For example,
+
+\begin{lyxcode}
+\$the\_user\_input~=~<STDIN>;
+\end{lyxcode}
+which will read the input from a user until the Return key is pressed.
+
+\begin{description}
+\item [NOTE:]The value assigned to such a variable will also contain the
+newline character, since the input is terminated by a Return. Consequently,
+it is advisable to \texttt{chomp} the variable (Section \ref{sub:Chomp}).
+\end{description}
+
+\subsection{Output}
+
+You can present output to a user by using the \texttt{print} command.
+For example,
+
+\begin{lyxcode}
+print~{}``Hello~World!\textbackslash{}n'';
+\end{lyxcode}
+which will display the string {}``Hello World!'' followed by a newline.
+
+
+\section{A Simple Perl Program}
+
+\begin{lyxcode}
+\#!/usr/bin/perl
+
+print~\char`\"{}I'm~thinking~of~a~number~between~1~and~100.\textbackslash{}n\char`\"{};
+
+\$guess~=~-1;
+
+\$number~=~int~rand(100)~+~1;
+
+while~(\$guess~!=~\$number)~\{
+
+~~~~~print~\char`\"{}What~is~your~guess?~\char`\"{};
+
+~~~~~\$guess~=~<STDIN>;
+
+~~~~~chomp~\$guess;
+
+~~~~~if~(\$guess~<~\$number)~\{~print~\char`\"{}Too~low!\textbackslash{}n\char`\"{};~\}
+
+~~~~~if~(\$guess~>~\$number)~\{~print~\char`\"{}Too~high!\textbackslash{}n\char`\"{};~\}
+
+\}
+
+print~\char`\"{}You~got~it~right!\textbackslash{}n\char`\"{};
+\end{lyxcode}
+
+\end{document}

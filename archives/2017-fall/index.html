@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Hands-On UNIX System Administration DeCal</title>
+  <meta name="description" content="The OCF&#39;s SysAdmin DeCal at UC Berkeley.">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="assets/round-about.css" rel="stylesheet">
+
+  <link rel="canonical" href="https://decal.ocf.berkeley.edu/">
+</head>
+
+
+<body>
+  <!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">UNIX SysAdmin DeCal</a>
+	</div>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav">
+		<li>
+		  <a href="syllabus.pdf" target="_blank">Syllabus</a>
+		</li>
+		<li>
+		  <a href="#calendar">Calendar</a>
+		</li>
+		<li>
+		  <a href="#staff">Course Staff</a>
+		</li>
+		<li>
+		  <a href="archives.html">Archive</a>
+		</li>
+		<li>
+		  <a href="mailto:decal@ocf.berkeley.edu">Contact</a>
+		</li>
+		<!-- Commented out because the interest form is now closed -->
+		<!-- <li>
+	<a href="https://goo.gl/forms/JUQyRdYg8ZgUyXSH3">Interest Form</a>
+	</li> -->
+	<li>
+	  <a href="https://www.ocf.berkeley.edu/">OCF</a>
+	</li>
+	<li>
+	  <a href="http://xcf.berkeley.edu">XCF</a>
+	</li>
+	  </ul>
+	</div>
+	<!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<div class="container">
+  <h2 id="welcome-to-the-hands-on-unix-sysadmin-decal-fall-2017-edition">Welcome to the Hands-On UNIX SysAdmin DeCal, Fall 2017 edition!</h2>
+<p>This course will cover the basics of setting up and administering a production-quality Linux-based server environment in the manner of the EECS instructional machines (hivexx.cs.berkeley.edu) and those of the Open Computing Facility (tsunami.ocf.b.e). By the end of this course, we expect you to be completely comfortable with:</p>
+
+<ul>
+  <li>interfacing with Linux</li>
+  <li>be broadly familiar with various fundamental things like services and daemons</li>
+  <li>understand basic networking</li>
+  <li>have a good sense about</li>
+  <li>maintaining system security</li>
+  <li>understand system administration essentials</li>
+  <li>get a practical taste for what’s new in the field</li>
+</ul>
+
+<p>Lectures are scheduled for <strong>8-9pm Tuesdays and Thursdays</strong> in the OCF Lab, located at <strong>171 MLK</strong> (MLK basement down the hall from the student store). <strong>Attendance is mandatory with two allowed unexcused abscences</strong> (other conflicts such as exams can be excused).</p>
+
+<p>The primary assignment in this course will be <strong>weekly lab work</strong>. In keeping with the name of the course, labs will be significantly hands-on. You will be <strong>working on real systems</strong>, configuring and fixing things. <strong>Lecture will double as office hours</strong> for students to come in and ask questions about the lab work. This is a <strong>2 unit DeCal</strong>.</p>
+
+<p>An important skill for system administrators is the <strong>willingness to learn quickly</strong> about new and unfamiliar technologies, so while we expect many students will have a CS background, <strong>the only real prerequisite is a desire to learn</strong>. We assume <strong>no prior experience</strong> and will get started and move quickly - there’s a lot of material to cover. Another important skill to learn is patience and perseverence. Don’t be discouraged if things don’t work: the internet is held together with the programmatic equivalent of duct tape, and the job of a sysadmin is best described as applying new duct tape when the old stuff wears out, which happens a lot.</p>
+
+
+  <div class="segment">
+  <h2 class="page-header" id="calendar">Calendar</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+	<th>Week</th>
+	<th>Date</th>
+	<th>Lecture (Tu/Th)</th>
+	<th>Lab</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      
+	<tr>
+	  <td>0</td>
+	  <td>Tue. 09/05</td>
+	  <td>
+	    
+	      <a href='slides/0'>
+		
+		  
+		    Info Session
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/0'>Lab 0</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td></td>
+	  <td>Thu. 09/07</td>
+	  <td>
+	     -
+	    
+	  </td>
+	  <td>
+	    -
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>1</td>
+	  <td>Tue. 09/12</td>
+	  <td>
+	    
+	      <a href='slides/1'>
+		
+		  
+		
+		  
+		    Intro to Unix, shell, and OSS
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/1'>Lab 1</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td></td>
+	  <td>Thu. 09/14</td>
+	  <td>
+	    
+	      Cancelled, MLK building closed.
+	    
+	  </td>
+	  <td>
+	    -
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>2</td>
+	  <td>Tue. 09/19</td>
+	  <td>
+	    
+	      <a href='slides/2'>
+		
+		  
+		
+		  
+		
+		  
+		    Intro to Shell
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/2'>Lab 2</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td></td>
+	  <td>Thu. 09/21</td>
+	  <td>
+	     -
+	    
+	  </td>
+	  <td>
+	    -
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>3</td>
+	  <td>Tue. 09/26</td>
+	  <td>
+	    
+	      <a href='slides/3'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Shell Scripting
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/3'>Lab 3</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td></td>
+	  <td>Thu. 09/28</td>
+	  <td>
+	    
+	      Facebook Guest Lecture - Networking at Scale
+	    
+	  </td>
+	  <td>
+	    -
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>4</td>
+	  <td>Thu. 10/05</td>
+	  <td>
+	    
+	      <a href='slides/4'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Distributions, Compiling, and Packaging
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/4'>Lab 4</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>5</td>
+	  <td>Tue. 10/10</td>
+	  <td>
+	    
+	      <a href='slides/5'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Networking 101
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/5'>Lab 5</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>6</td>
+	  <td>Tue. 10/17</td>
+	  <td>
+	    
+	      <a href='slides/6'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Processes and Services
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/6'>Lab 6</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>7</td>
+	  <td>Tue. 10/24</td>
+	  <td>
+	    
+	      <a href='slides/7'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Networked Services
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/7'>Lab 7</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>8</td>
+	  <td>Tue. 10/31</td>
+	  <td>
+	    
+	      <a href='slides/8'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Security Fundamentals
+		  
+		
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/8'>Lab 8</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>9</td>
+	  <td>Tue. 11/07</td>
+	  <td>
+	    
+	      <a href='slides/9'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Web Applications
+		  
+		
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/9'>Lab 9</a>
+	    
+	  </td>
+	</tr>
+      
+	<tr>
+	  <td>10</td>
+	  <td>Tue. 11/14</td>
+	  <td>
+	    
+	      <a href='slides/10'>
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		
+		  
+		    Special Topics
+		  
+		
+	      </a>
+	    
+	  </td>
+	  <td>
+	    
+	      <a href='labs/10'>Lab 10</a>
+	    
+	  </td>
+	</tr>
+      
+    </tbody>
+  </table>
+</div>
+
+  
+  <!-- Team Members Row -->
+<div class="row" id='staff'>
+  <div class="col-lg-12">
+    <h2 class="page-header">Course Staff</h2>
+  </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="https://nyx.ocf.io/gravatar.png" style="height: 200px;" alt="">
+      <h3>Abizer Lokhandwala
+	<small>Head Facilitator</small>
+      </h3>
+      <p>I am a junior CS major. Please include your favorite color, mother's maiden name, and social security number when signing up for this course.</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/ldw.png"  alt="">
+      <h3>Douglas Wong
+	<small>Head Facilitator</small>
+      </h3>
+      <p>I am a super senior CS major from Hong Kong. When I'm not working I enjoy tennis, table tennis and kpop.</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/ian.jpg"  alt="">
+      <h3>Ian McDonald
+	<small>Facilitator</small>
+      </h3>
+      <p>I’m a senior studying computer science. I started using Linux after taking some bad advice and I haven’t looked back since.</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/kuoh.png"  alt="">
+      <h3>Harrison Kuo
+	<small>Facilitator</small>
+      </h3>
+      <p>I'm a senior studying EECS/MSE and I like messing with old or broken computers on my free time. I'm also a deputy manager at the OCF.</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/jvperrin.jpg"  alt="">
+      <h3>Jason Perrin
+	<small>Facilitator</small>
+      </h3>
+      <p>I'm a junior EECS major who enjoys security, systems, webcomics, and running, though hopefully not running away from angry decal students!</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/baisang.jpg"  alt="">
+      <h3>Brian Sang
+	<small>Facilitator</small>
+      </h3>
+      <p>Hi everyone! My name is Brian and I'm a senior CS major from Cleveland, Ohio. Feel free to hit me up for boba or if you want to talk about our Lord and Savior, LeBron James</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/dkessler.png"  alt="">
+      <h3>Daniel Kessler
+	<small>Facilitator</small>
+      </h3>
+      <p>I'm a junior studying computer science and economics. I've been messing around with Linux servers for years, and I'm excited to help out with this DeCal!</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/tonyc2.jpg"  alt="">
+      <h3>Tony Situ
+	<small>Facilitator</small>
+      </h3>
+      <p>California born and raised; chasing whatever catches my curiosity at the time. On the side, I love tabletop, hiking, photography, and value (especially value).</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/mcint.jpg"  alt="">
+      <h3>Loren McIntyre
+	<small>Facilitator</small>
+      </h3>
+      <p>I'm a 4th-year CS major who took some time off along the way. I like to talk about software philosophy, life, and living in the co-ops.</p>
+    </div>
+  
+    <div class="col-lg-4 col-sm-6 text-center">
+      <img class="img-circle img-responsive img-center" src="images/kpengboy.jpg"  alt="">
+      <h3>Kevin Peng
+	<small>Guest Lecturer</small>
+      </h3>
+      <p>Kevin is a 5th-year EECS master's student and OCF Deputy Manager.</p>
+    </div>
+  
+</div>
+
+</div>
+
+
+  <footer>
+  <div class="row">
+	<div class="col-lg-12">
+	  <p class='text-center'>
+	  <a href="https://www.ocf.berkeley.edu">
+		<img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+	   alt="Hosted by the OCF" style="border: 0;" />
+	  </a>
+	  Copyright &copy; Open Computing Facility, eXperimental Computing Facility 2017.
+	  </p>
+	</div>
+	<!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+
+</body>
+
+</html>

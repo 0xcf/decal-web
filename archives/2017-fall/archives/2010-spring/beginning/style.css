@@ -1,0 +1,122 @@
+
+/* <![CDATA[ */
+
+table.grades {
+		margin-left: 1em;
+		width: 80%;
+		border-width: 1px 1px 1px 1px;
+		border-spacing: 1px;
+		border-style: outset outset outset outset;
+		border-color: black black black black;
+		border-collapse: collapse;
+	}	
+table.grades th {
+		border-width: 1px 1px 1px 1px;
+		padding: 3px 3px 3px 3px;
+		border-style: inset inset inset inset;
+		border-color: black black black black;
+		/*-moz-border-radius: 0px 0px 0px 0px;*/
+}
+table.grades td {
+		border-width: 1px 1px 1px 1px;
+		padding: 3px 3px 3px 3px;
+		border-style: inset inset inset inset;
+		border-color: black black black black;
+		/*-moz-border-radius: 0px 0px 0px 0px;*/
+}
+hr, hr.footer {
+	  width: 60%;
+	  margin-left: 0.5em;
+}
+
+hr.footer {
+		width: 20%;
+		margin-left: 0.5em;
+}
+
+ul, ul.contents { margin-left: -0.5em; }
+
+ul.contents { margin-top: -1em; }
+
+li.contents { font-size: small; }
+
+p { margin-left: 1em; }
+
+p.footer { margin-left: 0em; }
+
+span.date {
+	font-family: Courier New;
+	font-size: small;
+}
+
+table.schedule {
+	margin-left: 1em;
+	width: 80%;
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 1px;
+	border-style: outset outset outset outset;
+	border-color: black black black black;
+	border-collapse: collapse;
+
+}
+
+table.schedule th {
+	border-width: 1px 1px 1px 1px;
+	padding: 3px 3px 3px 3px;
+	border-style: inset inset inset inset;
+	border-color: black black black black;
+	/*-moz-border-radius: 0px 0px 0px 0px;*/
+}
+table.schedule td {
+	border-width: 1px 1px 1px 1px;
+	padding: 3px 3px 3px 3px;
+	border-style: inset inset inset inset;
+	border-color: black black black black;
+	/*-moz-border-radius: 0px 0px 0px 0px;*/
+}
+
+td.date { width: 5%; }
+
+td.info { width: 43%; }
+
+td.notes { width: 14%; }
+
+td.hw{ width: 18%; }
+
+td.labs { width: 10%; }
+
+td.soln { width: 10%; }
+
+table.groups { width: 150px; }
+
+td.num { width:5%; }
+
+td.members{ width:95%;}
+
+span.u {
+		text-decoration: underline;
+    }
+
+table.beggrades {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 1px;
+	border-style: outset outset outset outset;
+	border-color: black black black black;
+	border-collapse: collapse;
+}
+table.beggrades th {
+	border-width: 1px 1px 1px 1px;
+	padding: 3px 3px 3px 3px;
+	border-style: inset inset inset inset;
+	border-color: black black black black;
+	/*-moz-border-radius: 0px 0px 0px 0px;*/
+}
+table.beggrades td {
+	border-width: 1px 1px 1px 1px;
+	padding: 3px 3px 3px 3px;
+	border-style: inset inset inset inset;
+	border-color: black black black black;
+	/*-moz-border-radius: 0px 0px 0px 0px;*/
+}
+
+/* ]]> */

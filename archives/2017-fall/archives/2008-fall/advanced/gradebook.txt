@@ -1,0 +1,18 @@
+ID String		HW1 HW2 HW3 Pr1 HW4
+
+1123581321		P   +   +   +   +
+294mm			P   +   +   +   +
+53011			P   -   +   +   +
+6160992f		NP  +   +   +   +
+cong			-   +   +   -   +
+DECPDP11		NP  +   +   +   +
+MEast			P   +   +   +   -
+nnk			P   +   -   +   +
+TheGreenLantern		P   +   +   +   +
+tk421			P   -   -   -   -
+
+Legend:
++	received, not graded
+P	pass
+NP	fail
+-	not received

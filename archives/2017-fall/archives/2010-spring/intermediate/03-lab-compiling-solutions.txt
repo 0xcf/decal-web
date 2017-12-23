@@ -1,0 +1,39 @@
+CS98/198 System Administration DeCal
+Week 3- Compiling Software
+
+I. Setting Up Users
+1. adduser [username]
+2. apt-get install sudo
+3. Sample sudoers file:
+# /etc/sudoers
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# See the man page for details on how to write a sudoers file.
+#
+
+Defaults        env_reset
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL) ALL
+mgasidlo        ALL=(ALL) ALL
+jordan  ALL=(ALL) ALL
+sanjayk ALL=(ALL) ALL
+alanw   ALL=(ALL) ALL
+
+You could also replace the "User privilege specification" section with
+%wheel	ALL=(ALL) ALL
+and add all your group members to wheel
+
+II. Shootin' the breeze, Unix style
+2. "wall" will write to all user's terminals
+3. "mesg n" will prevent others from writing to your wall
+
+III. Compilation Challenge
+It looks like everyone managed to get this working, so good job!

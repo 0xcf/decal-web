@@ -1,0 +1,178 @@
+<html>
+ <head><title>System Administration for the Web</title>
+ <style>
+ td {
+ border:1px inset black;
+ padding:0 1em 0 1em;
+ }
+ </style>
+ </head>
+ <body bgcolor="lightblue">	
+ <body text="black">
+ <dir>
+ <br><br><br>
+ <font size=7>System Administration for the Web</font>
+ <hr width=80% align=left>
+
+<br>
+<br>
+<font size=+2>Contents</font>
+<ul>
+<li><a href=#announce>Announcements</a>
+<li><a href=#main>Lecture Schedule</a>
+<li><a href=#admin>Administrative</a>
+<li><a href=#contact>Contacts</a>
+<li><a href=#faq>FAQ</a>
+</ul>
+
+<p><h2><a name="announce">Announcements</a></h2>
+<dir>
+<li>4/27/2006 12:46am <b>If you are having problems installing suExec, then do not worry about it. Apache, php and cgi scripts run simply as a user.</b> This is not the most secure way though!
+<li>4/24/2006 2:25am <b>Dealines for Final Project</b>: <br>1st Part - setting up accounts - May 1st at 5pm.<br> 2nd Part - checking the security - May 8th at 5pm.<br> Good luck!
+<li>2/15/2006 2:31pm No class on Monday due to "Holiday". Will pick things up again on Mon, 2/27. 
+<li>2/12/2006 11:27pm When you try and change your shell on your OCF account enter the path /opt/really-local/bin/zsh . On your inst account a simple /usr/bin/zsh would work. 
+<li>12/21/2005 This website is being prepared for the spring 2006 semester. <a href="http://www.ocf.berkeley.edu/sysadmin-class/2005-fall/">Fall 2005 Website</a>.
+
+</dir></p>
+
+<p><h2<a name="main">Intermediate/Advanced Lecture Schedule</a></h2>
+<table style="clear:right;border-style;inset;" border=1>
+<tr>
+	<td>Week</td>
+	<td>Topic</td>
+	<td>Notes</td>
+	<td>Labs</td>
+	<td>HWs</td>
+	<td>Extra</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>Introduction, History of UNIX</td>
+	<td><a href="notes/week1.pdf">Int/Adv</a></td>
+	<td>None</td>
+	<td><a href="http://docs.ocf.berkeley.edu/wiki/Getting_an_account">Get an OCF Account</td>
+	<td>None</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>Old and New Commands, Text Editors, Process Control</td>
+	<td><a href="notes/notes2.pdf">Int/Adv</a> </td>
+	<td><a href="labs/lab2.pdf">Int/Adv</a> </td>
+	<td>Finish Lab</td>
+	<td><a href="http://en.wikipedia.org/wiki/Cygwin">Cygwin</a>&nbsp;<a href="http://en.wikipedia.org/wiki/SSH">SSH</a> </td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>Networking: DNS, NAT, DHCP, OSI Model</td>
+	<td><a href="notes/notes3.pdf">Int/Adv</a> </td>
+	<td><a href="labs/lab3.pdf">Int/Adv</a> </td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>*NIX Kernel: Drivers, Libraries, etc</td>
+	<td><a href="notes/week4notes.pdf">Int/Adv</td>
+	<td><a href="labs/week4lab.pdf">Int/Adv</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>Apache</td>
+	<td><a href="notes/notes5.pdf">Int/Adv</a></td>
+	<td><a href="labs/week5hw.pdf">Int/Adv</a></td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>Working with Logs, Shell Scripting</td>
+	<td><a href="notes/week6notes.pdf">Int/Adv</a></td>
+	<td><a href="labs/lab6.pdf">Int/Adv</a></td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>How Mail Works: Sendmail/Postfix, Procmail</td>
+	<td><a href="notes/week7notes.pdf">Int/Adv</a></td>
+	<td><a href="labs/lab7.pdf">Int/Adv</a></td>
+	<td></td>
+	<td><a href="http://sendmail.org/~ca/email/sm-X/design-2004-09-20/main/main.html#SECTION00311000000000000000">Sendmail X</a>&nbsp<a href="http://www.postfix.org/big-picture.html">Postfix</a></td>
+ </tr>
+<tr>
+	<td>8</td>
+	<td>Web Tools</td>
+	<td><a href="notes/week8notes.pdf">Inv/Adv</a></td>
+	<td><a href="labs/lab8.pdf">Inv/Adv</a></td>
+</tr>
+<tr>
+	<td>9</td>
+	<td>mySQL/PHP</td>
+	<td><a href="notes/week9notes">Int/Adv</a>
+	<td><a href="labs/lab9.pdf">Int/Adv</a>
+</tr>
+<tr>
+	<td>10</td>
+	<td>Security</td>
+	<td></td>
+	<td><a href="labs/week10lab.pdf">Int/Adv</a>
+	<td></td>
+	<td><a href="http://www.honeynet.org/papers/bots/">Tracking Botnets Paper</a></td>
+</tr>
+<tr>
+	<td>11</td>
+	<td>Final Project</td>
+	<td><a href="labs/final_project.pdf">Final Project</td>
+	<td></td>
+	<td><a href="http://decal.betanegative.com/files/week10lab.pdf">Instructions on SuExec</a></td>
+</tr>
+
+</table>
+	
+
+<p>
+<h2><a name="admin">Administrative</a></h2>
+<dir>
+<b>Time</b>: Inter/Adv: M 5-630 
+		Begin: W 5-630
+<br><b>Location</b>: 275 Soda
+<br><b>CCNs</b>:
+<table style="clear:right;border-style:inset;" border=1>
+ <tr>
+  <td></td>
+  <td><b>M 5-630</b></td>
+  <td><b>W 5-630</b></td>
+ </tr>
+ <tr>
+  <td><b>CS 98</b></td>
+  <td>27346</td>
+  <td>26200</td>
+ </tr>
+ <tr>
+  <td><b>CS 198</b></td>
+  <td>27343</td>
+  <td>27399</td>
+ </tr>
+</table>
+<br>
+<br>
+<li>Attendance is mandatory, with two excused absences<br>
+<li>Weekly homework assignements will be given out, graded on a p/np basis<br>
+<li>There will be a project involving the setting up of a webserver during the course of the semester. Failure to complete the project will result in a grade of np<br><br>
+</dir>
+</p>
+
+<p><h2><a name="contact">Contacts</a></h2>
+<dir>
+<b>Email</b>: sysadmin-decal(at)OCF.Berkeley.EDU<br>
+<b>Office Hours</b>:<br>
+
+</dir>
+</p>
+
+<p>
+<h2><a name="faq">Frequently Asked Questions</a></h2>
+<dir>
+<a href="../2005-fall/faq.html">Frequently Asked Questions modified from past semesters</a><br><br>
+</dir>
+</p>
+
+
+</ul>
+</ul>
+</body>
+</html>

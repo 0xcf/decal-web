@@ -1,0 +1,191 @@
+resources:
+http://www.ocf.berkeley.edu/~daradib/dl/ocf/sysadmin-guide-incomplete.pdf
+http://debian-handbook.info/
+http://nixsrv.com/llthw
+http://www.simson.net/ref/ugh.pdf
+http://www.debian.org/doc/manuals/debian-reference
+http://cli.learncodethehardway.org/book/
+http://tldp.org/LDP/intro-linux/html/index.html
+http://tldp.org/LDP/sag/html/index.html
+http://www.ee.surrey.ac.uk/Teaching/Unix/index.html
+
+funny stuff:
+http://www.youtube.com/watch?v=42pxnLZJXzo
+http://truthhappens.redhat.com/
+
+## Lecture 1 - Welcome and intro: what LSD and Unix have in common
+***************************************************
+daradib/ppyu, waf
+
+-- introduction
+"Two of the most famous products of Berkeley are LSD and Unix. I don't think that this is a coincidence." (The Unix-Haters Handbook)
+unix philosophy
+distributions: GNU/Linux, BSD, Solaris, Mac OS X
+
+-- user environment: the shell 
+there's a prompt, type something, returns output, repeat
+navigating: cd, pwd, ls, cp, mv, rm, rmdir, touch
+history, tab-completion
+hidden files, special meaning of . and ..
+common: cat, echo, logout (C-d)
+pagers: less is more
+list of shells: zsh, bash, tcsh, csh, sh, fish, dash
+RTFM: command line options, man pages, apropos
+"cat came back from Berkeley waving flags" (Rob Pike)
+
+-- text editing (if time permits)
+vi{m}: normal mode, insert mode, deleting, saving
+
+
+## Lecture 2 - User environment: it's a series of tubes
+***************************************************
+daradib/ppyu, ppyu
+
+"This is the Unix philosophy. Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface." (Doug McIlroy)
+whoami, hostname, uname, alias
+variables, environment variables (env, $PATH, export)
+shell expansion: ~user, globbing, backticks
+.bashrc, .bash_profile, .profile
+quotes: single, double
+text streams, pipes, >, |, >>, 2>, tee, <
+
+-- using google 
+search for a "how to"
+do not blindly copy-paste: amusing post on askubuntu http://askubuntu.com/questions/124483/i-was-tricked-into-copy-pasting-a-command-did-it-hurt-me
+read (or at least skim) man pages for unknown programs and options
+
+## Lecture 3 - User environment: tonight we dine in shell
+***************************************************
+waf/ppyu, daradib
+
+waf:
+-- review and continuation
+redirection and process substitution
+
+-- moar stuff/useful commands/tools
+tee, find, locate, for, while, read, xargs, awk
+
+ppyu: 
+grep, sed, cut, tr, wc, sort, uniq, head, tail
+regex
+common options: -h/--help, -v --verbose, -d --debug, -f --force or file input, -R recursive
+
+--already covered[?]
+The highest achievement of the Unix-aesthetic is to have a command that does precisely one function, and does it well. Purists object that, after freshman programmers at Berkeley got through with it, the program "cat" which concatenates multiple files to its output now has OPTIONS. ("Cat came back from Berkeley waving flags," in the words of Rob Pike, perhaps the ultimate Unix minimalist.)  (The Unix-Haters Handbook)
+
+## Lecture 4 - File management: starting from /
+***************************************************
+daradib
+
+-- user management
+nsswitch
+getent: passwd, groups, etc.
+home directories
+
+-- file management
+tree
+file system hierarchy
+permissions: chown, chmod, chgrp, set{u,g}id, acl, umask
+partitions, file system types
+mount/umount, fstab
+RAID
+"ls -aldR
+directories (dir)
+symbolic links (symlink)
+devices: character, block
+sockets, named pipes (FIFOs)"
+
+## Lecture 5 - Process management: forks, bombs, zombies, daemons
+***************************************************
+ppyu
+
+pid, ppid, pstree
+jobs: fg, bg
+cron
+basic process concepts(process creation, parent/child, fork/exec, etc)
+process states
+process signals 
+ps, top, kill, killall, pkill
+daemons
+init.d, run levels
+/proc filesystem 
+exit status
+
+## Lecture 6 - Software management or: How I Learned to Stop Worrying and Love APT
+***************************************************
+waf/daradib
+
+-- compiling software
+program compilation
+Makefiles
+./configure, make, make install
+
+-- segue
+File System Navigator (fsn) from 1993 Jurassic Park for Silicon Graphics (SGI): http://www.youtube.com/watch?v=dFUlAQZB9Ng
+File System Visualizer (fsv) clone: http://fsv.sourceforge.net/
+fsv for GTK 2.0: https://github.com/mcuelenaere/fsv
+
+-- package management
+deb/apt
+
+
+## Lecture 7 - Networking services: there's no place like 127.0.0.1
+***************************************************
+waf/daradib
+
+TCP, UDP
+private addresses
+network ports, firewalls (iptables)
+SNAT (masquerade), DNAT (port forwarding)
+DNS (53): record types, dig, host
+HTTP/HTTPS (80/443): lynx
+SMTP (25), IMAP/POP: mutt
+LDAP (389)/Kerberos: PAM 
+NFS (/etc/exports, /etc/fstab)
+SSH, public/private keys
+
+## Lecture 8 - When disaster strikes and all else fails
+***************************************************
+ppyu/daradib
+
+Nifty tools:
+w, who, uptime (1, 5, 15 min average of processes waiting for CPU or sometimes disk)
+htop (linux only), iftop, iotop (linux only)
+ldd, truss/strace
+lsof, netstat, fuser
+md5sum
+netcat
+ifconfig, ping, traceroute
+watch
+seq
+wireshark, tshark, tcpdump
+nmap
+df, du
+scp, rsync
+tar
+dd
+fdisk, parted (linux only)
+fsck
+wall, write
+screen, tmux
+sudo
+
+Encryption/signing: GPG, OpenSSL
+
+Disasters
+
+## Lecture 9 - Scaling and version control: head in the clouds
+***************************************************
+daradib/ppyu
+
+virtualization: qemu/kvm, virtualbox, xen, vmware
+cloud: EC2
+configuration management: puppet
+monitoring: nagios
+version control: diff/patch, rcs/cvs/svn/hg/git
+
+## Lecture 10 - Special topics
+nobody
+
+## Lecture 11 - Work on projects
+## Lecture 12 - Present projects

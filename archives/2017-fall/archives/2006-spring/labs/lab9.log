@@ -1,0 +1,71 @@
+This is pdfTeX, Version 3.14159-1.10b (Web2C 7.4.5) (format=pdflatex 2003.3.1)  10 APR 2006 17:35
+**lab9.tex
+(./lab9.tex{/opt/local/packages/teTeX-2.0.2/share/texmf/pdftex/config/pdftex.cf
+g}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+(/opt/local/packages/teTeX-2.0.2/share/texmf/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/opt/local/packages/teTeX-2.0.2/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(./lab9.aux)
+\openout1 = `lab9.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 4.
+
+
+LaTeX Warning: No \author given.
+
+[1
+
+{/opt/local/packages/teTeX-2.0.2/share/texmf/dvips/config/pdftex.map}]
+(./lab9.aux) ) 
+Here is how much of TeX's memory you used:
+ 228 strings out of 95437
+ 2414 string characters out of 1188560
+ 46470 words of memory out of 1000001
+ 3301 multiletter control sequences out of 10000+50000
+ 7280 words of font info for 26 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 1000
+ 23i,6n,19p,128b,213s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 16 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 0 words of extra memory for PDF output out of 65536
+{/opt/local/packages/teTeX-2.0.2/share/texmf/dvips/tetex/f7b6d320
+.enc}</opt/local/packages/teTeX-2.0.2/share/texmf/fonts/type1/bluesky/cm/cmr10.
+pfb></opt/local/packages/teTeX-2.0.2/share/texmf/fonts/type1/bluesky/cm/cmbx12.
+pfb></opt/local/packages/teTeX-2.0.2/share/texmf/fonts/type1/bluesky/cm/cmr12.p
+fb></opt/local/packages/teTeX-2.0.2/share/texmf/fonts/type1/bluesky/cm/cmr17.pf
+b>
+Output written on lab9.pdf (1 page, 26822 bytes).

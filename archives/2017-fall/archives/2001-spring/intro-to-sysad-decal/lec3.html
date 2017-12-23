@@ -1,0 +1,270 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 3</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 3 notes:</h1>
+
+<h2>New students?</h2>
+	If you are new this week, you need to check with the instructors
+	to see if there is any room.  The class may be full.
+
+<h2>administrivia:</h2>
+	<B>Enrollment</B>
+	Any problems?  Please email me to get on the course announcement list:
+	jones@csua.berkeley.edu
+
+	<B>Homework?</B>
+	Feedback?  Troubles?
+
+	<B>Getting Help</B>
+	If you have trouble, please email me, or one of the other teachers.
+	The OCF staffers are often around the lab, and can be helpful.
+	Don't forget your classmates.  
+
+	<B>Questions?</B>	
+
+<h2>course material:</h2>
+	Last week we covered basic unix commands.  This week we'll be looking
+	at text editors, focusing on the "vi" editor.
+
+	We'll go over some basic commands, and then turn you loose on <a href=tutor.vi>tutor.vi</a> 
+	to experiment and get familiar with vi.  If you are already familiar 
+	with the standard editors, help the folks who are new to it!
+	Thanks goes to Shin Ae Tassia for pointing out this useful tutorial.
+
+<B>Goals:</B>
+	Using vi:
+		opening and closing files
+		moving around
+		adding text
+		deleting text
+		searching for text
+		replacing text
+		moving text
+		
+	Using Emacs:
+		opening and closing files
+		moving about the file
+		basic editing
+		online helpfiles
+	
+	Using Pico:
+		Using pico is quite easy
+		When not to use pico
+		
+
+<h3>What is a text editor</h3>
+A program for inserting or appending text to a file.  A text editor is
+not a word processor, although some text editors do include word processing
+functionality.
+
+<h3>A History of Unix editors</h3> 
+
+Vi is the most widely used editor, reliably coming preinstalled on all
+current unix and unix like OSs.  Many people think it's a strange choice
+because its user interface leaves a lot to be desired.  It's the standard
+because it's a fast editor for expert users, and, circularly, for the
+reason that it comes preinstalled on all current unix systems, and has
+for some time.  This is not the case for many other popular editors, and
+there was a time that even vi didn't come installed be default.  In those
+days, one was expected to know a line editor - ed, or ex - in order to
+edit files, at least until you could get the system on a network and ftp
+a more friendly editor such as vi.  What is a line editor?  Editors like
+vi and emacs are called 'screen editors' because when you edit a file, it
+fills the screen with the file's text, and lets you edit it and navigate
+around the file's contents while viewing it on the screen.  This is such
+a good idea that you've never heard "screen editing" called anything
+before -it's just the way that you would want to edit a file, how else
+would you do it?  Well, before the days of terminals that knew how to
+move the cursor back up a line on the screen - especially teletype
+terminals, which were glorified typewriters/daisy-wheel printers that
+printed all the characters instead of displaying them on a screen - file
+editors had no choice but to display a file one line at a time, and allow
+the user to make changes to that line.  For instance, when editing a file
+with ed, first the user would type the line number of the line to edit,
+then make changes to that line using special commands.
+
+<h3>Using vi</h3>
+vi is the "visual" full-screen interface to the ex editor.
+
+% <B>vi filename</b>  <i>will open or create a file named filename</i>
+
+vi has two modes, command mode and text-input mode.  To enter text input 
+mode, hit <b>a</B> (append) or <b>i</b> (insert).  To get out of text input 
+mode, hit escape.  If you are unsure what mode you are in, you can resolve 
+the ambiguity by hitting escape until you are in the command mode.
+
+We went over the most basic vi commands in class (from the vi manpage):
+
+     The commands to move around the file are:
+
+     h    Move the cursor left one character.
+
+     j    Move the cursor down one line.
+
+     k    Move the cursor up one line.
+
+     l    Move the cursor right one character.
+
+     &lt;cursor-arrows&gt;
+          The cursor arrow keys should work, too.  On some terminals,
+	  cursor keys send unexpected characters.  A common symptom
+	  of this is to get a capital A, B, C or D appearing on the line
+	  above the cursor when using the cursor-arrows while in text-entry
+	  mode.
+
+     /text&lt;carriage-return&gt;
+          Search for the string ``text'' in the  file,  and  move
+          the cursor to its first character.
+
+     The commands to enter new text are:
+
+       a    Append new text, after the cursor.
+
+       i    Insert new text, before the cursor.
+
+       o    Open a new line below the line the cursor  is  on,  and
+            start entering text.
+
+       &lt;escape&gt;
+            Once you've entered input mode using the one of the
+            a, i, O or o commands, use <escape> to quit  enter-
+            ing text and return to command mode.
+
+       The commands to copy text are:
+
+       yy     Copy the line the cursor is on.
+
+       p      Append the copied line after the line the cursor is
+              on.
+
+       The commands to delete text are:
+
+       dd     Delete the line the cursor is on.
+
+       dw     Delete from the cursor to the end of the word the 
+              cursor is on.
+
+       x      Delete the character the cursor is on.
+
+       The commands to write the file are:
+
+       :w&lt;carriage-return&gt;
+              Write the file back to the file with the name  that
+              you  originally  used as an argument on the vi com-
+              mand line.
+
+       :w file_name&lt;carriage-return&gt;
+              Write the file back  to  the  file  with  the  name
+              ``file_name''.
+
+       The commands to quit editing and exit the editor are:
+
+       :q&lt;carriage-return&gt;
+              Quit  editing  and leave vi (if you've modified the
+              file, but not saved your changes, vi will refuse to
+              quit).
+
+       :wq&lt;carriage-return&gt;
+              Save your changes, if any, and quit.
+
+       :q!&lt;carriage-return&gt;
+              Quit,  discarding  any  modifications  that you may
+              have made.
+
+       One final caution.  Unusual characters can  take  up  more
+       than  one column on the screen, and long lines can take up
+       more than a single screen line.  The above  commands  work
+       on ``physical'' characters and lines, i.e. they affect the
+       entire line no matter how many screen lines  it  takes  up
+       and the entire character no matter how many screen columns
+       it takes up.
+
+
+After going over these basic commands, we turned the class loose on
+the <A href=tutor.vi>vi tutorial</a>, which was assigned as homework.
+
+
+<h3>Using Emacs</h3>
+
+	We didn't get a chance to cover emacs, which is another powerful
+	text editor.  It is favored by programmers, and has a richer, more
+	complex and featureful interface.  It is very widely used, although
+	it doesn't come standard on every system, 
+
+Other notes:
+	<a href=http://www.xemacs.org/About/XEmacsVsGNUemacs.html>xemacs vs emacs </a>- two branches of the software being maintained
+	by different parties.
+
+<h3>Using pico</h3>
+	pico is a very simple text editor, which uses the cursor keys to move 
+	around, and lists other basic commands which are available at the 
+	bottom of the screen.  Pico is sometimes nice for editing html or 
+	messages to others (it is nearly the same editor you use as the default
+	editor in the pine email client (pico stands for <b>pi</b>ne <b>co</b>mposer)).
+	I like the ^J (control-J), Justify, command, which wraps all the text
+	nicely according to your window.
+
+other notes:
+	pico by default wraps lines, which makes it best for writing letters
+	or editing html, or doing anything where you would prefer the lines 
+	don't get overly long.  To turn off this feature use the -w flag:
+	<B>pico -w filename</B>
+	wrapped lines can be especially dangerous in configuration files such
+	as the passwd file, where the format is expected to be a certain way.
+
+<h2>Homework #2</h2>
+<UL>
+
+To learn more about vi, read the vi manpage, and go over <a href=tutor.vi>tutor.vi</a>,
+a vi tutorial, at least until lesson 4.
+
+The "ls" command is probably one of your most used commands.  Did you ever
+read its manpage?  
+
+<b>What to turn in:</b>
+What letters of the alphabet are not valid ls flags?
+
+Describe a problem you have with vi (user interface, etc.).
+
+Class Feedback:
+Do you have any questions about the class?  What would you like to learn?
+Do you feel that the lectures are going too fast/too slow/just right?
+
+Attach a copy of your modified tutor.vi, and mail the answers to 
+the above questions to:
+jones@<b>xcf</B>.berkeley.edu  
+(note that's not jones@ocf, mail to jones@ocf may go unnoticed).
+</UL>
+
+
+<h2>enrichment</h2>
+Here are some links and information you might find useful or interesting.
+
+<a href=http://www.linuxhq.com/guides/LUG/node161.html>A quick ed tutorial</a>
+
+<a href=http://stein.cshl.org/genome_informatics/unix1/editors.html>emacs survival guide (small)</a>
+
+<a href=http://www.landfield.com/faqs/editor-faq/VI-Archive-filelist/>vi FAQ from comp.editors newsgroup</a>
+
+<a href=http://www.ist.uwaterloo.ca/ec/unix/viprimer.txt>vi primer</a>
+
+<a href=http://unixhelp.ed.ac.uk/vi/index.html>Using the vi editor</a> 
+
+
+
+
+
+
+<a href=http://cwrulug.cwru.edu/docs/apps.html>Useful Linux Programs</a>
+
+Don't forget to look at the manpages for the commands that you've learned.
+The manpage for ed is short compared to other editors.
+
+
+<hr>

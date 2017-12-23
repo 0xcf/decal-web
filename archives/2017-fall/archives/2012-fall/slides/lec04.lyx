@@ -1,0 +1,1267 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass powerdot
+\options style=aggie
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans cmbr
+\font_typewriter default
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize size=17
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lecture 4: File management
+\begin_inset Newline newline
+\end_inset
+
+starting from /
+\end_layout
+
+\begin_layout Author
+Hands-on Unix System Administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-01-30
+\end_layout
+
+\begin_layout Section
+Review
+\end_layout
+
+\begin_layout Slide
+Shell expansion
+\end_layout
+
+\begin_layout Itemize
+variables (
+\family typewriter
+$PATH
+\family default
+, environment variables)
+\end_layout
+
+\begin_layout Itemize
+aliases
+\end_layout
+
+\begin_layout Itemize
+tilde
+\end_layout
+
+\begin_layout Itemize
+globbing
+\end_layout
+
+\begin_layout Itemize
+backticks
+\end_layout
+
+\begin_layout Itemize
+single vs.
+ double quotes
+\end_layout
+
+\begin_layout Slide
+Standard streams
+\end_layout
+
+\begin_layout Itemize
+stdin, stdout, stderr
+\end_layout
+
+\begin_layout Itemize
+redirection: 
+\family typewriter
+>
+\family default
+, 
+\family typewriter
+>>
+\family default
+, 
+\family typewriter
+<
+\end_layout
+
+\begin_layout Itemize
+pipes: 
+\family typewriter
+|
+\end_layout
+
+\begin_layout Itemize
+tee, xargs
+\end_layout
+
+\begin_layout Slide
+Useful commands
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+find
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+tr
+\family default
+, 
+\family typewriter
+sort
+\family default
+, 
+\family typewriter
+head
+\family default
+, 
+\family typewriter
+tail
+\family default
+, 
+\family typewriter
+wc
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+for
+\family default
+ index 
+\family typewriter
+in
+\family default
+ 
+\family typewriter
+$
+\family default
+array
+\family typewriter
+; do
+\family default
+ command
+\family typewriter
+; done
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+while
+\family default
+ expression
+\family typewriter
+; do
+\family default
+ command
+\family typewriter
+; done
+\end_layout
+
+\begin_layout Itemize
+regex with 
+\family typewriter
+grep
+\family default
+, 
+\family typewriter
+sed
+\family default
+, 
+\family typewriter
+awk
+\end_layout
+
+\begin_layout Slide
+In a nutshell
+\end_layout
+
+\begin_layout Itemize
+RTFM: 
+\family typewriter
+man, --help
+\family default
+ command line option
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+input
+\series default
+: command line options, 
+\family typewriter
+stdin
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+output
+\series default
+: 
+\family typewriter
+stdout, stderr
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+manipulate
+\series default
+ with pipes (
+\family typewriter
+|
+\family default
+), redirection (
+\family typewriter
+>
+\family default
+,
+\family typewriter
+ >>
+\family default
+), and substitution (
+\family typewriter
+`
+\family default
+)
+\end_layout
+
+\begin_layout Slide
+Philosophy
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\emph on
+The highest achievement of the Unix-aesthetic is to have a command that
+ does precisely one function, and does it well.
+ Purists object that, after freshman programmers at Berkeley got through
+ with it, the program 
+\begin_inset Quotes eld
+\end_inset
+
+cat
+\begin_inset Quotes erd
+\end_inset
+
+ which concatenates multiple files to its output now has OPTIONS\SpecialChar \ldots{}
+
+\begin_inset Quotes eld
+\end_inset
+
+Cat came back from Berkeley waving flags,
+\begin_inset Quotes erd
+\end_inset
+
+ in the words of Rob Pike, perhaps the ultimate Unix minimalist.
+
+\emph default
+ ---The Unix-Haters Handbook
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\emph on
+This is the Unix philosophy.
+ Write programs that do one thing and do it well.
+ Write programs to work together.
+ Write programs to handle text streams, because that is a universal interface.
+
+\emph default
+ ---Doug McIlroy
+\end_layout
+
+\begin_layout Section
+Users
+\end_layout
+
+\begin_layout Slide
+Types of users
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+root
+\series default
+: superuser, virtually unlimited control
+\end_layout
+
+\begin_layout Itemize
+system user accounts
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+typically low UIDs, 
+\family typewriter
+/bin/false
+\family default
+ shell
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+real user accounts
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+typically higher UIDs, real shell like 
+\family typewriter
+/bin/bash
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+Groups
+\end_layout
+
+\begin_layout Itemize
+every user has a primary group and optionally secondary group(s)
+\end_layout
+
+\begin_layout Itemize
+important for file permissions
+\end_layout
+
+\begin_layout Slide
+NSS databases
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+passwd
+\series default
+: user information, public
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+\size small
+useradd
+\family default
+, 
+\family typewriter
+usermod
+\family default
+, 
+\family typewriter
+chsh
+\family default
+, 
+\family typewriter
+userdel
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+shadow
+\series default
+: 
+\begin_inset Quotes eld
+\end_inset
+
+encrypted
+\begin_inset Quotes erd
+\end_inset
+
+ (hashed) passwords, only readable by root
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+\size small
+passwd
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+group
+\series default
+: groups
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+\size small
+groupadd
+\family default
+, 
+\family typewriter
+groupmod
+\family default
+, 
+\family typewriter
+groupdel
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+What's a user
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\size tiny
+$ getent passwd daradib
+\begin_inset Newline newline
+\end_inset
+
+daradib:x:1000:1000:Dara Adib,,,:/home/daradib:/bin/bash
+\end_layout
+
+\begin_layout Itemize
+login name
+\end_layout
+
+\begin_layout Itemize
+password hash
+\end_layout
+
+\begin_layout Itemize
+numerical user ID
+\end_layout
+
+\begin_layout Itemize
+numerical group ID
+\end_layout
+
+\begin_layout Itemize
+finger info (name, phone, office, etc.)
+\end_layout
+
+\begin_layout Itemize
+home directory
+\end_layout
+
+\begin_layout Itemize
+shell
+\end_layout
+
+\begin_layout Slide
+Who's logged in
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+who
+\family default
+, 
+\family typewriter
+w
+\family default
+: print currently logged in users
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+last
+\family default
+: print login-logout log from 
+\family typewriter
+/var/log/wtmp
+\family default
+, 
+\family typewriter
+/var/log/utmp
+\family default
+, or similar
+\end_layout
+
+\begin_layout Itemize
+for more details, use process accounting
+\end_layout
+
+\begin_layout Section
+File hierarchy
+\end_layout
+
+\begin_layout Slide
+Windows
+\end_layout
+
+\begin_layout Itemize
+each storage device has a drive letter, e.g.
+ 
+\family typewriter
+A:
+\backslash
+
+\family default
+ for floppy, 
+\family typewriter
+C:
+\backslash
+
+\family default
+ for hard disk, etc.
+\end_layout
+
+\begin_layout Itemize
+important directories
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+C:
+\backslash
+Windows
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+''C:
+\backslash
+Program Files''
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+C:
+\backslash
+Users
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+*nix concept
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+simplicity through expression
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+everything starts from the root
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+(not to be confused with 
+\family typewriter
+/root)
+\end_layout
+
+\end_inset
+
+: 
+\family typewriter
+/
+\end_layout
+
+\begin_layout Itemize
+excessive (but productive) abbreviation
+\end_layout
+
+\begin_layout Itemize
+case sensitive
+\end_layout
+
+\begin_layout WideSlide
+Looking under /
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/bin
+\series bold
+/
+\family default
+\series default
+ core 
+\series bold
+bin
+\series default
+aries
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/dev
+\series bold
+/
+\family default
+\series default
+ 
+\series bold
+dev
+\series default
+ice files
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/etc
+\series bold
+/
+\family default
+\series default
+ systemwide 
+\emph on
+config
+\emph default
+uration files
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/home
+\series bold
+/
+\family default
+\series default
+ 
+\series bold
+home
+\series default
+ 
+\emph on
+dir
+\emph default
+ectories (user data)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/lib
+\series bold
+/
+\family default
+\series default
+ core 
+\series bold
+lib
+\series default
+raries
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/proc
+\series bold
+/
+\family default
+\series default
+ 
+\series bold
+proc
+\series default
+fs interface to kernel
+\end_layout
+
+\begin_layout WideSlide
+Looking under / more
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/root
+\series bold
+/
+\family default
+\series default
+ 
+\series bold
+root
+\series default
+'s home directory
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+(not to be confused with the root 
+\family typewriter
+/)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/sbin
+\series bold
+/
+\family default
+\series default
+to 
+\series bold
+s
+\series default
+ystem 
+\series bold
+bin
+\series default
+aries
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/tmp
+\series bold
+/
+\family default
+\series default
+ 
+\series bold
+t
+\series default
+e
+\series bold
+mp
+\series default
+orary files
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/usr
+\series bold
+/
+\family default
+\series default
+ non-core binaries, libraries, etc.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+/var
+\series bold
+/
+\family default
+\series default
+ 
+\series bold
+var
+\series default
+ying files: logs, user inboxes, running program data, etc.
+\end_layout
+
+\begin_layout Section
+Filesystems
+\end_layout
+
+\begin_layout Slide
+What is a filesystem?
+\end_layout
+
+\begin_layout Itemize
+Each local hard disk can have one or more partitions which contain files
+ managed by a filesystem
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+e.g., 
+\family typewriter
+/dev/sda
+\family default
+, 
+\family typewriter
+/dev/sda1
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+Examples
+\end_layout
+
+\begin_layout Itemize
+Windows (and flash drives) filesystems: FAT32, NTFS
+\end_layout
+
+\begin_layout Itemize
+Linux: ext3, ext4, btrfs
+\end_layout
+
+\begin_layout Itemize
+Other Unix: UFS, XFS, ZFS, ReiserFS
+\end_layout
+
+\begin_layout Slide
+Non-disk/flash filesystems
+\end_layout
+
+\begin_layout Itemize
+RAM: tmpfs
+\end_layout
+
+\begin_layout Itemize
+network: NFS, SMB
+\end_layout
+
+\begin_layout Itemize
+FUSE: GmailFS, WikipediaFS
+\end_layout
+
+\begin_layout Slide
+RAID
+\end_layout
+
+\begin_layout Itemize
+Redundant Array of Independent (Inexpensive) Disks
+\end_layout
+
+\begin_layout Itemize
+combine multiple hard drives for speed (striping), capacity, reliability
+ (mirroring, parity)
+\end_layout
+
+\begin_layout Slide
+RAID examples
+\end_layout
+
+\begin_layout Itemize
+common examples: RAID 0 (striping), RAID1 (mirror), RAID5 (parity), RAID
+ 6 (two parity)
+\end_layout
+
+\begin_layout Itemize
+nested, e.g., RAID 10
+\end_layout
+
+\begin_layout Slide
+Mounting
+\end_layout
+
+\begin_layout Itemize
+file hierarchy crosses filesystem boundaries
+\end_layout
+
+\begin_layout Itemize
+use 
+\family typewriter
+mount
+\family default
+ to mount local or networked 
+\emph on
+stuff
+\emph default
+ on a directory (mount point)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+can mount regular files too
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Files
+\end_layout
+
+\begin_layout Slide
+ls options
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+-l
+\family default
+: long listing format
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+-h
+\family default
+: human-readable file sizes
+\end_layout
+
+\begin_layout Itemize
+-d: show directories themselves, not contents
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+-F
+\family default
+: classify files with indicators
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+e.g., directory
+\family typewriter
+/
+\family default
+, symlink
+\family typewriter
+@
+\family default
+, executable
+\family typewriter
+*
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+ls -l
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+$ ls -l lec04.lyx
+\begin_inset Newline newline
+\end_inset
+
+-rw-r--r-- 1 daradib daradib 15K Sep 24 16:38 lec04.lyx
+\end_layout
+
+\begin_layout Itemize
+file type
+\end_layout
+
+\begin_layout Itemize
+permissions: user, group, other
+\end_layout
+
+\begin_layout Itemize
+number of hard links
+\end_layout
+
+\begin_layout Itemize
+owner, group, size, mtime, name
+\end_layout
+
+\begin_layout Slide
+Regular files
+\end_layout
+
+\begin_layout Itemize
+Windows: filetype extensions
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+.exe
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+.doc
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Unix: magic tests
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+man file
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+Other file types
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ls -l
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+d
+\series default
+irectories (dir)
+\end_layout
+
+\begin_layout Itemize
+symbolic 
+\series bold
+l
+\series default
+inks (symlink)
+\end_layout
+
+\begin_layout Itemize
+devices: 
+\series bold
+c
+\series default
+haracter, 
+\series bold
+b
+\series default
+lock
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+s
+\series default
+ockets, named 
+\series bold
+p
+\series default
+ipes (FIFOs)
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+File permissions
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\size tiny
+-rw-r--r-- 1 root root 
+\begin_inset space ~
+\end_inset
+
+1.5K Sep 2 10:58 /etc/passwd
+\begin_inset Newline newline
+\end_inset
+
+-rw-r----- 1 root shadow 947 Sep 2 10:58 /etc/shadow
+\end_layout
+
+\begin_layout Itemize
+permissions (
+\family typewriter
+chmod
+\family default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\size small
+r
+\series default
+ead (+4)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size small
+w
+\series default
+rite (+2)
+\end_layout
+
+\begin_layout Itemize
+
+\size small
+e
+\series bold
+x
+\series default
+ecute (+1)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+owners (chown, chgrp)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\size small
+u
+\series default
+ser (first digit)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size small
+g
+\series default
+roup (second digit)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size small
+o
+\series default
+ther (third digit)
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+Changing file permissions
+\end_layout
+
+\begin_layout Standard
+These commands are equivalent:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+chown daradib:root file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+chown daradib file
+\family default
+; 
+\family typewriter
+chgrp root file 
+\end_layout
+
+\begin_layout Standard
+These commands are equivalent:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+chmod u=rwx,g+w,o-rwx file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+chmod 720 file
+\end_layout
+
+\begin_layout EndSlide
+
+\end_layout
+
+\end_body
+\end_document

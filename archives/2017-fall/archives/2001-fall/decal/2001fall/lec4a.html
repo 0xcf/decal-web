@@ -1,0 +1,89 @@
+<html>
+<head><title>Lecture 4</title></head>
+<body bgcolor="#000070">
+<font face="verdana, arial, helvetica" color="white">
+
+<h2>Lecture 4 :: 2001-Oct-12</h2>
+
+<h3>Apache Server</h3>
+<pre>
+SSI Example =================================<br><br>
+
+    &lt;html&gt;
+     &lt;head&gt; &lt;title&gt;Today's Date &lt;/title&gt; &lt;/head&gt;
+     &lt;body&gt;
+        &lt;!-- #exec cmd="date" --&gt;
+     &lt;/body&gt; 
+    &lt;/html&gt;
+    
+Date.pl =====================================
+
+!#/usr/bin/perl
+$stuff='cat index.html'
+print "$stuff"
+
+Www.apache.org =============================
+
+/usr/local/apache/root/  // Global settings  
+~$user/public_http/      // Local settings replace global
+
+    httpd.conf   // Use this to config Apache
+    access.conf  // Who has access to files 
+    srm.conf     // [optional] Most of this in httpd.conf 
+
+- Make sure port 8080 is open, or Apache will crash.
+
+Logs:
+
+    - access log // Who's been here
+    - error log  // Log of everything that is FUBAR
+
+    - Rotate logs using cron, archive older logs, really old logs disappear
+    - Log location variable, set using httpd.conf
+    - Possible location: /var/log/apache or /services/http/adm/
+
+
+<h3>Vi (Village Idiot) </h3>
+
+- Has two modes, command and insert, also know as beep and non-beep
+- Complete the vi tutor within two weeks
+- URL: <href="http://www.ocf.berkeley.edu/~drew/tutor">http://www.ocf.berkeley.edu/~drew/tutor</a>
+
+
+<h3>RegExp</h3>
+
+- Use to search and replace text in grep, vi, etc.
+- Syntax:
+  
+    a*     // Matches everything before *, unlimited number of times
+	         (a, aa, aaa, ... are matched) 
+    .*     // Matches any letter
+    [abc]+ // Matches one of these letters, treats as one char
+    [^abc] // Exclude a, b, c from search
+    [a-z]  // Match a-z
+    \.     // 
+    \s     //
+    ()     // Use for grouping
+
+- Examples:
+
+    given: abcdeafghiajk
+
+    .*	   // Entire line works, abcdeafghiajk  
+    a.*a   // Matches everything between a and a, greedy, abcdeafghia
+    a.*?a  // Matches everything between a and a, non greedy, abcdea	
+
+
+<h3>Where We Are in the Class</h3>
+
+Calman: You now know enough that you no longer have to show up to 
+	work.  SSH in and run scripts to do everything.
+
+<b>Homework: Complete the vi tutor by 2001-10-26 (Friday)</b>
+<href="http://www.ocf.berkeley.edu/~drew/tutor">http://www.ocf.berkeley.edu/~drew/tutor</a>
+</pre>
+</html>
+
+
+
+

@@ -1,0 +1,573 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass powerdot
+\options style=aggie
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans cmbr
+\font_typewriter default
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize size=17
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lecture 01: welcome and intro
+\begin_inset Newline newline
+\end_inset
+
+what LSD and Unix have in common
+\end_layout
+
+\begin_layout Author
+Hands-On Unix System Administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-08-27
+\end_layout
+
+\begin_layout Slide
+The connection
+\end_layout
+
+\begin_layout Quotation
+
+\size larger
+\begin_inset Quotes eld
+\end_inset
+
+Two of the most famous products of Berkeley are LSD and Unix.
+ I don't think that this is a coincidence.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(from 
+\emph on
+The Unix-Haters Handbook
+\emph default
+)
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Slide
+What is this?
+\end_layout
+
+\begin_layout Itemize
+CS 98/198-8, the Hands-on Unix system administration DeCal
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+decal.ocf.berkeley.edu
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Don’t be shy.
+ Ask questions in class or on Piazza.
+\end_layout
+
+\begin_layout Slide
+Who are we?
+\end_layout
+
+\begin_layout Itemize
+Dara Adib: 3rd-year CivE; OCF general manager, Kloudless DevOps
+\end_layout
+
+\begin_layout Itemize
+Felix Wong: 4th-year EECS; OCF site manager, ResComp sysadmin
+\end_layout
+
+\begin_layout Itemize
+Jessica Yu: 3rd-year CS; ResComp sysadmin
+\end_layout
+
+\begin_layout Slide
+What is Unix?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lec01-Unix_history.svg
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size scriptsize
+https://en.wikipedia.org/wiki/File:Unix_history.svg
+\end_layout
+
+\begin_layout Slide
+What is sysadmining?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lec01-devotion_to_duty.png
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size scriptsize
+http://xkcd.com/705/
+\end_layout
+
+\begin_layout Slide
+Logistics
+\end_layout
+
+\begin_layout Itemize
+lecture-lab format: lab due at start of next week's class
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\textrm{lab}\neq\textrm{homework}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+grading: attendance, labs, final project
+\end_layout
+
+\begin_layout Itemize
+bring laptop if possible
+\end_layout
+
+\begin_layout Section
+Diving into the shell
+\end_layout
+
+\begin_layout Slide
+The shell
+\end_layout
+
+\begin_layout Itemize
+an ordinary program (e.g., 
+\family typewriter
+bash
+\family default
+) that lets you access the system
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+text-based
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+edit files, run other programs, etc.
+\end_layout
+
+\begin_layout Itemize
+can be automated with shell scripting
+\end_layout
+
+\begin_layout Slide
+In a nut
+\emph on
+shell
+\end_layout
+
+\begin_layout Itemize
+there's a prompt
+\end_layout
+
+\begin_layout Itemize
+type something
+\end_layout
+
+\begin_layout Itemize
+read output
+\end_layout
+
+\begin_layout Itemize
+repeat
+\end_layout
+
+\begin_layout Slide
+Common shells
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+sh
+\family default
+/
+\family typewriter
+\series bold
+bash
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+csh
+\family default
+/
+\family typewriter
+tcsh
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+zsh
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+fish
+\end_layout
+
+\begin_layout Slide
+Basic programs
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+pwd
+\family default
+: print working directory
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ls
+\family default
+: list file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+cd
+\family default
+: change working directory
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+mkdir
+\family default
+: make directory
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+rmdir
+\family default
+: remove empty directory
+\end_layout
+
+\begin_layout Slide
+Basic programs
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+touch
+\family default
+: create/access file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+mv
+\family default
+: move file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+cp
+\family default
+: copy file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+rm
+\family default
+: remove file
+\end_layout
+
+\begin_layout Slide
+Basic programs
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+echo
+\family default
+: print text
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+cat
+\family default
+: print file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+less
+\family default
+ (
+\family typewriter
+more
+\family default
+): scroll (“page”) through file
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+grep
+\family default
+: search file for specified pattern
+\end_layout
+
+\begin_layout Slide
+Saving keystrokes
+\end_layout
+
+\begin_layout Itemize
+command history
+\end_layout
+
+\begin_layout Itemize
+tab-completion
+\end_layout
+
+\begin_layout Slide
+RTFM
+\end_layout
+
+\begin_layout Itemize
+programs have command line options.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+e.g., ls -l
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+programs are (usually) documented
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+e.g., 
+\family typewriter
+man ls
+\family default
+, 
+\family typewriter
+ls --help
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+search manpages with 
+\family typewriter
+apropos
+\family default
+ (or Google)
+\end_layout
+
+\begin_layout Slide
+Unix paradox
+\end_layout
+
+\begin_layout Standard
+Good Unix programs are
+\end_layout
+
+\begin_layout Itemize
+simple
+\end_layout
+
+\begin_layout Itemize
+do one thing well
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+
+\family typewriter
+cat
+\family default
+ came back from Berkeley waving flags
+\begin_inset Quotes erd
+\end_inset
+
+ (Rob Pike [Unix minimalist])
+\end_layout
+
+\begin_layout Slide
+ls -l
+\end_layout
+
+\begin_layout Itemize
+filenames preceded with a dot are hidden by default
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+e.g., 
+\family typewriter
+.bashrc
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+special directories
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+.
+
+\family default
+ (one dot): current directory
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+..
+
+\family default
+ (two dots): parent directory
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Text editing
+\end_layout
+
+\begin_layout Slide
+vi(m)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+I was trying to make it usable over a 300 baud modem
+\begin_inset Quotes erd
+\end_inset
+
+ (Bill Joy [Berkeley graduate student])
+\end_layout
+
+\begin_layout Itemize
+modal text editor: normal mode, insert mode
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+vimtutor
+\end_layout
+
+\begin_layout EndSlide
+
+\end_layout
+
+\end_body
+\end_document

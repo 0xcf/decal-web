@@ -1,0 +1,135 @@
+<HTML><head>
+<title>System Administration for the Web - Day 2 Notes</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="2">
+
+<font size=+2><B>System Administration for the Web</B> - Day 2
+notes</font>
+<P>
+<table width=610 border=0 cellpadding=8 cellspacing=1>
+<TR><TD Colspan=3 align=left bgcolor="#eeffee">
+
+<font size=+2>Notes:</font><P>
+
+<B>Administrivia:</B><BR>
+<LI>Class location changed to Pepperwood, MLK<BR>
+<LI>I set up a class <a 
+href=http://www.ocf.berkeley.edu/~jones/bbs/bbmat.cgi?script=sysadmin>discussion
+forum</a>.<BR>
+<LI>I asked everyone to write their email address for the course mailing list.<BR>
+
+<P><B>Course Notes:</B><BR>
+<LI> <a href=http://www.freeos.com/articles/3777/2/13/>Linux Distributions</a> and 
+FreeBSD and Solaris and...
+
+<UL> Main difference between linux distros - ease of installation, ease of maintenance. 
+<BR>Here is a good article on the 'benefits' of the FreeBSD ports system, and
+<a href=http://www.osnews.com/story.php?news_id=580>the differences from linux</a>
+(the article fails to mention that the ports system has the same problems with hand-installed software that the red-hat rpm or debian apt package management systems have.
+</uL>
+
+
+<LI> Homework check in (install, commands), questions..
+<UL>
+
+Installation brought up three questions:
+<OL>
+
+<LI><I>What's the deal with partitioning?</I> <BR>
+
+For small installations of linux, where not many users are expected, partitioning is not
+a big deal.  You do need a swap partition, that's where the OS stores virtual memory,
+and it should be about twice the size of physical memory (although others claim you only
+need between 50 and 100 megs).  Linux requires between 600 megs and 1.6 gigs, and if 
+you're expecting unruly users, you may want to create a separate partition for 
+homedirectories.  If you're working with a truely old BIOS, and you have a modern 
+harddrive, you may need to create a separate boot partition because the BIOS only looks 
+for boot information (how to start the OS) in the first 1024 cylinders of the disk.  
+This is probably more trouble than it's worth, and you'll run into more maintenance 
+headaches trying to keep such an old computer alive.
+
+<LI><I>What is a gateway?  netmask? ip address?  dhcp?</i> <BR>
+
+Short answers:  your IP address is your unique address on the network, your gateway is 
+the computer you send information to for it to be passed along to the rest of the 
+internet, and netmask is how you tell your computer which other computers are on your 
+local network.  DHCP is a protocol that manages this information in a dynamic way, 
+allowing network connections to be informal, and allowing you to connect to a network 
+without explicitly knowing an appropriate IP, netmask and gateway.
+
+<LI><I>How can I install Xwindows?  Where's the mouse?</I><BR>
+
+I've put a mouse out on that box, feel free to install xwindows, 
+I'll go over this briefly next time. You can configure it to work with dhcp, and connect 
+it to one of the green cat5 cables coming out of the hub on the microwave, to test it 
+(that hub in attached to a dhcp server and is intended for people to come in and use 
+their laptops).
+
+</OL>
+
+</UL>
+<LI> vi, vim (text editors)
+<UL>
+useful beginning commands: <BR>
+<UL>
+<B>movement:</B> h,j,k,l  (left,down,up,right respectively)<BR>
+<B>switching between modes:</B>  
+<UL>
+a,i (append or insert when in command mode)<BR>
+ESC (escape key, go back to command mode from text input mode)<BR>
+</UL>
+deleting text in command mode<BR>
+<UL>
+<b>delete a single character: </b> x<BR>
+<b>delete a line: </b> dd<br>
+</ul>
+<B>exiting vi</B><BR>
+:q, :q!, :wq  (quit, quit-without-saving, save and quit -- from command mode)<BR>
+</UL>
+
+<LI> Next time, configuring your computer to be a router, so you can run an internal 
+network in your home and all your roommates can share one dsl or cable modem line (or 
+modem)!
+
+
+<P><font size=+2>Homework for next week:</font><P> 
+
+<LI> Go thru the <a href=vi-tutor.txt>VI Tutor</a> and/or the <a
+href=http://www.ocf.berkeley.edu/~drew/tutor>VIM Tutor</a> -- save your own copy in
+a unix account and <TT>"vi vi-tutor.txt"</TT>. if you're logged into a terminal via ssh, 
+you can type, 
+<BR>
+<pre>
+lynx -dump http://www.ocf.berkeley.edu/sysadmin-class/2002-spring/vi-tutor.txt > vi-tutor.txt
+</pre>
+
+<UL>
+
+Why learn vi?  Because vi comes installed on all modern versions of Unix, while emacs 
+and other popular editors do not.  You can use emacs after you install it, but you 
+may find that you need to edit some files to do some configuration before you can 
+install new software.  Also because I'll quiz you on it next week.<P>
+
+
+<P>If you're already skilled labor with vi, and you want to learn something more esoteric, 
+learn <a href=http://www.linuxhq.com/guides/LUG/node161.html>how to use "ed"</a>, the 
+line (rather than screen) text editor.  Knowing how to use ed is actually useful.  Not 
+only can you lord it over other, less clued sysadmins, but ed's command language is also 
+used in sed, awk, and vi.<P>
+
+If that's not enough, learn emacs.
+
+</UL>
+
+</td></Tr></table>
+
+
+
+<hr width=75%>
+c.2002, Devin Jones - jones@csua.berkeley.edu<BR>
+last modified: <I><!--#flastmod file="2002-03-06.html"--></I><P>
+
+</body>
+</html>

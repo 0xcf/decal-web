@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\usepackage{multicol}
+\usepackage{fullpage}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+% Fonts!
+\usepackage{sectsty}
+%\usepackage[no-math]{fontspec}
+%\usepackage{xltxtra,xunicode}
+%\allsectionsfont{\sffamily}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setromanfont{Adobe Garamond Pro}
+%\setsansfont{Myriad Pro}
+%\setmonofont[Scale=0.8]{Monaco}
+
+\begin{document}
+
+\title{Hands-On {\sc Unix} System Administration | \textit{Syllabus}}
+\author{Computer Science 98/198 --- Fall 2012}
+\date{}
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty} 
+
+\hrule
+\begin{center}\begin{tabular}{r | l}
+	Time and Place & Mondays 6-8PM, 273 Soda \\ 
+			      & CCNs: \texttt{26111} (lower-div), \texttt{26113} (upper-div) \\
+	Facilitators & Dara Adib (\texttt{daradib+decal@ocf.berkeley.edu}) \\
+    & Felix Wong (\texttt{waf@berkeley.edu}) \\
+    & Jessica Yu (\texttt{flamingtoast@berkeley.edu}) \\
+	Office Hours & \textit{by appointment} \\
+	Course Website & \texttt{http://decal.ocf.berkeley.edu/} \\
+	Instructor of Record & Brian Harvey (\texttt{bh@cs}), 781 Soda \\
+\end{tabular}\end{center}
+\hrule
+
+\begin{multicols}{2}
+
+\subsection*{Course Description}
+The course will cover the setup and administration of a production-quality Unix server, suitable for web/mail hosting, shared shell hosting à la the EECS Instructional servers, and the like.  Topics include general Unix proficiency (which is also useful in CS courses), the Internet infrastructure, and system administration essentials.
+
+The Hands-On {\sc Unix} System Administration DeCal, or the ``Sysadmin DeCal'' if you prefer something more manageable, is a lecture/lab course targeted towards CS students, either with some prior Unix experience or an eager ability to learn new things quickly.  (No prior Unix experience is assumed, but we will get you up to speed fast!)  As an important skill in system administration is the ability to learn about new and unfamiliar technologies, this class will provide a foundational understanding of Unix and send you exploring uncharted territories in weekly labs and the open-ended final project.
+
+\subsection*{Course Goals}
+After completing the Sysadmin DeCal, students will be able to set up and maintain their own general-purpose server.  The course culminates in a final project, requiring students to collaborate in groups of 3--4 people to develop a system demonstrating that they can integrate many disparate software components into a single coherent unit.
+
+\subsection*{Grading}
+This course will be graded on a Passed/Not Passed basis.  To earn a `Pass' grade, students must submit laboratory reports for all assigned laboratories and complete a final project.  Attendance is mandatory.  Up to two laboratories may be dropped; the final project may not be dropped.  More than two unexcused absences or failure to complete the final project \textbf{will result in an automatic NP!}
+
+\subsection*{Tentative Schedule}
+Since this is a lecture/lab-based course, we won't be assigning additional readings.  The following is a rough list of topics we plan to cover, each with an associated lab assignment --- suggestions are welcome, and if there's anything you'd like to hear about, let us know!
+
+\begin{center}
+\begin{tabular}{r | c l}
+	Week & \multicolumn{2}{|l}{Topics} \\
+	\hline
+	1 & 8/27 & Course overview; \\
+    & & introduction to {\sc Unix} and the shell \\
+	2 & 9/3 & \textit{Labor Day Holiday}\\
+	3 & 9/10 & The file system \\
+	4 & 9/17 & Multi-user environments \\
+	5 & 9/24 & Compiling software; package managers \\
+	6 & 10/1 & Shell scripting \\
+	7 & 10/8 & Tricks of the trade \\
+	8 & 10/15 & Server services \\
+	9 & 10/22 & Server services, cont'd \\
+	10 & 10/29 & When disaster strikes \\
+	11 & 11/5 & Special Topics \\
+	12 & 11/12 & \textit{Veteran's Day Holiday} \\
+	13 & 11/19 & Wrap up final projects \\
+	14 & 11/26 & Final project presentations! \\
+\end{tabular}
+\end{center}
+
+\end{multicols}
+
+
+\end{document}

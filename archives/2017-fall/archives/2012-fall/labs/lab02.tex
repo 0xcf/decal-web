@@ -1,0 +1,184 @@
+\documentclass{article}
+\makeatletter
+{\catcode`\`=13
+	\xdef\@verbatim{\unexpanded\expandafter{\@verbatim}\chardef\noexpand`=18 }
+}
+\makeatother
+%% Fonts!
+%\usepackage{sectsty}
+%\usepackage[no-math]{fontspec}
+%\usepackage{xltxtra,xunicode}
+%\allsectionsfont{\sffamily}
+%\setromanfont[Mapping=tex-text]{Adobe Garamond Pro}
+%\setsansfont[Mapping=tex-text]{Myriad Pro}
+%\setmonofont[BoldFont=Monaco,Scale=0.8]{Monaco}
+
+\begin{document}
+
+\title{Pipes, streams, and the user environment}
+\author{Hands-On {\sc Unix} System Administration DeCal}
+\date{Lab 2 --- 10 September 2012 \\ {\small Due 17 September at 6:10 PM}} 
+\maketitle
+
+\section{Environment variables and bash startup files}
+\subsection{.bashrc and .bash\_profile} 
+
+Bash uses a collection of startup files to create an environment. For example, you can initialize parameters, set your \texttt{PATH}, change what your prompt looks like, and much more. In this section we'll look at \texttt{.bashrc} and \texttt{.bash\_profile}. 
+
+{\bf What's the difference?} 
+\texttt{.bashrc} and \texttt{.bash\_profile} are invoked in different settings. \texttt{.bash\_profile} is executing for {\it login shells}, while \texttt{.bashrc} is executed for interactive, non-login shells (See \texttt{man bash}).
+System-wide shell initialization files are typically in \texttt{/etc}, owned by root. They are \texttt{/etc/profile} and \texttt{/etc/bashrc}. Users' profile and shell rc files are owned by the user, and they reside in their home directories. 
+(\texttt{\textasciitilde/.bash\_profile} and 
+\texttt{\textasciitilde/.bashrc})
+
+{\bf Why the distinction?} 
+Say, for example, there are certain things you'd want to see upon login only (such as system information, like load average, or number of current users, etc.). 
+You'd want to edit \texttt{.bash\_profile} to do that. If you put it in your \texttt{.bashrc}, you'd see it every time you launch a new terminal/shell. 
+
+
+\begin{enumerate}
+	\item Edit your \texttt{.bash\_profile} and add a variable called \texttt{MYNAME}. 
+		
+		\texttt{MYNAME="Bob"}
+
+		Edit your \texttt{.bashrc} and add a variable, \texttt{MYFAVCOLOR}.
+		
+		\texttt{MYFAVCOLOR="red"}
+		
+		Save the two files, logout, and login again. (To be clear, we're expecting you to be using a login shell for the following exercises).
+		
+		{\it Tip: You can emulate a login shell by running} \texttt{bash --login}.
+
+	\item Now type the following.
+
+		\texttt{\$ echo  \$MYNAME}
+		
+		\texttt{\$ echo \$MYFAVCOLOR} 
+
+		What happens? Explain why.
+
+	\item Type \texttt{bash}, do the same thing. 
+		
+		\texttt{\$ bash}
+
+		\texttt{\$ echo \$MYNAME}
+
+		\texttt{\$ echo \$MYFAVCOLOR}
+
+		What happens? Explain why. 
+
+\item You can see if you are using a login shell by running \texttt{shopt | grep login\_shell}. How does the value of this option (on/off) correlate with the behavior you just saw?
+
+	\subsection{Playing with environment variables}
+	\item Open a terminal and define the following variables. 
+
+		\texttt{\$ FOO="foo" ; export FOO}
+
+		\texttt{\$ BAZ="baz"}
+
+		Now let's try accessing our newly defined variables
+		
+		\texttt{\$ echo \$FOO}
+
+		\texttt{\$ echo \$BAZ}
+		
+		\texttt{\$ bash} 
+
+		\texttt{\$ echo \$FOO}
+
+		\texttt{\$ echo \$BAZ}
+
+		What happens, and why? Explain the difference between \texttt{FOO} and \texttt{BAZ}.
+
+	\item Define a PS1 variable that includes the following: 
+		\begin{itemize}
+			\item The day and month
+			\item The current time in 12-hour am/pm format
+			\item your username
+			\item the hostname
+			\item the current working directory
+		\end{itemize}
+	
+	\item Let's add a new directory to \texttt{PATH}.
+
+		Before we do anything, note the output of \texttt{ls} 
+
+		\texttt{\$ ls} 
+
+		Create a new directory.
+		
+		\texttt{\$ mkdir stuff}
+
+		Let's put a simple shell script in there. 
+
+		\texttt{\$ echo 'echo "herro"' > stuff/ls} 
+		
+		\texttt{\$ chmod u+x stuff/ls}
+
+		Now alter your \texttt{PATH} variable such that the \texttt{stuff} directory is listed first.
+
+		\texttt{\$ PATH=\textasciitilde/stuff:\$PATH} 
+
+		Now when you run \texttt{ls}, what happens? Explain why. 
+		
+		How does the order of \texttt{PATH} matter? What would happen if we had placed \texttt{\textasciitilde/stuff} at the end of the \texttt{PATH}?
+	
+	\item Type the following, and note the output. 
+		
+		\texttt{\$ echo \$SHELL}
+
+		\texttt{\$ echo '\$SHELL'}
+
+		What do you notice? Why does this happen?
+	\item Explain the behavior of the following command. 
+
+	\begin{verbatim}$ echo '`find \$HOME -type d -print | wc -l`' > directories\end{verbatim}
+
+		Modify it so it works as intended (i.e., count the number of directories in \texttt{\$HOME}) 
+
+	\section{Wildcards} 
+
+\item Match the filenaames \texttt{lecture01, lecture09, lecture13, lecture26} with a wildcard expression. 
+
+
+		\section{Streams, redirection, and pipes} 
+	
+	\item What is /dev/null usually used for? 
+	\item What happens when you use 
+		\begin{enumerate} 
+			\item cat $>$ foo, if foo contains data
+			\item who $>>$ foo, if foo doesn't exist 
+			\item cat foo $>$ foo 
+			\item echo 1$>$ foo
+		\end{enumerate}
+	\item Write a simple pipeline using \texttt{getent passwd}, and the \texttt{cut} utility (see \texttt{man cut}), to extract usernames and real names. You may want to run \texttt{getent passwd} to get a feel for what it does first.
+	\subsection{Named pipes} 
+	\item Name one difference between named pipes and unamed pipes (other than the obvious).
+	\item Let's create a named pipe with \texttt{mkfifo}. 
+
+		\texttt{\$ mkfifo pipe} 
+
+		If you run \texttt{ls -l pipe}, you'll see it looks just like a file. It could be deleted with rm, like so: 
+
+		\texttt{\$ rm pipe} 
+
+
+		Now try running this command: 
+
+		\texttt{\$ ps -e \(>\) pipe} 
+
+		Instinctively, you'd expect to be returned to a prompt, but it appears to "hang". Explain why. 
+
+
+		Now open another terminal, and run the following command in the second terminal. 
+
+		\texttt{\$ cat pipe} 
+
+		What is the output of this command? Is the command you had typed in the first terminal still "hanging"? Explain the interaction between these two processes in a sentence or two. 
+
+\end{enumerate}
+
+\section{Extra for Experts\texttrademark{}!}
+\subsection{Pipe madness}
+Using two commands, think of a way to generate a loop using named pipes. What happens to the CPU usage?
+\end{document}

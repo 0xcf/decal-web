@@ -1,0 +1,124 @@
+body {
+	margin-top: 00px;
+	font-family: 'PT Sans'; 
+	font-size: 14px; 
+	color: #666; 
+
+}
+
+a {
+	font-family: 'Droid Sans';
+	font-size: 14px;
+	text-decoration: none;
+	line-height: 16px;
+	color: #EAC117; 
+}
+
+a:hover { 
+	color: #507da4;
+	font-family: 'Droid Sans';
+	font-size: 14px;
+	text-decoration: none;
+	line-height: 16px;
+
+
+	-moz-transition-property: color, text;
+	-moz-transition-duration: 200ms, 200ms;
+	-moz-transition-timing-function: linear, ease-in;
+
+	-webkit-transition-property:color, text; 
+	-webkit-transition-duration: 200ms, 200ms; 
+	-webkit-transition-timing-function: linear, ease-in;
+
+} 
+ 
+.header {
+	font-family: 'PT Sans'; 
+	font-size: 18px; 
+	letter-spacing: -0.5px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.name {
+	color: #00CCFF;
+}
+
+#basic-accordian{                                                                                              
+        padding:5px;                                                                                           
+        width:700px;                                                                                           
+}                                                                                                              
+                                                                                                               
+.accordion_headings{                                                                                           
+	font-family: 'PT Sans Narrow';
+        font-size: 14px;
+        padding:5px;                                                                                           
+     	background:#444;
+        color:#ccc;                                                                                            
+
+        /*border:1px solid #FFF;*/                                                                                     cursor:pointer;                                                                                        
+	text-transform: uppercase;
+
+	-moz-transition: background .25s ease-in-out;
+	-webkit-transition: background .25s ease-in-out;
+	/*opacity: 0.9;
+	filter: alpha(opacity=90);*/
+/*	-webkit-transition: opacity 200ms linear;
+	-moz-transition: opacity 200ms linear;
+*/	}       
+                                                                                                               
+.accordion_headings:hover {                                                                                     
+	/*opacity: 1;
+	filter: alpha(opacity=100);*/
+	/*-webkit-transition: opacity 200ms linear;
+	-moz-transition: opacity 200ms linear;
+*/
+/*	
+	-moz-transition-property: color, text;
+	-moz-transition-duration: 200ms, 200ms;
+	-moz-transition-timing-function: linear, ease-in;
+
+	
+	-webkit-transition-property:color, text; 
+	-webkit-transition-duration: 200ms, 200ms; 
+	-webkit-transition-timing-function: linear, ease-in;
+*/
+	color: #00CCFF;
+        background:#FFFFFF;                                                                                    
+} 
+.accordion_child{                                                                                              
+        padding:15px;                                                                                          
+        background:#FFF;                                                                                       
+}                                                                                                              
+                                                                                                               
+.header_highlight{                                                                                             
+        background:#FFF;                                                                                       
+}                                                                                                              
+                                                                                                               
+.tab_container *{                                                                                              
+        float:left;                                                                                        
+        width:106px;     
+	text-align: center;
+}        
+
+hr#top {
+	border-top: 5px solid #444; 
+	border-bottom: 5px solid #444; 
+	width: 700px; 
+	margin-top: 00px;
+}
+
+#title {
+	font-family: 'Open Sans Condensed'; 
+	font-size: 48px; 
+	color: #444; 
+	letter-spacing:-2px; 
+	line-height: 40px;
+}
+
+.timestamp {
+	font-family: 'PT Sans'; 
+	font-size: 14px; 
+	font-weight: bold; 
+	text-transform: uppercase;
+}

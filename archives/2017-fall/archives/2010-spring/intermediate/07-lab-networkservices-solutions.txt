@@ -1,0 +1,40 @@
+CS98/198 Intermediate System Administration DeCal
+Week 7: Network Services
+
+I. Interacting with Mail Locally
+1. ``mail'', when run with no arguments, lists all messages in your mailbox
+(e.g., /var/mail/mgasidlo); you can select messages by number to read them.
+(Read messages are by default saved to ~/mbox.)  To specify a subject on the
+command line, use the ``-s'' option -- for example, ``mail -s "Solutions to Lab
+7" mgasidlo''.
+2. pine and mutt both have easy-to-use GUIs, so you should have no trouble
+figuring out how to use them both (and deciding that you prefer mutt).
+3. sendmail's ``-bs'' option lets you locally interact with the SMTP server,
+much like a telnet session.  sendmail's ``-t'' option behaves similarly, except
+it adds receipients specified in headers ("RCPT TO...") to the envelope
+recipients (which are specified on the command line).
+
+II. DNS Queries
+1. host berkeley.edu.
+2. Some are at Berkeley, while there are backup servers located at the 
+University of Oregon and at the Internet Systems Consortium. One presumes that
+IST wanted to have off-site backups in case the IST datacenter or a portion of
+the IST network was down.
+3. dig -t NX berkeley.edu, dig -t NS berkeley.edu. dig with no arguments gives
+you the root name servers.
+
+III. HTTP
+Pseudocode(TM):
+set SERVER from input string
+set PATH from input string
+
+set BLANK_LINE_SEEN to 0
+echo -e "the http request" | nc SERVER 80 | while read line; do
+    if BLANK_LINE_SEEN is 1
+        echo the line
+    elif the line = $'\r'
+        set BLANK_LINE_SEEN to 1
+done > output
+
+You should be able to figure out how to make a full-fledged bash script from
+this.

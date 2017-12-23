@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Beginning Unix System Administration Decal, Spring 2007</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+/* <![CDATA[ */
+
+table.grades {
+		margin-left: 1em;
+		width: 80%
+		border-width: 1px 1px 1px 1px;
+		border-spacing: 1px;
+		border-style: outset outset outset outset;
+		border-color: black black black black;
+		border-collapse: collapse;
+	}	
+table.grades th {
+		border-width: 1px 1px 1px 1px;
+		padding: 3px 3px 3px 3px;
+		border-style: inset inset inset inset;
+		border-color: black black black black;
+		-moz-border-radius: 0px 0px 0px 0px;
+}
+table.grades td {
+		border-width: 1px 1px 1px 1px;
+		padding: 3px 3px 3px 3px;
+		border-style: inset inset inset inset;
+		border-color: black black black black;
+		-moz-border-radius: 0px 0px 0px 0px;
+}
+hr, hr.footer {
+	  width: 60%;
+	  margin-left: 0.5em;
+}
+
+hr.footer {
+		width: 20%;
+		margin-left: 0.5em;
+}
+
+ul, ul.contents { margin-left: -0.5em; }
+
+ul.contents { margin-top: -1em; }
+
+li.contents { font-size: small; }
+
+p { margin-left: 1em; }
+
+p.footer { margin-left: 0em; }
+
+span.date {
+		font-family: Courier New;
+		font-size: small;
+}
+
+table.schedule {
+		margin-left: 1em;
+		width: 80%;
+}
+
+td.date { width: 8%; }
+
+td.info { width: 50%; }
+
+td.notes { width: 22%; }
+
+td.labs { width: 10%; }
+
+td.soln { width: 10%; }
+
+table.groups { width: 150px; }
+
+td.num { width:5%; }
+
+td.members{ width:95%;}
+
+span.u {
+		text-decoration: underline;
+}
+
+/* ]]> */
+</style>
+</head>
+<body>
+
+<h1>Beginning Unix System Administration Decal</h1>
+
+<hr />
+
+<h4>Contents</h4>
+<ul class="contents">
+	<li class="contents"><a href="#announcements">Announcements</a></li>
+	<li class="contents"><a href="#schedule">Schedule</a></li>
+	<li class="contents"><a href="#extra">Extra Handouts</a></li>
+	<li class="contents"><a href="#groups">Project Groups</a></li>
+	<li class="contents"><a href="#info">Course Information</a></li>
+	<li class="contents"><a href="#moreinfo">More Course Information</a></li>
+	<li class="contents"><a href="#resources">Resources</a></li>
+	<li class="contents"><a href="#grades">Grades</a></li>
+</ul>
+
+<h2><a name="announcements"></a>Announcements</h2>
+
+<ul>
+	<li><span class="date">2007.05.07:</span> Due to no demand, there will be no Q and A session tomorrow. The room is reserved for the DeCal, however, so you may use the room for group work. Submissions will be updated soon.</li>
+	<li><span class="date">2007.04.23:</span> Servers have been reset. The passwords will be distributed out tomorrow in class. If you would like your password sooner than that, please email me.</li>
+	<li><span class="date">2007.04.17:</span> Week 11 notes have been posted. The <a href="final_project.pdf">Final Project</a> specifications have been posted.</li>
+	<li><span class="date">2007.04.16:</span> <a href="grades.htm">Grades</a> have been updated again.</li>
+	<li><span class="date">2007.04.12:</span> <a href="grades.htm">Grades</a> have been updated to reflect the submissions submitted through the online submission tool.</li>
+	<li><span class="date">2007.04.10:</span> <a href="grades.htm">Grades</a> have been posted. These are current up to email submissions and in-class quizzes, but <strong>not</strong> submissions sent through the online tool. Week 10 notes and lab have been posted.</li>
+	<li><span class="date">2007.04.04:</span> Due to technical limitations on the server, there will be no homework/laboratory for this week.</li>
+	<li><span class="date">2007.04.03:</span> Week 9 notes, week 8 quiz and solutions have been posted.</li>
+	<li><a href="archive.htm">Old Announcements</a></li>
+</ul>
+
+<h2><a name="schedule"></a>Schedule</h2>
+<table class="schedule">
+	<tr>
+	 <td class="date"><span class="u">Date</span></td>
+	 <td class="info"><span class="u">Title</span></td>
+	 <td class="notes"><span class="u">Notes/HW</span></td>
+	 <td class="labs"><span class="u">Lab</span></td>
+	 <td class="soln"><span class="u">Solutions</span></td>
+	</tr>
+	<tr>
+	 <td class="date">30 Jan</td>
+	 <td class="info">1 Introduction to System Administration</td>
+	 <td class="notes"><a href="week01_notes.pdf">Syllabus</a></td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">06 Feb</td>
+	 <td class="info">2 Introduction to and History of UNIX </td>
+	 <td class="notes"><a href="week02_notes.pdf">Notes</a></td>
+	 <td class="labs"><a href="week02_lab.pdf">Lab</a></td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">13 Feb</td>
+	 <td class="info">3 UNIX Commands</td>
+	 <td class="notes"><a href="week03_notes.pdf">Notes</a> / <a href="week03_hw.pdf">HW</a></td>
+	 <td class="labs"><a href="week03_lab.pdf">Lab</a></td>
+	 <td class="soln"><a href="week03_hw_soln.pdf">HW</a></td>
+	</tr>
+	<tr>
+	 <td class="date">20 Feb</td>
+	 <td class="info">4 The Internet</td>
+	 <td class="notes"><a href="week04_notes.pdf">Notes</a></td>
+	 <td class="labs"><a href="week04_lab.pdf">Lab</a></td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">27 Feb</td>
+	 <td class="info">5 Server Daemons</td>
+	 <td class="notes"><a href="week05_notes.pdf">Notes</a> / <a href="week05_hw.pdf">HW</a> / <a href="http://tempest.ocf.berkeley.edu/intermediate/notes/week5-software.pdf">Compiling Software</a></td>
+	 <td class="labs"><a href="week05_lab.pdf">Lab</a></td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">06 Mar</td>
+	 <td class="info">6 Free Day</td>
+	 <td class="notes"><a href="week06_quiz.pdf">Quiz</a></td>
+	 <td class="labs">--</td>
+	 <td class="soln"><a href="week06_quiz_soln.pdf">Quiz</a></td>
+	</tr>
+	<tr>
+	 <td class="date">13 Mar</td>
+	 <td class="info">7 Simplifying Week 05</td>
+	 <td class="notes"><a href="week07_notes.pdf">Notes</a> / <a href="week07_hw.pdf">HW</a> / <a href="gmond.beginning.conf">Config</a></td>
+	 <td class="labs"><a href="week07_lab.pdf">Lab</a></td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">20 Mar</td>
+	 <td class="info">8 The LAMP Model</td>
+	 <td class="notes"><a href="week08_notes.pdf">Notes</a> / <a href="week08_quiz.pdf">Quiz</a></td>
+	 <td class="labs"><a href="week08_lab.pdf">Lab</a></td>
+	 <td class="soln"><a href="week08_quiz_soln.pdf">Quiz</a></td>
+	</tr>
+	<tr>
+	 <td class="date">27 Mar</td>
+	 <td class="info">Spring Break</td>
+	 <td class="notes">--</td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">03 Apr</td>
+	 <td class="info">9 Multi-user Environments</td>
+	 <td class="notes"><a href="week09_notes.pdf">Notes</a></td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">10 Apr</td>
+	 <td class="info">10 Security</td>
+	 <td class="notes"><a href="week10_notes.pdf">Notes</a></td>
+	 <td class="labs"><a href="week10_lab.pdf">Lab</a></td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">17 Apr</td>
+	 <td class="info">11 Special Topics: HTML</td>
+	 <td class="notes"><a href="week11_notes.pdf">Notes</a></td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">24 Apr</td>
+	 <td class="info">12 Work Day</td>
+	 <td class="notes">--</td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">01 May</td>
+	 <td class="info">13 Special Topics: Sysadmin Tips and Tricks</td>
+	 <td class="notes">--</td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">08 May</td>
+	 <td class="info"> Help Session</td>
+	 <td class="notes">--</td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+	<tr>
+	 <td class="date">09 May</td>
+	 <td class="info"><strong>Final Projects Due</strong></td>
+	 <td class="notes">--</td>
+	 <td class="labs">--</td>
+	 <td class="soln">--</td>
+	</tr>
+</table>
+
+<h2><a name="extra"></a>Extra Handouts</h2>
+<ul>
+	<li><a href="week01_survey.pdf">Week 01 - Course Survey</a></li>
+	<li><a href="supp_introduction.pdf">Supplementary #1 - Getting Started</a></li>
+	<li><a href="http://tempest.ocf.berkeley.edu/intermediate/notes/week5-software.pdf">Supplementary #2 - Compiling Software</a></li>
+	<li><a href="final_project.pdf">Final Project</a></li>
+</ul>
+
+<h2><a name="groups"></a>Project Groups</h2>
+
+<table class="schedule">
+	<tr>
+		<td class="num"> # </td>
+		<td class="members"> Members </td>
+	</tr>
+	<tr>
+		<td class="num"> 1 </td>
+		<td class="members"> gm, gl, gi </td>
+	</tr>
+	<tr>
+		<td class="num"> 2 </td>
+		<td class="members"> gg, gy, gs </td>
+	</tr>
+	<tr>
+		<td class="num"> 3 </td>
+		<td class="members"> ge, gv </td>
+	</tr>
+	<tr>
+		<td class="num"> 4 </td>
+		<td class="members"> gx, gf, gw </td>
+	</tr>
+	<tr>
+		<td class="num"> 5 </td>
+		<td class="members"> gh, ga </td>
+	</tr>
+	<tr>
+		<td class="num"> 6 </td>
+		<td class="members"> gd, gp </td>
+	</tr>
+	<tr>
+		<td class="num"> 7 </td>
+		<td class="members"> gk, gc, gj </td>
+	</tr>
+</table>
+
+
+<h2><a name="info"></a>Course Information</h2>
+<p>
+	Time: Tuesday 4-5p<br />
+	Location: 273 Soda<br />
+	Facilitators: <a href="mailto:cardi+decal@ocf.berkeley.edu">Calvin Ardi</a> and <a href="mailto:jameson@ocf.berkeley.edu">Jameson Lee</a><br />
+			Office Hours: Friday 11-1215p<br />
+	Enrollment: 2 units<br />
+	&nbsp;- Lower Division: CCN 26389<br />
+	&nbsp;- Upper Division: CCN 26608<br />
+</p>
+
+<p>
+This course is open for students with little or no prior Unix experience. It is our goal that at the end of this course, you will be comfortable and familiar with the command line interface in order to use and administer Unix operating systems as well as setting up a basic web server. 
+</p>
+
+<h2><a name="moreinfo"></a>More Course Information</h2>
+<ul>
+	<li>Attendance is mandatory with 2 excused absences.</li>
+	<li>You are allowed to drop 2 homework and lab assignments in total please save them for emergencies.</li>
+	<li>There will be weekly homework assignments, graded on a P/NP basis.</li>
+	<li>A final project will be given in lieu of an exam; <strong>failure to complete will result in a NP</strong>.</li>
+</ul>
+
+<ul>
+	<li>
+		<strong>How much time should I expect to spend on this DeCal?</strong><br />
+		The workload for this beginning section should not be hard and I expect that it will not consume too much of your time. Aside from attending lecture, working on the labs and homework should take around an hour at most and work, in general, will ease up during midterms as facilitators are students, too. It is entirely up to you as to how much you want to spend working on the projects and labs; there are always opportunities to expand upon what has been taught and the easiest way to learn Unix system administration is through doing, not just reading.
+	</li>
+</ul>
+	
+<h2><a name="resources"></a>Resources</h2>
+<ul>
+	<li><a href="http://docs.ocf.berkeley.edu/wiki">OCF Wiki</a></li>
+	<li><a href="http://tldp.org">The Linux Documentation Project</a></li>
+	<li><a href="http://linuxmanpages.com">Linux man Pages</a></li>
+	<li><a href="http://google.com">Google</a></li>
+	<li><a href="http://www.ocf.berkeley.edu/~jameson/main.php">Homework Submissions</a></li>
+</ul>	
+
+<h2><a name="grades">Grades</a></h2>
+
+<ul>
+	<li><a href="grades.htm">Grades</a> - Note: The page linked above merely shows the submission status of assignments and does not reflect the P/NP grading of the assignments.</li>
+</ul>
+
+
+<hr class="footer" />
+
+<p class="footer"><a href="http://validator.w3.org/check?uri=referer">XHTML 1.0 Strict</a></p>
+
+</body>
+</html>

@@ -1,0 +1,1757 @@
+#LyX 1.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 221
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single 
+\papersize Default
+\paperpackage a4
+\use_geometry 0
+\use_amsmath 0
+\use_natbib 0
+\use_numerical_citations 0
+\paperorientation portrait
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+
+\layout Title
+
+System Administration for the Web:
+\newline 
+Week 7 Lecture Notes
+\newline 
+Basic Programming and Perl
+\layout Date
+
+October 24, 2005
+\layout Section
+
+What is Programming?
+\layout Standard
+
+Most computer scientists would define programming as implementing an abstract
+ algorithm using a programming language to produce a set of instructions
+ that a computer can understand.
+\layout Standard
+
+I think that's a dull and very difficult to understand definition.
+ Programs are like recipes for making food, and, using that analogy, programming
+ is the process of organizing the production of a certain type of food into
+ a set of consistent and reproducible steps.
+\layout Standard
+
+Some recipes are quite simple and linear, like those for mixing drinks.
+ You take a certain amount of various ingredients and combine them in a
+ certain order.
+ Other recipes are more complicated and usually require making decisions:
+ to flip or not to flip a steak on a grill or whether to take cookies out
+ of an oven.
+\layout Standard
+
+Regardless of the complexity of a certain computer program, though, programming
+ is almost always accomplished in 4 steps:
+\layout Enumerate
+
+Planning
+\layout Enumerate
+
+Prototyping and Coding
+\layout Enumerate
+
+Testing and Debugging
+\layout Enumerate
+
+Release
+\layout Standard
+
+Step 2 is often repeated after Step 3 upon the discovery of programming
+ errors.
+\layout Section
+
+Why Program?
+\layout Standard
+
+Simple: 
+\emph on 
+fame
+\emph default 
+, 
+\emph on 
+fortune
+\emph default 
+, or 
+\emph on 
+laziness
+\emph default 
+.
+\newline 
+In the context of system administration, programming usually falls under
+ laziness.
+ As you've seen with shell scripts, programs can automate repetitive tasks
+ and save system administrators a ton of work.
+\layout Section
+
+Perl
+\layout Standard
+
+The programming language you will be learning is Perl, the Practical Extraction
+ and Reporting Language.
+ Perl was originally created by Larry Wall, a one-time graduate student
+ at UC Berkeley, and is currently maintained by programmers all over the
+ world.
+ Perl was originally designed to manipulate text files such as log files
+ -- hence 
+\emph on 
+extraction
+\emph default 
+ and 
+\emph on 
+reporting
+\emph default 
+ -- but has evolved into an extremely-versatile language for everything
+ from shell scripts to corporate websites.
+\layout Subsection
+
+Perl's Strengths
+\layout Itemize
+
+Excellent text manipulation
+\layout Itemize
+
+Fast prototyping
+\layout Itemize
+
+Flexible syntax
+\layout Itemize
+
+No artificial limits
+\layout Subsection
+
+Perl's Weaknesses
+\layout Itemize
+
+Interpreted language
+\layout Itemize
+
+Flexible syntax
+\layout Subsection
+
+How is Perl Used?
+\layout Itemize
+
+Amazon.com
+\layout Itemize
+
+MovableType
+\layout Itemize
+
+Slashdot
+\layout Itemize
+
+Sweden's pension system
+\layout Itemize
+
+A server near you
+\layout Section
+
+Data and Data Structures
+\layout Standard
+
+Data is anything your program must track, be it user-input, dates, values,
+ quantities, colors, etc.
+ 
+\emph on 
+Scalar data
+\emph default 
+ is the basic unit of data in Perl.
+ 
+\layout Standard
+
+Scalar data can be anything from letters, words, numbers, sentences, paragraphs,
+ punctuation marks, or any combination of these categories.
+ To Perl, scalar data is a merely a stream of characters, such as letters,
+ numbers, spaces, and symbols.
+ Additionally, there is a category of characters that require special representa
+tion in Perl through the use of 
+\emph on 
+escape-sequences
+\emph default 
+; common examples of such characters are found in Table 
+\begin_inset LatexCommand \ref{tab:Common-Perl-Escape-Sequences}
+
+\end_inset 
+
+.
+\layout Standard
+
+Scalar data in Perl is held in three types of basic containers or data structure
+s: 
+\emph on 
+variables
+\emph default 
+, 
+\emph on 
+arrays
+\emph default 
+, and 
+\emph on 
+hashes
+\emph default 
+.
+\layout Standard
+
+
+\begin_inset Float table
+wide false
+collapsed true
+
+\layout Standard
+\align center 
+
+\begin_inset  Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Escape-Sequence
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Meaning
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+
+\backslash 
+n
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Newline
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+
+\backslash 
+t
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Tab
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+
+\backslash 
+
+\backslash 
+
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Backslash (
+\family typewriter 
+
+\backslash 
+
+\family default 
+)
+\end_inset 
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+
+\backslash 
+
+\begin_inset Quotes erd
+\end_inset 
+
+
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Double quote (
+\family typewriter 
+
+\begin_inset Quotes eld
+\end_inset 
+
+
+\family default 
+)
+\end_inset 
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{tab:Common-Perl-Escape-Sequences}
+
+\end_inset 
+
+Common Perl Escape-Sequences
+\end_inset 
+
+ 
+\layout Description
+
+NOTE: Perl is a very context-sensitive language.
+ This means that it will try to automatically understand how you wish to
+ use a piece of scalar data.
+ For example, the scalar data 
+\begin_inset Quotes eld
+\end_inset 
+
+
+\family typewriter 
+45
+\family default 
+
+\begin_inset Quotes erd
+\end_inset 
+
+ could be interpreted as either the number 45 or a string composed of the
+ characters 4 and 5.
+ Unlike other programming languages, where you much always specify the context
+ under which you are using a piece of scalar data, Perl will automatically
+ decide for you depending on what you do to the data.
+\layout Subsection
+
+Variables
+\layout Standard
+
+Variables are the simplest type of data structure in Perl; they hold a single
+ piece of scalar data.
+ Variable names begin with a dollar sign (
+\family typewriter 
+$
+\family default 
+) followed by characters that uniquely identify each variable -- 
+\family typewriter 
+$sample_variable
+\family default 
+.
+\layout Subsubsection*
+
+Assignment
+\layout Standard
+
+Assigns a piece of scalar data to a variable
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+=
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+sdf343fd
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+sdf343fd
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsubsection*
+
+Concatenation
+\layout Standard
+
+Joins pieces of scalar data together
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+.
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+year
+\begin_inset Quotes erd
+\end_inset 
+
+ .
+ 
+\begin_inset Quotes eld
+\end_inset 
+
+2005
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+year2005
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsubsection*
+
+Chomp
+\begin_inset LatexCommand \label{sub:Chomp}
+
+\end_inset 
+
+
+\layout Standard
+
+Removes a newline from the end of a piece of scalar data
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+chomp
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+This a sentence.
+\backslash 
+n
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\newline 
+chomp $sample_variable;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+This is a sentence.
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsubsection*
+
+Mathematical Functions
+\layout Standard
+
+Performs mathematical operations on numeric scalar data
+\newline 
+Note: Addition is the example presented, but other mathematical operators
+ (
+\family typewriter 
+*
+\family default 
+, 
+\family typewriter 
+/
+\family default 
+, 
+\family typewriter 
+-
+\family default 
+) work too.
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
++
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+10
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\newline 
+$another_variable = $sample_variable + 1;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+$sample_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+10
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+$another_variable = 
+\begin_inset Quotes eld
+\end_inset 
+
+11
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsection
+
+Arrays
+\layout Standard
+
+Arrays are data structures that hold multiple pieces of scalar data, each
+ 
+\emph on 
+indexed
+\emph default 
+ by a number.
+ Arrays are best described as a numbered list of scalar data pieces.
+ Array names begin with an at-sign (
+\family typewriter 
+@
+\family default 
+) followed by characters that uniquely identify each array -- 
+\family typewriter 
+@sample_array
+\family default 
+.
+ Elements of an array are referenced by a dollar sign followed by the name
+ of the array and the index of the element in square brackets -- 
+\family typewriter 
+$sample_array[0]
+\family default 
+.
+ Indices numbering begins at zero.
+\layout Description
+
+NOTE: Most variable operations can be performed on individual array elements.
+\layout Subsubsection*
+
+Assignment Method #1
+\layout Standard
+
+Assigns scalar data to an array
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+=
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+$sample_array[0] = 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\newline 
+$sample_array[1] = 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+@sample_array =
+\newline 
+0 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+1 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsubsection*
+
+Assignment Method #2
+\layout Standard
+
+Assigns scalar data to an array
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+()
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+@sample_array = (
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+);
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+@sample_array =
+\newline 
+0 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+1 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsubsection*
+
+Pop
+\layout Standard
+
+Removes the last element of an array and returns it
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+pop
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+@sample_array = (
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+);
+\newline 
+$temp = pop @sample_array;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+@sample_array =
+\newline 
+0 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+$temp = 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsubsection*
+
+Push
+\layout Standard
+
+Adds an element to the end of an array
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+push
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+@sample_array = (
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+);
+\newline 
+push @sample_array, 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_2
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+@sample_array =
+\newline 
+0 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_0
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+1 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_1
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+2 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+data_piece_2
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsubsection*
+
+Shift and Unshift
+\layout Standard
+
+Removes and adds an element to the beginning of an array, respectively
+\newline 
+Similar syntax as 
+\family typewriter 
+pop
+\family default 
+ and 
+\family typewriter 
+push
+\family default 
+ 
+\layout Subsection
+
+Hashes
+\layout Standard
+
+Hashes are the most flexible basic data structure available in Perl.
+ They are similar to arrays in that they hold multiple pieces of scalar
+ data, but rather than having elements indexed by a number, they are indexed
+ by words or, more appropriately, 
+\emph on 
+keys
+\emph default 
+.
+ Hash names begin with a percentage sign (
+\family typewriter 
+%
+\family default 
+) followed by characters that uniquely identify each hash -- 
+\family typewriter 
+%sample_hash
+\family default 
+.
+ Elements of an array are referenced by a dollar sign followed by the name
+ of the array and the key of the element in curly brackets and quotation
+ marks -- 
+\family typewriter 
+$sample_hash{
+\begin_inset Quotes erd
+\end_inset 
+
+key_name
+\begin_inset Quotes erd
+\end_inset 
+
+}
+\family default 
+.
+\layout Description
+
+NOTE: Most variable operations can be performed on individual hash elements.
+\layout Subsubsection*
+
+Assignment Method #1
+\layout Standard
+
+Assigns scalar data to a hash
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+=
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+$sample_hash{
+\begin_inset Quotes erd
+\end_inset 
+
+name
+\begin_inset Quotes erd
+\end_inset 
+
+} = "stephen";
+\newline 
+$sample_hash{
+\begin_inset Quotes erd
+\end_inset 
+
+location
+\begin_inset Quotes erd
+\end_inset 
+
+} = "berkeley";
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+%sample_hash =
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+name
+\begin_inset Quotes erd
+\end_inset 
+
+ -> "stephen"
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+location
+\begin_inset Quotes erd
+\end_inset 
+
+ -> "berkeley"
+\layout Subsubsection*
+
+Assignment Method #2
+\layout Standard
+
+Assigns scalar data to a hash
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+=, =>
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+%sample_hash = (
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+name
+\begin_inset Quotes erd
+\end_inset 
+
+ => "stephen",
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+location
+\begin_inset Quotes erd
+\end_inset 
+
+ => 
+\begin_inset Quotes eld
+\end_inset 
+
+berkeley
+\begin_inset Quotes erd
+\end_inset 
+
+,
+\newline 
+);
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+%sample_hash =
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+name
+\begin_inset Quotes erd
+\end_inset 
+
+ -> "stephen"
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+location
+\begin_inset Quotes erd
+\end_inset 
+
+ -> "berkeley"
+\layout Subsubsection*
+
+Keys
+\layout Standard
+
+Returns an array of the keys of a hash (in no particular order)
+\layout List
+\labelwidthstring 00.00.0000
+
+Operator: 
+\family typewriter 
+keys
+\layout List
+\labelwidthstring 00.00.0000
+
+Example: 
+\family typewriter 
+%sample_hash = (
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+name
+\begin_inset Quotes erd
+\end_inset 
+
+ => "stephen",
+\newline 
+
+\begin_inset Quotes eld
+\end_inset 
+
+location
+\begin_inset Quotes erd
+\end_inset 
+
+ => 
+\begin_inset Quotes eld
+\end_inset 
+
+berkeley
+\begin_inset Quotes erd
+\end_inset 
+
+,
+\newline 
+);
+\newline 
+@my_array = keys %sample_hash;
+\layout List
+\labelwidthstring 00.00.0000
+
+Result: 
+\family typewriter 
+@my_array =
+\newline 
+0 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+location
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+1 -> 
+\begin_inset Quotes eld
+\end_inset 
+
+name
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Subsection
+
+Advanced Data Structures
+\layout Standard
+
+It is possible to 
+\emph on 
+nest
+\emph default 
+ one type of data structure inside of another data structure or even inside
+ the same type of data structure; that is, it is possible to create arrays
+ of hashes or hashes of hashes.
+ However, the syntax and theory for doing so is beyond the scope of this
+ Perl introduction.
+ Please refer to the command 
+\family typewriter 
+perldoc perlreftut
+\family default 
+ or any other documentation on Perl 
+\emph on 
+references
+\emph default 
+.
+\layout Section
+
+Control Structures and Comparison Operators
+\layout Standard
+
+Sometimes it is necessary to make a decision in a program or to perform
+ a set of actions multiple times.
+ 
+\emph on 
+Control structures
+\emph default 
+ provide the facility to do both of these things.
+\layout Standard
+
+Control structures are blocks of Perl code enclosed in curly brackets whose
+ execution is dependent on some kind of 
+\emph on 
+test(s)
+\emph default 
+.
+ These tests are usually performed using 
+\emph on 
+comparison operators
+\emph default 
+ to make some sort of comparison, but they can also be the value of some
+ variable.
+ The most commonly used control structures in Perl are 
+\family typewriter 
+if
+\family default 
+, 
+\family typewriter 
+while
+\family default 
+, and 
+\family typewriter 
+foreach
+\family default 
+.
+\layout Subsection
+
+The if Control Structure
+\layout Standard
+
+The basic structure of an
+\family typewriter 
+ if 
+\family default 
+control structure is:
+\layout LyX-Code
+
+if (TEST) {
+\layout LyX-Code
+
+     CODE_IF_TRUE
+\layout LyX-Code
+
+}
+\layout Standard
+
+where 
+\family typewriter 
+TEST
+\family default 
+ is some sort of comparison or value, that, if true, results in the execution
+ of 
+\family typewriter 
+CODE_IF_TRUE
+\family default 
+, which can be multiple Perl operations.
+\layout Subsection
+
+Comparison Operators
+\layout Standard
+
+Perl provides a group of comparison operators that can be used in test condition
+s for control structures.
+ Comparison operators are divided into two categories, numeric and string
+ operators (Table 
+\begin_inset LatexCommand \ref{tab:Numeric-and-String}
+
+\end_inset 
+
+).
+ It is important that you use the correct type of comparison operator; using
+ the improper type of comparison operator will result in unexpected program
+ behavior.
+ 
+\layout Standard
+
+
+\begin_inset Float table
+wide false
+collapsed true
+
+\layout Standard
+\align center 
+
+\begin_inset  Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="top" leftline="true" rightline="true" width="0">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Comparison
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Numeric
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+String
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Equal
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+==
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+eq
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Not equal
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+!=
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+ne
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Less than
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+<
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+lt
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Greater than
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+>
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+gt
+\end_inset 
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Less than or equal to
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+<=
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+le
+\end_inset 
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+Greater than or equal to
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+>=
+\end_inset 
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\layout Standard
+
+
+\family typewriter 
+ge
+\end_inset 
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset 
+
+
+\layout Caption
+
+
+\begin_inset LatexCommand \label{tab:Numeric-and-String}
+
+\end_inset 
+
+Numeric and String Comparison Operators
+\end_inset 
+
+
+\layout Standard
+
+I mentioned earlier that test conditions could also be values.
+ In Perl, any value other than 
+\family typewriter 
+0
+\family default 
+ or 
+\emph on 
+null
+\emph default 
+ (an undefined variable) is true.
+ Consequently, you can provide a variable name as a test condition, and,
+ depending upon its value or whether it's defined, the test will return
+ true or false.
+\layout Subsection
+
+The while Control Structure
+\layout Standard
+
+The basic structure of a
+\family typewriter 
+ while
+\family default 
+ control structure is:
+\layout LyX-Code
+
+while (TEST) {
+\layout LyX-Code
+
+     CODE_IF_TRUE
+\layout LyX-Code
+
+}
+\layout Standard
+
+where 
+\family typewriter 
+TEST
+\family default 
+ is some sort of comparison or value, that, if true, results in the execution
+ of 
+\family typewriter 
+CODE_IF_TRUE
+\family default 
+, which can be multiple Perl operations.
+ 
+\family typewriter 
+CODE_IF_TRUE
+\family default 
+ will be repeated until 
+\family typewriter 
+TEST
+\family default 
+ is false, so it is important that 
+\family typewriter 
+CODE_IF_TRUE
+\family default 
+ does something to modify the test condition so that the program does not
+ execute 
+\family typewriter 
+CODE_IF_TRUE
+\family default 
+ forever -- creating an infinite loop.
+\layout Subsection
+
+The foreach Control Structure
+\layout Standard
+
+The basic structure of a 
+\family typewriter 
+foreach
+\family default 
+ control structure is:
+\layout LyX-Code
+
+foreach $TEMP_VAR (@ARRAY) {
+\layout LyX-Code
+
+     CODE_PER_ARRAY_ELEMENT
+\layout LyX-Code
+
+}
+\layout Standard
+
+where 
+\family typewriter 
+$TEMP_VAR
+\family default 
+ is the name of a temporary variable that will hold an element of 
+\family typewriter 
+@ARRAY
+\family default 
+.
+ foreach will copy an element of 
+\family typewriter 
+@ARRAY
+\family default 
+ into 
+\family typewriter 
+$TEMP_VAR
+\family default 
+, and execute 
+\family typewriter 
+CODE_PER_ARRAY_ELEMENT
+\family default 
+ for each -- hence the name -- element of array.
+ 
+\family typewriter 
+foreach
+\family default 
+ control structures are the best way to perform some action on each element
+ of an array.
+ 
+\layout Section
+
+Basic Input and Output
+\layout Subsection
+
+Input
+\layout Standard
+
+You can get input from a user by using the assigning the value 
+\family typewriter 
+<STDIN>
+\family default 
+ to a variable.
+ For example,
+\layout LyX-Code
+
+$the_user_input = <STDIN>;
+\layout Standard
+
+which will read the input from a user until the Return key is pressed.
+\layout Description
+
+NOTE: The value assigned to such a variable will also contain the newline
+ character, since the input is terminated by a Return.
+ Consequently, it is advisable to 
+\family typewriter 
+chomp
+\family default 
+ the variable (Section 
+\begin_inset LatexCommand \ref{sub:Chomp}
+
+\end_inset 
+
+).
+\layout Subsection
+
+Output
+\layout Standard
+
+You can present output to a user by using the 
+\family typewriter 
+print
+\family default 
+ command.
+ For example,
+\layout LyX-Code
+
+print 
+\begin_inset Quotes eld
+\end_inset 
+
+Hello World!
+\backslash 
+n
+\begin_inset Quotes erd
+\end_inset 
+
+;
+\layout Standard
+
+which will display the string 
+\begin_inset Quotes eld
+\end_inset 
+
+Hello World!
+\begin_inset Quotes erd
+\end_inset 
+
+ followed by a newline.
+\layout Section
+
+A Simple Perl Program
+\layout LyX-Code
+
+#!/usr/bin/perl
+\layout LyX-Code
+
+print "I'm thinking of a number between 1 and 100.
+\backslash 
+n";
+\layout LyX-Code
+
+$guess = -1;
+\layout LyX-Code
+
+$number = int rand(100) + 1;
+\layout LyX-Code
+
+while ($guess != $number) {
+\layout LyX-Code
+
+     print "What is your guess? ";
+\layout LyX-Code
+
+     $guess = <STDIN>;
+\layout LyX-Code
+
+     chomp $guess;
+\layout LyX-Code
+
+     if ($guess < $number) { print "Too low!
+\backslash 
+n"; }
+\layout LyX-Code
+
+     if ($guess > $number) { print "Too high!
+\backslash 
+n"; }
+\layout LyX-Code
+
+}
+\layout LyX-Code
+
+print "You got it right!
+\backslash 
+n";
+\the_end

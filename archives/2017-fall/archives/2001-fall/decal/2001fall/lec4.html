@@ -1,0 +1,118 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 4</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 4 notes:</h1>
+
+<h2>administrivia:</h2>
+
+<B>Sorry For the Noise</B>
+Between the band playing outside and the A/C unit running in here,
+it's kind of hard to hear.	 
+
+<hr width=50%>
+
+<h2>class notes:</h2>
+
+<h3>Apache Server</h3>
+<pre>
+<table bgcolor="black">
+<tr>
+<td><font color="green"><pre>
+    <b>SSI (Server Side Include) Example</b> 
+
+    &lt;html&gt;
+     &lt;head&gt; &lt;title&gt;Today's Date &lt;/title&gt; &lt;/head&gt;
+     &lt;body&gt;
+        &lt;!-- #exec cmd="date" --&gt;
+     &lt;/body&gt; 
+    &lt;/html&gt;
+</td></tr></table>
+
+<table bgcolor="black">
+<tr>
+<td><font color="green"><pre>    
+    <b>Date.pl</b>
+
+    !#/usr/bin/perl
+    $stuff='cat index.html'
+    print "$stuff"
+
+</td></tr></table>
+<br><br><br>
+
+<h3>How to Configure Apache</h3>
+
+- For more info see: <a href="http://www.apache.org">www.apache.org</a> 
+
+/usr/local/apache/root/  // Global settings  
+~$user/public_http/      // Local settings replace global
+
+    httpd.conf   // Use this to config Apache
+    access.conf  // Who has access to files 
+    srm.conf     // [optional] Most of this in httpd.conf 
+
+- Make sure port 8080 is open, or Apache will crash.
+
+Logs:
+
+    - access log // Who's been here
+    - error log  // Log of everything that is FUBAR
+
+    - Rotate logs using cron, archive older logs, really old logs disappear
+    - Log location variable, set using httpd.conf
+    - Possible location: /var/log/apache or /services/http/adm/
+
+
+<h3>Vi (Village Idiot) </h3>
+
+- Has two modes, command and insert, also know as beep and non-beep
+- Complete the vi tutor within two weeks
+- URL: <href="http://www.ocf.berkeley.edu/~drew/tutor">http://www.ocf.berkeley.edu/~drew/tutor</a>
+
+
+<h3>RegExp</h3>
+
+- Use to search and replace text in grep, vi, etc.
+- Syntax:
+  
+    a*     // Matches everything before *, unlimited number of times
+	         (a, aa, aaa, ... are matched) 
+    .*     // Matches any letter
+    [abc]+ // Matches one of these letters, treats as one char
+    [^abc] // Exclude a, b, c from search
+    [a-z]  // Match a-z
+    \.     // 
+    \s     //
+    ()     // Use for grouping
+
+- Examples:
+
+    given: abcdeafghiajk
+
+    .*	   // Entire line works, abcdeafghiajk  
+    a.*a   // Matches everything between a and a, greedy, abcdeafghia
+    a.*?a  // Matches everything between a and a, non greedy, abcdea	
+
+
+<h3>Where We Are in the Class</h3>
+
+Calman: You now know enough that you no longer have to show up to 
+	work.  SSH in and run scripts to do everything.
+
+<h3>Homework</h3> 
+<b>Complete the vi tutor by 2001-10-26 (Friday)</b>
+<href="http://www.ocf.berkeley.edu/~drew/tutor">http://www.ocf.berkeley.edu/~drew/tutor</a>
+
+</pre>
+</html>
+
+
+
+
+

@@ -1,0 +1,60 @@
+
+
+<html>
+	<head>
+		<title>Homework 6</title>
+	</head>
+	<body>
+		<h1>Homework 6</h1>
+        <p>
+	<b>Important: </b>Please submit your homework in plain text, not Word document, not RTF, not (insert your favorite document format here).  Ideally, you should send an email which follows the specifications below exactly, since this helps me filter and sort the homework submissions.  Plain text email is preferred over HTML email (no pretty formatting necessary here).  Typing your answers directly into an email (or copying and pasting it in) works best.  Except for explicit instructions to include an attachment (there's one part in this homework that says to do that), it's generally not a good idea to do it.<br>
+	The purpose of this homework is to get your group prepared, and then complete, the first step of the project.<br>
+        <p>
+	Something to keep in mind is that the project will be building off of this homework, and is, in some sense, dependent upon this part working.  If something goes wrong or simply following the directions doesn't work, <b>please let us know</b>.  Remember, you have a group you can (and are supposed to) talk to, so work together and help each other out.  For the less technical people, don't be afraid to ask seemingly trivial questions.  For the very technical people, please don't be the stereotypical ubergeek who gets mad at people who are honestly trying to learn from you.  It's awkward enough being a CS major as it is, please don't exacerbate the stereotype :)</p>
+        <p>
+		For your homework, send in your answers via email (the sysadmin one, not my or Eleen's personal address).  The subject should be "Homework 4", the first line should be your name, the second line your SID, followed by a blank line, and then your homework answers.  An example is below:</p>
+		<p>
+		Subject: Homework 6<br>
+		Randy Chung<br>
+		12345678<br>
+		<br>
+		1.  The answer is...
+		</p>
+		<p>
+		The homework breaks down as follows: Everybody is required to do part 1 (basic commands).  Those of you who feel up to the challenge (and would like the extra practice), feel free to try part 2.  <b>At least attempting part 2 is strongly recommended</b>.  Part 2 is not meant to be impossible, and shouldn't take more than an hour or two to complete.  Even if you can't finish it, send me a partial response.  If I get some particularly creative or cleanly written examples I'll post them up and briefly talk about them during the next course meeting.  If yours isn't selected it's not because yours wasn't done well, but simply because of time constraints (i.e. don't feel bad).
+		</p>
+		<h2>Part 0: Groups and servers</h2>
+		<p>
+		Meet with your group and elect a group leader if you have not done so.  Come up with a group name (e.g. "Team Yo-Mama's-Fat") and email us with the subject line as "Group: " followed by your group name, e.g. "Group: Team Yo-Mama's-Fat".  Also, find a group member who has a computer that can be left on as a server and is viewable publicly (i.e. not behind a router, or use port forwarding to bypass the router, etc. etc.).  Include in the body of your email the IP address or DNS name of the computer.  If you don't have a DNS name, consider getting a dynamic one for free from a site like www.dyndns.org.  We'll be using this computer to verify that your homeworks have been completed, so it's very important to make sure that this computer will be available all the time (we tend to work at odd hours).<br>
+		If your group is unable to find someone who has a computer available, you can also use your OCF account.  Please keep in mind that the OCF is a shared resource, so if your webserver runs haywire it may be terminated by the administrators.  You can find the OCF's policy on unattended processes (this includes webservers) via the OCF homepage.  Since this decal is being run under the auspices of the OCF, there is a bit of leeway with the resource usage, but please don't abuse it.
+		</p>
+		<h2>Part 1a: Installing Apache</h2>
+		<p>
+		Hopefully by this point at least one member of your group has successfully installed Apache.  You'll be doing an installation "for real" now, and you are free to use whatever method pleases you (rpm, apt-get, yum, emerge, et.).  Use whatever method you choose (you can always drop back to configure, make, make install from homework 4) and install the webserver.  Be sure the webserver is installed on the computer from Part 0.  Let us know in your homework submission when I can go to your webserver and verify that it is running.  For additional practice, put up a webpage so when we check your website, it won't just show the apache test page.
+		</p>
+        <h2>Part 1b: Compiling Apache: The Virginous Run</h2>
+        <p>
+        This part of the homework involves a few steps, namely:<br>
+        1. Download the source tarball (for those of you who've forgotten, "tarball"'s a term used to refer to source files that have been packaged with tar and gzip/bzip'ed).<br>
+        2. Extract the source tarball<br>
+        3. Run the configure script, which will automatically configure the compile process for us<br>
+        4. Compile the source code<br>
+        5. Install the binary files created in step 4.<br>
+        This sounds a lot more complicated than it is.<br>
+        Step 0: Get shell access somewhere.  The OCF is one possibility; a home machine that is running Linux/BSD/MacOS/etc. works as well.  If you don't have this, it will be VERY difficult to do the rest of the assignment.<br>
+        Step 1: Go to <a href="http://www.apache.org">www.apache.org</a> and download the source for either the 1.3 branch of the 2.0 branch.<br>
+        Step 2: Things get a little more complicated here, since there are a variety of tools out here.  I'll try t outline the most likely ones you'll be using.  If you're at the OCF, try to go during staff office hours and someone will be there who can help you with some of the steps if you get stuck.  If you're doing this assignment at the OCF, be sure to use one of the Unix machines (the non-Windows machines in the lab).  If you're doing this from home, I assume you know enough Linux to get by.  At the OCF, open a terminal (which runs a shell), such as xterm or rxvt.  From there, navigate to the directory you downloaded the tarball to (refer to homework 1 if you don't remember the commands).  From there, issue the following command: <code>'gtar -xvzf (the filename)'</code> if you downloaded a gzip'ed file (.tar.gz), or issue the following command: <code>'gtar -xvjf (the filename)'</code> if you downloaded a bzip'ed file (.tar.bz2).  This will extract the tarball into the current directory.  Don't worry about it messing up your directory structure; all the files in the source tarball are contained within a subdirectory. If you're working from home on a Linux distribution, use tar instead of gtar.  The reason for this is the machines at the OCF run Solaris, which does not use the GNU tools by default.  Linux, however, does, which is part of the reason you often see "GNU/Linux" rather than just Linux by itself.<br>
+        Step 3: Navigate to the new subdirectory (varies depending on which version of Apache you downloaded).  Type: <code>./configure --prefix=$HOME/apache</code>.  This will run the autoconfiguration script, and also tell it to (eventually) install the files in (your home directory)/apache.  If you're familiar with the configure script, feel free to install elsewhere.<br>
+        Step 4: Once the configure script runs and finishes successfully, type <code>make</code> and press enter.  This will run the automatic compilation scripts.  This step will take a while, so this is a good time to take a break.<br>
+        Step 5: Once the compile process completes, we have to install the program.  Since we're installing into our home directory, we don't need superuser (i.e. root) privleges to do this.  It will be sufficient to type in <code>make install</code> and hit enter.  If you decided to install Apache into a system directory instead, you'll need to become root first (but I assume if you've done that you know enough to also know how to become root).  The OCF does not allow installing into system directories, which is why these instructions suggest you install it into your home directory instead.<br>
+        If you run into any problems along the way (especially if you're working on it at the OCF), please don't hesitate to email us.  For the homework submission, we're going to redo part of Step 5, only with a slight change.  Rather than running make install, issue the following command: <code>make install | tee install.log</code>.  This will create a file "install.log" in the current directory which contains the output of the installation attempt.  Attach that file in your homework submission.
+		</p>
+        <h2>Part 2: More Apache</h2>
+        <p>
+        1.  Where are the Apache configuration files installed?<br>
+        2.  Which file would you edit to have the webserver run on port 12345 instead of the default 80?  What line would you change/add to that file?  A unified diff ("diff -u") between the default file and your modification will be sufficient for this question, but an explanation in words will work as well.<br>
+        3.  Change the Apache configuration file so the webserver starts on port 12345 instead.  Start the webserver.  Open a web server and type in the following url: http://localhost:12345.  What do you see?
+		</p>
+		Good luck!<br>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+*Note: If you are using an OCF machine as your webserver, please pick from 
+one of the following systems: firestorm, sandstorm, blizzard, hurricane, 
+monsoon.  No other machine is acceptable.  If you have already picked a machine 
+that's not in this list, please pick again.  E-mail us with your decision.  
+
+Group 1: NJCEF, Inc.
+- Purpose: Weblog
+- Means: OCF (ciokita), sandstorm:10001
+- Members: Elmer Lee (L), Nelson Bradley, Jonathan Chan, Cynthia Okita, Fu Hsuan Wu
+
+Group 3: Alchemy
+- Purpose: Community based personal homepage supporting BLOG, Forum, Memopad, File library, Music board, and pix gallery.
+- Means: Own -> kardiss.ivyro.net 
+- Members: Ken (Wonki) Chung (L), Nicholas Perri, Tae Dong Kim, Raphael Kang
+- MIA?: Tania Moody
+
+Group 4: N/A
+- Purpose: Discussion forum for video games (new releases, reviews, tips, hints)
+- Means: OCF (hongv)-> hurricane:10004
+- Members: Jeffrey Yang (L), Hong Voong, Sara Saedina, Jun Lin, Ricky Polim
+
+Group 5: AKA 4 != for
+- Purpose: Bloghosting service
+- Means: Own system running slackware at 66.117.143.236 (Shen's IP) -> fifthgroup.kicks-ass.org
+- Members: Garrett McLean (L), Lillian Tan, Shen Gao, Wil1iam Cheung, Luis Ledesma
+
+Group 6: The Toasted Bananas
+- Purpose: Online Phonebook 
+- Means: OCF (bina) -> firestorm:10006
+- Members: Anirudh Vemprala (L), Bina Ghanaat, Amit Matani, Derek Sollberger, Alexandr Tolchinsky 
+
+Group 7: Team America
+- Purpose: Blogger service (GPL code) 
+- Means: OCF -> blizzard:10007
+- Members: Prescott (Richard) Nasser (L), Kai Chen, Bill Ung, Sahil Gupta, Heng Woon Ong
+
+Group 8: Number8
+- Purpose: Image hosting with forum & others 
+- Means: OCF (?):firestorm:10008, number8.kicks-ass.net
+- Members: Sanket Gohil (L), Rita Chu, Amber Loggins, Dayo Esho, Hetwarth Italia, Sean Ahern 
+
+Group 9: The Niners
+- Purpose: A web interface offering web services like CVS, bb, SSH/FTP, web hosting, user registration db 
+- Means: casperntim.no-ip.info (24.7.98.54)
+- Members: Tuan Ha (L), David Wang, Kenneth Louie, Dawson (Qilong) Tan, Raza Uddin, Graham Melcher 
+
+Group 10: Navaho 
+- Purpose: Services to its community (frontend for webservices like blogs, webcvs, bulletin boards, galleries, and custom projects in PHP) 
+- Means:  Own (Rob) at 64.171.190.34 (servxor.com), failover to OCF
+- Members: Robert van Spykes (L), Jun Young Park, Henry Curtin, Sumin Kim, Daniel Lee, petaninja.com
+
+Group 11: The Guys
+- Purpose: General Discussion Forum
+- Means: OCF (?)-> sandstorm:10011
+- Members: Tu Vuong (L), Tony Chang, David Hsiao, Fong Chi Yip 
+
+Group 12: wrecksongs
+- Purpose: Discussion board for music w/ personal music profiles 
+- Means: Own server running OpenBSD 3.6, group12.kicks-ass.net
+- Members: Wil Dopkins (L), John Potapenko (auditing), Jeremy Coyle, Raymond Ip, Alex Yim, Weixi Yen
+
+Group 13: Lucky 13
+- Purpose: Community-based site (similar to craigslist)
+- Means: Own running RedHat 8.0 at http://group13.kicks-ass.net:8088 
+- Members: Jory Martin (L), Matthew Stewart, Kat Nagayoshi, Karan Shah, Mohammad Jawwad Memon, Tom Gaston 
+
+Group 14: "GROUP 14"
+- Purpose: A news site like slashdot, and possibly expanding to doing VoIP
+- Means: ?
+- Members: Brandon Jue (L), Stanton Chan, Paul McMillan, John Mar
+
+Group 15: Server Jedi
+- Purpose: Game Server 
+- Means: Own (Ryan) -> ryanmcreynolds.com
+- Members: Ryan McReynolds (L), Raymond Chetty, Alan Fu, Robert Liu, Daniel Sebescen
+
+Group 16:  
+- Purpose: Online Organizer
+- Means: Own (Mike)
+- Members: Michael Hoisie, George Wu, Matthew Fong, Zin Mar Kyi, Jonathan Yen, Li Yang Liu
+
+Group 17:
+- Purpose: Discussion Forum
+- Means: OCF (thanvca)-> fallingrocks:10017
+- Members: Thanh Cao (L), Donn Gurule, Victor Ranga, Jose M. Navarro, Gustavo Buenrostro
+
+Group 18: 
+- Purpose: Pending (bbs -> online comic jam: online user-editable comic strip)
+- Means: Own (Peter) -> 198.144.195.45
+- Members: Mike Ross (L), Peter Leiser, Guang Li, Luke R. Gottlieb, Jeffrey Soliva
+
+Group 19: 
+- Purpose:
+- Means: OCF (ssteben)-> server?:10019
+- Members: Huy Nguyen, Kelvin Chan, Chris Marcellino, Seth Steben, Daniel Davis, ocf/~ssteben/19
+
+Group 20: Foobar 
+- Purpose: Real Time Chat Service via java applets
+- Means: OCF (?)-> sandstorm:10020
+- Members: Steven Lee Chou, Paul Kyong Tae Lee, Truong Nguyen (L), Kada Situ, Carmelo Kintana, Peter Lau

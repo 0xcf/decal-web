@@ -1,0 +1,28 @@
+Script started on Sat 10 Feb 2001 08:32:51 PM PST
+You have mail.
+famine.OCF.Berkeley.EDU [56] pwd
+/services/http/data/intro-to-sysad-decal
+famine.OCF.Berkeley.EDU [57] ls
+index.html             syllabus.html
+lec1.html              typescript
+famine.OCF.Berkeley.EDU [58] ls -l
+total 36
+-rw-rw-r--   1 jones    www         1827 Feb  9 13:27 index.html
+-rw-rw-r--   1 jones    ocf         8675 Feb 10 20:31 lec1.html
+-rw-rw-r--   1 jones    www          833 Feb  7 22:52 syllabus.html
+-rw-r--r--   1 jones    ocf            0 Feb 10 20:32 typescript
+famine.OCF.Berkeley.EDU [59] mkdir test
+famine.OCF.Berkeley.EDU [60] cd test
+famine.OCF.Berkeley.EDU [61] pwd
+/services/http/data/intro-to-sysad-decal/test
+famine.OCF.Berkeley.EDU [63] cat > testfile
+this is a test
+only a test
+^Dfamine.OCF.Berkeley.EDU [64] more testfile
+this is a test
+only a test
+famine.OCF.Berkeley.EDU [65] sort testfile
+only a test
+this is a test
+famine.OCF.Berkeley.EDU [66] exit
+script done on Sat 10 Feb 2001 08:35:03 PM PST

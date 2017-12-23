@@ -1,0 +1,136 @@
+		Week 2 Notes
+- Sorry for disorganization last time, back to regularly scheduled class. 
+REVIEW!
+- Got OCF Account? Anybody know a text editor? Filled out the quiz? Night before
+it is due? Enroll? Teleberas should be closing soon.
+
+- think of the 2 operating systems as 2 different engines in a car. Each will
+have a different effect on the body of the car (computer), will need its own 
+connectors (pipes, brakes). 
+
+Learning Curve
+- UNIX - exponential at first, then constant
+- Windows - linear
+
+- 	Windows 		vs 		UNIX		
+Who makes this?
+* one private company			* open-source 
+	closed source				change whatever you like	
+	no modifications		
+	a lot of advertising
+SLOC
+* ~40 million lines of code			6.0 million lines of code
+Price
+* $$$						free (for the most part)
+Server
+* Internet Information Services ($$$)		Apache(Free)
+
+[[apache] UNIX]
+
+Distributions
+* Debian, Ubuntu - latest craze
+* Mandrake, Fedora - traditionally good for start-ups, Fedora used @LBL
+* Slackware, LFS, etc..
+* FreeBSD
+	- different package managments systems
+
+- Distribute Accounts
+
+- login, register
+- ssh po to change your password
+
+- How to login from home?
+http://www.ocf.berkeley.edu/~eleen/web/ssh.html
+
+- WTF is SSH?
+- SSH stands for Secure Shell It is also a protocol. 
+	like name says, a protocol to allow secure connection between two 
+		trusted hosts over insecure network
+- Web is a chaos. Say you want to get your friend's attention. Not using ssh is
+	like screaming the name out, and if anybody wants to, they can easily
+		hear you.
+- WTF is a shell?
+	you probably got a chance to run it, when getting your connection 
+		for Rescomp. needed your mac address.
+	Well, it is a command line. No GUIs (Graphic User Interface) you are
+	used to. 
+- Different Shells! 
+	bash (bourne-again shell), tcsh (TENEX C shell), zsh, csh (C Shell)..
+
+System Administrator Tools!
+- know the commands
+- know a text editor
+- man = MANual. <- probably most important resource!
+
+Lets Get to Commands!
+
+- UNIX authors were not fans of vowels or long words, so..
+
+- mv = MoVe
+- cp = CoPy
+- ls = LiSt (not dir in Windows)
+- mkdir = MaKeDIRectory
+- cd = ChangeDirectory
+- rm = ReMove
+- pwd = Print Working Directory
+- man = MANual (<-- the most important command!)
+- apropos ~ appropriate
+- touch = create an empty file
+- chmod = CHange file access permissions
+- chgrp = CHange GRouP ownership
+
+Killing stuff (not really).
+- Ctrl-C
+- Ctrl-Z
+- Ctrl-D
+
+What do CS people do when they run out of names?
+- foo -> bar -> baz -> qux -> quux -> quuux -> qu..ux -> shme
+
+Text Editors
+- vim (VIMproved), nano, pico, emacs (61a!)
+	will teach vi, because it is on most of the systems
+	* brave? learn ed!
+- Annoying at first, because you have to learn a lot of commands, but after 
+	you do, life will be MUCH easier. 
+
+Vi Shortcuts
+
+to get a prompt ':' hit Esc -> :
+to get out of ':' hit Esc 
+to save file = ':wq', so Esc -> wq -> Enter
+	or faster way 'ZZ' ~done and want to sleep
+to quit w/out saving = ':q!', so Esc -> q! -> Enter ~q=quit
+to insert = 'i' ~insert
+to insert at the beginning of line = 'I' ~insert
+to delete an entire line = 'dd'
+to delete N number of lines below cursor = 'Ndd' -> Enter'
+to undo = 'u'
+to append to the end of the line = 'A' ~Append
+to append after the cursor = 'a' ~Append
+to delete after the cursor = 'x'
+to search file = '/<insert string to search for>'
+to join lines = 'J' ~join
+
+
+
+
+[1]
+Year 	Operating System 	SLOC (Million)
+1990 	Windows 3.1 		3
+1995 	Windows NT 		4
+1997 	Windows 95 		15
+1998 	Windows NT 4.0 		16
+1999 	Windows 98 		18
+2000 	Windows NT 5.0 		20
+2001 	Windows 2000 		35
+2002 	Windows XP 		40
+
+Operating System 	SLOC (Million)
+Red Hat Linux 6.2 	17
+Red Hat Linux 7.1 	30
+Debian 2.2 		56
+Debian 3.0 		104
+Debian 3.1 		213
+Sun Solaris 		7,5
+Linux kernel 2.6.0 	6,0	

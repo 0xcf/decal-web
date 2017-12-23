@@ -1,0 +1,221 @@
+This is pdfeTeX, Version 3.14159-1.10b-2.1 (Web2C 7.4.5) (format=pdflatex 2006.2.5)  3 APR 2006 02:33
+entering extended mode
+**week8notes.tex
+(./week8notes.tex{/usr/share/texmf/pdftex/config/pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, catalan, croatian, czech, danish, dutch, finnish, greek, iceland
+ic, irish, italian, latin, magyar, norsk, norsk, portuges, romanian, russian, s
+lovak, slovene, spanish, swedish, turkish, ukrainian, nohyphenation, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2001/08/31 v1.1 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 80.
+
+(/usr/share/texmf/tex/latex/graphics/pdftex.def
+File: pdftex.def 2002/06/19 v0.03k graphics/color for pdftex
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texmf/tex/latex/html/html.sty
+(/usr/share/texmf/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2003/01/22 v6.73n Hypertext links for LaTeX
+\@linkdim=\dimen105
+\Hy@linkcounter=\count88
+\Hy@pagecounter=\count89
+
+(/usr/share/texmf/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2003/01/22 v6.73n Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf/tex/latex/config/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive and teTeX
+)
+Package hyperref Info: Hyper figures OFF on input line 1792.
+Package hyperref Info: Link nesting OFF on input line 1797.
+Package hyperref Info: Hyper index ON on input line 1800.
+Package hyperref Info: Plain pages ON on input line 1805.
+Package hyperref Info: Backreferencing OFF on input line 1812.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 1916.
+(/usr/share/texmf/tex/latex/misc/url.sty
+\Urlmuskip=\muskip10
+Package: url 1999/03/28  ver 1.5x  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 2055.
+\Fld@menulength=\count90
+\Field@Width=\dimen106
+\Fld@charsize=\dimen107
+\Choice@toks=\toks15
+\Field@toks=\toks16
+Package hyperref Info: Hyper figures OFF on input line 2513.
+Package hyperref Info: Link nesting OFF on input line 2518.
+Package hyperref Info: Hyper index ON on input line 2521.
+Package hyperref Info: backreferencing OFF on input line 2528.
+Package hyperref Info: Link coloring OFF on input line 2533.
+\c@Item=\count91
+\c@Hfootnote=\count92
+)
+*hyperref using default driver hpdftex*
+(/usr/share/texmf/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2003/01/22 v6.73n Hyperref driver for pdfTeX
+
+(/usr/share/texmf/tex/latex/psnfss/pifont.sty
+Package: pifont 2002/09/08 PSNFSS-v9.0a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 62.
+
+(/usr/share/texmf/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 63.
+
+(/usr/share/texmf/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+\Fld@listcount=\count93
+\@outlinefile=\write3
+)
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count94
+\c@lchapter=\count95
+\c@chapter=\count96
+\c@lsection=\count97
+\c@lsubsection=\count98
+\c@lsubsubsection=\count99
+\c@lparagraph=\count100
+\c@lsubparagraph=\count101
+\c@lsubsubparagraph=\count102
+\ptrfile=\write4
+)
+(/usr/share/texmf/tex/latex/tools/verbatim.sty
+Package: verbatim 2001/03/12 v1.5p LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks17
+\verbatim@line=\toks18
+\verbatim@in@stream=\read1
+) (./week8notes.aux)
+\openout1 = `week8notes.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+
+(/usr/share/texmf/tex/context/base/supp-pdf.tex
+(/usr/share/texmf/tex/context/base/supp-mis.tex
+loading : Context Support Macros / Missing
+\protectiondepth=\count103
+\scratchcounter=\count104
+\scratchtoks=\toks19
+\scratchdimen=\dimen108
+\scratchskip=\skip43
+\scratchmuskip=\muskip11
+\scratchbox=\box26
+\scratchread=\read2
+\scratchwrite=\write5
+\zeropoint=\dimen109
+\minusone=\count105
+\thousandpoint=\dimen110
+\emptytoks=\toks20
+\nextbox=\box27
+\nextdepth=\dimen111
+\everyline=\toks21
+\!!counta=\count106
+\!!countb=\count107
+\recursecounter=\count108
+)
+loading : Context Support Macros / PDF
+\nofMPsegments=\count109
+\nofMParguments=\count110
+\everyMPtoPDFconversion=\toks22
+)
+Package hyperref Info: Link coloring OFF on input line 4.
+ (/usr/share/texmf/tex/latex/hyperref/nameref.sty
+Package: nameref 2001/01/27 v2.19 Cross-referencing by name of section
+\c@section@level=\count111
+)
+LaTeX Info: Redefining \ref on input line 4.
+LaTeX Info: Redefining \pageref on input line 4.
+ (./week8notes.out)
+(./week8notes.out)
+\openout3 = `week8notes.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 7.
+
+
+LaTeX Warning: No \author given.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
+(/usr/share/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
+ [1
+
+{/var/lib/texmf/dvips/config/pdftex.map}] [2] [3] (./week8notes.aux) ) 
+Here is how much of TeX's memory you used:
+ 2809 strings out of 94960
+ 37340 string characters out of 1182471
+ 88747 words of memory out of 1000001
+ 5913 multiletter control sequences out of 10000+50000
+ 8277 words of font info for 29 fonts, out of 500000 for 1000
+ 198 hyphenation exceptions out of 1000
+ 34i,6n,36p,265b,210s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 100 PDF objects out of 300000
+ 20 named destinations out of 131072
+ 128 words of extra memory for PDF output out of 65536
+{/usr/sha
+re/texmf/dvips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmr1
+0.pfb>{/usr/share/texmf/dvips/tetex/bbad153f.enc}</usr/share/texmf/fonts/type1/
+bluesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmbx12.pfb></usr
+/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/blu
+esky/cm/cmr17.pfb>
+Output written on week8notes.pdf (3 pages, 45756 bytes).

@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-1 (1.68)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>System Administration for the Web:
+Week 10 Lab</TITLE>
+<META NAME="description" CONTENT="System Administration for the Web:
+Week 10 Lab">
+<META NAME="keywords" CONTENT="decal_lab_week10">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="decal_lab_week10.css">
+
+</HEAD>
+
+<BODY >
+
+<P>
+
+<P>
+<H1 ALIGN="CENTER">System Administration for the Web:
+<BR>
+Week 10 Lab</H1>
+
+<P>
+
+<H1><A NAME="SECTION00010000000000000000">
+1 Staying Up to Date</A>
+</H1>
+
+<P>
+In the first lab for your project, we instructed you to enter the
+following commands to install ssh on your servers:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>apt-get&nbsp;update
+
+<P>
+apt-get&nbsp;install&nbsp;ssh
+</DD>
+</DL>By now, the purpose of the second command should be clear to you.
+However, the purpose of the first command is still a mystery. In this
+section of the lab, you'll determine the purpose of <TT>apt-get
+update</TT> and learn how it'll help keep your server secure.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Read the apt-get man page and see if you can figure out
+what <TT>apt-get update</TT> does.
+</DD>
+</DL>
+Your server maintains a database of all the packages available to
+install. However, as new packages are created and older packages updated,
+your server's copy of the package database becomes outdated. a<TT>pt-get
+update</TT> refreshes your server's copy of the package database and ensures
+that <TT>apt-get</TT> is aware of all new and updated packages.
+
+<P>
+<DL>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Perform an <TT>apt-get update</TT>. What happens?
+</DD>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>Once your server has obtained a new version of the package
+database, it is a good idea to check and see if there are any new
+versions of packages installed on your server. Read the <TT>apt-get</TT>
+man page and identify the command to upgrade your server's software.
+</DD>
+<DT><STRONG>[4]</STRONG></DT>
+<DD>Upgrade the software on your server.
+</DD>
+</DL>
+For those who use Microsoft Windows at home, this process should be
+somewhat familiar. Microsoft Windows Update works in a very similar
+manner. However, one should note that Microsoft Windows Update only
+updates the core of the Microsoft Windows operating system; <TT>apt-get</TT>
+updates all the software that has been installed on your server using
+<TT>apt-get install</TT>. In order words, you can upgrade all the
+software on your computer with one command (compare that to going
+to each individual program's website, downloading the latest version,
+and installing the upgrade manually)!
+
+<P>
+<DL>
+<DT><STRONG>[5]</STRONG></DT>
+<DD>Can you come up with reasons why you would want to insure
+that all the software on your server is up to date? Think about the
+majority of updates that are released through Microsoft Windows Update.
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+2 Access Control Lists</A>
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>At this point in the class, you should be familiar with
+UNIX filesystem permissions. What classes and types of permissions
+can you set?
+</DD>
+</DL>
+Sometimes basic UNIX filesystem permissions are not flexible or specific
+enough. For example, how would you allow read and write access to
+a file for one specific person, while keeping you as the owner of
+the file? Such control is impossible to implement with basic UNIX
+filesystem permissions, but is easy with POSIX access control lists.
+
+<P>
+<DL>
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Use <TT>apt-cache</TT> to search for the package that contains
+the access control list utilities and install the package.
+</DD>
+</DL>
+Before you utilize access control lists, though, you must enable support
+for it. Open the <TT>/etc/fstab</TT> file with a text editor and change
+the first line in that file to match the following line:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>/dev/sda1&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;reiserfs&nbsp;&nbsp;defaults,acl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;1
+</DD>
+</DL>Reboot the server using the reboot command. You'll be disconnected
+from the server during the reboot. Please wait a minute and reconnect.
+
+<P>
+<DL>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>The command to apply an access control list to a file is
+<TT>setfacl</TT>. Read the command's man page and figure out how to
+grant read and write access to a specific user. Hint: <TT>setfacl</TT>'s
+man page contains a nice list of examples at the end.
+</DD>
+<DT><STRONG>[4]</STRONG></DT>
+<DD>In the first lab for your project, you were instructed to
+create a regular user account for yourself and your partner. Have
+each partner log into their respective account and create a text file.
+Using access control lists, grant your partner read and write access
+to the text file. Have your partner check to make sure they can read
+the write the file from their account.
+</DD>
+<DT><STRONG>[5]</STRONG></DT>
+<DD>Now, create a file that can be read and modified by anyone.
+Using access control lists, remove read and write access for your
+partner only. Again, have your partner check to make sure the permissions
+are properly set.
+</DD>
+</DL>
+As you can see, access control lists are extremely useful in multi-user
+environments. They allow you to grant specific access rights to individuals.
+An important principle of security is to grant the least amount of
+access necessary to any person. Access control lists allow system
+administrators to maintain a tight set of file permissions.
+
+<P>
+<DL>
+<DT><STRONG>[6]</STRONG></DT>
+<DD>See if you and your partner can come up with situations
+where access control lists would be useful.
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+3 Quota</A>
+</H1>
+
+<P>
+Along with filesystem permissions, disk space quotas are probably
+one of the most important tools system administrators have for securing
+their systems and restricting abuse. Disk space quotas allow system
+administrators to specify exactly how much disk space a user can use.
+On any server with more than one user, it is imperative to set disk
+space quotas to prevent a single user from hogging up an entire server's
+hard drive.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Use <TT>apt-cache</TT> to search for the two packages that
+contain the utilities to manage disk space quotas and install them.
+</DD>
+</DL>
+As before, you must enable support for quotas before utilizing them.
+Open the <TT>/etc/fstab</TT> file with a text editor and change the
+first line in that file to match the following line:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>/dev/sda1&nbsp;&nbsp;/&nbsp;&nbsp;reiserfs&nbsp;&nbsp;defaults,acl,usrquota,grpquota&nbsp;&nbsp;0&nbsp;&nbsp;1
+</DD>
+</DL>Reboot the server using the reboot command. You'll be disconnected
+from the server during the reboot. Please wait a minute and reconnect.
+Once reconnected, execute the following command to initialize your
+quota database:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>quotacheck&nbsp;-mfug&nbsp;/
+
+<P>
+quotaon&nbsp;/
+</DD>
+
+<DT><STRONG>[2]</STRONG></DT>
+<DD>Create a new user. Using <TT>edquota</TT>, give the user
+a quota of 1000 K.
+</DD>
+<DT><STRONG>[3]</STRONG></DT>
+<DD>Login as the user you just created and try to download a
+file larger than 1000 K. What happens?
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00040000000000000000">
+4 Insecure Directories</A>
+</H1>
+
+<P>
+A common security hole associated with poor filesystem permissions
+management and lack of quotas is insecure directories. In general,
+an insecure directory is a directory that allows any user to write
+files to it. Ideally, users should only be able to write to their
+home directories; if users were allowed to write to all sorts of directories,
+it would be very easy for users to hide files from system administrators.
+
+<P>
+<DL>
+<DT><STRONG>[1]</STRONG></DT>
+<DD>Read the man page for the <TT>find</TT> command. Use the
+command to locate all world-writeable directories and files.
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00050000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG>System Administration for the Web:
+<BR>
+Week 10 Lab</STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2002-1 (1.68)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 -show_section_numbers -no_navigation decal_lab_week10.tex</TT>
+<P>
+The translation was initiated by Stephen Le on 2005-11-14
+<BR><HR>
+<ADDRESS>
+Stephen Le
+2005-11-14
+</ADDRESS>
+</BODY>
+</HTML>

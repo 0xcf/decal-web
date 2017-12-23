@@ -1,0 +1,92 @@
+<html>
+<head><style>
+input, textarea {
+    background-color:lightsteelblue;
+}
+</style></head>
+<body bgcolor=lightblue>
+<br><br>
+<h2>Survey</h2>
+
+<!--i>So why do we want you to fill out this survey? Beats me. They did it in past semesters.</i-->
+
+<form method=POST action="/~jerjou/sysadmin/survey.php">
+<h2>Demographics</h2>
+    <b>Name</b>: <input type="text" name="name"><br>
+    <b>E-mail address</b>: <input type="text" name="email"><i style="font-size:8pt"> (the one(s) you'll use to submit homework)</i> <br>
+    <b>Year:</b> <input type="radio" name="year" value="1st">1
+                 <input type="radio" name="year" value="2nd">2
+                 <input type="radio" name="year" value="3rd">3
+                 <input type="radio" name="year" value="4th">4
+                 <input type="radio" name="year" value="5th">Other
+    <br>
+<br>
+<h2>Experience</h2>
+    <b>Linux/Unix/BSD experience:</b><br>
+        <input type ="radio" name="linux" value="None">None
+        <input type ="radio" name="linux" value="0-10 hours"><10 hours
+        <input type ="radio" name="linux" value="11-30 hours">11-30 hours
+        <input type ="radio" name="linux" value="31-100 hours">31-100 hours
+        <input type ="radio" name="linux" value="100+">100+ or it's your primary OS
+        <br>
+<br>
+    <b>Programming experience in lines of code</b> (C, PHP, Java, etc.):
+        <br>
+        <input type ="radio" name="program" value="0">None
+        <input type ="radio" name="program" value="1-100">1-100
+        <input type ="radio" name="program" value="101-1000">101-1000
+        <input type ="radio" name="program" value="1001-10000">1000-10,000
+        <input type ="radio" name="program" value="10000+">10,000+
+        <br>
+<br>
+    <b>HTML experience in non-trivial pages produced</b>
+        <br>
+        <input type ="radio" name="html" value="0">None
+        <input type ="radio" name="html" value="1-5">1-5
+        <input type ="radio" name="html" value="5-10">5-10
+        <input type ="radio" name="html" value="10-20">10-20
+        <input type ="radio" name="html" value="20+">20+
+        <br>
+<br>
+
+<h2>Miscellaneous</h2>
+<i>The astute reader will notice that the following questions aren't technical in nature.<br>
+If you're pressed for time or you think this is lame, you don't really have to fill these out,<br>
+but it'd be nice. Try not to take it too seriously, please.</i><br><br>
+    <b>What do you do with your weekends and evenings?</b> <i style="font-size:8pt">Choose the one that describes you best</i>
+        <br>
+        <input type="radio" name="person" value="geek">I read slashdot, shop for a faster graphics card, and write programs to wash my laundry as efficiently as possible.<br>
+        <input type="radio" name="person" value="romantic">I take long walks on the beach, smell roses, and admire sunsets.<br>
+        <input type="radio" name="person" value="nerd">I study, attend review sessions, and get ahead on my homework.<br>
+        <input type="radio" name="person" value="base jumper">I go rock climbing, camping, hiking, and snow boarding all at once.<br>
+        <input type="radio" name="person" value="vegetable">I watch tv and eat Doritos&copy;.<br>
+        <input type="radio" name="person" value="poet">I write poems, paint, and attend the theatre.<br>
+        <input type="radio" name="person" value="butterfly">I hang out with friends, play board games, and set up lunch dates.<br>
+        <input type="radio" name="person" value="pothead">I get drunk, high, and stoned.<br>
+        <input type="radio" name="person" value="ocd">I plan my week, clean my bathroom, and organize social gatherings.<br>
+        <input type="radio" name="person" value="energizer bunny">I feed the homeless, attend the five clubs I'm president of, and lead our ultimate frisbee team to victory.<br>
+        <input type="radio" name="person" value="other">I defy description.
+        <br>
+<br>
+    <b>If I give you an 'A' on the midterm, will you buy me a boba?</b>
+        <br>
+        <input type="radio" name="boba" value="yes">Yes
+        <input type="radio" name="boba" value="no">No
+        <input type="radio" name="boba" value="dinner">No, but I'll treat you to dinner
+        <br>
+<br>
+    <b>What possessed you to take this class?</b>
+        <br>
+        <input type="radio" name="because" value="pimp">All the hot computer nerds in Soda.<br>
+        <input type="radio" name="because" value="business">I'd like to work in a back room with machines as my friends as a career.<br>
+        <input type="radio" name="because" value="squatter">I need units.<br>
+        <input type="radio" name="because" value="interest">People with their own websites are cool <i>(eg www.jerjou.com)</i><br>
+        <input type="radio" name="because" value="materialist">I hear systems administrators rake in the dough.<br>
+        <input type="radio" name="because" value="other">Other<br>
+        <textarea name="becauseOther" rows=10 cols=50>If 'other', please specify</textarea><br>
+
+    <input type=submit value="Submit">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!-- Snooping around, are we?  Here, have a cookie: http://is.gd/JRxl5A -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Hands-On UNIX System Administration &mdash; Spring 2011</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+
+	<body>
+		<h1>CS 98/198-8: Hands-On UNIX System Administration</h1>
+
+
+		<h2><a name="announcements">Announcements</a></h2>
+
+		<ul>
+			<li><span class="date">(3/16)</span>  <a
+				href="http://www-inst.eecs.berkeley.edu/~kevinm/">Kevin
+				Mullally</a>, manager of the EECS Instructional Support Group,
+			and other INST staff will be holding a discussion with the OCF on
+			system administration practices <strong>tomorrow, 17 March, at
+				1:30PM in 102 Barrows.</strong>  Topics will include mail and
+			web servers (e.g., anti-spam and CGI), as well as how the OCF is
+			run.  All are invited to attend!</li>
+			<li><span class="date">(3/14)</span> Final project proposals are
+			<strong>due in hard copy at the start of next class</strong>, 28
+			March (after spring break).  Please arrange to stick around after
+			the lecture portion of class is complete that day &mdash; I'll be
+			meeting with each group to discuss your proposals during lab.  Your
+			proposal should include the following:
+			<ul>
+				<li><strong>Elevator pitch.</strong>  Convince me that your
+				project is awesome.  What will it do, and why should I care?
+				What problem will it solve, or how will it make my life as a
+				UNIX systems administrator easier?</li>
+				<li><strong>Summary.</strong>  How do you plan to implement
+				your project? Include requests for additional resources &mdash;
+				e.g., additional VMs, different operating systems, custom DNS
+				records, ports forwarded, etc.; I’ll attempt to honor any
+				reasonable requests.</li>
+				<li><strong>Timeline.</strong>  List major milestones necessary
+				to complete your project, how long each should take, and by
+				when you plan to have finished each milestone.  You’ll be
+				presenting your project to the class on 25 April, so plan
+				accordingly.</li>
+			</ul>(This information is also in <a href="lab/lab08.pdf">this
+			week's lab</a>.)</li>
+			<li><span class="date">(1/26)</span> Today's tentative office hour
+			has been cancelled due to a scheduling conflict, but feel free to
+			<a href="#staff">get in touch</a> if you need help.</li>
+			<li><span class="date">(1/24)</span> Welcome to the Sysadmin DeCal!
+			The <a href="syllabus.pdf">syllabus</a> has been uploaded.  (Don't
+			forget to take <a href="http://www.surveymonkey.com/s/2B792GP">the
+				survey</a>!)</li>
+		</ul>
+
+
+		<h2><a name="essentials">Essentials</a></h2>
+
+		<p>The Spring 2011 Sysadmin DeCal meets on <strong>Mondays from 6-8PM
+			in 273 Soda</strong> and is facilitated by Jordan Salter
+		(jordan.salter at berkeley.edu), with the assistance of Eugene
+		Baumstein.  Office hours are held on Mondays from 10-11AM in the CSUA
+		office and <a href="#staff">by appointment</a>.  (<a
+			href="syllabus.pdf">syllabus</a>, <a
+			href="http://www.OCF.Berkeley.EDU/decal/archives.html">course
+			archives</a>)</p>
+
+		<p>We'll cover the setup and administration of a production-quality
+		UNIX server, suitable for web/mail hosting, shared shell hosting
+		&agrave; la the EECS Instructional servers, and the like.  Topics
+		include general UNIX proficiency (which is also useful in CS courses),
+		the Internet infrastructure, and system administration essentials.  For
+		more details and grading policy, please see the course syllabus.</p>
+
+
+		<h2><a name="schedule">Schedule, slides, and labs</a></h2>
+
+		<ol>
+			<li><span class="date">(1/24)</span> Course overview; introduction
+			to UNIX and the shell (<a href="lec/lec01.pdf">slides</a>, <a
+				href="lab/lab01.pdf">lab</a> &amp; <a
+				href="lab/sol01.txt">solutions</a>, <a
+				href="http://www.surveymonkey.com/s/2B792GP">survey</a>)</li>
+			
+			<li><span class="date">(1/31)</span> The file system (<a
+				href="lec/lec02.pdf">slides</a>, <a
+				href="lab/lab02.pdf">lab</a>)</li>
+			
+			<li><span class="date">(2/07)</span> Multi-user environments (<a
+				href="lec/lec03.pdf">slides</a>, <a
+				href="lab/lab03.pdf">lab</a>)</li>
+			
+			<li><span class="date">(2/14)</span> Compiling software; package
+			managers (Eugene's <a
+				href="http://www.ocf.berkeley.edu/decal/2009-spring/intermediate/03-lec-compiling.pdf">slides</a>,
+			<a
+				href="http://www.ocf.berkeley.edu/decal/2009-spring/intermediate/03-lab-compiling.pdf">lab</a>,
+			<a
+				href="http://www.ocf.berkeley.edu/decal/2008-fall/intermediate/nethack.diff">NetHack
+				patch</a> [from Spring 2009])<br /> <strong>Don't send your
+				completed lab to geo+decal@OCF &mdash; this is an old
+				lab.  Instructions for connecting to your VMs are
+				below.</strong></li>
+			
+			<li><span class="date">(2/21)</span> <em>Academic holiday</em></li>
+			
+			<li><span class="date">(2/28)</span> Unleashing the shell (<a
+				href="lec/lec06.pdf">slides</a>, <a
+				href="lab/lab06.pdf">lab</a>)</li>
+			
+			<li><span class="date">(3/07)</span> Tricks of the trade (<a
+				href="lec/lec07.pdf">slides</a>, <a
+				href="lab/lab07.pdf">lab</a>, <a
+				href="lab/ucb.class.cs61a-2009-10.mbox.gz">mbox file</a>)</li>
+			
+			<li><span class="date">(3/14)</span> Network services (<a
+				href="lec/lec08.pdf">slides</a>, <a
+				href="lab/lab08.pdf">lab</a>)</li>
+			
+			<li><span class="date">(3/21)</span> <em>Spring break</em></li>
+			
+			<li><span class="date">(3/28)</span> Web stack, part I (Eugene's <a
+				href="https://docs.google.com/present/view?id=d4qfhdg_78hr4p5vhs">slides</a>,
+			<a
+				href="https://docs.google.com/document/pub?id=1LjEZAMJQiQ2LodH1GINisfGl34r_6usZHqCBpDJG9bI">lab</a>)</li>
+			
+			<li><span class="date">(4/04)</span> Web stack, part II (Eugene's
+			<a href="http://goo.gl/YeD05">lab</a>)</li>
+			
+            <li><span class="date">(4/11)</span> When disaster strikes (<a
+                href="lec/lec12.pdf">slides</a>, no lab)</li>
+
+			<li><span class="date">(4/18)</span> Wrap up final projects</li>
+			<li><span class="date">(4/25)</span> Final project presentations!</li>
+		</ol>
+
+
+		<h2><a name="resources">Resources</a></h2>
+
+		<h3><a name="staff">Contacting the staff</a></h3>
+
+		<p>If you need help, send us an email!</p>
+
+		<ul>
+			<li>Jordan: jordan.salter at berkeley.edu<br />
+			<em>Jordan holds office hours at the CSUA on Mondays from 10-11AM.</em></li>
+			<li>Eugene: ebaum+decal at ocf.berkeley.edu</li>
+		</ul>
+
+		<h3><a name="connecting">Connecting from home</a></h3>
+
+		<p>Windows users should use <a
+			href="http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe">PuTTY</a>
+		(direct link); Mac OS X and Linux users already have SSH installed.
+		There are a few servers you can connect to:</p>
+
+		<ul>
+			<li><tt>cory.eecs</tt>, <tt>nova.cs</tt>, <tt>star.cs</tt> &mdash;
+			the most popular INST SPARC Solaris login servers (use your
+			cs198-xy class account)</li>
+			<li><tt>tsunami.ocf</tt> &mdash; an x86 Debian Linux login server
+			hosted by the OCF (use your <a
+				href="http://docs.ocf.berkeley.edu/wiki/Getting_an_account">OCF
+				account</a>)</li>
+			<li><tt>decal.ocf</tt> &mdash; the dedicated Sysadmin DeCal server;
+			connect to your virtual server by SSHing to port 2<em>XY</em>22,
+			where <em>XY</em> is your group number</li>
+			<li><tt>blizzard.ocf</tt> &mdash; the New and Improved(tm)
+			dedicated Sysadmin DeCal server, accessible on SSH port
+			22<em>XY</em>, where <em>XY</em> is your group number</li>
+		</ul>
+
+		<p>Append <tt>berkeley.edu</tt> if you're not on a campus-provided
+		network connection.</p>
+
+		<p class="lookitme"><a
+			href="http://validator.w3.org/check?uri=referer">valid xhtml 1.0
+			strict</a>, <a
+			href="http://jigsaw.w3.org/css-validator/check/referer">css 2.1</a></p>
+
+	</body>
+</html>

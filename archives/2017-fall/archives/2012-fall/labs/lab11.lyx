@@ -1,0 +1,703 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%\usepackage[margins=normal,lists=normal,sections=normal]{savetrees}
+\usepackage[all=normal,title]{savetrees}
+\usepackage{fullpage}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package auto
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth -1
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lab 11
+\begin_inset Newline newline
+\end_inset
+
+Wrap up final projects
+\end_layout
+
+\begin_layout Author
+Hands-on Unix system administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-11-19
+\end_layout
+
+\begin_layout Description
+Important
+\begin_inset space ~
+\end_inset
+
+note This lab is not graded and will not be collected.
+ It is for your reference only.
+ It has some 
+\emph on
+basic
+\emph default
+ instructions for using the DeCal Cloud---which is part of the final project
+ (which is in turn a 
+\emph on
+required
+\emph default
+ part of the course).
+\end_layout
+
+\begin_layout Section
+The DeCal Cloud
+\end_layout
+
+\begin_layout Standard
+For more information about virtualization and the cloud, refer to Lecture
+ 9.
+ In a nutshell, for our purposes, 
+\emph on
+virtualization
+\emph default
+ refers to multiple virtual machines (VMs) on one physical computer, and
+ the 
+\emph on
+cloud
+\emph default
+ (or more specifically, 
+\begin_inset Quotes eld
+\end_inset
+
+Infrastructure as a Service
+\begin_inset Quotes erd
+\end_inset
+
+) refers to virtualization on a large scale with networking, block storage\SpecialChar \ldots{}
+etc.
+\end_layout
+
+\begin_layout Standard
+The DeCal Cloud (hereafter, 
+\begin_inset Quotes eld
+\end_inset
+
+Cloud
+\begin_inset Quotes erd
+\end_inset
+
+ with a capital 
+\begin_inset Quotes eld
+\end_inset
+
+C
+\begin_inset Quotes erd
+\end_inset
+
+) is our name for a homebrew cloud service, as opposed to a commercial cloud
+ service like Amazon Web Services (AWS), which will allow you to provision
+ multiple VM 
+\emph on
+instances
+\emph default
+ on the same virtual 10.0.x.0/24 network subnet.
+ To make matters complicated, the cloud service is itself a VM (this is
+ called nested virtualization), but don't let 
+\emph on
+Inception
+\emph default
+ worry you.
+\end_layout
+
+\begin_layout Subsection
+Accessing the Cloud
+\end_layout
+
+\begin_layout Standard
+First thing's first, we need to access the Cloud system.
+ Cloud accounts were created for you.
+\end_layout
+
+\begin_layout Itemize
+User Name: yourOCFusername
+\end_layout
+
+\begin_layout Itemize
+Password: see contents of 
+\family typewriter
+/opt/ocf/decal/cloud/yourOCFusername
+\family default
+ from 
+\family typewriter
+tsunami.ocf.berkeley.edu
+\family default
+ (aka 
+\family typewriter
+ssh.ocf.berkeley.edu
+\family default
+)
+\end_layout
+
+\begin_layout Standard
+There are multiple interfaces to the Cloud:
+\end_layout
+
+\begin_layout Itemize
+web interface: 
+\family typewriter
+https://coupdetat.ocf.berkeley.edu/
+\end_layout
+
+\begin_layout Itemize
+command-line interface: 
+\family typewriter
+nova
+\end_layout
+
+\begin_layout Itemize
+AWS-compatible interface (we won't go over this, but it's there)
+\end_layout
+
+\begin_layout Subsection
+Provisioning an instance
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+Provisioning an instance
+\begin_inset Quotes erd
+\end_inset
+
+ is essentially
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Provisioning also includes configuring the Unix system, but that is beyond
+ the scope of these instructions.
+\end_layout
+
+\end_inset
+
+ a fancy term for creating and booting a VM.
+ Provisioning an instance has multiple components:
+\end_layout
+
+\begin_layout Itemize
+creating the volume (block storage) --- this is equivalent to buying (or
+ more accurately, renting?) and connecting a hard drive inside a physical
+ computer
+\end_layout
+
+\begin_layout Itemize
+setting up the installer image --- this is equivalent to putting the OS
+ installer CD inside a physical computer's CD drive
+\end_layout
+
+\begin_layout Itemize
+allowing networking access through security groups and floating (aka elastic)
+ IP addresses --- this is roughly analogous to configuring the router connected
+ to a physical computer's Ethernet port
+\end_layout
+
+\begin_layout Subsection
+Using the web interface
+\end_layout
+
+\begin_layout Standard
+There are many correct ways to do these tasks (don't feel constrained by
+ the instructions that follow), but we'll assume that you're not (yet!)
+ familiar with the command-line interface and want to use the web interface
+ where possible.
+ A bit tedious, but perhaps easier to start off with.
+\end_layout
+
+\begin_layout Standard
+After logging in to the web interface, under 
+\begin_inset Quotes eld
+\end_inset
+
+Volumes
+\begin_inset Quotes erd
+\end_inset
+
+, create a volume with a reasonable name and a size (if you're not sure,
+ use 5 GB unless you know you will be using more).
+ Then you'll need to upload the install image (typically an ISO image of
+ the installer CD).
+ We'll assume that you want to use Ubuntu, which has already been uploaded,
+ but if you want to explore further, feel free to try uploading something
+ else, under 
+\begin_inset Quotes eld
+\end_inset
+
+Images & Snapshots
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Now lets create a security group.
+ A security group is a set of firewall rules that can be applied to a VM
+ (in our Cloud, we only block incoming traffic, but other clouds may block
+ outgoing traffic as well).
+ Lets create one, under 
+\begin_inset Quotes eld
+\end_inset
+
+Access & Security
+\begin_inset Quotes erd
+\end_inset
+
+.
+ To allow SSH access, you'll need to allow TCP port 22, but don't worry
+ too much about rules because you can edit rules on the fly later.
+\end_layout
+
+\begin_layout Standard
+Now let's actually launch the instance under 
+\begin_inset Quotes eld
+\end_inset
+
+Instances
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Instance Source
+\begin_inset Quotes erd
+\end_inset
+
+ is 
+\begin_inset Quotes eld
+\end_inset
+
+Image
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Image
+\begin_inset Quotes erd
+\end_inset
+
+ is 
+\begin_inset Quotes eld
+\end_inset
+
+ubuntu_quantal_amd64_iso
+\begin_inset Quotes erd
+\end_inset
+
+ unless you uploaded something else.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Flavor
+\begin_inset Quotes erd
+\end_inset
+
+ is one of our predetermined resource allocation sizes (number of virtual
+ CPUs and amount of RAM) and will count against your quota---if you choose
+ smaller flavors you'll be able to run more VMs.
+ As a last step, you'll want to check the security group you created under
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+Access & Security
+\begin_inset Quotes erd
+\end_inset
+
+ tab.
+ Now launch!
+\end_layout
+
+\begin_layout Standard
+After the instance is launched, you'll want to attach your volume to it
+ under 
+\begin_inset Quotes eld
+\end_inset
+
+Volumes
+\begin_inset Quotes erd
+\end_inset
+
+.
+ You can use 
+\family typewriter
+/dev/vdc
+\family default
+ as the device ID although in most cases (such as with the Ubuntu) it shouldn't
+ matter.
+ Now go back to the instance you launched, and access the VNC console to
+ proceed through the install.
+ Nifty? We think so.
+\end_layout
+
+\begin_layout Standard
+Finally, when you want to actually access your VM through something better
+ than a framebuffer web interface, and assuming you've added the appropriate
+ security group rules, you can associate your VM with a public IP address,
+ under 
+\begin_inset Quotes eld
+\end_inset
+
+Access & Security
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Once you have a VM that you can access over the Internet, you can access
+ the other VMs through it by in turn connecting from it to the listed private
+ IP address (next to the VM name under 
+\begin_inset Quotes eld
+\end_inset
+
+Instances
+\begin_inset Quotes erd
+\end_inset
+
+) on the 10.0.x.0/24 subnet.
+\end_layout
+
+\begin_layout Subsection
+Using the command-line interface
+\end_layout
+
+\begin_layout Standard
+The command-line interface offers many more features than the web interface.
+ It can also be accessed by a script.
+\end_layout
+
+\begin_layout Standard
+In the web interface, under 
+\begin_inset Quotes eld
+\end_inset
+
+Settings
+\begin_inset Quotes erd
+\end_inset
+
+ (top-right corner) -> 
+\begin_inset Quotes eld
+\end_inset
+
+OpenStack API
+\begin_inset Quotes erd
+\end_inset
+
+, you can download an RC file which you can source in a terminal session
+ (e.g., over SSH) 
+\emph on
+on your VM
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Due to limitations with the Cloud API, your Cloud password is being transmitted
+ unencrypted, unlike through the web interface (which is HTTPS/SSL).
+ This is not an issue when the Cloud API is accessed from the VM (your VM
+ is running locally on the Cloud server).
+\end_layout
+
+\end_inset
+
+.
+ Assuming you're running Ubuntu on the VM, you'll need to install the 
+\family typewriter
+python-novaclient
+\family default
+ package (e.g., 
+\family typewriter
+sudo apt-get install python-novaclient
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+These two commands should be very 
+\emph on
+help
+\emph default
+ful:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nova help
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nova help COMMAND
+\end_layout
+
+\begin_layout Subsection
+And beyond
+\end_layout
+
+\begin_layout Standard
+Feeling feisty? Try snapshotting your VM and creating a new VM from that,
+ or seeing what the command-line interface has to offer.
+\end_layout
+
+\begin_layout Section
+Make yourself at home
+\end_layout
+
+\begin_layout Standard
+Now that your project group has its own system, you want to create your
+ own user account on it.
+ On Ubuntu systems, you should be able to run the command 
+\family typewriter
+sudo adduser mynewusername
+\family default
+ (assuming the account has sudo access, it typically will if it's the first
+ account created during installation, otherwise you will have access to
+ the root account and can run the same command without sudo) to create your
+ account after following the prompts.
+\end_layout
+
+\begin_layout Subsection
+Making yourself an administrator
+\end_layout
+
+\begin_layout Standard
+As an alternative to logging in as root, many Unix-like systems advocate
+ the use of sudo, a setuid program that allows some users to run programs
+ with the security privileges of another user (often root).
+ Access to sudo is controlled by the 
+\family typewriter
+/etc/sudoers
+\family default
+ file.
+\end_layout
+
+\begin_layout Standard
+In many Unix systems, members of a certain group (for example, group sudo
+ on Ubuntu) are allowed complete access to sudo.
+ Users in the sudo group therefore have complete root access by means of
+ sudo, and can impersonate any other user---this is not to be taken lightly.
+\end_layout
+
+\begin_layout Standard
+Add yourself to the sudo group with the command 
+\family typewriter
+usermod -a -G sudo mynewusername
+\family default
+.
+ The 
+\family typewriter
+-a
+\family default
+ option appends the sudo group to your list of groups, and the 
+\family typewriter
+-G
+\family default
+ option adds sudo as a secondary group.
+\end_layout
+
+\begin_layout Subsection
+Do logs not logarithms
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+rsyslog
+\family default
+ daemon stores messages generated by the system in 
+\family typewriter
+/var/log
+\family default
+.
+ By default in Ubuntu, a copy of most messages is also included in 
+\family typewriter
+/var/log/syslog
+\family default
+.
+ Take a look at 
+\family typewriter
+/var/log/syslog
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Authentication logging (for example, unsuccessful and successful login attempts)
+ is by default in Ubuntu stored in 
+\family typewriter
+/var/log/auth.log
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+Snooping with publicly-accessible information
+\end_layout
+
+\begin_layout Standard
+Sometimes system logs make you suspicious of a user, but because of privacy
+ concerns, you don't want to look at private information.
+ So look at publicly-accessible information instead.
+\end_layout
+
+\begin_layout Standard
+One of the facilitators wrote a script called 
+\family typewriter
+check
+\family default
+ to aggregate some publicly-accessible information on a given OCF user.
+ SSH into 
+\family typewriter
+tsunami.ocf.berkeley.edu
+\family default
+, and run 
+\family typewriter
+check
+\family default
+ on one of your project group partners.
+ See 
+\family typewriter
+check --help
+\family default
+ for syntax.
+\end_layout
+
+\begin_layout Subsubsection
+Bonus: look in CalNet
+\end_layout
+
+\begin_layout Standard
+CalNet is an LDAP directory with both private and publicly-accessible informatio
+n.
+ Almost a year ago, OCF users started being associated with their CalNet
+ UID numbers (retroactively to the mid-1990's), a unique identifier in CalNet.
+ This allows online password resets
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://secure.ocf.berkeley.edu/account_tools/change_password
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ to be authenticated using CalNet.
+\end_layout
+
+\begin_layout Standard
+Where available, 
+\family typewriter
+check
+\family default
+ will report the associated CalNet UID number.
+ You can search the CalNet directory for publicly-accessible attributes
+ in that entry.
+\end_layout
+
+\begin_layout LyX-Code
+ldapsearch -x -h ldap.berkeley.edu -b dc=berkeley,dc=edu calnet_uid
+\end_layout
+
+\begin_layout Standard
+If you got this far, thanks for being highly devoted: 
+\family typewriter
+http://xkcd.com/705/
+\end_layout
+
+\begin_layout Itemize
+Enjoy a cookie: 
+\family typewriter
+http://is.gd/JRxl5A
+\end_layout
+
+\end_body
+\end_document

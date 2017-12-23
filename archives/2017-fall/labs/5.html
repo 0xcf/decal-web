@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 5 - Networking 101 - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 5 - Networking 101</h1>
+  <h2 id="overview">Overview</h2>
+<p>It is undeniable that the internet is an important system that has redefined our world. The ability to develop networks and allow devices to communicate is critical to value of modern day computer systems.  This lab will take a look into the basics of computer networking and then examine networks through the perspective of a sysadmin.</p>
+
+<p>We will be using web browsing as an analogy to understand the basics of networking. What exactly happens when I go web browsing for cat pictures?</p>
+
+<p>But first let’s take a short dive into the details of networking.</p>
+
+<hr />
+
+<h2 id="osi-model">OSI Model</h2>
+<p>To lay the groundwork for understanding networking, we’ll first turn to the Open Systems Interconnection model (OSI).  The OSI model describes modern computer systems by partitioning them into several ‘layers’:</p>
+<ol>
+  <li><strong>Physical Layer</strong>
+This layer deals with the physical transmission of the data such as passing electrical signals over a fiber optic cable or radio frequencies for wireless.</li>
+  <li><strong>Data Link Layer</strong>
+This layer deals with transfer data between network nodes in a wide area network (WAN) or a local area network (LAN). An example of this is L2 routing according to MAC addresses.</li>
+  <li><strong>Network Layer</strong>
+This layer deals with packet forwarding and routing through intermediate routers. The most common L3 protocol, and the one you’re probably familiar with, is Internet Protocol (IP).  This layer is concerned with delivering data between hosts that correspond to IP addresses but makes no guarantees about reliable transport of the packets.</li>
+  <li><strong>Transport Layer</strong>
+This layer is responsible for providing reliable transport, and reassembling packets that may have arrived out of order.  Protocols in this layer provide host-to-host communication services for applications. The most well known protocols are TCP (connection-oriented) and UDP(connection-less).</li>
+  <li><strong>Session Layer</strong></li>
+  <li><strong>Presentation Layer</strong>
+Won’t talk much about the above two, they aren’t as important and are sometimes not even implemented in a network stack.</li>
+  <li><strong>Application Layer</strong>
+The application layer specifies protocols between hosts. Some examples of this include SSH, FTP, and HTTP.</li>
+</ol>
+
+<p>Here is a diagram of the OSI model
+<img src="https://i-technet.sec.s-msft.com/dynimg/IC213395.gif" alt="alt text" title="OSI model" /></p>
+
+<h2 id="l2-routing">L2 Routing</h2>
+<p>Link layer routing, aka L2 routing, is based off MAC addresses and uses a switch to forward frames to the proper MAC.</p>
+
+<h2 id="switches">Switches</h2>
+<p>Switches are physical devices that connect devices on a network and use packet switching to receive, process, and forward data.  Switches process this data at L2 and therefore rely on MAC addresses to identify hosts and place them in the network.</p>
+
+<h2 id="mac">MAC</h2>
+<p>Media access control (MAC) addresses are a identifiers uniquely assigned to network interfaces.
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/94/MAC-48_Address.svg" alt="alt text" title="MAC address format" /></p>
+
+<p>Since the MAC address is unique this is often referred to as the physical address. The octets are often written in hexadecimal and delimited by colons. An example MAC address is  <code class="highlighter-rouge">00:14:22:01:23:45</code>. Note that the first 3 octets refer to the Organizationally Unique Identifier (OUI) which can help identify manufacturers.  Fun fact – the <code class="highlighter-rouge">00:14:22</code> above is an OUI for Dell.</p>
+
+<h2 id="arp">ARP</h2>
+<p>Address Resolution Protocol (ARP) is a protocol used to resolve IP addresses to MAC addresses. For example let’s imagine a sender, A, who has MAC <code class="highlighter-rouge">00:DE:AD:BE:EF:00</code>,  broadcasting a message that essentially asks “Who has IP address <code class="highlighter-rouge">42.42.42.42</code> please tell A at 00:DE:AD:BE:EF:00”.</p>
+
+<p>If a machine, B, with MAC <code class="highlighter-rouge">12:34:56:78:9a:bc</code> has the IP address <code class="highlighter-rouge">42.42.42.42</code> they send a unicast reply back to the sender with the info “<code class="highlighter-rouge">12:34:56:78:9a:bc</code> has <code class="highlighter-rouge">42.42.42.42</code>”. The sender stores this information in an arp table so whenever it receives packets meant for machine B i.e. a packet with an destination IP address of <code class="highlighter-rouge">42.42.42.42</code> it sends the packet to MAC it received from B.</p>
+
+<h2 id="ip">IP</h2>
+<p>IP addresses are means of identifying devices connected to a network under Internet Protocol. There are two versions of the internet protocol IPv4 and IPv6 that have different address format. For the sake of time we will only go over IPv4, but IPv6 is certainly gaining ground and worth checking out!</p>
+
+<p>IPv4 addresses are expressed in CIDR format, which is comprised of 32 bits, i.e. 4 bytes, long and are delimited by a dot (.) every byte. An example IPv4 address is <code class="highlighter-rouge">127.0.0.1</code>. Coincidentally this address is known as the loopback address which maps to the loopback interface on your own machine. This allows network applications to communicate with one another if they are running on the same machine, in this case your machine. But why <code class="highlighter-rouge">127.0.0.1</code> and not <code class="highlighter-rouge">127.0.0.0</code> or <code class="highlighter-rouge">127.0.0.2</code>?</p>
+
+<p>The answer is that <code class="highlighter-rouge">127.0.0.1</code> is simply convention, but technically any address in the network block <code class="highlighter-rouge">127.0.0.0/8</code> is a valid loopback address. But what exactly is a network block?</p>
+
+<p>In IPv4 we can partition a block of addresses into a subnet. Let’s take the subnet above as an example <code class="highlighter-rouge">127.0.0.0/8</code>. The number that comes after the slash (<code class="highlighter-rouge">/</code>), in this case 8, is the subnet mask. This represents how many bits are in the network address, the remaining bits identify a host within the network. In this case the network address is <code class="highlighter-rouge">127.0.0.0</code> and the Mask is <code class="highlighter-rouge">255.0.0.0</code>. So <code class="highlighter-rouge">127.0.0.1</code> would be the first host in the <code class="highlighter-rouge">127.0.0.0/8</code> network and so on and so forth.</p>
+
+<p>This diagram provides a visual breakdown of CIDR addressing
+<img src="https://i.imgur.com/dEgcX0R.png" alt="alt text" title="CIDR addressing example courtesy of CS168" /></p>
+
+<p>In order to route TCP packets, devices have what is known as a routing table. Routing entries are stored in the routing table and they are essentially rules that tell the device how packets should be forwarded based on IP. A routing entry specifies a subnet and the interface that corresponds to that entry. The device chooses an entry with a subnet that is most specific to a given packet and forwards it out the interface on that entry.</p>
+
+<p>Routing tables are usually to also have a default gateway. This serves as the default catch all for packets in the absence of a more specific matching entry.</p>
+
+<p>Take this routing table for example.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>default via 10.0.2.2 dev eth0
+10.0.2.0/24 dev eth0  proto kernel  scope link  src 10.0.2.15
+10.0.2.128/25 dev eth0  proto kernel  scope link  src 10.0.2.15
+192.168.162.0/24 dev eth1  proto kernel  scope link  src 192.168.162.162
+</code></pre></div></div>
+<p>A packet destined for <code class="highlighter-rouge">8.8.8.8</code> would be forwarded out eth0, the default gateway.
+A packet destined for <code class="highlighter-rouge">10.0.2.1</code> would be forwarded according to second entry, out of eth0.
+A packet destined for <code class="highlighter-rouge">10.0.2.254</code> would be forwarded according to third entry, out of eth0.
+A packet destined for <code class="highlighter-rouge">192.168.162.254</code> would be forwarded according to the fourth entry, out of eth1.</p>
+
+<h2 id="private-ip-addresses-and-nat">Private IP addresses and NAT</h2>
+<p>Often you’ll see a device with an IP address of <code class="highlighter-rouge">192.168.x.x</code>, and let’s say this device is connected to machine A. Pinging that address from A succeeds.  Your friend on machine B, who communicates with you over the internet but isn’t connected to your local network, tries to ping that address as well and fails. Now you might be asking …</p>
+
+<p><img src="http://i0.kym-cdn.com/entries/icons/original/000/022/978/yNlQWRM.jpg" alt="alt text" /></p>
+
+<p>This is because <code class="highlighter-rouge">192.168.0.0/16</code> is a private network block. <a href="https://en.wikipedia.org/wiki/IP_address#Private_addresses">Certain blocks</a> of IP addresses have been designated by the Internet Engineering Task Force (IETF) to be reserved as private address spaces. Private address are especially useful for devices on a local network that only need to communicate on the local network and do not need a public IP address. This is not to say that if you have a private IP address that you cannot reach the wider net or vice versa.</p>
+
+<p>Network address translation or (NAT) is a procedure by which an IP address is mapped into another network address during routing. For example we could map a private IP address to a public one in order to allow a device on the local private network to communicate with cat picture servers out in the wilds of the web.</p>
+
+<p>Take a look at this diagram
+<img src="http://www.h3c.com.hk/res/201212/03/20121203_1477660_image002_765254_1285_0.png" alt="alt text" title="NAT addressing" /></p>
+
+<p>Here the private network is on the left side of the router and the right side is the Internet. The router has an interface with a private IP address <code class="highlighter-rouge">192.168.1.1</code> and an interface with a public IP address <code class="highlighter-rouge">20.1.1.1</code>.</p>
+
+<p>For IP packet 1, a host on the private network with address <code class="highlighter-rouge">192.168.1.3</code> tries to communicate with server B at public address <code class="highlighter-rouge">1.1.1.2</code> and creates a packet with the proper destination (dst) and source (src).  The packet arrives at the router and the router performs Source Network Address Translation (SNAT) changing the source IP on the packet to be <code class="highlighter-rouge">20.1.1.1</code> so that if Source B wants to respond it would send a packet to the router’s public address since it cannot reach the host at its private IP address. This can be seen in IP packet 2. The packet arrive at the router again and the router now performs Destination Network Address Translation (DNAT) to change the source ip from the router’s public address to the private IP address of the host that sent the packet.</p>
+
+<p>But how exactly does the router know which packets to convert to which address? A common procedure is for NAT routers to store a mapping of (<code class="highlighter-rouge">srcIP:srcPort</code>, <code class="highlighter-rouge">dstIP:dstPort</code>) so the router knows which machines are trying to communicate with one another and can translate packets that match these saved mappings.</p>
+
+<h2 id="dns">DNS</h2>
+<p>We’ve gone over IP addresses and how they are means of communicating with a host over IP, but  while IP addresses are machine friendly (computers love numbers) they aren’t exactly human friendly. It’s hard enough trying to remember phone numbers, memorizing 32 bit IP addresses isn’t going to be any easier.</p>
+
+<p>But it’s much easier for us to remember names like google, facebook, or coolmath-games.com. So out of this conflict the Domain Name System (DNS) was born as a compromise between machine friendly IP addresses and human friendly domain names.</p>
+
+<p>DNS is a system that maps a domain name like google.com to <code class="highlighter-rouge">172.217.6.78</code>. When you query for google.com your computer sends out a DNS query for google.com to a DNS server. Assuming things are properly configured and google.com has a valid corresponding address you will receive a response from an authoritative server that essentially says “google.com has IP address <code class="highlighter-rouge">x.x.x.x</code>”.</p>
+
+<p>Now let’s flush out this black magic a bit…</p>
+
+<h2 id="dns-resolvers">DNS Resolvers</h2>
+<p>A DNS resolver on the client is responsible for performing DNS queries. A resolver refers to <code class="highlighter-rouge">/etc/resolv.conf</code> for nameserver information. The resolver then issues a query to the nameserver for the domain name. Additionally, <code class="highlighter-rouge">/etc/hosts.conf</code> stores static entries for resolving hostnames allowing a sysadmin to specify certain mapping manually. The <code class="highlighter-rouge">/etc/nsswitch.conf</code> file specifies the order in which a dns query performs name resolution, for example this line <code class="highlighter-rouge">hosts: files dns</code> in the file specifies that DNS lookups first try to find the name in the <code class="highlighter-rouge">/etc/hosts.conf</code> file before turning to nameservers listed in <code class="highlighter-rouge">/etc/resolv.conf</code>.</p>
+
+<p>To resolve a query the nameserver breaks down the domain name from right to left and issues queries that grow in specificity. Let’s take inst.eecs.berkeley.edu for example. Assuming none of our nameservers have cached data our nameserver will query the root server to find the nameserver for the corresponding Top Level Domain (TLD), which is .edu in this case. The Top Level Domain points to another nameserver which would be authoritative over the next subdomain i.e. berkeley.  This continue on until we’ve flushed out the entire domain name inst.eecs.berkeley.edu and receive its corresponding IP address.  Of course this isn’t the whole story…</p>
+
+<p>There are two major methods that the nameserver may use to resolve a query.</p>
+
+<p>First is the Iterative DNS Query:
+<img src="https://i.imgur.com/qmI1krB.png" alt="alt text" title="Iterative DNS" /></p>
+
+<p>Here the nameserver must issue multiple queries per response from a nameserver until they find the IP address for the given domain name.</p>
+
+<p>Second is the Recursive DNS Query:
+<img src="https://i.imgur.com/wP6xaXt.png" alt="alt text" title="Recursive DNS" /></p>
+
+<p>In recursive DNS a query is issued from the nameserver to the root level server and then the root server issues a query to the corresponding TLD server.  This process repeats with each nameserver querying the next one in the chain until we arrive at the lowest level nameserver with the corresponding IP address and the query rolls back.</p>
+
+<p>Notice how DNS is a hierarchy of authoritative servers. This architecture is why DNS managed to scale alongside the internet and decentralizes the administration of DNS.</p>
+
+<h2 id="dns-records">DNS Records</h2>
+<p>DNS servers store data in the form of Resource Records (RR). Resource records are essentially a tuple of (name, value, type, TTL). While there are a wide variety of types of DNS Records the ones we are most concerned with are</p>
+<ol>
+  <li>
+    <p><strong>A records</strong>
+name = hostname
+value = IP address</p>
+
+    <p>This record is very simply the record that has the IP address for a given hostname, essentially the information we want to end up with.</p>
+  </li>
+  <li>
+    <p><strong>NS records</strong>
+name = domain
+value = name of dns server for domain</p>
+
+    <p>This record points to another dns server that can provide an authoritative  answer for the domain. Think of this as redirecting you to another nameserver.</p>
+  </li>
+  <li>
+    <p><strong>CNAME records</strong>
+name = alias
+value = canonical name</p>
+
+    <p>These records point to the canonical name for a given alias for example docs.google.com would be an alias which simply points to documents.google.com
+try ww.facebook.com</p>
+  </li>
+  <li>
+    <p><strong>PTR records</strong>
+name = IP address
+value = hostname</p>
+
+    <p>This is essentially the opposite of an A record and is used for reverse DNS lookup, i.e. given an IP address find its corresponding hostname</p>
+  </li>
+</ol>
+
+<h2 id="dhcp">DHCP</h2>
+<p>The next question we have to answer is exactly how we receive an IP address.  From the perspective of our laptop as a client we turn to Dynamic Host Configuration Protocol (DHCP).</p>
+
+<p>DHCP is a protocol where a DHCP server dynamically distributes network configurations, such as IP addresses, for interfaces (NICs) and other services.</p>
+
+<p>For example, when your machine boots up and connects to AirBears, DHCP assigns your machine a dynamic IP address that uniquely identifies your device within the Berkeley Network.
+<img src="https://i.imgur.com/Muw9SFf.png" alt="alt text" title="DHCP through Mac GUI" /></p>
+
+<p><img src="https://i.imgur.com/g5ubmUO.png" alt="alt text" title="DHCP through terminal" /></p>
+
+<p>Notice anything special about the IP address in the above examples? <a href="https://en.wikipedia.org/wiki/IP_address#Private_addresses">Hint: Look at the network block</a> Additionally, do you recall what must be done so that your unique IP address can communicate over the internet?</p>
+
+<p>To dive a bit deeper into DHCP, this diagram details the typical procedure for a client requesting an IP.
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/DHCP_session.svg/260px-DHCP_session.svg.png" alt="alt text" title="DHCP request steps" /></p>
+
+<p>The client broadcasts a DHCPDISCOVER message essentially communicating that it wants an IP address. A DHCP server responds to the DHCPDISCOVER with a DHCPOFFER which contains an IP address for the client. If the client accepts the offer, it sends a DHCPREQUEST back to the server. The server acknowledges this by sending a DHCPACK back. The IP address is then considered leased to the machine and is valid for some period of time specified by the DHCP server. Once an IP address lease expires, the client must acquire a new IP address though it does have the option to renew a previous lease for the same IP address.</p>
+
+<h2 id="tcp-and-udp">TCP and UDP</h2>
+<p>Now we will transition into a discussion on the protocols at the transport layer. The two most well known protocols at this layer are Transmission Control Protocol (TCP) and User Datagram Protocol (UDP).</p>
+
+<p>TCP is a stateful stream oriented protocol that ensures reliable transport. TCP also has mechanisms to guarantee that information arrives intact and in order at the destination.</p>
+
+<p>A TCP connection begins with something known as the TCP handshake. 
+<img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQfAAAAJDZjYTU5NDQ0LWQ0OTMtNDAxMS1hMDU1LTMzZjE5ZWM0MjkxYg.gif" alt="alt text" title="TCP handshake" /></p>
+
+<p>The TCP handshake consists of setting certain flags in the TCP header of packets exchanged between sender and receiver.  The sender initiating a TCP connection by first sending a SYN, a packet with the SYN flag set.  The server acknowledges this connection request by sending back a SYN-ACK, a packet with both the SYN and ACK flags set. The client acknowledges this by sending one final ACK back to the server, and the connection is then established.</p>
+
+<p>TCP then begins transmitting data and if it successfully arrives on the other end of the connection then an ACK is issued. Therefore if data is lost, reordered, or corrupted, TCP is capable of recognizing this and sends a request for retransmission of any lost data.</p>
+
+<p>TCP also has a procedure to close connections. We only consider a graceful termination here, abrupt terminations have a different procedure we will not go over. Let’s assume machine A wants to close its connection to machine B.
+<img src="http://intronetworks.cs.luc.edu/current/html/_images/tcp_closes.svg" alt="alt text" title="TCP termination" /></p>
+
+<p>A begins by sending a FIN. B must respond by sending a FIN and an ACK. If B only sends a ACK the connection persist and additional data can be sent until an FIN is sent. On the other hand B can also send just one packet with both FIN and ACK flags set, i.e. FIN+ACK if B is ready to close the connection and doesn’t need to send additional data Once A has received a FIN and an ACK it sends one last ACK to signal the connection termination.</p>
+
+<p>UDP is stateless connectionless protocol. UDP focuses on sending messages in datagrams. Being stateless UDP also doesn’t incur the overhead of the TCP handshake and termination. UDP also makes no guarantees about reliable transport so messages may be corrupted, arrive out of order, or not arrive at all. For this reason UDP is sometimes called Unreliable Datagram Protocol.</p>
+
+<p>While UDP makes no guarantees about reliable transport it doesn’t suffer from the overhead of establishing and closing connections like in TCP. UDP is therefore ideal for usage cases where we just want to send packets quickly and losing a few of those isn’t disastrous.</p>
+
+<p>Moreover, compared to TCP every single UDP send requires a UDP receive (recv) per datagram. While for TCP you pass a stream of data that is transparently split into some number of sends and the data stream can be reconstructed with a single recv call.</p>
+
+<h2 id="ports">Ports</h2>
+
+<p>Ports define a service endpoint, broadly speaking – ports mark a point of traffic ingress and egress.  Ports are represented by a 16 bit number meaning thus ranging from 0 to 65535.  Ports from 0 to 1023 are well known ports, i.e. system ports.  Using these ports usually has a stricter requirement.  1024 to 49151 are registered ports. IANA maintains the official <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">list</a> of well-known and registered ranges. The remaining ports from 49152 to 65535 are ephemeral ports which can be dynamically allocated for communication sessions on a per request basis.</p>
+
+<p>Some port numbers for well known services are as follows:
+Service     | Port
+————|——
+HTTP        |80
+HTTPS       |443</p>
+
+<h1 id="sysadmin-commands">Sysadmin Commands</h1>
+<p>As a sysadmin, trying to diagnose network issues can often be pretty challenging. Given the scale and complexity of networks, it’s tough trying to narrow down the scope of a problem to a point of failure. What follows is a list of commands/tools that can help with triaging problems. There are a lot of tools and we don’t expect you to memorize every single detail. However, it is important to know what tools exist and when to use them when a problems inevitably arise. If you ever need more details the <code class="highlighter-rouge">man</code> pages for these commands are a great place to turn to for reference.</p>
+
+<p>Tools also tend to overlap in functionality – for example there are multiple tools that can display interface information or test connectivity.  When possible, it is a good idea to use multiple tools to cross-check one another.</p>
+
+<p>Note that when it comes to real world networks there are even more factors to consider that we haven’t touched on like network security. For example, two machines can have a fully functioning connection but if one machine has been configured to drop all packets then it might seem as if they aren’t connected.</p>
+
+<p>So take the output of these tools with a grain of salt, they a means of narrowing down issues. It is important not to misinterpret outputs or jump to conclusions too quickly.</p>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">hostname</code>
+A simple and straightforward command that can display information about a host, IP addresses, FQDN, and etc.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">ping</code>
+ Another simple command, most of the time you’ll be using ping as a first step towards testing connectivity. If ping can’t reach a host then there is likely an issue with connectivity.</p>
+
+    <p>Moreover ping also provides metrics for Round Trip Time (RTT) and packet loss.  Round trip time is defined as the time it takes for a response to arrive after sending the ping packet.  These can prove to be very useful statistics.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">traceroute</code>
+Traceroute sends packets Time to Live (TTL) equal to the number of hops. Routers decreases the value of TTL of an incoming packet and if it sees an incoming packet with TTL = 0 then drops it, otherwise it decreases the value and sends it further. At the same time it sends diagnosing information to the source about router’s identity.</p>
+
+    <p>Traceroute provides a detailed view of the routers that a packet traverses while on its way to a destination.</p>
+
+    <p>If router does not respond within a timeout then traceroute prints an asterisk.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">arp</code>
+Provides info on and the ability to manipulate the ARP cache of the system.</p>
+
+    <p>With arp you can display the system arp table.  Add, remove, or modify arp entries and much more.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">dig</code>
+Utility for doing dns query and triaging DNS issues.</p>
+
+    <p>Dig by default performs queries to nameservers in <code class="highlighter-rouge">/etc/resolv.conf</code> but some options allow you to: specify name server, choose query type (iterative vs recursive), and much more – making <code class="highlighter-rouge">dig</code> a very flexible DNS tool.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">ip</code>
+<code class="highlighter-rouge">ip</code> is a command with many subcommands offering a lot of functionality – so much it can be overwhelming at first. You will most commonly be using ip to display/modify routing, IP addresses, or network interfaces.</p>
+
+    <p>It will take time to get use to how much functionality is included in this command but for reference here is a pretty compact <a href="https://access.redhat.com/sites/default/files/attachments/rh_ip_command_cheatsheet_1214_jcs_print.pdf">cheatsheet</a>.</p>
+  </li>
+</ol>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">netstat</code>
+This tool is good for printing network connections, routing tables, and probing sockets, amongst other functions.</p>
+
+    <p><code class="highlighter-rouge">netstat</code> also has functionality to probe sockets for activity and displays information such protocol (UDP/TCP)</p>
+
+    <p>If you are investigating sockets <code class="highlighter-rouge">ss</code> and <code class="highlighter-rouge">lsof</code> are also options you may want to consider</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">tcpdump</code>
+Perfect for monitoring incoming or outgoing traffic on a machine.</p>
+
+    <p><code class="highlighter-rouge">tcpdump</code> offers countless options when it comes to analyzing traffic: it can capture packets, log traffic, compute metrics, filter traffic, monitor specific interfaces, etc. As a primer you can check out these <a href="https://www.rationallyparanoid.com/articles/tcpdump.html">examples</a>.</p>
+  </li>
+</ol>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">nc</code>
+A very powerful tool that can be used for just about anything involving TCP or UDP.  It can open TCP connections, send UDP packets, listen on arbitrary TCP and UDP ports, do port scanning, and deal with both IPv4 and IPv6.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">curl</code>
+<code class="highlighter-rouge">curl</code> is a tool to transfer data from or to a server using certain protocols such as HTTP, FTP, etc …</p>
+
+    <p>The command comes with way too many features to write about so be sure to check out its documentation for specific use cases.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">wget</code>
+<code class="highlighter-rouge">wget</code> is quite similar to <code class="highlighter-rouge">curl</code> in the sense that they are both command line tools designed to transfer data from or to servers with certain protocols and both come with a bunch of features.</p>
+
+    <p>There are differences between the commands, two notable examples being that wget is command line only meaning there no library or API.  However, wget has a big advantage of being able to download recursively. You can read a bit more on the two tools <a href="https://daniel.haxx.se/docs/curl-vs-wget.html">here</a>.</p>
+  </li>
+</ol>
+
+<h1 id="questions">Questions</h1>
+
+<h2 id="web-browsing-example">Web Browsing Example</h2>
+<p>Let’s take a look at all these concepts applied to something we are very familiar with - web browsing.</p>
+
+<p>Try filling the blanks with the proper terms.</p>
+
+<p>You boot up your desktop complete with its own <strong>&lt;0&gt;</strong> that you plug your ethernet cord into. That physical connection shows up as a <strong>&lt;1&gt;</strong> when you run <code class="highlighter-rouge">ip a</code>. The other end of the ethernet cable is connected to a modem/router which functions as a <strong>&lt;2&gt;</strong>, forwarding packets to appropriate  devices on your home network. Your computer uses <strong>&lt;3&gt;</strong> to get an IP address. Let’s assume this address is 192.168.42.1 making this a <strong>&lt;4&gt;</strong> address, we will need <strong>&lt;5&gt;</strong> to modify addresses while communicating with servers outside the local network. I open a browser and type https://www.reddit.com/r/CatsStandingUp/. The machine issues a <strong>&lt;6&gt;</strong> to convert that name into an IP address. The machine wraps the packet in the appropriate headers and then needs to send the packet to your modem/router. It looks in the <strong>&lt;7&gt;</strong> and decides that the packet should be sent to the IP address of your default gateway which is your modem/router in this case. We now lookup the gateway’s IP address in the <strong>&lt;8&gt;</strong> to get its corresponding MAC address. We encapsulate the packet and send it off to the router which will forward the request to the webserver and redirect any response packets back to your local machine.</p>
+
+<p><strong><em>Choose from the following</em></strong></p>
+
+<p><strong>DNS query</strong></p>
+
+<p><strong>Private</strong></p>
+
+<p><strong>Network Interface Card (NIC)</strong></p>
+
+<p><strong>Routing Table</strong></p>
+
+<p><strong>Switch</strong></p>
+
+<p><strong>Network Interface</strong></p>
+
+<p><strong>Network Address Translation (NAT)</strong></p>
+
+<p><strong>Dynamic Host Configuration Protocol (DHCP)</strong></p>
+
+<p><strong>ARP Table</strong></p>
+
+<p>Please order the headers of each layer properly for a packet traveling on the physical layer
+<strong>&lt;0&gt;</strong> || <strong>&lt;1&gt;</strong> || <strong>&lt;2&gt;</strong> || <strong>&lt;3&gt;</strong> || Data</p>
+
+<p><strong><em>Choose from the following</em></strong></p>
+
+<p><strong>HTTP</strong></p>
+
+<p><strong>Ethernet</strong></p>
+
+<p><strong>IP</strong></p>
+
+<p><strong>TCP</strong></p>
+
+<h2 id="quiz-me-up">Quiz Me Up</h2>
+<p>Please run <code class="highlighter-rouge">git clone https://github.com/c2tonyc2/sysadmin-decal.git</code> before starting this section. This repository has a copy of the lab markdown file and other supplemental materials under <code class="highlighter-rouge">sysadmin-decal/networking_101</code></p>
+
+<p><strong>Some of these commands may require sudo, so please try this on your class machines. Note: if any of these commands fail, they may not be on your machine’s path.  This might be due to your path not including <code class="highlighter-rouge">/usr/sbin</code> to fix this issue simply run <code class="highlighter-rouge">export PATH=$PATH:/usr/sbin</code>.  That command adds the <code class="highlighter-rouge">usr/sbin</code> file to your systems PATH so your machine knows to look there for commands like <code class="highlighter-rouge">arp</code>.</strong></p>
+
+<ol>
+  <li>Does HTTP use TCP or UDP and why? How about Discord and Skype, why?</li>
+  <li>What is the MAC and IP address of one if your machine’s interfaces, not including the loopback interface.</li>
+  <li>Is the IP address from the above question a public or private one? Based on whether it’s public or private, could someone in San Francisco ping its IP address over the internet?</li>
+  <li>What does your machine’s routing table look like?</li>
+  <li>What does your machine’s arp table look like? Can you print out the arp table so that it displays IP addresses?</li>
+  <li>Launch <code class="highlighter-rouge">ninja_port.py</code>, by running <code class="highlighter-rouge">python3 ninja_port.py</code> and then locate the port where the ninja is hiding and send it a <code class="highlighter-rouge">found you</code> message.  What does it say back, how did you find out what port is was hiding on?</li>
+  <li>Launch <code class="highlighter-rouge">ninja_port.py</code> again and this time use <code class="highlighter-rouge">tcpdump</code> to monitor the loopback interface. What sort of packets arrive? Hint: Take a look at the <code class="highlighter-rouge">-X</code> flag for tcpdump</li>
+  <li>What IP address does <code class="highlighter-rouge">google.com</code> resolve to?</li>
+  <li>What types of records do you get when you do a DNS lookup of <code class="highlighter-rouge">facebook.com</code>, how about <code class="highlighter-rouge">www.facebook.com</code>?</li>
+  <li>What command would you run to show the interfaces on your machine? Which one is the loopback interface?  Which interface would traffic to the internet go through?</li>
+  <li>How many router hops away is berkeley.edu, stanford.edu, and duke.edu? Is there a difference, and why?</li>
+  <li>How many distinct hosts can <code class="highlighter-rouge">127.0.0.0/8</code> contain?</li>
+  <li>What ports do DNS, SSH, and DHCP use?</li>
+</ol>
+
+
+  <br>
+<footer>
+  <div class="row">
+	<div class="col-lg-12">
+	  <p class='text-center'>
+	  <a href="https://www.ocf.berkeley.edu">
+		<img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+	   alt="Hosted by the OCF" style="border: 0;" />
+	  </a>
+	  Copyright &copy; Open Computing Facility, eXperimental Computing Facility 2017.
+	  </p>
+	</div>
+	<!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

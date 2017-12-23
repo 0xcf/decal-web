@@ -1,0 +1,544 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass powerdot
+\options style=aggie
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans cmbr
+\font_typewriter default
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize size=17
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lecture 08:
+\begin_inset Newline newline
+\end_inset
+
+Networking services:
+\begin_inset Newline newline
+\end_inset
+
+there's no place like 127.0.0.1
+\end_layout
+
+\begin_layout Author
+Hands-on Unix system administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-10-15
+\end_layout
+
+\begin_layout Section
+DNS
+\end_layout
+
+\begin_layout Slide
+About DNS
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Domain Name Service
+\end_layout
+
+\begin_layout Itemize
+Internet's 
+\family typewriter
+/etc/hosts
+\family default
+ file
+\end_layout
+
+\begin_layout Itemize
+client software (e.g., web browser) automatically asks DNS server for records
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+requests passed between servers
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+see also 
+\family typewriter
+host
+\family default
+, 
+\family typewriter
+dig
+\end_layout
+
+\begin_layout Slide
+Common DNS records
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A
+\series default
+: IPv4 address
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+AAAA
+\series default
+: IPv6 address
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CNAME
+\series default
+ an alias for another record (Canonical Name)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MX
+\series default
+: mail server(s) for a domain (Mail Exchanger)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+PTR
+\series default
+: reverse A record (Pointer)
+\end_layout
+
+\begin_layout Slide
+Other DNS records
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SRV
+\series default
+: service
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+TXT
+\series default
+: text
+\end_layout
+
+\begin_layout Section
+Networking
+\end_layout
+
+\begin_layout Slide
+Too many TLAs
+\end_layout
+
+\begin_layout Itemize
+OSI reference model, we focus on application layer
+\end_layout
+
+\begin_layout Itemize
+transport protocols: TCP, UDP
+\end_layout
+
+\begin_layout Itemize
+ports numbered between 1 and 65535 (unsigned 16 bit integer)
+\end_layout
+
+\begin_layout Itemize
+ports below 1024 (e.g., 22/tcp – SSH, 80/tcp – HTTP), require root access
+ on Unix
+\end_layout
+
+\begin_layout Slide
+TCP
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Transmission Control Protocol
+\end_layout
+
+\begin_layout Itemize
+reliable, more overhead, stateful
+\end_layout
+
+\begin_layout Itemize
+most network services use TCP (HTTP, SMTP, SSH, etc.)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+some may use both TCP and UDP
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+UDP
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+User Datagram Protocol
+\end_layout
+
+\begin_layout Itemize
+unreliable, simple (
+\begin_inset Quotes eld
+\end_inset
+
+fast
+\begin_inset Quotes erd
+\end_inset
+
+), stateless
+\end_layout
+
+\begin_layout Itemize
+often used by DNS, DHCP, TFTP, VoIP, streaming media, etc.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+DNS uses TCP, however, for larger responses
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+NATs
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Network Area Translation
+\end_layout
+
+\begin_layout Itemize
+accomplished by home/office router
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+rewrite packets for many computers to use one public IP address (Source
+ NAT, IP Masquerading)
+\end_layout
+
+\begin_layout Itemize
+private IP addresses: 192.168.0.0--192.168.255.255, 10.0.0.0--10.255.255.255, 172.16.0.0--172.31.
+255.255
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+Port forwarding
+\end_layout
+
+\begin_layout Itemize
+also called Destination NAT (DNAT)
+\end_layout
+
+\begin_layout Itemize
+forward a public IP addressed port to an internal IP addressed port
+\end_layout
+
+\begin_layout Itemize
+required to access services behind a Source NAT
+\end_layout
+
+\begin_layout Slide
+HTTP
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hyper-Text Transfer Protocol
+\end_layout
+
+\begin_layout Itemize
+simple, text-based protocol
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+basic web server can be implemented in a 25-line 
+\family typewriter
+bash
+\family default
+ script with 
+\family typewriter
+netcat
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+popular servers: Apache, IIS, lighttpd, nginx
+\end_layout
+
+\begin_layout Slide
+NFS
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Network File System
+\end_layout
+
+\begin_layout Itemize
+mounts can be defined in 
+\family typewriter
+/etc/fstab
+\end_layout
+
+\begin_layout Itemize
+usually need to be root to mount
+\end_layout
+
+\begin_layout Section
+SSH
+\end_layout
+
+\begin_layout Slide
+About SSH
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Secure SHell
+\end_layout
+
+\begin_layout Itemize
+different authentication mechanisms: PAM, public key, GSSAPI (Kerberos)
+\end_layout
+
+\begin_layout Itemize
+remote encrypted terminal/console on remote machine
+\end_layout
+
+\begin_layout Itemize
+other features: port forwarding, X forwarding, file transfer, can be combined
+ with other protocols
+\end_layout
+
+\begin_layout Slide
+SSH public-private keys
+\end_layout
+
+\begin_layout Itemize
+alternative to password-based authentication
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+uses public/private key cryptography
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+SSH agent caches key in memory
+\end_layout
+
+\begin_layout Itemize
+SSH forwarding forwards key challenges
+\end_layout
+
+\begin_layout Slide
+Public-private keys
+\end_layout
+
+\begin_layout Itemize
+public key: everyone can see lock
+\end_layout
+
+\begin_layout Itemize
+private key: one person has key
+\end_layout
+
+\begin_layout Itemize
+encrypt with public key, decrypt with private key
+\end_layout
+
+\begin_layout Itemize
+sign with private key, verify with public key
+\end_layout
+
+\begin_layout Itemize
+ciphers: RSA, DSA
+\end_layout
+
+\begin_layout Slide
+Symmetric keys
+\end_layout
+
+\begin_layout Itemize
+one shared key
+\end_layout
+
+\begin_layout Itemize
+advantage: speed, security
+\end_layout
+
+\begin_layout Itemize
+disadvantage: often impractical to verify, especially against man-in-the-middle
+ attacks
+\end_layout
+
+\begin_layout Itemize
+ciphers: AES, 3DES, blowfish, arcfour
+\end_layout
+
+\begin_layout Slide
+PAM
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Pluggable Authentication Modules
+\end_layout
+
+\begin_layout Itemize
+API for authentication commonly used on Unix
+\end_layout
+
+\begin_layout Itemize
+pam_unix: 
+\family typewriter
+/etc/shadow
+\family default
+ password hashes
+\end_layout
+
+\begin_layout Section
+Network users
+\end_layout
+
+\begin_layout Slide
+LDAP
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Lightweight Directory Access Protocol
+\end_layout
+
+\begin_layout Itemize
+distributed directory information service, like phone book
+\end_layout
+
+\begin_layout Itemize
+arranged as records with attributes
+\end_layout
+
+\begin_layout Itemize
+often used to populate user accounts across a network
+\end_layout
+
+\begin_layout Itemize
+CalNet is an 
+\emph on
+LDAP directory
+\end_layout
+
+\begin_layout Slide
+Kerberos
+\end_layout
+
+\begin_layout Itemize
+trusted third party provides mutual authentication between machines and
+ users
+\end_layout
+
+\begin_layout Itemize
+arranged as principals which can be fetched as tickets to authenticate
+\end_layout
+
+\begin_layout Itemize
+CalNet is also a 
+\emph on
+Kerberos realm
+\end_layout
+
+\begin_layout EndSlide
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,28 @@
+\documentclass[10pt]{article}\usepackage{html}\begin{document}
+\title{System Administration:\\Week 6 Lab}
+\maketitle
+\section{Logs}
+\begin{enumerate}
+\item Take a look at your Apache logs which logs the ip address which tried to acess you server, date and time, and other useful information and describe its format.  
+\item Do you see anything suspicous in the logs, like somebody trying to compromise your server.
+\item {\bf wget} the file \htmladdnormallink{http://pileup.ocf.berkeley.edu:11680/access.log.1}{http://pileup.ocf.berkeley.edu:11680/access.log.1} then store it somewhere and describe what you see. Hint: the stuff is not legit.
+ \end{enumerate}
+\section{Shell Scripting}
+\begin{enumerate}
+\item Write a script that will calculate the difference between two numbers. Hint: {\bf expr} could do mathematical evaluations. Alternatively you could use {\bf bc}.
+\item Write a script that will output and store the difference between a file foo.1 and file foo.2 into foo.diff. Create some dummy files and test it. Hint: sed -e 's/foo/bar/g' would replace every occurance of foo with bar.
+\item Challenge Write a shell script in bash that will print out an 8 x 8 chessboard on the screen. Hint: echo -e -n "$\backslash$033[40m" prints a white squre while echo -e -n "$\backslash$033[47m" prints a black square (in bash).
+\end{enumerate}
+
+\section{Cron jobs}
+Pick one of the scripts and create a cron job for it to be executed in 5 minutes. How did create the job and what did you put inside the file? It will probably be easiest for you to use your root account on pileup to complete this.
+
+\section{Submission}
+As always....
+
+
+
+
+
+
+\end{document}

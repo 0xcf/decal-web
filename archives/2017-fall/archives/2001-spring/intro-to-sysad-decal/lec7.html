@@ -1,0 +1,382 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 7</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 7 notes:</h1>
+
+<h2>administrivia:</h2>
+	<B>Enrollment</B>
+	Any problems?  Please email me to get on the course announcement list:
+	jones@csua.berkeley.edu
+
+	<B>Getting Help</B>
+	If you have trouble, please email me, or one of the other teachers.
+	The OCF staffers are often around the lab, and can be helpful.
+	Don't forget your classmates can also be helpful.  
+
+	<b>Class Project</b>
+
+	The course project description is in <a href=lec5.html>Lecture 5</a>.
+	Your writeup is due by the end of class, April 20.
+
+	<B>Questions?</B>	
+
+<hr width=50%>
+
+<h2>class notes:</h2>
+
+We lost a week to late-announced lab-remodeling, so we'll cover more material with 
+less hand-holding this week.
+
+<ul>
+<B>Topics:</B>
+The file system heirarchy 
+Basic software installation and configuration, and packages.
+what is a shell script? 
+what goes on at startup/shutdown, runlevels and rc files, daemons 
+cron jobs 
+</ul>
+
+<h3>
+The File System
+</h3>
+
+The file system organizes the programs, user data, accounting and configuration
+information, etc.
+Different flavors of unix have different filesystem layouts, but there are many
+commonalities.  As you get more familiar with unix, you'll know the filesystem
+instinctively, but in the meantime, this is a brief overview:
+
+<pre>
+<table border=1>
+<tr>
+<td>
+<pre>/
+/bin 
+/sbin
+/dev
+/etc
+/home
+/lib
+/tmp
+/usr
+/usr/local
+/var             </pre></td>
+<td>
+<pre>the root directory
+basic system commands
+utilities and commands not used by normal users
+filesystem devices such as disks, mice, sound and terminals
+configuration files
+users' personal homedirectories
+c libraries
+temporary storage
+non-crucial programs and data 
+for things you install
+accounting information, mail and print spools</pre></td>
+</tr>
+</table>
+
+
+<h3>
+Software Installation</h3>
+
+
+<b>the old fashioned way</b>
+
+The basic way to get software is to download it, compile it and configure it.
+Before the web, this meant that you heard about a piece of software, probably
+from word of mouth or email, or in a usenet newsgroup, and then you downloaded
+it via ftp from a repository somewhere after finding it using archie or another
+ftp search engine (think google, but only for ftp sites).
+
+Historical interest aside, downloading and configuring software is essentially
+the same today.  What's changed is the quality of the most popular software 
+has improved tremendously, to the point where it is quite easy to install and 
+configure on most popular Unix systems, and the tools available for maintaining
+your software library have improved.
+
+For any popular Unix system, you can search the web for the software or type of
+software you need, and download the archive using your web browser.  At this point,
+you'll have a file named "filename.tar.gz"  This is a file that's been compressed 
+using gnuzip (hence the .gz extension) and archived using tar (hence the .tar 
+extension).  Without getting into what that means, here's what you'll need to
+do in order to extract the file:
+
+<ul>
+mkdir filename    (I usually make a subdirectory, in case the archive doesn't)
+mv filename.tar.gz filename
+cd filename
+gunzip filename.tar.gz   (uncompresses the archive, and removes .gz extension)
+tar xvf filename.tar     (extracts the archive)
+</ul>
+
+At this point you have the contents of the archive available to you.  
+You should look for a README or INSTALL file, and follow the directions there
+in order to compile and configure the software.  This may be as simple as 
+typing:
+
+<ul>
+./configure
+make
+make install
+</ul>
+
+or you may have to go into the Makefiles or worse and modify the program
+to suit your system.  You may also have to install additional programs
+before you can sucessfully compile or run the desired application.
+
+
+<b>the new way</b>
+
+For the most popular software, you can sidestep the occasionally troublesome 
+compilation process by downloading precompiled versions.
+
+Every advanced system has a packaging system to make software installation
+and management even easier.  Often package management will keep track of
+which version of software you have installed, and will alert you if you
+try to install software that depends on having previously installed other
+software, and give you the option of first installing the required
+software.
+
+On Solaris, it's called pkgadd.  You can get packages from sun, or from www.sunfreeware.com.
+(man pkgadd on a Sun system for more info)
+
+Redhat uses it's own <a href=http://www.redhat.com/support/manuals/RHL-7.1-Manual/customization-guide/p6326.html>Redhat Package Manager</a>
+
+Debian uses the popular <a href=http://www.newriders.com/debian/html/noframes/node84.html>Debian Package System</a>
+
+FreeBSD uses the <a href=http://www.freebsd.org/handbook/ports.html>"/ports" collection</a>.
+
+
+<h3>
+Shell Scripts</h3>
+shell scripts are simple programs written with the commands that the shell can 
+understand, including it's own built in commands (which are listed on a shell's 
+manpage) as well as any other programs on the system.
+
+Shell scripts are used to perform simple system operations like starting 
+daemons (see below), and performing accounting.  In recent years, scripting 
+languages such as perl have risen to prominence because of their usefulness 
+in writing programs for the web.
+
+Most shell scripts used by the system are written in <b>sh</b>'s scripting language
+(but that doesn't stop people from writing scripts in csh, bash, ksh or any other 
+shell's language).
+
+We'll talk more about shell scripting next week, for now, just take a look at what
+a shell script looks like.
+
+One thing to note is that the first line in the file is "magic" -it tells
+the system to interpret the file with the program specified after the #!
+in the first line.  Because the system must first execute the file, and then 
+read the file in as input to the shell, the user trying to run the script 
+must have read and execute permissions on the script.
+
+Example:  /etc/rc2.d/S99audit
+<ul>
+
+#!/sbin/sh
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident  "@(#)audit     1.5      97/12/08 SMI"
+
+case "$1" in
+'start')
+        if [ -f /etc/security/audit_startup ]; then
+                echo 'starting audit daemon'
+                /etc/security/audit_startup
+                /usr/sbin/auditd &
+        fi
+        ;;
+ 
+'stop')
+        if [ -f /etc/security/audit_startup ]; then
+                /usr/sbin/audit -T
+        fi
+        ;;
+
+*)
+        echo "Usage: $0 { start | stop }"
+        exit 1
+        ;;
+esac
+exit 0
+
+
+</ul>
+
+<h3>
+startup/shutdown, runlevels</h3>
+
+What happens when you start or shutdown a unix system?  It varies by OS, 
+but usually you can find folders or files in /etc/rc* which contain shell
+scripts.
+
+There are scripts that the computer runs every time it is started up, which do 
+things like set the name of the computer, check disks for corruption, mount 
+filesystems, turn on quotas, and do sundry other things depending on what you 
+want, or what 'runlevel' you specify.
+
+What's a <b>runlevel</b>?  A runlevel is a shorthand way to tell the system
+to get into a certain state of configuration with respects to what services
+are running (daemons, see below), whether to allow remote logins, what
+filesystems are mounted read-only or read-write, etc.
+
+There are several standard runlevels:
+0 or 6 - shut down the system
+1 or S - single user mode (no remote logins)
+2      - multiuser mode
+3      - multiuser with networking 
+5      - Graphical User Interfaces enabled
+6      - shut down the system
+
+You can change runlevels by using the <b>telinit</b> command.  The behavior
+of telinit is dictated by the /etc/inittab configuration file, On Solaris
+and Linux systems (at least), the inittab tells the system to run a script
+which performs maintenance for changing runlevels, and starts and stops the
+appropriate services for that runlevel.  The configuration files for which
+services should be run at which level are stored in directories such as
+/etc/rc2.d /etc/rc3.d... etc.  These directories contain symlinks to scripts
+in /etc/init.d.  The symlinks have names starting with K or S depending on
+whether they should be Started or Killed at that particular runlevel.  If
+this sounds like a nightmare of complexity, don't worry, it's actually
+pretty simple, if not straightforward.
+
+<h3>
+daemons</h3>
+
+A daemon is a process that stays running on a system at all times in order
+to provide a service on that system.  Daemons do many interesting things on
+your system- allow remote access via ssh, telnet and ftp, serve webpages,
+deliver email, sync the time to other machines, execute previously 
+scheduled tasks...  
+
+Daemon programs are commonly run as root or as their own user, and their 
+command names are usually postfixed with a d, for instance, <b>sshd, 
+telnetd, ftpd,</b> and <b>httpd</b> (the webserver).
+
+As an aside, you're probably wondering why the name "daemons" rather than
+"system process," "background process," or some other more tame name.  Aside 
+from the tradition of interesting names in Unix, you may be surprised to 
+know that the word "daemon" is not synonymous with "demon." The preferred 
+definition in this case is, "a tutelary spirit or internal voice," meaning a 
+guiding spirit which is neither good nor evil.
+
+Daemons are usually started by the rc files, as described above, and run as 
+background processes for the duration the computer is up.  They usually have 
+a configuration file, either in their own directory, or in the /etc/ 
+hierarchy.  Let's look at the inetd daemon as an example.
+
+<b>inetd</b> - the Internet Services Daemon From the inetd manpage: "listens
+for connections on certain internet sockets.  When a connection is found on
+one of its sockets, it decides what service the socket corresponds to, and
+invokes a program to service the request...  Essentially, inetd allows
+running one daemon to invoke several others, reducing load on the system."
+The inet daemon knows which program to invoke according to its configuration 
+file, /etc/inetd.conf.  On AT&T systems, inet is started at the 2nd 
+runlevel, the runlevel that supports multiuser access and networking.  On 
+the OCF, you can see it's startup script linked to from /etc/rc2.d/S69inet.
+And it is stopped in the the other runlevel directories:
+/etc/rc0.d/K42inetsvc
+/etc/rc0.d/K43inet
+/etc/rc1.d/K42inetsvc
+/etc/rc1.d/K43inet
+/etc/rc2.d/S69inet
+/etc/rcS.d/K43inet
+
+
+Another example: <b>init</b>
+There is a special daemon called <b>init</b>.  It is the first real program
+that is run in the process table, and always has a process ID of 1.  It is
+responsible for maintaining accounting information about users logging in,
+it is also responsible for restarting other crucial daemons if they die so
+that the system stays functional, and it also handles the system shutdown
+process.  The folks who wrote init claim that, "The role of init is so
+critical that if it dies, the system will reboot itself automatically."
+If you kill init (see process control in a later lecture, and read the init 
+manpage) the system will be caused to reboot.
+
+<h3>
+cron jobs</h3>
+<UL>
+
+The <B>cron</B> daemon is a process that executes prescheduled tasks on an
+automated basis.
+
+cron is typically used to run automated backups, do system accounting, clean up
+temporary files, distribut data to remote computers, remind people about
+important dates, and anything that needs to be done on a routine basis.
+
+There are several different versions of cron, and unfortunately the OCF
+doesn't allow general-user access to cron.  Access to cron is controlled
+with the <b>/etc/cron.d/cron.allow</B> and <b>/etc/cron.d/cron.deny</b>
+files.
+
+A brief introduction nonetheless:
+
+on AT&T style systems, a user submits a file (called a crontab) by:
+<b>crontab</b> <i>mycrontab</i> 
+
+if the user already has a crontab, she can retrieve it with:
+<b>crontab -l > mycrontab</b>
+
+The crontab file contains entries in the following format:
+
+			minute hour  day   month  weekday <i>command</i>
+with the ranges:	0-59   0-23  1-31  1-12   1-7
+
+the command is a command or script recognizable by <b>sh</b>.
+
+Examples (from the crontab manpage): Mail a birthday greeting:
+(at noon, on Feb. 14th)
+
+     0 12 14 2 * mailx john%Happy Birthday!%Time for lunch.
+
+
+     0 0 * * 1 command
+     (would run a command only on Mondays.)
+
+
+</UL>
+
+
+</ul>	
+
+<h2>Homework for Lec 7</h2>
+<UL>
+
+Create a very small shell script (your file should be two or three lines 
+long).  What are the appropriate permissions?  What happens if the 
+permissions are wrong?  Turn in the script and the answers to those two 
+questions.
+
+Log into an ocf system and find out which daemons are running using <b>ps</b>.
+(be sure to specify which system you used, if in doubt use <b>hostname</b> to
+find out).  
+
+What would be the appropriate cron entry for a process to be run every 
+fifteen minutes?
+
+mail the answers to those questions to jones@xcf.berkeley.edu
+</ul>
+
+<h2>enrichment</h2>
+
+Check out the manpages for cron, crontab, init, telinit, inetd, inetd.conf.
+
+Look at the /etc/rc2.d/README and read some of the scripts in
+the /etc/rc folders to get a feeling for <b>sh</b>-style shell 
+scripting.
+
+On different systems you may have access to, check out which daemons
+are running using the <b>ps</b> command.
+
+<hr>

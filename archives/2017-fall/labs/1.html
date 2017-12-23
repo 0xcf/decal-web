@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 1 - Unix, the Shell, OSS - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 1 - Unix, the Shell, OSS</h1>
+  <h2 id="1-create-ssh-key">1. Create ssh key</h2>
+<p>Run the following command, and accept prompts in order to create an ssh keypair:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t rsa -b 4096 Note: it's good practice to protect your ssh-keys with strong passwords, to protect against attackers who might briefly use...or completely steal...your computer.
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">ssh-keygen</code> will create files <code class="highlighter-rouge">id_rsa</code>  and <code class="highlighter-rouge">id_rsa.pub</code> inside the <code class="highlighter-rouge">.ssh</code> directory.  View the file with <code class="highlighter-rouge">cat</code> or <code class="highlighter-rouge">less</code> later when viewing them to copy into a browser.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~ $ ls .ssh/
+id_rsa id_rsa.pub
+</code></pre></div></div>
+<p>You can rename these files, but keep the public-private distinction, and make sure the base name matches (some tools expect this). Running <code class="highlighter-rouge">ssh-keygen -t rsa -b 2048</code> instead is OK too.</p>
+
+<p><strong>Note</strong>: 1024-bit RSA keys are considered too short nowadays. They are not <em>yet</em> broken, but have no margin for safety. DSA and its cousin ECDSA are considered secure, but have some secondary security risks. I make it a policy not to use them, though I’ll likely never be bitten by corner cases. New implementations of ssh include new algorithms.</p>
+
+<h2 id="vps-hosting">2. VPS hosting provider</h2>
+<p><strong>Enrolled students</strong> will have a Virtual Private Server (VPS) hosted on Amazon Web Services (AWS) provided for them.</p>
+
+<p><strong>Auditing users</strong> may wish to acquire a VPS from Amazon, Google, or Digital Ocean. Free service credits for AWS and DigitalOcean may be claimed at <a href="https://education.github.com/pack">education.github.com/pack</a> after creating/logging in to a GitHub account and associating it with a ‘.edu’ email address.</p>
+
+<p>However, a VPS may not be required for the first few weeks of class, as many of the labs can be completed on our login server, tsunami, reachable at <code class="highlighter-rouge">tsunami.ocf.berkeley.edu</code> with the <code class="highlighter-rouge">ssh</code> command-line utility, or in a browser via the web-shell interface we provide at <a href="https://ssh.ocf.berkeley.edu">ssh.ocf.berkeley.edu</a>.</p>
+
+<p><strong>Fun facts</strong>:  We configure DNS so that <code class="highlighter-rouge">tsunami</code> and <code class="highlighter-rouge">ssh</code> are both valid names for our public login server, by resolving to the same IP address. <code class="highlighter-rouge">dig [host]</code> to see more.</p>
+
+<h2 id="ssh-setup">3. Set up ssh key &amp; login</h2>
+<ul>
+  <li>Set up ssh key / password
+    <ul>
+      <li><strong>All command-line</strong> (e.g. from the OCF to VPS or your computer’s shell to OCF or VPS, hereafter <code class="highlighter-rouge">[target]</code>).
+        <ol>
+          <li>Copy your public key, <code class="highlighter-rouge">id_rsa.pub</code> from where you created it to the server you want to have accept the key for authentication.
+            <ul>
+              <li><code class="highlighter-rouge">scp .ssh/id_rsa.pub [target]:</code>
+                <ul>
+                  <li>read <code class="highlighter-rouge">man scp</code>, the command uses <code class="highlighter-rouge">[host]:[path]</code>format, e.g. <code class="highlighter-rouge">ssh.ocf.io:~/.ssh/mbp_id.pub</code></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Login to the target machine
+            <ul>
+              <li><code class="highlighter-rouge">ssh infamous@ssh.ocf.io</code></li>
+            </ul>
+          </li>
+          <li>Add your public key to the authorized keys file
+ 			- <code class="highlighter-rouge">cat id_rsa.pub &gt;&gt; .ssh/authorized_keys</code>
+ 		4. <strong>Test it</strong>
+   		- <code class="highlighter-rouge">ssh infamous@ssh.ocf.io</code> should not ask for a password.
+   		- <em>Extra: try <code class="highlighter-rouge">ssh -v</code> to see debug information</em></li>
+        </ol>
+      </li>
+      <li><strong>With web interface</strong>
+        <ol>
+          <li><code class="highlighter-rouge">cat &gt; public_key</code></li>
+          <li>Copy/Paste key from local to remote terminal</li>
+          <li><code class="highlighter-rouge">^D</code> - Control - D - EOF/End-of-File character.</li>
+          <li>Proceed from step 2 of <strong>All command line</strong>.</li>
+        </ol>
+      </li>
+      <li>The <code class="highlighter-rouge">ssh-copy-id</code> utility performs the same setup.
+        <ul>
+          <li>Linux, Windows with Ubuntu users: it’s available from your package manager. <code class="highlighter-rouge">apt install ssh-copy-id</code></li>
+          <li>macOS users: <a href="https://brew.sh">homebrew</a> will also allow you to install it with 1 command, <code class="highlighter-rouge">brew install ssh-copy-id</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="feedback">4. Send feedback email</h2>
+<ul>
+  <li><a href="mailto:lab1@decal.ocf.berkeley.edu">Email feedback and cool findings</a>
+    <ul>
+      <li>lab1@decal.ocf.berkeley.edu⧸⧸</li>
+      <li>trouble encountered</li>
+      <li>favorite things learned from reading <code class="highlighter-rouge">man</code> pages</li>
+    </ul>
+  </li>
+</ul>
+
+
+  <br>
+<footer>
+  <div class="row">
+	<div class="col-lg-12">
+	  <p class='text-center'>
+	  <a href="https://www.ocf.berkeley.edu">
+		<img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+	   alt="Hosted by the OCF" style="border: 0;" />
+	  </a>
+	  Copyright &copy; Open Computing Facility, eXperimental Computing Facility 2017.
+	  </p>
+	</div>
+	<!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

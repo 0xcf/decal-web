@@ -1,0 +1,45 @@
+\documentclass{article}
+\makeatletter
+{\catcode`\`=13
+	\xdef\@verbatim{\unexpanded\expandafter{\@verbatim}\chardef\noexpand`=18 }
+}
+\makeatother
+%% Fonts!
+%\usepackage{sectsty}
+%\usepackage[no-math]{fontspec}
+%\usepackage{xltxtra,xunicode}
+%\allsectionsfont{\sffamily}
+%\setromanfont[Mapping=tex-text]{Adobe Garamond Pro}
+%\setsansfont[Mapping=tex-text]{Myriad Pro}
+%\setmonofont[BoldFont=Monaco,Scale=0.8]{Monaco}
+
+\begin{document}
+
+\title{Final project ideas!}
+\author{Hands-On {\sc Unix} System Administration DeCal, Fall 2012}
+\date{}
+\maketitle
+\thispagestyle{empty}
+
+Need an idea for your final project? Here are some suggestions to get you started (ideas taken from past semesters). But feel free to use your own ideas for your project!
+
+\begin{itemize}
+	\item Build a web server (e.g., LAMP). You could, for example, build a blog, or design and create a webpage using HTML, PHP, and a MySQL backend that allows interaction with a user to do something, like storing or retrieving information from a database.
+	\item Build a mailserver complete with POP3/IMAPS, authenticated SMTP, spam filtering, and a web-frontend.
+	\item Set up SSL on your webserver. Generate a CA and self-sign a certicate for use on your webserver. Add HTTP Authorization to ”password protect” a site and setup usernames and passwords in a database table.
+	\item Build a web interface in which users can run command line scripts securely.
+	
+	\item Look at how SSH authenticates users and implement other methods through PAM (database, kerberos, LDAP)
+	\item Customize, compile, and install your own kernel.  
+	\item Web Traffic Analyzer 
+		\begin{enumerate}
+			\item Snoop traffic of the whole subnet.
+
+			\item Rotate/delete files accordingly to preserve space.
+
+			\item Put real-time results on a nice website + blog.
+		\end{enumerate}
+	\item Using a scripting language, design and implement a tool that will post the pertinent information of certain log files to the server home page.
+
+\end{itemize}
+\end{document}

@@ -1,0 +1,247 @@
+<HTML>
+<HEAD><title>Sysadmin Decal: lecture 1</title>
+</head>
+
+<body>
+
+
+<pre>
+<h1>Comprehensive System Administration</h1><HR>
+<h1>Lecture 1 notes:</h1>
+
+<h2>getting an OCF account:</h2>
+	This course will be taught on the Open Computing Facility's hardware.
+	If you don't have an OCF account already, you'll need to sign up for one.
+
+	You should do this on the first day of class, but if you missed this
+	chance, you can do it <a href=http://www.ocf.berkeley.edu/staff_hours>anytime a staff member is around</a>.
+	You can go to <a href=http://www.ocf.berkeley.edu/services/newacct.html>this page</a> to get the new account form 
+	if you'd rather print it and fill it out at home although we usually 
+	have copies in the lab).
+
+<h2>administrivia:</h2>
+	<B>Class time:</B> 1-2pm Fridays
+	<B>Location:</B>   OCF Lab in Heller Lounge, MLK Student Union
+	<B>Duration:</B>   10 weeks, ending on April 20th 
+		       (no class March 30th, spring break)	
+
+	<B>Units:</B>  variable (1-2, or 1-3?)
+
+	<B>Grading:  </B>
+		To be taken on a P/NP basis.
+		There will be a short weekly homework sets given each week worth 1 point, 
+		and one project worth 5 points.
+		To pass the course, you need 10 points.  
+
+	<B>Questions?</B>	
+
+<h2>background material:</h2>
+	What is "<B>Unix</B>"?  - by smcc
+		<a href=http://www.uwsg.indiana.edu/usail/concepts/unixhx.html>history of unix</a> - <a href=http://www.uwsg.indiana.edu/usail/library/history.html>more history</a>
+		unix today
+			-internet infrastructure
+				-web, email and other 'servers'
+				-routing
+	
+	What is "<B>System Administration</B>"?
+</pre>
+<center>
+<table width=70%><tr><td>
+		
+<I>"Activities which directly support the operations and integrity of computing systems and their use and which manage their
+intricaces. These activities minimally include system installation, configuration, integration, maintenance, performance
+management, data management, security management, failure analysis and recovery, and user support. In a inter-networked
+computing environment, the computer network is often included as part of the complex computing system."</I>  -sage.com
+
+</td></tr></table>
+
+</center>
+<pre>
+
+	<B>Why do system administration?</B>
+		-interesting, fun
+		-community
+		-helping people
+		-flexible hours
+		-<a href=http://www.cra.org/reports/wits/cra.wits.html>demand and stability</a>
+		-<a href=http://swz.salary.com/salarywizard/layoutscripts/swzl_compresult.asp?zipcode=94720&narrowcode=IT08&geo=Berkeley%2C+CA+94720&jobcode=IT10000152&jobtitle=UNIX+Administrator&image1.x=57&image1.y=22>pay</a>
+
+	<B>Why not do system administration?</B>
+		-<a href=http://washington.bcentral.com/washington/stories/1998/06/22/focus7.html>male dominated (this is changing!)</a>
+		-geeky image
+		-on call/strange or inconsistant hours (firefighting)
+
+	<B>How to learn this stuff?</B>
+		-degree programs/classes?
+		-mentorship and peergroups (at Cal- OCF, CSUA, ResComp, WS&T...)
+		-online and offline sources
+			-man pages
+			-books
+			-howtos
+			-google
+		-<b>experience</b>
+
+
+<table bgcolor=ltgreen><tr><TD>
+Note: this is where we stopped on 2/9, we'll pick up<BR> 
+from here on 2/16, and assign the homework.<BR>
+Feel free to get a head start!  -Devin
+</TD></TR></TABLE>
+
+	<B><a href=http://www.nmt.edu/tcc/help/unix/unix_cmd.html>Very basic unix commands...</a></B>
+
+<center>
+<table width=60% border=2><tr><td>
+
+<UL>
+<LI>ls
+
+<LI>cp, mv, rm
+<LI>chmod, chown, chgrp
+
+<LI>cd, pwd
+<LI>mkdir, rmdir
+
+<LI>cat, more, less, head, tail
+
+<LI>man, apropos
+
+<LI>sort, uniq, wc, grep
+
+<LI>vi, pico, emacs
+
+<LI>date, cal
+
+<LI>pine, elm, mutt, mail
+
+<LI>telnet, rlogin, ssh
+
+<LI>ftp, scp
+
+<LI>w, who, finger, talk, nwrite
+
+<LI>hostname, whoami, set
+
+<LI>passwd, quota -v, du
+
+<LI>lpr, lp
+
+<LI>ps, kill
+
+<LI>find, locate, which
+
+<LI>exit
+
+<B>redirection &gt;, &gt;&gt;, &lt;, |</B>
+<UL>
+<LI> <B>&gt;</B>  send output to file:  <B>ls > directory-listing</B>
+<LI> <B>&gt;&gt;</B>  append output to end of file (don't overwrite file)
+<LI> <B>&lt;</B> send a file as input to a command:  <B> mail friend < filename</B>
+<LI> <B>|</B>  send output of one command to input of next command: <B>ls -la | more</b>
+</UL>
+
+</UL>
+
+</td></tr></table>
+</center>
+
+<h2>Homework</h2> <UL>
+0)  Don't worry if this doesn't make sense yet, we'll cover the basic commands in the
+second lecture.
+
+1)  Create a transcript that shows you understand several of the commands listed above.
+Several people have asked, "what is a transcript?"  By transcript, I mean a file that 
+shows the output of your session.  <a href=lec1ex.txt>See this example.</a>
+Yours will be longer.  You can use the <b>script</b> command to create the transcript, 
+or you can cut and paste, whatever works for you.
+
+Don't bother demonstrating knowledge of editors, mail readers, or remote access programs, 
+we'll get into more details on those later, if possible, and besides, that will make your
+transcript look crufty.
+Don't print anything.  
+Use flags (options, i.e. "-l" is an option for <b>ls</b>, as in <b>ls -l</b>. 
+Do demonstrate the use of input/output redirection.
+
+2) Find another source of interesting or useful information, 
+such as the sites and books listed below.  
+Google.com's search engine could be useful for this. 
+Tell us what the source is, and describe the source briefly.
+
+i.e.<UL>
+<LI>www.sunfreeware.com - it has software packages for various sun operating systems.
+or
+<LI>www.slashdot.org - has news and information about computing and technology
+</UL>
+Mail your homework, and any questions to jones@xcf.berkeley.edu
+
+</UL>
+
+</pre>
+<HR>
+<H1>Enrichment</H1>
+
+<B>There are several places on campus where you can get further basic unix instruction:</B><P>
+
+<UL>
+
+<a href=http://facility.berkeley.edu/classes.html#unix>W&MF walk-in courses</a><BR>
+<a href=http://cafe.berkeley.edu/~walk-in/classes/>A semester in a table from WM&F</A><P>
+
+<a href=http://www.csua.berkeley.edu/help-sessions/schedule.html>CSUA Help Sessions</a><BR>
+<a href=http://www.csua.berkeley.edu/help-sessions/tutorials/>Help Session Tutorials and Handouts</a><BR>
+<a href=http://www.me.berkeley.edu/help/unix/>Online help files from the ME dept</a><P>
+
+<a href=http://socrates.berkeley.edu/Help/Classes/>Classes offered by Berkeley's IS&T staff</a><BR>
+<a href=http://socrates.berkeley.edu/Help/>Help files on Socrates</a><P>
+
+<a href=http://cbt-www.berkeley.edu/cbtweb/curicula/mis.htm>Computer-Based Training in Management of Information Science</a> 
+(available from UCB hosts only)<P>
+
+If you are interested in running Linux at home, you should visit
+<a href=http://callug.cs.berkeley.edu/>CalLUG</a> the Cal Linux Users Group.<BR>
+They have meetings, and links to information about running Linux.<P> 
+
+</UL>
+
+<B>You can also find other good sources of information on the web:</B><P>
+
+<UL>
+
+<a href=http://www.uwsg.indiana.edu/usail/>An independent study course</a> from the University of Indiana<P>
+
+<a href=http://2cpu.com/OSs/Linux/linuxintro.html>A brief description of different Linux distributions</a><P>
+
+<a href=http://www.faqs.org/faqs/unix-faq/faq/part1/preamble.html>Unix FAQ</a>Frequently Asked Questions from the 
+comp.unix.questions newsgroup<P>
+
+<a href=http://www.stokely.com/unix.sysadm.resources/>Unix Sysadm Resources</a> - another random source<P>
+
+</UL>
+
+<B>There are numerous good books on System Administration in circulation.</B><BR>
+
+<UL>
+
+My favorite general-purpose book is <a href=http://www.amazon.com/exec/obidos/ASIN/0130206016/>Unix System Administration
+Handbook</a> by Nemeth, Snyder, Seebass and Hein.  Now in it's third edition, this book provides excellent coverage of many
+routine system administration tasks.  For deeper understanding of a variety of topics, <a
+href=http://www.oreilly.com/>O'Reilly & Associates</a> is my favorite publisher.  Their books are nearly always high quality,
+and are usually written by reputable sources, and occasionally by the actual creators of a tool.  For example, the most famous
+book on Perl is published by O'Reilly and is called <a href=http://www.oreilly.com/catalog/pperl3/>Programming Perl</a> was
+written by Larry Wall, the creator of Perl.
+
+</UL>
+
+<B>System Administration Cultural Resources:</B><BR> 
+
+<UL>
+
+The field of unix system administration really does have it's own culture.  Being very computer-centric, there are countless
+newsgroups, email-lists, irc-channels, and websites dedicated to the task and the surrounding culture.  This culture does 
+have it's egos and social-ills, but by and large is very supportive and genial.<P>
+
+The <a href=http://www.sage.org>System Administrator's Guild</a> - SAGE, a professional organization for SysAdmins<BR>
+<a href=http://www.slashdot.org>Slashdot</a> - news of interest to the geek community<BR>
+<a href=http://www.userfriendly.org/static/>User Friendly</a> - a comic about a software company<BR>
+<a href=http://www.cybergeography.org/atlas/atlas.html>Cyberspace Atlas</a> - interesting information with a cheesy name<BR>
+</UL>

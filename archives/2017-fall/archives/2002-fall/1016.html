@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Apache, ftpd, sshd, and other daemons; filesystems</title>
+</head>
+<body>
+<h2>Apache, ftpd, sshd, and other daemons; filesystems</h2><br><br>
+<p>
+
+<h3>Apache</h3><br><br>
+Apache is more or less the de facto webserver software for *nix systems.  You'll generally find it as httpd, which stands for HTTP Daemon.  Makes sense enough.  You can find information on building tips, installation instructions, configuration details, etc. etc. from a) the Apache website, and b) tldp.org.  By default, apache will listen for connections on port 80 (default http port).  Actually, that's a bit of a false statement for modern systems.  See the bit on inetd below.<br><br>
+
+<h3>ftpd</h3><br><br>
+ftpd is the File Transfer Protocol Daemon.  There are a few different ftp server software pieces out (a google search will bring up an extensive list).  FTP is generally conducted on port 21.  Having ftpd running is a bit of a security risk, given that ftp passwords are transferred as plain text.  Plain text = bad.  Very bad.  Use scp (which is a part of sshd, see below).<br><br>
+
+<h3>sshd</h3><br><br>
+sshd stands for Secure SHell Daemon.  Secure Shell is generally what is best for terminal and file transfer conections.  The reason is that secure shell encrypts information using public/private key pairs (try a google search if you'd like more information on that), rather than simply transferring as plain text.  scp, which is a secure version of rcp, is often used instead of ftp for it's security purposes.<br><br>
+
+<h3>inetd</h3><br><br>
+As mentioned above, services are usually called by inetd.  inetd is a process that runs in the background waiting for connections.  When it sees a connection being formed, it figures out which program to pass the connection to.  This allows you to run a server without cluttering up your system with a lot of running processes at once.<br><br>
+
+<h3>Filesystems</h3><br><br>
+This is mostly a recap from earlier.  File systems are what organize the information written on hard disks.  See earlier class notes for more information (this session was mostly a review).
+
+</body>
+</html>

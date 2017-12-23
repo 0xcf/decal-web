@@ -1,0 +1,97 @@
+Intermediate Systems Administration DeCal
+Week 7 Lab
+=========================================
+
+    This week we talked about the wonderful world of Internet services such as
+HTTP, DHCP, DNS, and SMTP. This lab is just a continuation of the overview I
+gave in class - it's very important to understand what the services are that
+power your "Internet experience." If you do sysadmin work one day, chances are
+you will be asked to administer at least one of these kinds of servers.
+    This lab has a shell script to write (oh noes!) so do take a look at that
+carefully.
+    I'll also be looking at your project proposals, so watch your inboxes
+throughout the course of the week in case I need to discuss it with your group.
+Once I've acked your proposal you should begin working on it.
+    Answers go to joshk.decal@triplehelix.org as usual.
+
+I. Interacting with Mail Locally
+--------------------------------
+	In this exercise we'll poke around with the most common mail-oriented commands in the Unix world, using the institutional machines.
+
+1. Use the 'mail' command to send yourself a message. How do you specify a
+subject? How do you read your mail using this command?
+
+2. Play around with mutt and pine and figure out how to send and browse email
+messages in both. Which do you prefer, and why? (The mail client war is about
+40% more intense than the editor war.)
+
+3. Try using sendmail -t or sendmail -bs (what's the difference?) to manually
+send a message to someone. If you are comfortable with SMTP, sendmail -bs will
+be easier. Provide a transcript of your session.
+
+II. DNS queries
+---------------
+
+    You should do this on your virtual server. Please install the host package
+as well as the dnsutils package.
+
+1. Use host to look up the MX record for berkeley.edu, show the syntax you used.
+
+2. One kind of record I didn't talk about during the lecture is the NS record.
+   Use google to figure out what the NS record is and find the NS record for
+   berkeley.edu. To the best of your knowledge, where are all the DNS servers
+   listed in the NS record located? Is it a good thing that they're spread out?
+   Think of a reason why that's good.
+
+3. Use dig to perform the queries from above and show the syntax you used.
+   Now, just type 'dig' by itself. What do you see in the "ANSWER SECTION"?
+   What are these servers? Google may help.
+
+III. HTTP
+---------
+
+Please install the netcat package on your virtual server before trying this.
+
+1. Write a shell script that behaves like wget for a single URL. Here's what
+   your script should do, step by step.
+- Assume the URL is in the format "http://www.xxxxxxx.com/abcd1234". Don't
+  worry about escapes and special characters.
+- Use cut to extract "www.xxxxxxx.com" as the server name, and "/abcd1234"
+  as the path. Remember that the path may contain an arbitrary number of
+  slashes so you need to pass the right option to cut to fetch the entire string
+  after the index you specify. (Email me for clarification about this.)
+- Now, use netcat to connect to port 80 of the server. netcat accepts input
+  that you pipe into it. Remember that an HTTP request looks like:
+  "GET /path/x/y/z HTTP/1.0" followed by TWO NEWLINES. We will use a syntax
+  for echo that you haven't learned about yet:
+
+  echo -e "GET /path/x/y/z HTTP/1.0\n\n"
+
+  The -e specifies that your input string contains escapes (in this case, the
+  \n.) Thus, your connection recipe should look like this:
+
+  echo -e "(the request) | nc $SERVER 80
+- Pipe this input into a read loop (like you used for tv-rename). Discard lines
+  until you see a line with only a new line. This specifies the end of the HTTP
+  header. You can use [ "$line" = $'\r' ] to test for this (copy and paste.)
+  After the blank line, echo the lines back out thereafter.
+- The loop itself should be redirected into a file called 'output'.
+
+In summary, here's a pseudocode - I feel this is difficult, so I've provided
+the entire structure of the loop. Of course, this is pseudocode, so you must
+still fill in the blanks for it to work.
+
+set SERVER from input string
+set PATH from input string
+
+set BLANK_LINE_SEEN to 0
+echo -e "the http request" | nc SERVER 80 | while read line; do
+    if BLANK_LINE_SEEN is 1
+        echo the line
+    elif the line = $'\r'
+        set BLANK_LINE_SEEN to 1
+done > output
+
+Remember to try the nc interaction yourself on the command line first so
+you can understand what is going on. Also try the echo -e stuff on its own
+so you can see what happens. Finally, use sh -x with your script to debug it.

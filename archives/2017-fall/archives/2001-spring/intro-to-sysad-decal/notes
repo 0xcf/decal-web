@@ -1,0 +1,20 @@
+<a href=http://www.cs.unm.edu/~dlchao/flake/doom/>Using Doom as a tool for System Administration</a>
+
+--
+adding users
+file perms
+the file system heirarchy
+--
+shell scripting
+cron jobs
+--
+basic software installation and configuration, packages also
+what goes on at startup/shutdown, runlevels and rc files
+daemons
+basic security
+--
+basic network config
+processes and process control
+how to get random hardware working
+--
+

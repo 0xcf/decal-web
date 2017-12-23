@@ -1,0 +1,472 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage[lists=normal]{savetrees}
+%\usepackage{fullpage}
+\end_preamble
+\use_default_options true
+\begin_modules
+enumitem
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth -1
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lab 06
+\begin_inset Newline newline
+\end_inset
+
+Software management or 
+\begin_inset Quotes eld
+\end_inset
+
+How I Learned to Stop Worrying and Love APT
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Hands-on Unix system administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-10-08, due 2012-10-15
+\end_layout
+
+\begin_layout Standard
+Your answers should only contain commands or brief responses.
+ Please save trees, don't print out your computer's output.
+\end_layout
+
+\begin_layout Standard
+If you don't know what a command does, skim the manpage, e.g.
+ 
+\family typewriter
+man tee
+\family default
+.
+\end_layout
+
+\begin_layout Section
+Building a Debian package
+\end_layout
+
+\begin_layout Standard
+Debian has a robust binary package management system, and in almost all
+ cases, you'll never need to compile or build software from source.
+\end_layout
+
+\begin_layout Standard
+But as a Unix sysadmin, you might need more flexibility:
+\end_layout
+
+\begin_layout Itemize
+use a newer version of package which is unavailable in the repositories
+ (hasn't yet been packaged)
+\end_layout
+
+\begin_layout Itemize
+apply a patch for further customization or bugfixes
+\end_layout
+
+\begin_layout Itemize
+contribute to Debian by packaging
+\end_layout
+
+\begin_layout Standard
+In this lab, you will (re)build a Debian package from source.
+ It should work on any Debian-based system (for example, Ubuntu), including
+ most OCF machines, which you should have an account on.
+ First you will fetch the source package, which contains the software source
+ code and some metadata, and then compile it into a binary package which
+ can be installed with 
+\family typewriter
+dpkg
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+First, check that some packages useful for building Debian packages are
+ installed.
+ They are 
+\family typewriter
+build-essential
+\family default
+ and 
+\family typewriter
+devscripts
+\family default
+.
+ You can check if a package is installed with 
+\family typewriter
+dpkg -l foobar
+\family default
+, and install it with 
+\family typewriter
+aptitude install foobar
+\family default
+.
+ You need root privileges to install packages since they get installed systemwid
+e.
+ 
+\emph on
+Explain why you might not have root privileges on an OCF computer
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+Fetch the source code of 
+\family typewriter
+hello
+\family default
+ (as in 
+\begin_inset Quotes eld
+\end_inset
+
+hello world
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Change to a temporary directory, such as 
+\family typewriter
+/tmp
+\family default
+, and make a directory inside it using 
+\family typewriter
+mkdir
+\family default
+ and change to that directory.
+ From the directory, you can run 
+\family typewriter
+apt-get source hello
+\family default
+ to fetch the source package.
+ 
+\emph on
+Describe how 
+\family typewriter
+apt-get source
+\family default
+ works
+\emph default
+.
+ Hint: 
+\family typewriter
+man apt-get
+\family default
+ to find out what 
+\family typewriter
+apt-get source
+\family default
+ does, in particular the role of the 
+\family typewriter
+source.list
+\family default
+ file (take a look at 
+\family typewriter
+/etc/apt/sources.list
+\family default
+).
+\end_layout
+
+\begin_layout Enumerate
+In your current directory, there should be a directory, a 
+\family typewriter
+*.debian.tar.gz
+\family default
+ file, a 
+\family typewriter
+*.dsc
+\family default
+ file, and a 
+\family typewriter
+*.orig.tar.gz
+\family default
+ file.
+ The 
+\family typewriter
+*.orig.tar.gz
+\family default
+ file contains the 
+\begin_inset Quotes eld
+\end_inset
+
+upstream
+\begin_inset Quotes erd
+\end_inset
+
+ source code for the program, in a compressed tarball.
+ The 
+\family typewriter
+*.debian.tar.gz
+\family default
+ file (or in most other cases, 
+\family typewriter
+*.diff.tar.gz
+\family default
+) contains Debian-specific patches including packaging information.
+ The 
+\family typewriter
+hello*
+\family default
+ directory contains the source code, with the Debian patchset applied.
+ 
+\emph on
+What do you think is the purpose of the 
+\family typewriter
+*.dsc
+\family default
+ file
+\emph default
+?
+\end_layout
+
+\begin_layout Enumerate
+Change your working directory to the 
+\family typewriter
+hello*
+\family default
+ directory.
+ There should be a directory called 
+\family typewriter
+debian
+\family default
+.
+ This directory is the only difference between a Debian source package and
+ a package meant to be 
+\family typewriter
+make install
+\family default
+ed.
+ Change your working directory to the 
+\family typewriter
+debian
+\family default
+ directory.
+ 
+\emph on
+Describe what you think are the functions of the 
+\family typewriter
+changelog
+\family default
+ and 
+\family typewriter
+control
+\family default
+ files
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+Now move up one directory.
+ You should again see the 
+\family typewriter
+debian
+\family default
+ directory, and some other files, including a 
+\family typewriter
+Makefile
+\family default
+ and 
+\family typewriter
+configure
+\family default
+ script, as is standard for GNU packages.
+ Now let's build the binary Debian package! Run the command 
+\family typewriter
+debuild -us -uc
+\family default
+ (the extra arguments tell 
+\family typewriter
+debuild
+\family default
+ not to sign the package, because we are not the package maintainer).
+ 
+\emph on
+Which package provides debuild
+\emph default
+? Hint: use 
+\family typewriter
+dpkg -S
+\family default
+.
+ In case you're wondering, the 
+\family typewriter
+debian/rules
+\family default
+ file takes care of calling 
+\family typewriter
+./configure
+\family default
+ and 
+\family typewriter
+make
+\family default
+ with the appropriate options when you build the source package, which is
+ what you're seeing in the terminal.
+\end_layout
+
+\begin_layout Enumerate
+Move up again another directory.
+ You should now see a 
+\family typewriter
+*.deb
+\family default
+ file.
+ This is the Debian binary package you built, which can be installed with
+ 
+\family typewriter
+dpkg -i
+\family default
+ (you need root privileges, see question 1).
+ Extract the file with the command 
+\family typewriter
+ar vx *.deb
+\family default
+.
+ Three files should have been extracted, 
+\family typewriter
+debian-binary
+\family default
+, 
+\family typewriter
+control.tar.gz
+\family default
+, and 
+\family typewriter
+data.tar.gz
+\family default
+.
+ Now extract these two files with 
+\family typewriter
+tar xzvf control.tar.gz
+\family default
+ and 
+\family typewriter
+tar xzvf data.tar.gz
+\family default
+.
+ 
+\emph on
+What are the dependencies of this binary package
+\emph default
+? Hint: take a look at the 
+\family typewriter
+control
+\family default
+ file which was extracted from 
+\family typewriter
+control.tar.gz
+\family default
+.
+ 
+\emph on
+Describe the contents of this binary package
+\emph default
+.
+ Hint: take a look at the files extracted from 
+\family typewriter
+data.tar.gz
+\family default
+.
+ You can also lookup information on the binary package by using 
+\family typewriter
+dpkg-deb
+\family default
+ (run 
+\family typewriter
+dpkg-deb --help
+\family default
+ for info).
+\end_layout
+
+\begin_layout Standard
+Finally, clean up by removing the files you've created.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

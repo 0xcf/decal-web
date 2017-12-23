@@ -1,0 +1,28 @@
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+body {
+	font-family: Verdana, "Trebuchet MS", Tahoma, Arial;
+	font-size: 11px;
+	margin:10px;
+}
+.header {
+	background: #000;
+	cursor: pointer;
+	padding:4px;
+}
+
+.header:hover{
+	background-color:#666;
+}
+.selected{
+	background-color:#F00;
+	color:#FFF;
+}
+
+.content{
+	background:#FFF;
+	padding:4px;
+}

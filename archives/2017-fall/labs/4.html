@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 4 - Distributions, package management, compiling software - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 4 - Distributions, package management, compiling software</h1>
+  <h2 id="what-is-a-distribution">What is a distribution?</h2>
+
+<p>A Linux distribution is a combination of the Linux kernel, package management system, drivers, scheduler, and other software. They are the operating systems that use Linux as a kernel.</p>
+
+<h2 id="what-should-i-use-then">What should I use then?</h2>
+
+<p>Currently, there are around 300 actively developed distributions listed on DistroWatch. It might be a bit overwhelming with so many choices. However, there are three types of distributions that consist the bulk of most widely used Linux distributions: Debian, RHEL, and Arch.</p>
+
+<h3 id="what-is-debian">What is Debian?</h3>
+
+<p>Debian is a distribution developed by the Debian Project beginning in 1993. This distribution strives to provide a completely free (libre) software experience. Many other distributions are based on Debian as Debian releases are usually very stable. One such distribution is Ubuntu, which is very popular and has spawned its many of its own derivatives. What unifies all of Debian-based distributions is the usage of the DEB package format and the dpkg package manager. This is what we’re using for this DeCal.</p>
+
+<h3 id="what-is-rhel">What is RHEL?</h3>
+
+<p>Red Hat Enterprise Linux (RHEL) is a distribution developed by Red Hat beginning in 1995 as Red Hat Linux. REHL is a commercial distribution, requiring a license to run. In 2004, Red Hat Linux was split into RHEL and Fedora, a cutting edge free community distribution. CentOS is a community derivative that was created to be binary compatible with RHEL and was recently taken up by Red Hat itself. RHEL and CentOS prides on being even more stable than Debian, with long release cycles. What RHEL-based distributions share alike is their usage of the RPM package format and the yum/dnf package manager/frontend.</p>
+
+<h3 id="what-is-arch">What is Arch?</h3>
+
+<p>Arch Linux is a distribution that started development in 2002. It is notorious for being a distribution that that allows the users the experience of installing the distribution without an installer or install scripts. However, this model lends itself to be extremely flexible and customizable by the user. It uses the pacman package manager.</p>
+
+<h2 id="but-what-about-these-package-managers">But what about these “package managers”?</h2>
+
+<p>If you come from the Windows or even MacOS ecosystem, you might be scratching your head thinking what a package managers is. On those operating systems, the most conventional and used method of installing programs is to run an installer that copies the files from an archive to the correct place (and makes changes to a registry of some sorts).</p>
+
+<p>Enter the package manager, a centralized way to install, update, and remove software from repositories/sources. Most package managers work in the same way: the package manager gets or updates a list of packages and then fetches the packages that is referenced in the list if is requested to be installed. A package manager is like a librarian. When a patron wants to read a book, the librarian consults a catalog (which is the package database) and then fetches the book from the shelf and gives it to the patron (installing the package). Sometimes, the librarian has to update the catalog because new editions of the books were added (updating the package database).</p>
+
+<h2 id="debian-an-example">Debian: An Example</h2>
+
+<p>In this class, we will be focused on using Debian. As noted before, Debian uses apt/dpkg as its package manager.</p>
+
+<p>To package manager is invoked by using apt. Before you do anything, it is good package to update the package list so your package manager can find and fetch the most up-to-date packages. To do that, run:</p>
+
+<p><code class="highlighter-rouge">apt update</code></p>
+
+<p>To find the package to install:</p>
+
+<p><code class="highlighter-rouge">apt-cache search [package|description]</code></p>
+
+<p>To install a package, run:</p>
+
+<p><code class="highlighter-rouge">apt install package</code></p>
+
+<p>To remove a package, run:</p>
+
+<p><code class="highlighter-rouge">apt remove package</code></p>
+
+<p>Easy? Sometimes, you want to update the packages that you have installed, run:</p>
+
+<p><code class="highlighter-rouge">apt dist-upgrade</code></p>
+
+<p>There are also other commands, such as removing unneeded dependencies and purging packages but that is what the man pages are for.</p>
+
+<h3 id="example">Example</h3>
+
+<p>We are going to install GCC for the next step of the lab.</p>
+
+<p>Simply run:</p>
+
+<p><code class="highlighter-rouge">sudo apt install gcc</code></p>
+
+<p>Now check if GCC is installed by typing the followng:</p>
+
+<p><code class="highlighter-rouge">gcc -v</code></p>
+
+<p>Now install the package <code class="highlighter-rouge">ruby-dev</code> and <code class="highlighter-rouge">make</code> for the next parts of the lab.</p>
+
+<h2 id="but-what-about-software-that-isnt-in-the-repositoriespackage-lists">But what about software that isn’t in the repositories/package lists?</h2>
+
+<p>This is a very common and frustrating thing to occur. Just when you want to install a package, it appears that it is not listed in any of the repositories that are available. What can you do? There are two ways in going about this.</p>
+
+<p>One way is the find a generic binary package from the developer. This comes in the form of shady shell scripts, or a binary tarball in which you can just extract it and run it, or an appimage, which is a special type of executable that brings its own dependencies.</p>
+
+<p>The other way is to compile your own software from scratch. What does that mean? Free and open-source software usually has their source code somewhere publicly available (GitHub, GitLab, their website). If you fetch their source code, it won’t magically run out of the box. The source code is like the recipe, while the software itself is like food. A package is like a food that is put into a box but we won’t covering the details of making a package yourself (there are tools that do that for you and it varies from platform to platform).</p>
+
+<h2 id="so-how-do-i-compile">So how do I compile?</h2>
+
+<p>Compiling software on Linux is a mixed bag. Sometimes, all the dependencies are installed on your computer and there is no fiddling around. Sometimes, the dependencies don’t even exist pre-compiled for your distribution so you have to compile those yourself in order to compile what’s at hand. But all of these steps all have one component in common: the makefile.</p>
+
+<p>In most source tarballs, there is usually a makefile that contains a set of directives to compile a project. This is because in a project, there is usually multiple files that need to be compiled by the compiler. And even then, there are multiple compilers and compiler settings that can be used.</p>
+
+<p>Many projects that have to be compiled are usually in C and/or C++. On most Linux distributions, there are usually three compiler “options”. There is the GNU Toolchain which uses GCC, LLVM which uses clang, and Intel’s proprietary toolkit. Both GCC and clang are open-source and free. However, clang was created with a permissive license in response to GCC’s more viral copyleft license. Although clang was made with the intention of being completely compatible with GCC, there are some quirks and most open-source software still target GCC.</p>
+
+<p>To compile most software that you have the dependencies to, run:</p>
+
+<p><code class="highlighter-rouge">make</code></p>
+
+<p>This is will usually choose the correct compiler and compile the whole project. Usually when the compilation is done, the executables are in <code class="highlighter-rouge">/bin</code>. This utilizes Make which general purpose workflow program, mainly used for compilation. It runs all the compilers, cleans, and installation processes using different</p>
+
+<h3 id="example-make">Example: Make</h3>
+
+<p>We’re going to try and make FFTW, a popular Fast Fourier Transform library. To get it, run the following:</p>
+
+<p><code class="highlighter-rouge">wget http://www.fftw.org/fftw-3.3.6-pl2.tar.gz</code></p>
+
+<p>Now we are going to unpackage it by running the following:</p>
+
+<p><code class="highlighter-rouge">tar -xvf fftw-3.3.6-pl2.tar.gz</code></p>
+
+<p>Now we’re going to go into the directory:</p>
+
+<p><code class="highlighter-rouge">cd fftw-3.3.6-pl2</code></p>
+
+<p>And we are going to make a new folder called <code class="highlighter-rouge">out</code> and run the configure script so the Make will copy the output of the compilation to the right place later.</p>
+
+<p><code class="highlighter-rouge">mkdir out</code></p>
+
+<p><code class="highlighter-rouge">./configure --prefix=/home/[INSERT YOUR USERNAME HERE]/fftw-3.3.6-pl2/out</code></p>
+
+<p>Now we will start compiling the whole thing using Make.</p>
+
+<p><code class="highlighter-rouge">make</code></p>
+
+<p>If you are on a multi-core machine, you can increase the number of cores that Make can run on by adding a <code class="highlighter-rouge">-j[INSERT CORE NUMBER HERE]</code></p>
+
+<p>After it’s done, you can have it copy all the binaries, libraries, and other files to out by running the following:</p>
+
+<p><code class="highlighter-rouge">make install</code></p>
+
+<p>If for some reason something fails and you want to redo the compilation again, run the following the clean out the compiled files:</p>
+
+<p><code class="highlighter-rouge">make clean</code></p>
+
+<h3 id="using-gcc">Using GCC</h3>
+
+<p>GCC and clang also have compiler flags that allow certain features to be enabled. Usually the flags that actually matter are optimization flags. Depending on what you want to optimize for, either space or memory or speed, there is a flag for it.</p>
+
+<p>Now, we will make a very simple application in C that prints “Hello Penguin!” named <code class="highlighter-rouge">hellopenguin</code>. Invoke:</p>
+
+<p><code class="highlighter-rouge">nano hellopenguin.c</code></p>
+
+<p>And then type in the following:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+
+int main()
+
+{
+
+   printf("Hello Penguin!\n");
+
+   return 0;
+
+}
+</code></pre></div></div>
+<p>Now save and exit.</p>
+
+<p>We will now compile the source file that you have just written:</p>
+
+<p><code class="highlighter-rouge">gcc hellopenguin.c -o hellopenguin</code></p>
+
+<p>What this does is to take in a source file <code class="highlighter-rouge">hellopenguin.c</code> and compile it to an executable named <code class="highlighter-rouge">hellopenguin</code> with the <code class="highlighter-rouge">-o</code> output flag.</p>
+
+<h1 id="how-do-i-package-stuff">How do I package stuff?</h1>
+
+<p>Packaging manually for Debian can be very hard and frustrating, especially for first timers. That’s why for this class, we’ll be using a really cool Ruby package called fpm which simplifies the task of packaging a lot. Please note that if you were going to package for Debian’s own repositories, this is NOT the correct/formal way to go about packaging. It is merely a great way to backport or package your own applications extremely quickly.</p>
+
+<p>First make sure Ruby and it’s own package manager called Gem is installed using the commands from above. Now run the following to install fpm locally:</p>
+
+<p><code class="highlighter-rouge">gem install fpm --user</code></p>
+
+<p>or if you want to install it globally:</p>
+
+<p><code class="highlighter-rouge">sudo gem install fpm</code></p>
+
+<p>Try invoking fpm and if it doesn’t work, add <code class="highlighter-rouge">~/.gem/ruby/2.3.0/bin</code> to your <code class="highlighter-rouge">PATH</code>. To do that, add this <code class="highlighter-rouge">.bashrc</code> or just type the following into Bash:</p>
+
+<p><code class="highlighter-rouge">PATH=~/.gem/ruby/2.3.0/bin:$PATH</code></p>
+
+<p>Now we will create a very simple package using the hellopenguin executable that you made above. First, we will make a new folder named packpenguin:</p>
+
+<p><code class="highlighter-rouge">mkdir packpenguin</code></p>
+
+<p>Now we will create the folder structure of where the executable show reside in. In Debian, user-level packages usually reside in the folder <code class="highlighter-rouge">/usr/bin/</code>.</p>
+
+<p><code class="highlighter-rouge">mkdir packpenguin/usr</code></p>
+
+<p><code class="highlighter-rouge">mkdir packpenguin/usr/bin</code></p>
+
+<p>Now move your hellopenguin into the <code class="highlighter-rouge">packpenguin/usr/bin/</code> folder.</p>
+
+<p><code class="highlighter-rouge">mv hellopenguin packpenguin/usr/bin/</code></p>
+
+<p>Now we will create a package called hellopenguin. Move into the parent directory of the  hellopenguin folder and invoke the following:</p>
+
+<p><code class="highlighter-rouge">fpm -s dir -t deb -n hellopenguin -v 1.0~ocf1 -C packpenguin</code></p>
+
+<p>This specifies that you want to take in a directory, using the <code class="highlighter-rouge">-s</code> flag, and to output a <code class="highlighter-rouge">.deb</code> package using the <code class="highlighter-rouge">-t</code> flag. It takes in a directory called <code class="highlighter-rouge">packpenguin</code>, using the <code class="highlighter-rouge">-C</code> flag, and output a <code class="highlighter-rouge">.deb</code> file named <code class="highlighter-rouge">hellopenguin</code>, using the <code class="highlighter-rouge">-n</code>, with a version number of <code class="highlighter-rouge">1.0~ocf1</code>, using the <code class="highlighter-rouge">-v</code> flag.</p>
+
+<p>Now test it by invoking apt and installing it:</p>
+
+<p><code class="highlighter-rouge">sudo apt install ./hellopenguin_1.0~ocf1_amd64.deb</code></p>
+
+<p>Now you should be able to run hellopenguin by doing the following:</p>
+
+<p><code class="highlighter-rouge">hellopenguin</code></p>
+
+<p>If all of this works, you’re ready to be checked off!</p>
+
+<p>If you have time left over, try and package FFTW. Note that the <code class="highlighter-rouge">out</code> folder will serve as your <code class="highlighter-rouge">usr</code> folder above. You will have to rename it to <code class="highlighter-rouge">usr</code> and then make a new folder and put that <code class="highlighter-rouge">usr</code> folder into it.</p>
+
+
+  <br>
+<footer>
+  <div class="row">
+	<div class="col-lg-12">
+	  <p class='text-center'>
+	  <a href="https://www.ocf.berkeley.edu">
+		<img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+	   alt="Hosted by the OCF" style="border: 0;" />
+	  </a>
+	  Copyright &copy; Open Computing Facility, eXperimental Computing Facility 2017.
+	  </p>
+	</div>
+	<!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

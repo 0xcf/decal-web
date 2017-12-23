@@ -1,0 +1,43 @@
+CS198 Intermediate Systems Administration DeCal
+Lab #3 SOLUTIONS
+Joshua Kwan
+
+I. Playing with Users and Groups
+
+1. a) finger joshk - shows user information for joshk and when he was last
+      seen on the computer you're logged into.
+   b) w - shows a list of everyone logged on right now with detailed info.
+   c) who - just shows the list of everyone logged on; very similar to w,
+      just more terse.
+   d) last - shows the history of logins to this computer.
+   e) id - shows who you are, what your user ID is, and what groups you
+      belong to.
+
+2. By default, finger foo will search for foo in everyone's real name as
+   well. This takes a long time. If you know the username of the person
+   you're trying to look up, use finger -m foo.
+
+3. uid=0(root) gid=0(root) groups=0(root)
+
+II. File System Permissions
+
+The only thing you can do succesfully is to rm file2. Everything else is
+permission denied.
+
+III.
+
+1. Answer omitted.
+
+2. a) Your Mileage May Vary - I've given you a solution but it may or may
+      not work for you
+   b) There's More Than One Way To Do It - The official Perl slogan.
+   c) There Ain't No Such Thing As A Free Lunch - You must do some additional
+      work to accomplish your goal; you can't have your cake and eat it too
+   d) Problem Exists Between Chair and Keyboard - *you* are the problem,
+      i.e. a mistake was yours alone.
+   e) I Am Not A Lawyer - often seen in front of sentences expressing legal
+      opinion on mailing lists.
+   f) She Who Must Be Obeyed - programmer's wife.
+   g) Luser Attitude Readjustment Tool - the thing you use to clobber
+      insolent newbies who give you a lot of hassle just when you're trying
+      to help.

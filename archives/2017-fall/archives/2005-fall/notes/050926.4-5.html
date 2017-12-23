@@ -1,0 +1,49 @@
+<html>
+ <head><title>System Administration for the Web</title>
+ <style>
+ td {
+ border:1px inset black;
+ padding:0 1em 0 1em;
+ }
+ </style>
+ </head>
+ <body bgcolor="lightblue">	
+ <body text="black">
+ <dir>
+ <br><br><br>
+ <font size=7>Notes for 9/26/2005</font><br>
+ The 4-5 Section
+ <hr width=80% align=left>
+
+<br>
+<br>
+
+<dir>
+
+<h3>Lecture notes</h3>
+<li>Hostnames map to IPs, so machines can use them.
+<li>DNS = Domain Name Service, does the mappings
+<li><tt>/etc/hosts</tt> maps ips to hostnames
+<li><tt>/etc/resolv.conf</tt> points to servers that can do so, if <tt>/etc/hosts</tt> doesn't have it.
+<li>Tools
+<ul>
+ <li>host
+ <li>Syntax is: <tt>host some.domain.name</tt>
+ <li>Returns the IP associated with <tt>some.domain.name</tt>
+ <li>Can also do reverse; ie: <Tt>host 169.229.70.150</tt> will return <tt>hal.rescomp.berkeley.edu</tt>
+</ul>
+<ul>
+ <li>dig
+ <li>Syntax is: <tt>dig some.domain.name</tt> or <tt>dig -x 169.229.70.150</tt>
+ <li>Can also check <tt>MX</tt> records (ie the mailserver for a given domain) with <tt>dig some.domain.name mx</tt>
+</ul>
+<ul>
+ <li>Server-side
+ <li><tt>/etc/named.conf</tt>
+ <li><tt>/etc/namedb/root.hints</tt> points to more authoritative DNS servers, if this server isn't authoratitive for a given domain.
+ <li><tt>/etc/namedb/*</tt> contains the IP->hostname (and vice-versa) mappings.
+</ul>
+
+</dir>
+</body>
+</html>

@@ -1,0 +1,100 @@
+RewriteEngine On
+
+# Redirect signups to the google form
+RewriteRule ^signup$	https://drive.google.com/open?id=1eNfytADVE3P2oJukUWHXzr_DPFFFe8Q0ytEGn1KUvGo [R=302,L]
+RewriteRule ^syllabus$	syllabus.pdf [R=302,L]
+
+RewriteRule ^piazza$	https://piazza.com/class/j6tnwydlhx62jp [R=302,L]
+
+
+RewriteRule ^s0$ slides/0 [R=302,L]
+RewriteRule ^l0$ labs/0 [R=302,L]
+
+RewriteRule ^slides/0$ https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing [R=302,L]
+
+RewriteRule ^labs/0$ https://goo.gl/forms/ZHTwEjofI9eiLh113 [R=302,L]
+
+RewriteRule ^s1$ slides/1 [R=302,L]
+RewriteRule ^l1$ labs/1 [R=302,L]
+
+RewriteRule ^slides/1$ https://docs.google.com/presentation/d/1PnW4EcN7nJ2g8LD_45IPNiq6d0e5p5ma6-bJVOJutSs/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s2$ slides/2 [R=302,L]
+RewriteRule ^l2$ labs/2 [R=302,L]
+
+RewriteRule ^slides/2$ https://docs.google.com/presentation/d/1UPDQhmav2N3zxjaobXFnk9-Pq2bnQtFN8QYk6FgfeM0/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s3$ slides/3 [R=302,L]
+RewriteRule ^l3$ labs/3 [R=302,L]
+
+RewriteRule ^slides/3$ https://docs.google.com/presentation/d/1jYLICb69ja0NXJ0FWZggYPL0JDMxUNWr0plgC6Q1kA0/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s4$ slides/4 [R=302,L]
+RewriteRule ^l4$ labs/4 [R=302,L]
+
+RewriteRule ^slides/4$ https://docs.google.com/presentation/d/1xbrKMzvBz2Nb2P8IbPMrvy-84AeaAcQPM3MGaFs65sw/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s5$ slides/5 [R=302,L]
+RewriteRule ^l5$ labs/5 [R=302,L]
+
+RewriteRule ^slides/5$ https://docs.google.com/presentation/d/1-S64fwJ2QmJzxYpplH51Hj51HRKfXGXcJ_iXBPZzaA0/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s6$ slides/6 [R=302,L]
+RewriteRule ^l6$ labs/6 [R=302,L]
+
+RewriteRule ^slides/6$ https://docs.google.com/presentation/d/1n534j5ed6GZfpc2h9iBQ3NIEzmk6lm6mMLZY1fr7zuU/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s7$ slides/7 [R=302,L]
+RewriteRule ^l7$ labs/7 [R=302,L]
+
+RewriteRule ^slides/7$ https://docs.google.com/presentation/d/1X0Xjt2aLTQtmDe23wZc8F9CEo4I3VJlXktBvchjBvyw/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s8$ slides/8 [R=302,L]
+RewriteRule ^l8$ labs/8 [R=302,L]
+
+RewriteRule ^slides/8$ https://docs.google.com/presentation/d/1104qhPHeQixJyjqzJ9NopWxS7fXL8nUtR2NIvW7Qha4/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s9$ slides/9 [R=302,L]
+RewriteRule ^l9$ labs/9 [R=302,L]
+
+RewriteRule ^slides/9$ https://docs.google.com/presentation/d/11lG3XbHMupxFU6H1YDkFzQpsGr2L9MILcK0K1fjiJ3c/edit?usp=sharing [R=302,L]
+
+RewriteRule ^s10$ slides/10 [R=302,L]
+RewriteRule ^l10$ labs/10 [R=302,L]
+
+RewriteRule ^slides/10$ https://docs.google.com/presentation/d/14lS85IfJ1nlwuleciDrBki2MNPZBTKrmYQBO-wn-GSA/edit?usp=sharing [R=302,L]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+RewriteRule ^signin$ https://goo.gl/forms/HMtkThja0XriLeeX2 [R=302,L]
+
+

@@ -1,0 +1,165 @@
+This is pdfeTeX, Version 3.14159-1.10b-2.1 (Web2C 7.4.5) (format=pdflatex 2006.2.5)  3 APR 2006 02:39
+entering extended mode
+**lab8.tex
+(./lab8.tex{/usr/share/texmf/pdftex/config/pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, catalan, croatian, czech, danish, dutch, finnish, greek, iceland
+ic, irish, italian, latin, magyar, norsk, norsk, portuges, romanian, russian, s
+lovak, slovene, spanish, swedish, turkish, ukrainian, nohyphenation, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/latex/html/html.sty
+(/usr/share/texmf/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2003/01/22 v6.73n Hypertext links for LaTeX
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\@linkdim=\dimen103
+\Hy@linkcounter=\count87
+\Hy@pagecounter=\count88
+
+(/usr/share/texmf/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2003/01/22 v6.73n Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf/tex/latex/config/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive and teTeX
+)
+Package hyperref Info: Hyper figures OFF on input line 1792.
+Package hyperref Info: Link nesting OFF on input line 1797.
+Package hyperref Info: Hyper index ON on input line 1800.
+Package hyperref Info: Plain pages ON on input line 1805.
+Package hyperref Info: Backreferencing OFF on input line 1812.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 1916.
+(/usr/share/texmf/tex/latex/misc/url.sty
+\Urlmuskip=\muskip10
+Package: url 1999/03/28  ver 1.5x  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 2055.
+\Fld@menulength=\count89
+\Field@Width=\dimen104
+\Fld@charsize=\dimen105
+\Choice@toks=\toks15
+\Field@toks=\toks16
+Package hyperref Info: Hyper figures OFF on input line 2513.
+Package hyperref Info: Link nesting OFF on input line 2518.
+Package hyperref Info: Hyper index ON on input line 2521.
+Package hyperref Info: backreferencing OFF on input line 2528.
+Package hyperref Info: Link coloring OFF on input line 2533.
+\c@Item=\count90
+\c@Hfootnote=\count91
+)
+*hyperref using default driver hpdftex*
+(/usr/share/texmf/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2003/01/22 v6.73n Hyperref driver for pdfTeX
+
+(/usr/share/texmf/tex/latex/psnfss/pifont.sty
+Package: pifont 2002/09/08 PSNFSS-v9.0a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 62.
+
+(/usr/share/texmf/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 63.
+
+(/usr/share/texmf/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+\Fld@listcount=\count92
+\@outlinefile=\write3
+)
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count93
+\c@lchapter=\count94
+\c@chapter=\count95
+\c@lsection=\count96
+\c@lsubsection=\count97
+\c@lsubsubsection=\count98
+\c@lparagraph=\count99
+\c@lsubparagraph=\count100
+\c@lsubsubparagraph=\count101
+\ptrfile=\write4
+) (./lab8.aux)
+\openout1 = `lab8.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 1.
+LaTeX Font Info:    ... okay on input line 1.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 1.
+LaTeX Font Info:    ... okay on input line 1.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 1.
+LaTeX Font Info:    ... okay on input line 1.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 1.
+LaTeX Font Info:    ... okay on input line 1.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 1.
+LaTeX Font Info:    ... okay on input line 1.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 1.
+LaTeX Font Info:    ... okay on input line 1.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 1.
+LaTeX Font Info:    ... okay on input line 1.
+Package hyperref Info: Link coloring OFF on input line 1.
+
+(/usr/share/texmf/tex/latex/hyperref/nameref.sty
+Package: nameref 2001/01/27 v2.19 Cross-referencing by name of section
+\c@section@level=\count102
+)
+LaTeX Info: Redefining \ref on input line 1.
+LaTeX Info: Redefining \pageref on input line 1.
+ (./lab8.out) (./lab8.out)
+\openout3 = `lab8.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 4.
+
+
+LaTeX Warning: No \author given.
+
+
+Overfull \hbox (128.6584pt too wide) in paragraph at lines 9--10
+[]/cmr10/Write a sim-ple Hello World php pro-gram. Find the syn-tax at []http:/
+/php.net/manual/en/language.basic-
+ []
+
+[1
+
+{/var/lib/texmf/dvips/config/pdftex.map}] [2] (./lab8.aux) ) 
+Here is how much of TeX's memory you used:
+ 2125 strings out of 94960
+ 28462 string characters out of 1182471
+ 77837 words of memory out of 1000001
+ 5260 multiletter control sequences out of 10000+50000
+ 8278 words of font info for 29 fonts, out of 500000 for 1000
+ 198 hyphenation exceptions out of 1000
+ 34i,6n,36p,270b,204s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 53 PDF objects out of 300000
+ 15 named destinations out of 131072
+ 37 words of extra memory for PDF output out of 65536
+{/usr/share/texmf/d
+vips/tetex/f7b6d320.enc}</usr/share/texmf/fonts/type1/bluesky/cm/cmbx10.pfb></u
+sr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf/fonts/type1/b
+luesky/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr12.pfb></usr/s
+hare/texmf/fonts/type1/bluesky/cm/cmr17.pfb>
+Output written on lab8.pdf (2 pages, 38275 bytes).

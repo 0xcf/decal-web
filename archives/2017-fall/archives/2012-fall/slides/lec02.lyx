@@ -1,0 +1,838 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass powerdot
+\options style=aggie
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans cmbr
+\font_typewriter default
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize size=17
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lecture 02: user environment
+\begin_inset Newline newline
+\end_inset
+
+it's a series of tubes
+\end_layout
+
+\begin_layout Author
+Hands-On Unix System Administration DeCal
+\end_layout
+
+\begin_layout Date
+2012-09-10
+\end_layout
+
+\begin_layout Section
+Review
+\end_layout
+
+\begin_layout Slide
+Shell interaction
+\end_layout
+
+\begin_layout Itemize
+e.g., 
+\family typewriter
+bash
+\end_layout
+
+\begin_layout Itemize
+there’s a prompt, type something, read output, repeat
+\end_layout
+
+\begin_layout Itemize
+command history
+\end_layout
+
+\begin_layout Itemize
+tab-completion
+\end_layout
+
+\begin_layout Slide
+Basic commands
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+pwd
+\family default
+, 
+\family typewriter
+ls
+\family default
+, 
+\family typewriter
+cd
+\family default
+, 
+\family typewriter
+mkdir
+\family default
+, 
+\family typewriter
+rmdir
+\family default
+, 
+\family typewriter
+touch
+\family default
+, 
+\family typewriter
+mv
+\family default
+, 
+\family typewriter
+cp
+\family default
+, 
+\family typewriter
+rm
+\family default
+, 
+\family typewriter
+echo
+\family default
+, 
+\family typewriter
+cat
+\family default
+, 
+\family typewriter
+less
+\family default
+, 
+\family typewriter
+grep
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+whoami
+\family default
+ (
+\series bold
+who
+\series default
+ am I)
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+uname
+\family default
+ (
+\series bold
+what
+\series default
+ I am I running)
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+hostname
+\family default
+ (
+\series bold
+where
+\series default
+ am I)
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+date
+\family default
+ (
+\series bold
+when
+\series default
+)
+\end_layout
+
+\begin_layout Section
+Shell variables
+\end_layout
+
+\begin_layout Slide
+Variables
+\end_layout
+
+\begin_layout Itemize
+case-sensitive
+\end_layout
+
+\begin_layout Itemize
+quotes matter (more on this later)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+$ variable='value'
+\begin_inset Newline newline
+\end_inset
+
+$ echo "$variable"
+\emph on
+
+\begin_inset Newline newline
+\end_inset
+
+value
+\end_layout
+
+\begin_layout Slide
+Shell script arguments
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$1
+\family default
+, 
+\family typewriter
+$2
+\family default
+, 
+\family typewriter
+$3
+\family default
+\SpecialChar \ldots{}
+:
+\series default
+ individual arguments
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$@
+\family default
+, 
+\family typewriter
+$*
+\family default
+:
+\series default
+ all arguments
+\begin_inset Newline newline
+\end_inset
+
+(behave differently quoted)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$#
+\family default
+:
+\series default
+ number of arguments
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$0
+\family default
+:
+\series default
+ name of running script
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$?
+\family default
+:
+\series default
+ exit status of previous command
+\end_layout
+
+\begin_layout Slide
+Environment variables
+\end_layout
+
+\begin_layout Itemize
+created by init scripts (during startup), by shell, or other parent processes
+ along the way
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+inherited by child processes
+\end_layout
+
+\begin_layout Itemize
+typically names are capitalized
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+display with 
+\family typewriter
+env
+\family default
+ or 
+\family typewriter
+printenv
+\family default
+, set with 
+\family typewriter
+export
+\family default
+ (for 
+\family typewriter
+bash
+\family default
+ only)
+\end_layout
+
+\begin_layout Slide
+Env examples
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$HOME
+\family default
+\series default
+ (home directory): e.g., 
+\family typewriter
+/home/jdoe
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$PATH
+\family default
+\series default
+ (directories to search for commands): e.g., 
+\family typewriter
+\size scriptsize
+/usr/local/bin:/usr/bin:/bin
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\series bold
+$PS1
+\family default
+\series default
+ (prompt display, depends on shell): e.g., 
+\size scriptsize
+
+\backslash
+n
+\backslash
+[
+\backslash
+e[0;31m
+\backslash
+]
+\backslash
+u
+\backslash
+[
+\backslash
+e[m
+\backslash
+] @
+\backslash
+[
+\backslash
+e[1;34m
+\backslash
+]
+\backslash
+w 
+\backslash
+[
+\backslash
+e[2;90m
+\backslash
+]
+\backslash
+@ 
+\backslash
+n
+\backslash
+[
+\backslash
+e[m
+\backslash
+]
+\backslash
+[
+\backslash
+e[0;35m
+\backslash
+]
+\backslash
+h
+\backslash
+[
+\backslash
+e[m
+\backslash
+]
+\backslash
+[
+\backslash
+e[0;31m
+\backslash
+]
+\backslash
+$ 
+\backslash
+[
+\backslash
+e[m
+\backslash
+]
+\backslash
+[
+\backslash
+e[0;32m
+\backslash
+]
+\end_layout
+
+\begin_layout Slide
+Quotes
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+no quotes:
+\series default
+ spaces and 
+\begin_inset Quotes eld
+\end_inset
+
+special
+\begin_inset Quotes erd
+\end_inset
+
+ characters (
+\family typewriter
+$
+\family default
+, 
+\family typewriter
+*
+\family default
+, 
+\family typewriter
+?
+\family default
+, 
+\family typewriter
+!
+\family default
+, 
+\family typewriter
+`
+\family default
+, 
+\family typewriter
+
+\backslash
+
+\family default
+, 
+\family typewriter
+'
+\family default
+, 
+\family typewriter
+"
+\family default
+, etc.) have special meanings
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+double quotes:
+\series default
+ double quote and 
+\begin_inset Newline newline
+\end_inset
+
+(
+\family typewriter
+$
+\family default
+, 
+\family typewriter
+`
+\family default
+, 
+\family typewriter
+
+\backslash
+
+\family default
+) have special meanings
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+single quotes:
+\series default
+ only single quote (
+\family typewriter
+'
+\family default
+) has special meaning
+\end_layout
+
+\begin_layout Section
+Shell expansion
+\end_layout
+
+\begin_layout Slide
+Aliases
+\end_layout
+
+\begin_layout Itemize
+replacement of word by another string
+\end_layout
+
+\begin_layout Itemize
+e.g., in 
+\family typewriter
+bash
+\family default
+, 
+\family typewriter
+alias dir='ls'
+\end_layout
+
+\begin_layout Itemize
+view current aliases with 
+\family typewriter
+alias
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+alternatives:
+\series default
+ functions or scripts/symlinks in PATH
+\end_layout
+
+\begin_layout Slide
+Globbing
+\end_layout
+
+\begin_layout Itemize
+parameter expansion using wildcard character (* and ?)
+\end_layout
+
+\begin_layout Itemize
+prevent with escape characters or quotes
+\end_layout
+
+\begin_layout Slide
+Substitution
+\end_layout
+
+\begin_layout Itemize
+output (stdout) of command in backticks (`) is substituted in command line
+\end_layout
+
+\begin_layout Itemize
+useful to assign variables, e.g., 
+\family typewriter
+USER=`whoami`
+\end_layout
+
+\begin_layout Itemize
+bash alternative 
+\family typewriter
+$(\SpecialChar \ldots{}
+)
+\end_layout
+
+\begin_layout Section
+Pipes
+\end_layout
+
+\begin_layout EmptySlide
+Real pipes
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Graphics
+	filename lec02-obama_keystone_pipes.jpg
+	width 80text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+President Obama at TransCanada Stillwater Pipe Yard (March 22 photo by AP
+ via 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+bloomberg.com
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Slide
+Silly words
+\end_layout
+
+\begin_layout Quotation
+
+\size larger
+\begin_inset Quotes eld
+\end_inset
+
+And again, the Internet is not something that you just dump something on.
+ It's not a big truck.
+ It's a 
+\series bold
+series of tubes
+\series default
+.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+(Sen Ted Stevens, R-AK)
+\end_layout
+
+\begin_layout Slide
+Wise words
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Quotes eld
+\end_inset
+
+This is the Unix philosophy.
+ Write programs that do one thing and do it well.
+ Write programs to work together.
+ Write programs to handle 
+\series bold
+text streams
+\series default
+, because that is a 
+\series bold
+universal interface
+\series default
+.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Doug McIlroy, inventor of Unix pipes)
+\end_layout
+
+\begin_layout Slide
+Unix pipes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename lec02-Pipeline.svg
+	width 60theight%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://en.wikipedia.org/wiki/File:Pipeline.svg
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+Standard streams
+\end_layout
+
+\begin_layout Itemize
+standard input (
+\series bold
+stdin
+\series default
+): text going into program (read), typically TTY unless redirected
+\end_layout
+
+\begin_layout Itemize
+standard output (
+\series bold
+stdout
+\series default
+): text going out of program (write), typically TTY unless redirected
+\end_layout
+
+\begin_layout Itemize
+standard error (
+\series bold
+stderr
+\series default
+): error/diagnostic text output, not redirected
+\end_layout
+
+\begin_layout Slide
+Named pipes (FIFO)
+\end_layout
+
+\begin_layout Itemize
+named in contrast to anonymous ones created by shell
+\end_layout
+
+\begin_layout Itemize
+special file created using 
+\family typewriter
+mkfifo
+\end_layout
+
+\begin_layout Itemize
+can be used as a temporary file
+\end_layout
+
+\begin_layout Slide
+Network pipes (netcat)
+\end_layout
+
+\begin_layout Standard
+Imagine the possibilities:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+dd
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+gzip
+\end_layout
+
+\begin_layout EndSlide
+
+\end_layout
+
+\end_body
+\end_document

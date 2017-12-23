@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 7 - Networked Services - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 7 - Networked Services</h1>
+  <h2 id="overview">Overview</h2>
+
+<p>Networking is key to many services because it allows processes and computers to
+communicate with each other. In this lab, we’ll work with a couple different
+types of services and set up a service of your own from scratch!</p>
+
+<p>Make sure, as always, that you are doing all of these steps on your provided
+VM, as we have provided some resources for you to use that means they will not
+work the same elsewhere.</p>
+
+<h2 id="which-networked-services-are-already-running">Which networked services are already running?</h2>
+
+<p>Connect to your VM using SSH, and then run <code class="highlighter-rouge">sudo netstat -plunt</code> to show the
+services running on your VM already. You should see something like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address  State   PID/Program name
+tcp        0      0 0.0.0.0:111             0.0.0.0:*        LISTEN  15337/rpcbind
+tcp        0      0 0.0.0.0:22              0.0.0.0:*        LISTEN  9242/sshd
+tcp6       0      0 :::111                  :::*             LISTEN  15337/rpcbind
+tcp6       0      0 :::22                   :::*             LISTEN  9242/sshd
+udp        0      0 0.0.0.0:111             0.0.0.0:*                15337/rpcbind
+udp        0      0 0.0.0.0:673             0.0.0.0:*                15337/rpcbind
+udp        0      0 0.0.0.0:68              0.0.0.0:*                28659/dhclient
+udp6       0      0 :::111                  :::*                     15337/rpcbind
+udp6       0      0 :::673                  :::*                     15337/rpcbind
+udp6       0      0 fe80::6a:26ff:fe35::546 :::*                     28671/dhclient
+</code></pre></div></div>
+
+<p>Why are there so many services already running? We haven’t even done anything
+yet! Well, to start off with, <code class="highlighter-rouge">sshd</code> must have been running already, otherwise
+how would you have connected to the machine in the first place using SSH?
+However, the other two services are a bit more mysterious. Let’s check them
+out!</p>
+
+<p>Note: If you’ve done lab 6 already, you might have some other services running
+here, like Apache, but we’ll skip that for this lab.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ man dhclient
+
+The Internet Systems Consortium DHCP Client, dhclient, provides a means for
+configuring one or more network interfaces using the Dynamic Host Configuration
+Protocol, BOOTP protocol, or if these protocols fail, by statically assigning
+an address.
+
+The DHCP protocol allows a host to contact a central server which maintains a
+list of IP addresses which may be assigned on one or more subnets. A DHCP
+client may request an address from this pool, and then use it on a temporary
+basis for communication on network. The DHCP protocol also provides a mechanism
+whereby a client can learn important details about the net‐work to which it is
+attached, such as the location of a default router, the location of a name
+server, and so on.
+</code></pre></div></div>
+
+<p>Alright, so it looks like <code class="highlighter-rouge">dhclient</code> is used for DHCP (described in more detail
+in <a href="https://decal.ocf.berkeley.edu/labs/5#dhcp">lab 5</a>). Cool! What about the
+<code class="highlighter-rouge">rpcbind</code> service?</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ man rpcbind
+
+The rpcbind utility is a server that converts RPC program numbers into
+universal addresses. It must be running on the host to be able to make RPC
+calls on a server on that machine.
+
+When an RPC service is started, it tells rpcbind the address at which it is
+listening, and the RPC program numbers it is prepared to serve. When a client
+wishes to make an RPC call to a given program number, it first contacts rpcbind
+on the server machine to determine the address where RPC requests should be
+sent.
+</code></pre></div></div>
+
+<p>Huh, so it looks like this is some kind of service that maps “RPC program
+numbers” to addresses, whatever that means. Well, the manpage isn’t quite as
+helpful on this one, so let’s look it up online! (<a href="https://unix.stackexchange.com/q/234154">This Unix stack exchange
+post is pretty helpful</a>) Alright,
+looks like it’s some kind of service that can map some predefined protocol
+numbers for common protocols like NFS and then map that to a port they are
+running on. Try running <code class="highlighter-rouge">sudo rpcinfo</code> to see what the mapping is on your VM.
+You should see that the only service available is one named <code class="highlighter-rouge">portmapper</code>, which
+is the RPC service itself. Well, makes sense since there’s not much else that’s
+running currently.</p>
+
+<h2 id="etcservices">/etc/services</h2>
+
+<p>One tip that might help when trying to find what a service does is to look at
+which port it is listening on. For instance, from above, <code class="highlighter-rouge">dhclient</code> is
+listening on ports <code class="highlighter-rouge">68</code> and <code class="highlighter-rouge">546</code> (on IPv6). If you open the file
+<code class="highlighter-rouge">/etc/services</code> on most unix machines, you will get a list of protocols and the
+ports they typically use. Here are the lines for the two ports <code class="highlighter-rouge">dhclient</code> is
+using:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bootpc          68/tcp                          # BOOTP client
+bootpc          68/udp
+
+[...]
+
+dhcpv6-client   546/tcp
+dhcpv6-client   546/udp
+</code></pre></div></div>
+
+<p>This helps make it clearer that whatever <code class="highlighter-rouge">dhclient</code> is, it probably uses the
+BOOTP protocol and is a DHCPv6 client. Keep in mind that for higher numbered
+ports (above 1024), that they can be used by any service and even for lowered
+numbered ports, they can be used by a service that doesn’t correspond in
+<code class="highlighter-rouge">/etc/services</code>, but <code class="highlighter-rouge">/etc/services</code> is a good first place to check to see what
+protocols might be used by a service.</p>
+
+<h1 id="questions">Questions</h1>
+
+<h2 id="nfs">NFS</h2>
+
+<p>We have provided a NFS server for you to connect to at <code class="highlighter-rouge">staff</code> with two
+different file locations, one read-only and one read-write. If you use the
+<code class="highlighter-rouge">mount</code> command and run <code class="highlighter-rouge">sudo mount staff:/opt/lab7/public /opt/lab7/read-only</code>
+and then use <code class="highlighter-rouge">cd</code> to go to the <code class="highlighter-rouge">/opt/lab7/read-only</code> directory, you should see
+a file with a secret inside it. You can tell if you are connected or not by
+running <code class="highlighter-rouge">df</code> and checking if there is something that looks like
+<code class="highlighter-rouge">staff:/opt/lab7/public</code> present in the list. What is the secret in the file?</p>
+
+<p>If you’d like to disconnect again, make sure you are not in the directory that
+has the file (otherwise it is unable to disconnect because it is still loaded
+and you will get an error message like <code class="highlighter-rouge">umount.nfs4: /opt/lab7/read-only:
+device is busy</code>). Then run <code class="highlighter-rouge">sudo umount /opt/lab7/read-only</code>. If you run <code class="highlighter-rouge">df</code>,
+you should see that the entry that was present before has now disappeared.</p>
+
+<p>Next, mount the directory at <code class="highlighter-rouge">staff:/opt/lab7/private/&lt;your username&gt;</code> to
+<code class="highlighter-rouge">/opt/lab7/read-write</code> using <code class="highlighter-rouge">mount</code> in a similar way to before. What do you
+see in <code class="highlighter-rouge">/opt/lab7/read-write</code> now? Follow the instructions in the file given
+there.</p>
+
+<h2 id="dns">DNS</h2>
+
+<p>In this section we are going to be setting up our own DNS server! Remember that
+DNS is the system that maps from a domain like <code class="highlighter-rouge">ocf.berkeley.edu</code> to an IP like
+<code class="highlighter-rouge">169.229.226.23</code> so that computers know how to send information over the
+network to servers. A more thorough description of this is in <a href="https://decal.ocf.berkeley.edu/labs/5#dns">Lab 5</a> if
+you’d like a refresher or want more information.</p>
+
+<p>The <code class="highlighter-rouge">bind9</code> package has already been installed on your VM, but the service is
+not running yet. What is the <code class="highlighter-rouge">systemctl</code> command to show if the <code class="highlighter-rouge">bind9</code> service
+is running or not?</p>
+
+<p>In the output of the <code class="highlighter-rouge">systemctl</code> command, you should see that the <code class="highlighter-rouge">bind9</code>
+service is not running yet and has a unit file at
+<code class="highlighter-rouge">/lib/systemd/system/bind9.service</code>. If you print that file, you should see something like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=BIND Domain Name Server
+Documentation=man:named(8)
+After=network.target
+Wants=nss-lookup.target
+Before=nss-lookup.target
+
+[Service]
+EnvironmentFile=/etc/default/bind9
+ExecStart=/usr/sbin/named -f $OPTIONS
+ExecReload=/usr/sbin/rndc reload
+ExecStop=/usr/sbin/rndc stop
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>This should look pretty familiar to you by now after doing lab 6! Don’t worry
+if it doesn’t all look familiar since there are some options you haven’t seen
+yet in here, but you should at least recognize some of the options used.</p>
+
+<p>If you now run <code class="highlighter-rouge">dig ocf.berkeley.edu @localhost</code> from your VM, you should see
+that the command eventually times out after trying to run for about 15 seconds.
+If you’d rather stop the command before then, just type Ctrl+C (and in general
+this is how to stop a command that is running longer than you want it to).</p>
+
+<p>The previous command failed because the DNS server was not started yet. Try
+starting the DNS server using <code class="highlighter-rouge">systemctl</code>. If you check the status of the
+<code class="highlighter-rouge">bind9</code> service after starting it, you should see the status has changed to say
+that the service is active and running.</p>
+
+<p>If you now run <code class="highlighter-rouge">dig ocf.berkeley.edu @localhost</code> from your VM, you should now
+see a response containing the correct IP (<code class="highlighter-rouge">169.229.226.23</code>)!</p>
+
+<p>Now to the exciting part, the configuration. Edit <code class="highlighter-rouge">/etc/bind/named.conf.local</code>
+with your favorite text editor (<code class="highlighter-rouge">nano</code> is a good choice to start out with if
+you haven’t used terminal-based text editors before). Inside this file, it
+should be empty apart from a few comments at the top because you haven’t done
+any local configuration yet. Add a new zone in this file for <code class="highlighter-rouge">example.com</code> with
+these contents:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zone "example.com" {
+  type master;
+  file "/etc/bind/db.example.com";
+};
+</code></pre></div></div>
+
+<p>Then, create a file <code class="highlighter-rouge">/etc/bind/db.example.com</code> to contain the responses to give
+if anyone sends requests to your DNS server for <code class="highlighter-rouge">example.com</code>. The easiest way
+to do this is generally to copy an existing config and then make changes from
+there to get what you want for your config instead of having to start from
+scratch. To make this easier, we’ve provided a valid config at
+<code class="highlighter-rouge">/opt/lab7/db.example.com</code> that you can copy in place at
+<code class="highlighter-rouge">/etc/bind/db.example.com</code>. It is prefilled with your VM’s IP, and includes a
+subdomain that does not usually exist, named <code class="highlighter-rouge">google.example.com</code>. Please add
+couple more subdomains of your choice. Try to add one A record and one CNAME
+(alias) record.  Make sure to restart the <code class="highlighter-rouge">bind9</code> service after changing
+anything in <code class="highlighter-rouge">/etc/bind9</code>, since you want the running service to change its
+configuration.</p>
+
+<p>If you now run the <code class="highlighter-rouge">dig</code> commands below, you should see that your VM’s domain
+name (<code class="highlighter-rouge">&lt;username&gt;.decal.xcf.sh</code>) is returned for the first result, for the
+second result (<code class="highlighter-rouge">example.com</code>) your VM’s IP address should be returned, and for
+<code class="highlighter-rouge">google.example.com</code> you should see <code class="highlighter-rouge">216.58.195.238</code> as the result. Also make
+sure to test the subdomains you added and make sure they work!</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ dig NS example.com @localhost
+$ dig A example.com @localhost
+$ dig A google.example.com @localhost
+</code></pre></div></div>
+
+<p>Make sure to run these commands from your VM, or if you want to run them from
+your laptop or from an OCF computer, substitute <code class="highlighter-rouge">localhost</code> in the commands
+with your VM’s domain name.</p>
+
+<h3 id="extra-fun">Extra Fun</h3>
+
+<p>Once you have set up your DNS server, try changing your laptop’s settings to
+use your VM as a DNS server and navigate to <code class="highlighter-rouge">example.com:8000</code> and you should
+see the service you set up in lab 6. Also try navigating to
+<code class="highlighter-rouge">google.example.com</code>. Why do you think that this causes an error and does not
+display a familiar Google homepage as you have seen before?</p>
+
+<p>Also note that your DNS server is set up to only accept recursive queries from
+within Berkeley networks, so if you try to use it off-campus somewhere, you
+will only be able to query for the domains you specifically added. This is
+because <a href="https://serverfault.com/q/573465">open relays</a> are a security problem
+that can be abused by attackers, so we’ve restricted your DNS servers to only
+accept queries from specific IP ranges that are more likely to be safe.</p>
+
+
+
+  <br>
+<footer>
+  <div class="row">
+	<div class="col-lg-12">
+	  <p class='text-center'>
+	  <a href="https://www.ocf.berkeley.edu">
+		<img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+	   alt="Hosted by the OCF" style="border: 0;" />
+	  </a>
+	  Copyright &copy; Open Computing Facility, eXperimental Computing Facility 2017.
+	  </p>
+	</div>
+	<!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

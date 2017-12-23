@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 10 - Special Topics - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 10 - Special Topics</h1>
+  <h2 id="docker">Docker</h2>
+<p>This exercise is designed to give you some hands-on experience with Docker!
+By the end of this assignment, you should be able to:</p>
+<ul>
+  <li>Create and use a Docker container interactively</li>
+  <li>Create a Dockerfile, which allows you to declaratively define your containers</li>
+  <li>Dockerize and run a simple web application</li>
+</ul>
+
+<h3 id="installing-docker">Installing Docker</h3>
+<p>One of the annoying things about Docker is it’s usually not in <code class="highlighter-rouge">apt</code> and if it is, it’s always under a different name.
+Here’s a link to the <code class="highlighter-rouge">.deb</code> for Docker Community Edition you can download and install on your VM: https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_17.06.1~ce-0~debian_amd64.deb</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_17.06.1~ce-0~debian_amd64.deb
+sudo dpkg -i docker-ce_17.06.1~ce-0~debian_amd64.deb
+</code></pre></div></div>
+
+<p>It’ll complain about dependencies or something, so just run the following command to wrap up</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install -f
+</code></pre></div></div>
+
+<p>After installing, I recommend following <a href="https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user">these instructions</a> so you can use docker as a non-root user. This means you won’t have to type <code class="highlighter-rouge">sudo docker</code> all the time. This is optional but for the rest of this exercise I’m going to assume that you did this. You might see some weird output like</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sent invalidate(passwd) request, exiting
+sent invalidate(group) request, exiting
+</code></pre></div></div>
+
+<p>But it should work anyway.</p>
+
+<h3 id="creating-your-first-docker-container">Creating your first Docker container</h3>
+<p>To verify that you installed things correctly, try running</p>
+
+<p><code class="highlighter-rouge">docker run hello-world</code></p>
+
+<p>You should see some friendly output like so:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+b04784fba78d: Already exists 
+Digest: sha256:f3b3b28a45160805bb16542c9531888519430e9e6d6ffc09d72261b0d26ff74f
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://cloud.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+</code></pre></div></div>
+
+<p>Some <a href="https://docs.docker.com/get-started/#a-brief-explanation-of-containers">quick definitions from Docker’s website:</a></p>
+
+<p>An <strong>image</strong> is a lightweight, stand-alone, executable package that includes everything needed to run a piece of software,
+including the code, a runtime, libraries, environment variables, and config files.</p>
+
+<p>A <strong>container</strong> is a runtime instance of an image—what the image becomes in memory when actually executed.
+It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.</p>
+
+<p>Be sure to read through the output from running the hello-world image to get an understanding of what the Docker daemon was doing.</p>
+
+<h3 id="running-an-interactive-container">Running an interactive container</h3>
+<p>We’re now going to walk you through running a container interactively. This is useful if you ever need to play around and
+install stuff on a bare system without messing up your current system. Try running the following command:</p>
+
+<p><code class="highlighter-rouge">docker run -it ubuntu:latest</code></p>
+
+<p>The <code class="highlighter-rouge">-i</code> flag tells docker to keep <code class="highlighter-rouge">STDIN</code> open to your container, and the <code class="highlighter-rouge">-t</code> flag allocates a <a href="https://en.wikipedia.org/wiki/Pseudoterminal">pseudo-TTY</a> for you.
+Basically you need both for you to have a shell into your newly started container.
+Try installing some packages from <code class="highlighter-rouge">apt</code> or just play around. It should look like a bare Linux system.</p>
+
+<p>You can exit the container with <code class="highlighter-rouge">CTRL+D</code>.</p>
+
+<h4 id="questions">Questions</h4>
+
+<ol>
+  <li>What user are you logged in as by default?</li>
+  <li>If you start and then exit an interactive container, and then use the docker run -it ubuntu:latest command again,
+is it the same container? How can you tell?</li>
+</ol>
+
+<h3 id="dockerfiles">Dockerfiles</h3>
+<p>A more powerful way to interface with Docker is by using a Dockerfile. A Dockerfile allows you to define an image by
+specifying all of the commands you would type manually to create an image. Docker can then build images from a specified
+Dockerfile. These Dockerfiles can be put into version control and the images distributed as a binary to keep track of both
+how the image is constructed and also to keep pre-built images around.</p>
+
+<p>Dockerfiles are very powerful and have many different commands and features. We’ll go over a basic example, but you should
+check out the <a href="https://docs.docker.com/engine/reference/builder/">reference page</a> if you are trying to do anything more complex.</p>
+
+<p>Here is an example Dockerfile that will build an image that has python3.6 installed.
+It will also run python3.6 directly, so you’ll be at a python prompt instead of a bash prompt when you run it.</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> ubuntu:zesty</span>
+
+<span class="k">RUN </span>apt-get update <span class="o">&amp;&amp;</span> apt-get install <span class="nt">-y</span> python3.6 <span class="nt">--no-install-recommends</span>
+
+<span class="k">CMD</span><span class="s"> ["/usr/bin/python3.6", "-i"]</span>
+</code></pre></div></div>
+
+<p>Note: there are some “best practices” for writing Dockerfiles that the above example doesn’t use,
+because it’s a basic example. If you’re interested in this stuff, <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">check out this article</a>.</p>
+
+<p>What is this doing? We specify a base image <code class="highlighter-rouge">ubuntu:zesty</code> (the zesty version of ubuntu).
+We then specify that we should run (<code class="highlighter-rouge">RUN</code>) the command <code class="highlighter-rouge">apt-get update</code> and then <code class="highlighter-rouge">apt-get install python3.6</code> so we can
+install <code class="highlighter-rouge">python3.6</code> (note that this package probably isn’t in apt on your own VMs!).
+Then we set the default command (<code class="highlighter-rouge">CMD</code>) of the container to run the <code class="highlighter-rouge">python3.6</code> interpreter in interactive mode.</p>
+
+<p>Copy the contents of the Dockerfile above into a file named <code class="highlighter-rouge">Dockerfile</code>.
+Then use Docker to build it with the following command:</p>
+
+<p><code class="highlighter-rouge">docker build -t mypython:latest .</code></p>
+
+<p>This tells Docker to look in the current directory for a Dockerfile to build, and build it.
+The <code class="highlighter-rouge">-t</code> flag tells it to tag this build with the name <code class="highlighter-rouge">mypython:latest</code>.
+Docker will look for a Dockerfile in the current directory since you specified <code class="highlighter-rouge">.</code></p>
+
+<p>You can see all of the images you’ve built on your machine with the <code class="highlighter-rouge">docker images</code> command.</p>
+
+<h4 id="questions-1">Questions</h4>
+<ol>
+  <li>Run the image you just built. As before, don’t forget the <code class="highlighter-rouge">-it</code> flags, and you can exit using <code class="highlighter-rouge">CTRL+D</code>. What do you observe?</li>
+  <li>Write and build a Dockerfile that installs the packages <code class="highlighter-rouge">fortune</code> and <code class="highlighter-rouge">fortunes-min</code> and runs the <code class="highlighter-rouge">fortune</code> executable
+(located in <code class="highlighter-rouge">/usr/games/fortune</code> after you install it). Note that you won’t need to use the <code class="highlighter-rouge">-it</code> flags when you run the container as fortune doesn’t need <code class="highlighter-rouge">STDIN</code>.
+Submit your Dockerfile with this lab. Hint: if you’re having trouble writing your Dockerfile, try booting an interactive container and installing both packages.
+How can you translate what you did interactively to a Dockerfile?</li>
+  <li>Paste the output of your <code class="highlighter-rouge">docker images</code> command after questions 1 and 2.</li>
+</ol>
+
+<h3 id="dockerizing-a-web-application">Dockerizing a Web Application</h3>
+<p>For our last trick, we’re going to take a rusty old Django web application and Dockerize it! By this, I mean that
+we are going to package the application and its dependencies within a Docker image. We can then distribute this image
+and/or run it as a container without changing our host system.</p>
+
+<p>For simplicity I did the steps of making the Dockerfile and web application for you.
+Be sure to take a look at the Dockerfile anyway, as you should be able to understand (at a high level) what each
+line is doing by this point in the course. Now, it’s your job to figure out how to run it successfully on your machine.</p>
+
+<p>Get started by cloning the repo: <code class="highlighter-rouge">git clone https://github.com/upenu/django-polls-example</code> and <code class="highlighter-rouge">cd</code> into the directory.</p>
+
+<p>Build the Dockerfile into an image and tag it with <code class="highlighter-rouge">mydjango:latest</code>. Refer to the previous examples if you don’t
+know what commands to use.</p>
+
+<p>Docker creates a separate network for containers, so you will need to do forward your host port to your container’s port
+(this is called <a href="https://en.wikipedia.org/wiki/Port_forwarding">port forwarding</a>, or port mapping). The container is listening on port 80, so let’s try to forward our
+host machine’s port 5050 to the container’s port 80 when we run the container:</p>
+
+<p><code class="highlighter-rouge">docker run -p=5050:80 mydjango:latest</code></p>
+
+<p>Don’t expect to see any output until you visit the web application from your host machine. The <code class="highlighter-rouge">-p</code> flag takes in a colon
+separated pair of <code class="highlighter-rouge">HOST_PORT:CONTAINER_PORT</code> (it can actually accept a ton of more options, but don’t worry about that for
+now). You should be able to view the web application from your host machine by visiting <code class="highlighter-rouge">&lt;url_of_host_machine&gt;:5050</code>,
+assuming you don’t have anything else running on that port.</p>
+
+<p>Use <code class="highlighter-rouge">CTRL+C</code> to exit the container this time.</p>
+
+<p>Cool. So we can now run this application within a container successfully. You can also try running it in <a href="https://docs.docker.com/engine/reference/run/#detached--d">detached mode</a>
+using the <code class="highlighter-rouge">-d</code> flag:</p>
+
+<p><code class="highlighter-rouge">docker run -d -p=5050:80 mydjango:latest</code></p>
+
+<p>The web application should still be available, but the container is now running in the background. To view the status of
+containers running on your system, use the <code class="highlighter-rouge">docker ps</code> command. To stop this container, use <code class="highlighter-rouge">docker stop &lt;container_id&gt;</code>.
+You can find the container ID from the output of <code class="highlighter-rouge">docker ps</code>.</p>
+
+<p>Congratulations! You’ve successfully Dockerized and ran a web application with vastly different requirements and configuration than your
+host machine, without affecting your setup on your machine :) There’s a lot more about Docker and containers to learn about,
+but I hope this was enough to wrap your head around the basic concepts and get some experience working with it.</p>
+
+<p>For further reading, I recommend just reading the <a href="https://docs.docker.com/">official documentation</a> so you can see what is possible with the Docker
+container format.</p>
+
+<h4 id="questions-2">Questions</h4>
+<ol>
+  <li>Paste your output of docker ps after you run the container in detached mode</li>
+  <li>What are the advantages of using containers compared to virtual machines? (look at the reading!!)</li>
+</ol>
+
+
+  <br>
+<footer>
+  <div class="row">
+	<div class="col-lg-12">
+	  <p class='text-center'>
+	  <a href="https://www.ocf.berkeley.edu">
+		<img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+	   alt="Hosted by the OCF" style="border: 0;" />
+	  </a>
+	  Copyright &copy; Open Computing Facility, eXperimental Computing Facility 2017.
+	  </p>
+	</div>
+	<!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+
