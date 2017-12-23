@@ -4,78 +4,20 @@
 # (which will probably be a cancellation).
 # Whichever day is marked as primary will be the day that the sign-in link
 # is active for.
-- date: 2017-09-05
+
+- date: 2018-01-23
   week: 0
-  lecture: 0
-  lab: 0
+  id: 0
 
 - date: 2017-09-07
-
-- date: 2017-09-12
   week: 1
-  lecture: 1
-  lab: 1
+  id: b1
+  track: Basic
+
+- date: 2017-09-09
+  week: 1
+  id: a1
+  track: Advanced
 
 - date: 2017-09-14
-  lecturenote: Cancelled, MLK building closed.
-
-- date: 2017-09-19
-  week: 2
-  lecture: 2
-  lab: 2
-  signin: "https://goo.gl/forms/eFqNzQu1V8AHfdVz2"
-
-- date: 2017-09-21
-  signin: "https://goo.gl/forms/w8YM9czRH9YahB5W2"
-
-- date: 2017-09-26
-  week: 3
-  lecture: 3
-  lab: 3
-  signin: "https://goo.gl/forms/alDgjYUQ9T4A52Mt2"
-
-- date: 2017-09-28
-  lecturenote: Facebook Guest Lecture - Networking at Scale
-
-- date: 2017-10-05
-  week: 4
-  lecture: 4
-  lab: 4
-  signin: https://tinyurl.com/ocf95
-
-- date: 2017-10-10
-  week: 5
-  lecture: 5
-  lab: 5
-  signin: https://goo.gl/forms/oUQjqB4sDEABGb1o1
-
-- date: 2017-10-17
-  week: 6
-  lecture: 6
-  lab: 6
-  signin: https://goo.gl/forms/mCJEXJtOdNcxo0xj2
-
-- date: 2017-10-24
-  week: 7
-  lecture: 7
-  lab: 7
-  signin: https://goo.gl/forms/e0VP9nhRi9sEygOP2
-
-
-- date: 2017-10-31
-  week: 8
-  lecture: 8
-  lab: 8
-  signin: https://goo.gl/forms/qpMF6bH7Mre81n1n1
-
-- date: 2017-11-07
-  week: 9
-  lecture: 9
-  lab: 9
-
-- date: 2017-11-14
-  week: 10
-  lecture: 10
-  lab: 10
-  primary: True
-  signin: https://goo.gl/forms/HMtkThja0XriLeeX2
+  note: Cancelled, MLK building closed.
