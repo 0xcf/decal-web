@@ -2,17 +2,5 @@
 # provided link.
 - id: 0
   name: Info Session
-  slides: https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing
+  slides: "#"
   lab: 0
-
-- id: b1
-  name: Intro to Unix, shell, and OSS
-  slides: https://docs.google.com/presentation/d/1PnW4EcN7nJ2g8LD_45IPNiq6d0e5p5ma6-bJVOJutSs/edit?usp=sharing
-  lab: b1
-  lecture: b1
-  
-- id: a1
-  name: Advanced Shell
-  slides: https://docs.google.com/presentation/d/1UPDQhmav2N3zxjaobXFnk9-Pq2bnQtFN8QYk6FgfeM0/edit?usp=sharing
-  lecture: a1
-  lab: a1
