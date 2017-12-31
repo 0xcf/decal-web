@@ -22,7 +22,7 @@ Facility (tsunami.ocf.b.e). By the end of this course, we expect you to:
 Lectures are scheduled for **Tuesdays and Thursdays 8-9pm** the OCF Lab,
 located at **171 MLK** (MLK basement down the hall from the student store).
 **Attendance is mandatory, with two allowed unexcused absences.**
-(other conflicts such as exams are excused).
+(some other conflicts, such as exams, may be excused with prior notice).
 
 The primary assignment in this course will be **weekly lab work**.
 In keeping with the name of the course, labs will be significantly hands-on.
