@@ -3,19 +3,19 @@
   <table class="table table-striped">
     <thead>
       <tr>
-	    <th>Week</th>
-	    <th>Date</th>
+        <th>Week</th>
+        <th>Date</th>
         <th>Track</th>
-	    <th>Lecture Title</th>
-	    <th>Lab</th>
+        <th>Lecture Title</th>
+        <th>Lab</th>
       </tr>
     </thead>
 
     <tbody>
       {% for entry in site.data.calendar %}
-	<tr>
-	  <td>{{ entry.week  | default: - }}</td>
-	  <td>{{ entry.date  | date: "%a. %m/%d" }}</td>
+    <tr>
+      <td>{{ entry.week  | default: - }}</td>
+      <td>{{ entry.date  | date: "%a. %m/%d" }}</td>
       <td>{{ entry.track | default: - }}</td>
       {% if entry.note %}
       <td>
@@ -32,20 +32,20 @@
               {% if item.slides %}
           </a>
               {% endif %}
-	  </td>
-	  <td>
-	          {% if item.lab %}
-	    <a href="labs/{{ item.lab }}">
+      </td>
+      <td>
+              {% if item.lab %}
+        <a href="labs/{{ item.lab }}">
           Lab {{ item.lab }}
         </a>
-	          {% else %}
+              {% else %}
         -
               {% endif %}
-	  </td>
+      </td>
           {% endif %}
         {% endfor %}
       {% endif %}
-	</tr>
+    </tr>
     {% endfor %}
     </tbody>
   </table>
