@@ -8,16 +8,3 @@
 - date: 2018-01-23
   week: 0
   id: 0
-
-- date: 2017-09-07
-  week: 1
-  id: b1
-  track: Basic
-
-- date: 2017-09-09
-  week: 1
-  id: a1
-  track: Advanced
-
-- date: 2017-09-14
-  note: Cancelled, MLK building closed.
