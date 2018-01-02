@@ -1,6 +1,0 @@
-#!/bin/bash
-set -e
-
-cd "$(dirname "$BASH_SOURCE")"
-. venv/bin/activate
-FLASK_APP=app.py exec flask run -h '::'
