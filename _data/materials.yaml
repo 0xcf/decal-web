@@ -2,45 +2,5 @@
 # provided link.
 - id: 0
   name: Info Session
-  slides: https://docs.google.com/presentation/d/1T3x-K1YJEyDw8fUEX9nsrEkJ4BXwW7d-yffKF0Mb5VE/edit?usp=sharing
-  lab: https://goo.gl/forms/ZHTwEjofI9eiLh113
-
-- id: 1
-  name: Intro to Unix, shell, and OSS
-  slides: https://docs.google.com/presentation/d/1PnW4EcN7nJ2g8LD_45IPNiq6d0e5p5ma6-bJVOJutSs/edit?usp=sharing
-
-- id: 2
-  name: Intro to Shell
-  slides: https://docs.google.com/presentation/d/1UPDQhmav2N3zxjaobXFnk9-Pq2bnQtFN8QYk6FgfeM0/edit?usp=sharing
-
-- id: 3
-  name: Shell Scripting
-  slides: https://docs.google.com/presentation/d/1jYLICb69ja0NXJ0FWZggYPL0JDMxUNWr0plgC6Q1kA0/edit?usp=sharing
-
-- id: 4
-  name: Distributions, Compiling, and Packaging
-  slides: https://docs.google.com/presentation/d/1xbrKMzvBz2Nb2P8IbPMrvy-84AeaAcQPM3MGaFs65sw/edit?usp=sharing
-
-- id: 5
-  name: Networking 101
-  slides: https://docs.google.com/presentation/d/1-S64fwJ2QmJzxYpplH51Hj51HRKfXGXcJ_iXBPZzaA0/edit?usp=sharing
-
-- id: 6
-  name: Processes and Services
-  slides: https://docs.google.com/presentation/d/1n534j5ed6GZfpc2h9iBQ3NIEzmk6lm6mMLZY1fr7zuU/edit?usp=sharing
-
-- id: 7
-  name: Networked Services
-  slides: https://docs.google.com/presentation/d/1X0Xjt2aLTQtmDe23wZc8F9CEo4I3VJlXktBvchjBvyw/edit?usp=sharing
-
-- id: 8
-  name: Security Fundamentals
-  slides: https://docs.google.com/presentation/d/1104qhPHeQixJyjqzJ9NopWxS7fXL8nUtR2NIvW7Qha4/edit?usp=sharing
-  
-- id: 9
-  name: Web Applications
-  slides: https://docs.google.com/presentation/d/11lG3XbHMupxFU6H1YDkFzQpsGr2L9MILcK0K1fjiJ3c/edit?usp=sharing
-  
-- id: 10
-  name: Special Topics
-  slides: https://docs.google.com/presentation/d/14lS85IfJ1nlwuleciDrBki2MNPZBTKrmYQBO-wn-GSA/edit?usp=sharing
+  slides: "#"
+  lab: 0

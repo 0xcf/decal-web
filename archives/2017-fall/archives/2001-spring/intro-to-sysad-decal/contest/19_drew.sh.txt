@@ -1,3 +1,0 @@
-#!/usr/bin/sh
-#19
-echo Hello ${1-World}

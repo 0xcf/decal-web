@@ -3,39 +3,50 @@
   <table class="table table-striped">
     <thead>
       <tr>
-	<th>Week</th>
-	<th>Date</th>
-	<th>Lecture (Tu/Th)</th>
-	<th>Lab</th>
+        <th>Week</th>
+        <th>Date</th>
+        <th>Track</th>
+        <th>Lecture Title</th>
+        <th>Lab</th>
       </tr>
     </thead>
 
     <tbody>
       {% for entry in site.data.calendar %}
-	<tr>
-	  <td>{{ entry.week | default: - }}</td>
-	  <td>{{ entry.date | date: "%a. %m/%d" }}</td>
-	  <td>
-	    {% if entry.lecture %}
-	      <a href='slides/{{ entry.lecture }}'>
-		{% for item in site.data.materials %}
-		  {% if item.id == entry.lecture %}
-		    {{ item.name }}
-		  {% endif %}
-		{% endfor %}
-	      </a>
-	    {% elsif entry.lecturenote %}
-	      {{ entry.lecturenote }}
-	    {% else %} -
-	    {% endif %}
-	  </td>
-	  <td>
-	    {% if entry.lab %}
-	      <a href='labs/{{ entry.lab }}'>Lab {{entry.lab }}</a>
-	    {% else %}-{% endif %}
-	  </td>
-	</tr>
-      {% endfor %}
+    <tr>
+      <td>{{ entry.week  | default: - }}</td>
+      <td>{{ entry.date  | date: "%a. %m/%d" }}</td>
+      <td>{{ entry.track | default: - }}</td>
+      {% if entry.note %}
+      <td>
+        {{ entry.note }}
+      </td>
+      {% else %}
+        {% for item in site.data.materials %}
+          {% if item.id == entry.id %}
+      <td>
+              {% if item.slides %}
+          <a href="{{ item.slides }}">
+              {% endif %}
+              {{ item.name | default: - }}
+              {% if item.slides %}
+          </a>
+              {% endif %}
+      </td>
+      <td>
+              {% if item.lab %}
+        <a href="labs/{{ item.lab }}">
+          Lab {{ item.lab }}
+        </a>
+              {% else %}
+        -
+              {% endif %}
+      </td>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </tr>
+    {% endfor %}
     </tbody>
   </table>
 </div>
