@@ -54,6 +54,11 @@
   img: images/tanx.png
   description: I'm a sophomore CS student from Pennsylvania who enjoys reading, playing League, and boba. I'm still learning about Unix, so tell me about anything cool you found!
 
+- name: Sahil Hasan
+  title: Facilitator   
+  img: images/shasan.png  
+  description: I'm a junior EECS major that spends far too much time in the OCF or playing CS:GO, not that those two are mutually exlusive. 
+
 - name: Kevin Peng
   title: Guest Lecturer
   img: images/kpengboy.jpg
