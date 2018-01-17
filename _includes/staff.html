@@ -11,5 +11,7 @@
       </h3>
       <p>{{ member.description }}</p>
     </div>
+    {% cycle '', '', '<div class="clearfix visible-lg-block"></div>' %}
+    {% cycle '', '<div class="clearfix visible-sm-block"></div>' %}
   {% endfor %}
 </div>
