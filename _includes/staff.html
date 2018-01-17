@@ -5,7 +5,7 @@
   </div>
   {% for member in site.data.staff %}
     <div class="col-lg-4 col-sm-6 text-center">
-      <img class="img-circle img-responsive img-center" src="{{ member.img }}" {% if member.style %}style="{{member.style}}"{% endif %} alt="">
+      <img class="img-circle img-responsive img-center" src="{{ member.img }}" alt="Picture of {{ member.name }}">
       <h3>{{ member.name }}
 	<small>{{ member.title }}</small>
       </h3>
