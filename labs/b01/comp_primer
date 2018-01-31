@@ -1,0 +1,11 @@
+### Compression
+What is compression and why do we use it? At a high level understanding, compression is the act of reducing the size of a file or files (hence the name). However, this doesn't come for free (or else we'd use it all the time): It comes at the cost of readability or interactivity of the data. Can you see why we might value size over these two, usually very important, attributes when archiving or in this case, giving someone data? 
+
+Let's look at a nontechnical example of why compression prevents interactivity. Consider the following from *A Tale of Two Cities* by Charles Dickens.
+
+"It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only."
+
+The word "the" appears a lot right? It's taking up a total of 45 characters, we can do better right?
+
+"the: [It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only."
+
