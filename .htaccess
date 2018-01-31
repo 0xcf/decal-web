@@ -17,8 +17,4 @@ RewriteRule ^slides/{{item.id}}$ {{item.slides}} [R=302,L]
 RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
 {% endif %}{% endfor %}
 
-{% for item in site.data.calendar %}
-{% if item.primary %}
-RewriteRule ^signin$ {{item.signin}} [R=302,L]
-{% endif %}
-{% endfor %}
+RewriteRule ^signin$ https://docs.google.com/forms/d/e/1FAIpQLSdmoLZVM5YQkFYZr6eV12UTaaRrVSJOC4Gxb3QkbbLly8NvTQ/viewform?usp=sf_link [R=302,L]
