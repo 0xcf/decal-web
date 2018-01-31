@@ -19,7 +19,7 @@ Facility (tsunami.ocf.b.e). By the end of this course, we expect you to:
 * understand system administration essentials
 * get a practical taste of what sysadmins do in industry.
 
-Lectures are scheduled for **Tuesdays and Thursdays 8-9pm** the OCF Lab,
+Lectures are scheduled for **Tuesdays(Beginner) and Thursdays(Advanced) 8-9pm** the OCF Lab,
 located at **171 MLK** (MLK basement down the hall from the student store).
 **Attendance is mandatory, with two allowed unexcused absences.**
 (some other conflicts, such as exams, may be excused with prior notice).
