@@ -1,0 +1,12 @@
+# There should be an entry here for each day of class of the beginner track.
+# Lecture and Lab IDs should correspond to IDs in materials.yaml.
+# The lecturenote key can be used to display a message about the lecture
+# (which will probably be a cancellation).
+
+- date: 2018-01-23
+  week: 0
+  id: 0
+
+- date: 2018-01-30
+  week: 1
+  id: b1

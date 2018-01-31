@@ -1,13 +1,12 @@
-# There should be an entry here for each day of class.
+# There should be an entry here for each day of class for the advanced track.
 # Lecture and Lab IDs should correspond to IDs in materials.yaml.
 # The lecturenote key can be used to display a message about the lecture
 # (which will probably be a cancellation).
-# Whichever day is marked as primary will be the day that the sign-in link
-# is active for.
 
 - date: 2018-01-23
   week: 0
   id: 0
-- date: 2018-01-30
+
+- date: 2018-02-01
   week: 1
-  id: b1
+  id: a1
