@@ -1,47 +1,96 @@
 <div class="segment">
-  <h2 class="page-header" id="calendar">Calendar</h2>
+  <h2 class="page-header" id="calendar">Beginner Track Calendar</h2>
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Week</th>
         <th>Date</th>
-        <th>Track</th>
         <th>Lecture Title</th>
         <th>Lab</th>
       </tr>
     </thead>
 
     <tbody>
-      {% for entry in site.data.calendar %}
+      {% for entry in site.data.beginner_calendar %}
     <tr>
       <td>{{ entry.week  | default: - }}</td>
       <td>{{ entry.date  | date: "%a. %m/%d" }}</td>
-      <td>{{ entry.track | default: - }}</td>
       {% if entry.note %}
-      <td>
-        {{ entry.note }}
-      </td>
+        <td>
+          {{ entry.note }}
+        </td>
       {% else %}
         {% for item in site.data.materials %}
           {% if item.id == entry.id %}
-      <td>
+            <td>
               {% if item.slides %}
-          <a href="{{ item.slides }}">
+                <a href="{{ item.slides }}">
               {% endif %}
               {{ item.name | default: - }}
               {% if item.slides %}
-          </a>
+                </a>
               {% endif %}
-      </td>
-      <td>
+            </td>
+            <td>
               {% if item.lab %}
-        <a href="labs/{{ item.id }}">
-          Lab {{ item.id }}
-        </a>
+                <a href="labs/{{ item.id }}">
+                  Lab {{ item.id }}
+                </a>
               {% else %}
-        -
+                -
               {% endif %}
-      </td>
+            </td>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="segment">
+  <h2 class="page-header">Advanced Track Calendar</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>Date</th>
+        <th>Lecture Title</th>
+        <th>Lab</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for entry in site.data.advanced_calendar %}
+    <tr>
+      <td>{{ entry.week  | default: - }}</td>
+      <td>{{ entry.date  | date: "%a. %m/%d" }}</td>
+      {% if entry.note %}
+        <td>
+          {{ entry.note }}
+        </td>
+      {% else %}
+        {% for item in site.data.materials %}
+          {% if item.id == entry.id %}
+            <td>
+              {% if item.slides %}
+                <a href="{{ item.slides }}">
+              {% endif %}
+              {{ item.name | default: - }}
+              {% if item.slides %}
+                </a>
+              {% endif %}
+            </td>
+            <td>
+              {% if item.lab %}
+                <a href="labs/{{ item.id }}">
+                  Lab {{ item.id }}
+                </a>
+              {% else %}
+                -
+              {% endif %}
+            </td>
           {% endif %}
         {% endfor %}
       {% endif %}
