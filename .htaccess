@@ -9,12 +9,12 @@ RewriteRule ^syllabus$	syllabus.pdf [R=302,L]
 RewriteRule ^piazza$	https://piazza.com/class/j6tnwydlhx62jp [R=302,L]
 
 {% for item in site.data.materials %}
-RewriteRule ^s{{item.id}}$ slides/{{item.id}} [R=302,L]
-RewriteRule ^l{{item.id}}$ labs/{{item.id}} [R=302,L]
 {% if item.slides %}
 RewriteRule ^slides/{{item.id}}$ {{item.slides}} [R=302,L]
-{% endif %}{% if item.lab %}
+{% endif %}
+{% if item.lab %}
 RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
-{% endif %}{% endfor %}
+{% endif %}
+{% endfor %}
 
-RewriteRule ^signin$ https://docs.google.com/forms/d/e/1FAIpQLSdmoLZVM5YQkFYZr6eV12UTaaRrVSJOC4Gxb3QkbbLly8NvTQ/viewform?usp=sf_link [R=302,L]
+RewriteRule ^signin$ https://docs.google.com/forms/d/e/1FAIpQLSdmoLZVM5YQkFYZr6eV12UTaaRrVSJOC4Gxb3QkbbLly8NvTQ/viewform [R=302,L]
