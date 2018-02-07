@@ -13,8 +13,11 @@
 - id: a1
   name: Intro to Advanced UNIX
   slides: https://docs.google.com/presentation/d/1a2VyWY9tZCz6Cspt_9GkDFLemP75Z-ERUY2rYgWXUcw/edit?usp=sharing
+  lab: a1
 
 - id: b2
   name: Core Shell
   slides: https://docs.google.com/presentation/d/1thjDyoh7HMwzhXoTppI0p7nH5ky2s3IhjGuLvFw1wX0/edit?usp=sharing
   lab: b2
+
+
