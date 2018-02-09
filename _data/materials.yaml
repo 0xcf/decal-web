@@ -19,5 +19,9 @@
   name: Core Shell
   slides: https://docs.google.com/presentation/d/1thjDyoh7HMwzhXoTppI0p7nH5ky2s3IhjGuLvFw1wX0/edit?usp=sharing
   lab: b2
+  
+- id: a2
+  name: Packages and Troubleshooting and Packaging
+  slides: https://docs.google.com/presentation/d/1WoC2mdBbbDPD-VLUCzpOASFBsiE-Us-gE6AGJHJlMik/edit?usp=sharing
 
 
