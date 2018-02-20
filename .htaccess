@@ -18,3 +18,4 @@ RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
 {% endfor %}
 
 RewriteRule ^signin$ https://docs.google.com/forms/d/e/1FAIpQLSdmoLZVM5YQkFYZr6eV12UTaaRrVSJOC4Gxb3QkbbLly8NvTQ/viewform [R=302,L]
+RewriteRule ^gdrive$ https://drive.google.com/drive/u/0/folders/0BxasqbXBiFNhc1N0NnBUUmt1ekk
