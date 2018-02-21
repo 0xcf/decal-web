@@ -34,3 +34,7 @@
   name: DIY Linux Pre-Install 
   slides: https://docs.google.com/presentation/d/1jNWZ0DMqf6rQa7qMSudnsVv6Zf6EJRWGfd3ERr6nMN8/edit#slide=id.g334bafa504_0_5
 
+- id: b4
+  name: Debian, Packages, Compilation
+  slides: https://docs.google.com/presentation/d/1erO5olp0xrrwgtrVwKfkIM_wWQn02AF-48xzAqaUDV4/edit?usp=sharing
+  lab: b4
