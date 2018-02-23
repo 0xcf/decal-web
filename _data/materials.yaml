@@ -12,29 +12,33 @@
 
 - id: a1
   name: Intro to Advanced UNIX
-  slides: https://docs.google.com/presentation/d/1a2VyWY9tZCz6Cspt_9GkDFLemP75Z-ERUY2rYgWXUcw/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1a2VyWY9tZCz6Cspt_9GkDFLemP75Z-ERUY2rYgWXUcw/edit
   lab: a1
 
 - id: b2
   name: Core Shell
-  slides: https://docs.google.com/presentation/d/1thjDyoh7HMwzhXoTppI0p7nH5ky2s3IhjGuLvFw1wX0/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1thjDyoh7HMwzhXoTppI0p7nH5ky2s3IhjGuLvFw1wX0/edit
   lab: b2
-  
+
 - id: a2
   name: Packages and Troubleshooting and Packaging
-  slides: https://docs.google.com/presentation/d/1WoC2mdBbbDPD-VLUCzpOASFBsiE-Us-gE6AGJHJlMik/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1WoC2mdBbbDPD-VLUCzpOASFBsiE-Us-gE6AGJHJlMik/edit
   lab: a2
-  
+
 - id: b3
   name: Shell Scripting
-  slides: https://docs.google.com/presentation/d/1jYLICb69ja0NXJ0FWZggYPL0JDMxUNWr0plgC6Q1kA0/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1jYLICb69ja0NXJ0FWZggYPL0JDMxUNWr0plgC6Q1kA0/edit
   lab: b3
 
 - id: a3
-  name: DIY Linux Pre-Install 
-  slides: https://docs.google.com/presentation/d/1jNWZ0DMqf6rQa7qMSudnsVv6Zf6EJRWGfd3ERr6nMN8/edit#slide=id.g334bafa504_0_5
+  name: DIY Linux Pre-Install
+  slides: https://docs.google.com/presentation/d/1jNWZ0DMqf6rQa7qMSudnsVv6Zf6EJRWGfd3ERr6nMN8/edit
 
 - id: b4
   name: Debian, Packages, Compilation
-  slides: https://docs.google.com/presentation/d/1erO5olp0xrrwgtrVwKfkIM_wWQn02AF-48xzAqaUDV4/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1erO5olp0xrrwgtrVwKfkIM_wWQn02AF-48xzAqaUDV4/edit
   lab: b4
+
+- id: a4
+  name: DIY Linux Post-Install
+  slides: https://docs.google.com/presentation/d/1r3pl2XccayoUaKCFtG3wF6N_qun8VVw7jH5MEvVTBSw/edit
