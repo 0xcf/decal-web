@@ -346,7 +346,6 @@ Please order the headers of each layer properly for a packet traveling on the ph
 **TCP**
 
 ## Riddle Me This
-Please run `git clone https://github.com/c2tonyc2/sysadmin-decal.git` before starting this section. This repository has a copy of the lab markdown file and other supplemental materials under `sysadmin-decal/networking_101`
 
 1. Does HTTP use TCP or UDP and why? How about Discord and Skype, why?
 2. What is the MAC and IP address of one if your machine's interfaces, not including the loopback interface.
