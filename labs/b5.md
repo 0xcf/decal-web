@@ -14,18 +14,18 @@ But first let's take a short dive into the details of networking.
 
 ## OSI Model
 To lay the groundwork for understanding networking, we'll first turn to the Open Systems Interconnection model (OSI).  The OSI model describes modern computer systems by partitioning them into several 'layers':
-1. **Physical Layer**
+1. **Physical Layer**  
 This layer deals with the physical transmission of the data such as passing electrical signals over a fiber optic cable or radio frequencies for wireless.
-2. **Data Link Layer**
+2. **Data Link Layer**  
 This layer deals with transfer data between  nodes in a local network. An example of this is L2 routing according to MAC addresses.
-3. **Network Layer**
+3. **Network Layer**  
 This layer deals with packet forwarding and global routing across multiple networks through intermediate routers. The most common L3 protocol, and the one you're probably familiar with, is Internet Protocol (IP).  This layer is concerned with delivering data between hosts that correspond to IP addresses but makes no guarantees about reliable transport of the packets.
-4. **Transport Layer**
+4. **Transport Layer**  
 This layer is responsible for providing reliable transport, and reassembling packets that may have arrived out of order.  Protocols in this layer provide host-to-host communication services for applications. The most well known protocols are TCP and UDP.
 5. **Session Layer**
-6. **Presentation Layer**
+6. **Presentation Layer**  
 Won't talk much about the above two, they aren't as important and are sometimes not even implemented in a network stack.
-7. **Application Layer**
+7. **Application Layer**  
 The application layer specifies protocols between hosts.  Some examples of this include SSH, FTP, and HTTP. 
 
 ![alt text][OSI]
