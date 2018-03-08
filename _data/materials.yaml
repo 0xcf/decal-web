@@ -52,6 +52,7 @@
 - id: a5
   name: Networking 102 
   slides: https://docs.google.com/presentation/d/1ik9XsyGMjOWLwta-KnxrC7hjxTWJGwm5ngZUdwtafxo/edit?usp=sharing
+  lab: a5
 
 - id: b6
   name: Processes and Services
