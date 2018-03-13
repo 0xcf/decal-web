@@ -8,7 +8,7 @@ This lab will go over some concepts of networking and how certain parts of a net
 
 **Additionally more information about certain files discussed here can be found in their corresponding `man` pages by typing `man <filename>`.**
 
-[basic-lab]: https://decal.ocf.berkeley.edu/labs/b5
+[basic-lab]: /labs/b5
 
 ---
 
