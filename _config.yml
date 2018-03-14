@@ -12,27 +12,13 @@ markdown: kramdown
 include:
   - ".htaccess"
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-
+# A list of files or directories to exclude from processing when building the
+# site, like any dependency management files, build files, etc.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Jenkinsfile
+  - LICENSE
+  - Makefile
+  - README.md
+  - vendor/bundle/
