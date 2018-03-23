@@ -1,5 +1,7 @@
 # OCF/XCF DeCal Website
 
+[![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=decal-web/master)](https://jenkins.ocf.berkeley.edu/job/decal-web/)
+
 This is the source of the OCF/XCF Unix System Administration DeCal website,
 currently available at [decal.ocf.berkeley.edu](https://decal.ocf.berkeley.edu).
 

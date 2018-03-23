@@ -46,9 +46,31 @@
 
 - id: b5
   name: Networking 101
-  slides: https://docs.google.com/presentation/d/1Jhkx6AgHqS524gzg27qdyHStFGUBO1VSEfYAwgokslA/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1Jhkx6AgHqS524gzg27qdyHStFGUBO1VSEfYAwgokslA/edit
   lab: b5
 
 - id: a5
-  name: Networking 102 
-  slides: https://docs.google.com/presentation/d/1ik9XsyGMjOWLwta-KnxrC7hjxTWJGwm5ngZUdwtafxo/edit?usp=sharing
+  name: Networking 102
+  slides: https://docs.google.com/presentation/d/1ik9XsyGMjOWLwta-KnxrC7hjxTWJGwm5ngZUdwtafxo/edit
+  lab: a5
+
+- id: b6
+  name: Processes and Services
+  slides: https://docs.google.com/presentation/d/16tHxXpOQkJgFQ5Oi5hJ7KiA3uhSktUeof37mW-0U7hA/edit
+  lab: b6
+
+- id: a6
+  name: Processes and Services
+  slides: https://docs.google.com/presentation/d/1otwlR9nrOHNMTp4FsIILSfFeKu2SDj-9PQjmCQrwhEk/edit
+
+- id: b7
+  name: Networked Services
+  slides: https://docs.google.com/presentation/d/1TjpMI-99XfRFXYjbn2bZ8wM1BEpl7A211PUYSj1yTLY/edit
+
+- id: a7
+  name: Networked Services
+  slides: https://docs.google.com/presentation/d/1k4L4oWoMbhkpS2XF84Mlcsun54MhM7nbnP5JZeDzVM0/edit
+
+- id: b8
+  name: Security Fundamentals
+  slides: https://docs.google.com/presentation/d/1rKOiW5KY1AxZm60e_yr160LATQI5kbWp3uw0keo7neM/edit
