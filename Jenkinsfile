@@ -11,11 +11,11 @@ try {
         }
 
         stage('bundle') {
-            sh 'bundle install --deployment'
+            sh 'make bundle'
         }
 
         stage('build') {
-            sh 'bundle exec jekyll build --verbose --trace'
+            sh 'make build'
         }
 
         // TODO: Add a testing step to lint any HTML, etc.
@@ -28,8 +28,8 @@ try {
             stage('deploy') {
                 sshagent (credentials: ['decal-ssh-key']) {
                     // The positions of the slashes are important here:
-                    // There should be a slash after _site BUT not after
-                    // public_html.
+                    // There should be a slash after _site BUT not at the end
+                    // of the command.
                     sh 'rsync -avzpce "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static ocfdecal@decal.ocf.berkeley.edu:/srv/www/decal'
                 }
             }
