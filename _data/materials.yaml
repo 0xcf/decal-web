@@ -71,6 +71,7 @@
 - id: a7
   name: Networked Services
   slides: https://docs.google.com/presentation/d/1k4L4oWoMbhkpS2XF84Mlcsun54MhM7nbnP5JZeDzVM0/edit
+  lab: a7
 
 - id: b8
   name: Security Fundamentals
