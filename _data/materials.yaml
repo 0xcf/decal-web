@@ -82,6 +82,11 @@
   name: Security Fundamentals
   slides: https://docs.google.com/presentation/d/1fPqrhrPcGUqCIEnjCFn0bug4fAhwWQjuqNqBJoMvUus/edit
 
-- id: b9 
-  name: Cloud, Containers, Configuration Management 
-  slides: https://docs.google.com/presentation/d/1TBch_j19USu8Et6ciT94KSoGznNWwP4XCe8LIvpgQ7g/edit 
+- id: b9
+  name: Cloud, Containers, Configuration Management
+  slides: https://docs.google.com/presentation/d/1TBch_j19USu8Et6ciT94KSoGznNWwP4XCe8LIvpgQ7g/edit
+
+- id: a9
+  name: Configuration Management, Version Control, Backups
+  slides: https://docs.google.com/presentation/d/1bUVT_U_-kkibGZcyuYbFud_UU6VOs3iUFnpEkJl9rJY/edit
+  lab: a9
