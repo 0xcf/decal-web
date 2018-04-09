@@ -11,7 +11,7 @@
   week: 1
   id: b1
 
-- date: 2018-02-7
+- date: 2018-02-06
   week: 2
   id: b2
 
@@ -40,5 +40,5 @@
   id: b8
 
 - date: 2018-04-03
-  week: 9 
+  week: 9
   id: b9
