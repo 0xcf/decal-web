@@ -92,3 +92,8 @@
   name: Configuration Management, Version Control, Backups
   slides: https://docs.google.com/presentation/d/1bUVT_U_-kkibGZcyuYbFud_UU6VOs3iUFnpEkJl9rJY/edit
   lab: a9
+
+- id: b10
+  name: HPC, Backups
+  slides: https://docs.google.com/presentation/d/1AbIrg1z8jD2Vq3a70P4SGBLKBBGho2qEYyRDjdd2Xuc/edit?usp=sharing
+  lab:
