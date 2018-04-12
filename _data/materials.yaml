@@ -97,3 +97,8 @@
   name: HPC, Backups
   slides: https://docs.google.com/presentation/d/1AbIrg1z8jD2Vq3a70P4SGBLKBBGho2qEYyRDjdd2Xuc/edit?usp=sharing
   lab:
+
+- id: a10
+  name: Containers, Container Orchestration, Architecture
+  slides: https://docs.google.com/presentation/d/1NwDo1HIGrVD_Gu40x-G3dVtgRwCX4hRMdNdpwX3MyFE/edit?usp=sharing
+  lab: a10
