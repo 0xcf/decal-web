@@ -102,3 +102,7 @@
   name: Containers, Container Orchestration, Architecture
   slides: https://docs.google.com/presentation/d/1NwDo1HIGrVD_Gu40x-G3dVtgRwCX4hRMdNdpwX3MyFE/edit?usp=sharing
   lab: a10
+
+- id: a12
+  name: Guest Lecture - Careers in Tech by Ethan Jackson
+  slides: https://decal.ocf.berkeley.edu/static/a12_career_lecture.pdf
