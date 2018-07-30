@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 4 - Linux Post-Install - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 4 - Linux Post-Install</h1>
+  <h3 id="topics-covered">Topics Covered</h3>
+
+<p>We covered a lot of material in the 
+<a href="https://docs.google.com/presentation/d/1r3pl2XccayoUaKCFtG3wF6N_qun8VVw7jH5MEvVTBSw/edit">lecture</a>.
+Here’s a short list of things you may be interested in looking into further, 
+besides googling and reading the man pages for the commands we discussed in
+lecture.</p>
+
+<ol>
+  <li>SELinux - Security Enhanced Linux, gives role-based/mandatory access control 
+facilities. Utilizing it is well beyind the scope of this class, but reading
+about how SELinux works should give you an appreciation for the degree to
+which people have thought about file-level security in the kernel.
+    <ul>
+      <li><a href="selinunxproject.org">Official Wiki</a></li>
+      <li>Red Hat <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/chap-security-enhanced_linux-introduction">documentation</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Security-Enhanced_Linux">Wikipedia (obviously)</a></li>
+    </ul>
+  </li>
+  <li>Managing users and groups
+    <ul>
+      <li><a href="http://www.tldp.org/LDP/GNU-Linux-Tools-Summary/html/c6239.htm">TLDP</a> entry</li>
+      <li>An excellent DigitalOcean <a href="https://www.digitalocean.com/community/tutorials/how-to-view-system-users-in-linux-on-ubuntu">guide</a></li>
+      <li>These great <a href="https://unix.stackexchange.com/questions/74809/is-it-possible-to-hide-an-account-from-etc-passwd/74898#74898">StackExchange</a> answers</li>
+      <li>ArchWiki <a href="https://wiki.archlinux.org/index.php/File_permissions_and_attributes">breakdown</a> of permissions</li>
+      <li>Debian Wiki <a href="https://wiki.debian.org/Permissions">equivalent</a></li>
+      <li>If you <a href="http://www.zdnet.com/article/show-stopping-bug-appears-in-npm-node-js-package-manager/">needed</a> more <a href="https://github.com/npm/npm/issues/19883">reasons</a> to be skeptical of the maturity of the Node ecosystem</li>
+      <li><a href="https://en.wikipedia.org/wiki/Protection_ring">Protection Rings</a> - no DND, unfortunately</li>
+      <li><a href="https://code.woboq.org/userspace/glibc/sysdeps/unix/sysv/linux/faccessat.c.html">glibc</a> and 
+<a href="https://elixir.bootlin.com/linux/latest/source/fs/open.c#L353">kernel</a> source where some of this stuff gets checked</li>
+    </ul>
+  </li>
+  <li>Configuring sshd
+    <ul>
+      <li>Another <a href="https://www.digitalocean.com/community/tutorials/how-to-tune-your-ssh-daemon-configuration-on-a-linux-vps">comprehensive</a>
+DigitalOcean guide to <code class="highlighter-rouge">/etc/ssh/sshd_config</code></li>
+      <li><a href="https://fail2ban.org">Fail2Ban</a> and <a href="https://wiki.archlinux.org/index.php/fail2ban">Archwiki</a> configuration instructions</li>
+    </ul>
+  </li>
+  <li>On-host firewalls (ufw)
+    <ul>
+      <li>Fairly comprehensive <a href="https://help.ubuntu.com/lts/serverguide/firewall.html">ufw</a> configuration guide</li>
+    </ul>
+  </li>
+  <li>The Filesystem Hierarchy
+    <ul>
+      <li><a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">Wikipedia</a> entry</li>
+      <li>Even more comprehensive <a href="https://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/index.html">TLDP</a> entry</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="lab-activity">Lab Activity</h1>
+
+<p>In this lab we’re going to try to have you implement some of the things we 
+discussed during lecture.</p>
+
+<h3 id="generating-and-using-ssh-keys">Generating and using SSH keys</h3>
+
+<p>Passwords can be guessed, and this is bad. Good security practice now involves 
+taking advantage of public-key crypto to authenticate SSH sessions. In this
+section, we will be setting up SSH keys, if you haven’t already.</p>
+
+<p>Please log into <code class="highlighter-rouge">tsunami.ocf.berkeley.edu</code> first. These instructions will not 
+work on a Windows machine.</p>
+
+<ol>
+  <li>
+    <p>First, make sure you don’t already have an existing SSH key in use that you 
+might overwrite:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> you@tsunami $ ls -la ~/.ssh
+ -rw------- 1 &lt;you&gt; ocf &lt;stuff&gt; .ssh/id_rsa # if this already exists, continue to step 3
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>If you don’t have an SSH key, make one with the following command</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> you@tsunami $ ssh-keygen -t rsa -b 4096
+</code></pre></div>    </div>
+
+    <p>You can give the key a passphrase if you’d like. This command creates a 
+ 4096-bit RSA private key (<code class="highlighter-rouge">~/.ssh/id_rsa</code>) and corresponding public key
+ (<code class="highlighter-rouge">~/.ssh/id_rsa.pub</code>). There are many types of keys in various sizes, such
+ 2048-bit RSA keys (<code class="highlighter-rouge">ssh-keygen -t rsa -b 2048</code>) or 384-bit ECDSA keys
+ (<code class="highlighter-rouge">ssh-keygen -t ecdsa -t 384</code>) or more. The full list can be found in
+ <code class="highlighter-rouge">man ssh-keygen</code>. Which one to use is up to your preference and/or
+ [paranoia]<sup id="fnref:paranoia"><a href="#fn:paranoia" class="footnote">1</a></sup> about quasi-legal government surveillance.</p>
+  </li>
+  <li>
+    <p>Copy the public key over to your student VM</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> you@tsunami $ ssh-copy-id you@you.decal.xcf.sh
+</code></pre></div>    </div>
+
+    <p>This command, as its name suggests, copies your public key (by default, 
+ <code class="highlighter-rouge">~/.ssh/id_rsa.pub</code>) to the specified remote host, and appends the contents
+ of the public key to the <code class="highlighter-rouge">~/.ssh/authorized_keys</code> file, which is used to
+ control which keys are authorized to be used to authenticate a user. To see
+ specifically what happened, do <code class="highlighter-rouge">cat ~/.ssh/id_rsa.pub</code>) on <code class="highlighter-rouge">tsunami</code>
+ and then compare that to <code class="highlighter-rouge">cat ~/.ssh/authorized_keys</code> on your student VM.</p>
+  </li>
+</ol>
+
+<p>At the end <code class="highlighter-rouge">ssh-copy-id</code> will prompt you to attempt to log into the server 
+using your key. This should succeed.</p>
+
+<p><em>Checkoff: paste the contents of <code class="highlighter-rouge">~/.ssh/authorized_keys</code> from your 
+student VM.</em></p>
+
+<p>Checkoff bonus: configure <code class="highlighter-rouge">sshd</code> to only allow key-based login.</p>
+
+<h3 id="setting-up-a-firewall">Setting up a firewall</h3>
+
+<p>Although we’ve configured an 
+<a href="https://github.com/0xcf/decal-utils/blob/master/terraform/firewall.tf">external</a>
+firewall to protect your VMs from external connections, you should still set up an 
+internal, on-host firewall.</p>
+
+<p>To do this, install <code class="highlighter-rouge">ufw</code>, the Uncomplicated Firewall. <code class="highlighter-rouge">ufw</code> is a easy-to-use
+wrapper around the powerful <code class="highlighter-rouge">iptables</code> firewall. You should be able to figure out
+how to set up <code class="highlighter-rouge">ufw</code> using the guides linked earlier and your own Google-foo. In
+order to get checked off for this portion of the lab, ensure the following:</p>
+
+<ol>
+  <li>All incoming connections are blocked by default.</li>
+  <li>Allow incoming connections to your VM over port 22 (SSH), otherwise you’ll be
+locked out of your VM (as will we).</li>
+  <li>Allow incoming connections for the ports necessary for the operation of the
+software you’ll be installing later on in this lab, e.g. port 80 and/or 443
+for a web server.</li>
+  <li>Bonus points: Allow the above, but only for IPs originating from UC Berkeley’s
+subnet. UC Berkeley has 3 primary <code class="highlighter-rouge">/16</code>s.</li>
+  <li>Double bonus points: Configure <code class="highlighter-rouge">fail2ban</code> to block IP addresses that are trying
+to brute-force your SSH password.</li>
+</ol>
+
+<p><em>Checkoff: paste the output of <code class="highlighter-rouge">sudo ufw status verbose</code></em></p>
+
+<h2 id="choose-your-own-adventure">Choose your own adventure</h2>
+
+<p>At this stage, your task is to install a useful service on your VM. Here are some
+suggestions, but feel free to set up anything you’d like. Your submission will
+consist of explaining what you installed, and explaining any potential security
+implications you can think of. You don’t need to do all of them.</p>
+
+<h3 id="music-server">Music Server</h3>
+
+<p>Some music enthusiasts opt to own their own music files instead of using a cloud
+service (Spotify, Google Play Music, etc). But, if the files are only stored on
+your computer’s hard drive, how can you listen to your music when on someone else’s
+computer or on the go? A music server like <code class="highlighter-rouge">CherryMusic</code> can solve this problem
+while still giving you control over your files. Install
+<a href="http://www.fomori.org/cherrymusic/">CherryMusic</a> (or an
+<a href="https://github.com/Kickball/awesome-selfhosted#audio-streaming">alternative</a>]) on your
+DeCal VM, and load up a few tunes.</p>
+
+<h3 id="git-server">Git server</h3>
+
+<p>GitHub is a good place to host your source code, but self-hosting your own Git
+can be a good option if you need to store something private (and don’t trust GitHub),
+hosting your own can be a good solution. While you can use Git to host a repo on any
+SSH server using a <a href="http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/">bare repo</a>,
+to get a fancy GUI you need to install special software. Some popular options
+for this include <a href="https://gitea.io/en-us/">Gitea</a> (which mimicks GitHub’s interface)
+and <a href="https://git.zx2c4.com/cgit/about/">cgit</a> (which takes a more minimalist approach).
+Pick one and install it.</p>
+
+<h3 id="file-hosting">File Hosting</h3>
+
+<p>Instead of uploading your files to Google Drive or Dropbox to be shared, you can
+host on your own VM. A good option for this is <a href="https://github.com/chriskuehl/fluffy">fluffy</a>
+(created by an OCF alum!), which also doubles as a pastebin for quickly sharing code snippets.
+For more options, look at the the [“simple click/drag-n-drop upload” section of
+<a href="https://github.com/Kickball/awesome-selfhosted#single-clickdrag-n-drop-upload">awesome-selfhosted</a>.</p>
+
+<h3 id="password-manager">Password Manager</h3>
+
+<p><a href="https://blog.bitwarden.com/host-your-own-open-source-password-manager-ace147649936">BitWarden</a> is
+a popular self-hosted password manager. You can use it to host your passwords if you
+don’t want to rely on a proprietary third-party (like LastPass). Alternatives include
+<a href="https://passwordstore.org">pass</a> which is a user-friendly wrapper around <code class="highlighter-rouge">gpg</code>.</p>
+
+<h1 id="submission">Submission</h1>
+<p>After you’re done, fill out <a href="https://docs.google.com/forms/d/e/1FAIpQLSfu3ORniUMxG_2y9n-ZT5Shnv51F8Ohd180wr100LhHm3jfaA/viewform?usp=sf_link">this</a>.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:paranoia">
+      <p>https://www.amazon.com/Only-Paranoid-Survive-Exploit-Challenge/dp/0385483821 <a href="#fnref:paranoia" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 10 - Version Control and Backups - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 10 - Version Control and Backups</h1>
+  <h2 id="overview">Overview</h2>
+
+<p>In this lab, we’ll be talking about using version control, in particular Git, for keeping track of changes to your files and backing up your files to other machines. 
+We’ll be setting up <a href="http://gitolite.com/gitolite/index.html">Gitolite</a>, an open-source Git server that allows you to host Git repositories on other machines,
+and set access to Git repositories hosted on the Gitolite server.</p>
+
+<h2 id="a-git-primer">A Git Primer</h2>
+
+<p>Version control tools are designed to keep track of changes to files, and allow you to rewind to some last saved state. 
+Git, as one of the most popular version control tools in use today, supports these features, but also allows for more advanced workflows such as splitting a filebase into “branches” for experimentation.
+In order to complete this lab, you’ll need to know a few basic git commands and some terminology.</p>
+
+<ul>
+  <li>A folder can be made into a git <strong>repository</strong> by running <code class="highlighter-rouge">git init</code>, telling git that files under the folder can start being tracked by git. When a repository is initialized, git creates a hidden <code class="highlighter-rouge">.git</code> folder within the root folder to track the files’ histories.</li>
+  <li>A git repository can also be <strong>cloned</strong> from online by running <code class="highlighter-rouge">git clone [repository url]</code>, which will create a copy of the repository
+on your machine.</li>
+  <li>However, files do not have their changes tracked by git by default. In order to tell git to track changes made to a file, run <code class="highlighter-rouge">git add [file]</code>.</li>
+  <li>git groups a set of changes into a <strong>commit</strong>. Tracked files in a git repository do not have their contents saved in git until <code class="highlighter-rouge">git commit</code> is run. You can think of <code class="highlighter-rouge">git commit</code> as creating a snapshot of all modifications made to all tracked files since the last commit.</li>
+  <li>In order to back up changes in a repository to another machine, or download changes from another machine to your local machine, git allows you to set <strong>remotes</strong>. Adding a remote is done by running <code class="highlighter-rouge">git remote add [remote name] [remote url]</code>.</li>
+  <li>In order to back up changes on a local repository to a remote, run <code class="highlighter-rouge">git push [remote name]</code>. By convention, the primary remote set for a repository is named “origin”. If you clone a repository, its origin is automatically set to the URL you cloned from.</li>
+  <li>In order to download changes from a remote to a local repository, run <code class="highlighter-rouge">git pull [remote name]</code>.</li>
+</ul>
+
+<h2 id="gitolite">Gitolite</h2>
+
+<h3 id="generating-an-ssh-key">Generating an SSH key</h3>
+
+<p>Gitolite identifies its users through their SSH public key. Since you’ll need to interact with Gitolite from your OCF account on tsunami, in
+order to complete the lab, you’ll first have to generate an SSH keypair on tsunami.</p>
+
+<p>On <code class="highlighter-rouge">tsunami.ocf.berkeley.edu</code>, create a directory called <code class="highlighter-rouge">.ssh</code> in your home directory if it doesn’t already exist.
+Within <code class="highlighter-rouge">.ssh</code>, run <code class="highlighter-rouge">ssh-keygen</code> and hit enter until
+it finishes generating a public-private keypair. You’ll need to copy the contents of <code class="highlighter-rouge">.ssh/id_rsa.pub</code> later when installing Gitolite.</p>
+
+<h3 id="installing-gitolite">Installing Gitolite</h3>
+
+<p>Log into your <strong>DigitalOcean VM</strong> and install Gitolite using <code class="highlighter-rouge">apt</code>. The package name in the apt system is <code class="highlighter-rouge">gitolite3</code>.
+When you are prompted for the administrator’s SSH key, paste in the contents of <strong>id_rsa.pub</strong> (not <code class="highlighter-rouge">id_rsa</code>!) from the key you just
+generated on <code class="highlighter-rouge">tsunami</code>.
+If you mess up when configuring the admin SSH key or accidentally paste in the contents of <code class="highlighter-rouge">id_rsa</code>, you can run <code class="highlighter-rouge">sudo apt purge gitolite3</code>
+to remove the package and all of its config files, and try installing it again.</p>
+
+<p>After you’ve finished installing Gitolite, verify that it is running by running the command <code class="highlighter-rouge">ssh gitolite3@[your VM's address] info</code> from
+<code class="highlighter-rouge">tsunami</code>. It should produce an output similar to:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello admin, this is gitolite3@test running gitolite3 3.6.6-1 (Debian) on git 2.11.0
+
+ R W	gitolite-admin
+ R W	testing
+</code></pre></div></div>
+
+<h3 id="configuring-gitolite">Configuring Gitolite</h3>
+
+<p>Gitolite configuration, unusually, is done by cloning the <code class="highlighter-rouge">gitolite-admin</code> git repository hosted on the Gitolite server, modifying it,
+and sending the updated repository back by pushing.</p>
+
+<p>In order to clone the configuration repository to tsunami, run <code class="highlighter-rouge">git clone gitolite3@[username].decal.xcf.sh:gitolite-admin</code> from tsunami.
+If all goes well, a folder called <code class="highlighter-rouge">gitolite-admin</code> will appear in your current directory.</p>
+
+<h4 id="adding-a-new-user">Adding a New User</h4>
+
+<p>As the administrator of the Gitolite server, you automatically get an account on the Gitolite server (Gitolite accounts are entirely separate
+from Linux user accounts). For the purposes of this lab’s checkoff, we’ll have you add a new user to the Gitolite server, which will be done
+by adding a new file in the <code class="highlighter-rouge">keydir/</code> subdirectory that contains the SSH public key of the new Gitolite user.</p>
+
+<p>Navigate to the directory <code class="highlighter-rouge">keydir</code> under the <code class="highlighter-rouge">gitolite-admin</code> folder. Create a new file named <code class="highlighter-rouge">decal-checkoff.pub</code> using the editor of your choice, and paste in this SSH public key:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDY1qy6OE8M1gZWhyBsjE66ip+3mQpDWhP7LvT2uBloHqY6s/AkuB9Ao3hbLkJuKPghDII4UOH4DGzvcBypTjh5ClxHRMY3mInTJ6OSOuyF1lpw3SYkbIWlVWkyUABqUkt4pgWuiK6gz8egNtOo4XWf2254D+HGuYxHmLq+CInQcdqU9Wy8xmxMaq4RVqDnlmItHW6EZb4b09I87Z5T4mnc148d8p/cZ2oKXWC20EOyg55UVeTVTZw4ETzDXFFL1rOQPiMMjVfnXqoubsUCBjrctryQcxCLL3m3bOEHexAiRYmD5ItR4EiEBxiWaglBMu6OhcVYDHOQ2MEnGFbuhqXH test@test
+</code></pre></div></div>
+
+<p>After the key has been added, you’ll need to add, commit, and push the file to the Gitolite server through Git.
+Assuming you are in <code class="highlighter-rouge">keydir/</code>, run <code class="highlighter-rouge">git add decal-checkoff.pub</code> to track the file under Git, <code class="highlighter-rouge">git commit</code> with a message describing the changes made in the commit,
+and finally <code class="highlighter-rouge">git push origin</code> to push the changes up to the Gitolite server.</p>
+
+<h4 id="adding-a-new-git-repository">Adding a new Git repository</h4>
+
+<p>Now that you’ve added a new Gitolite user, you’ll need to create a new Git repository that they can access.
+In Gitolite, this is done by modifying the <code class="highlighter-rouge">conf/gitolite.conf</code> file within the <code class="highlighter-rouge">gitolite-admin</code> repository.</p>
+
+<p>Edit <code class="highlighter-rouge">gitolite.conf</code> to create a new repository with name <code class="highlighter-rouge">decal-checkoff</code> with <code class="highlighter-rouge">RW+</code> access given to both <code class="highlighter-rouge">admin</code> (you) and <code class="highlighter-rouge">decal-checkoff</code>.
+Hopefully, you can figure out what format Gitolite expects by looking at the entires for the <code class="highlighter-rouge">admin</code> and <code class="highlighter-rouge">testing</code> repositories.
+The only gotcha is that multiple users have to separated by a space and nothing else.</p>
+
+<p>Once you have done that, follow the same Git workflow as with <code class="highlighter-rouge">decal-checkoff.pub</code> to add, commit, and push the changes to <code class="highlighter-rouge">gitolite.conf</code>
+to the Gitolite server.</p>
+
+<p>If you’ve done everything correctly, running <code class="highlighter-rouge">ssh gitolite3@[username].decal.xcf.sh info</code> should display something like:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello admin, this is gitolite3@test running gitolite3 3.6.6-1 (Debian) on git 2.11.0
+
+ R W	decal-checkoff
+ R W	gitolite-admin
+ R W	testing
+</code></pre></div></div>
+
+<p>However, please make sure that you have added the <code class="highlighter-rouge">decal-checkoff</code> user and given it permissions for the <code class="highlighter-rouge">decal-checkoff</code> repository,
+as we will be using the <code class="highlighter-rouge">ssh info</code> command to check you off for the lab, and the command only works if the <code class="highlighter-rouge">decal-checkoff</code> user has been
+added properly.</p>
+
+<h2 id="backups">Backups</h2>
+
+<p>We’ll be briefly practicing using <code class="highlighter-rouge">rsync</code>, a powerful file transfer tool often used in backup scenarios. It is difficult to 
+overstate the degree to which <code class="highlighter-rouge">rsync</code> and the rsync delta-transfer algorithm are used in the real world.</p>
+
+<p>On a superficial level, <code class="highlighter-rouge">rsync</code> works similarly to <a href="https://linux.die.net/man/1/scp"><code class="highlighter-rouge">scp</code></a> - it copies files from <code class="highlighter-rouge">src</code> to <code class="highlighter-rouge">dst</code>, optionally over the network,
+over SSH. What makes <code class="highlighter-rouge">rsync</code> in particular so powerful is its ability to keep two directories synchronized
+while transferring little beyond the absolute difference in files between the two directories. It does this by calculating 
+the differences between blocks in a file, and only transferring the difference (the ‘delta’). By default, it assumes that a file is unchanged if its last modified time is not newer.
+For example, if one line in a 1-GB text file is changed, rsync won’t transfer the entire file again, but will send the one line that changed.</p>
+
+<p>The basic syntax of <code class="highlighter-rouge">rsync</code> is <code class="highlighter-rouge">rsync [options] [[user]@host:]source [[user]@host:]dest</code> - you can either transfer files
+in the local filesystem, between the local system and a network host, or between network hosts.</p>
+
+<p><code class="highlighter-rouge">rsync</code> has dozens of options, but the most common are the following:</p>
+<ul>
+  <li><code class="highlighter-rouge">-r</code> <code class="highlighter-rouge">--recursive</code>: recursively transfer all files and subdirectories in the source</li>
+  <li><code class="highlighter-rouge">-v</code> <code class="highlighter-rouge">--verbose</code>: verbosely print out file names and transfer speeds</li>
+  <li><code class="highlighter-rouge">-P</code> <code class="highlighter-rouge">--partial --progress</code>: keep partially transferred files if the transfer is interrupted, show progress of file transfers</li>
+  <li><code class="highlighter-rouge">-a</code> <code class="highlighter-rouge">--archive</code>: combination option, implies <code class="highlighter-rouge">-r</code>, and preservation of most file metadata properties</li>
+  <li><code class="highlighter-rouge">-u</code> <code class="highlighter-rouge">--append</code>: append data to the end of files on the destination that are smaller than the corresponding
+                 file on the source (useful for log files, dangerous if used on files that do not only grow by appending data)</li>
+  <li><code class="highlighter-rouge">-z</code> <code class="highlighter-rouge">--compress</code>: compress files before transfer (Only useful for <code class="highlighter-rouge">rsync</code>ing over the network)</li>
+</ul>
+
+<p>Suppose you keep all your homework in a directory “school”, in your home directory:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user@machine [~/school] $ ls
+cs198-8
+cs61a
+cs262
+some_r1a
+ds8
+</code></pre></div></div>
+<p>and you want to back everything to your student VM. A command like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rsync -rvPaz ~/school user@user.decal.xcf.sh:school-backup/
+</code></pre></div></div>
+
+<p>would result in a copy of your <code class="highlighter-rouge">school</code> directory being made inside the <code class="highlighter-rouge">school-backup</code> directory on your student VM.</p>
+
+<p>Play around with <code class="highlighter-rouge">rsync</code> yourself. We’ve provided some test files <a href="https://decal.ocf.berkeley.edu/static/b10/b10.tar.gz">here</a>. (hint: use <code class="highlighter-rouge">wget</code>).
+After extracting the archive, (<code class="highlighter-rouge">tar xzvf b10.tar.gz</code>), you’ll see two directories with over 100MB of files in them.</p>
+
+<ul>
+  <li>
+    <p>What happens if you try <code class="highlighter-rouge">rsync</code>ing <code class="highlighter-rouge">dir1</code> to <code class="highlighter-rouge">dir2</code> using <code class="highlighter-rouge">rsync -rac dir1 dir2</code>? (hint: it should finish almost instantaneously). Why might this be the case?</p>
+  </li>
+  <li>
+    <p>What <code class="highlighter-rouge">rsync</code> commands would you use to keep both directories in sync, from updating the source to dest and dest to source?</p>
+  </li>
+  <li>
+    <p>What happens if you truncate one of the files in the dest directory (e.g. <code class="highlighter-rouge">dir2</code>, by <code class="highlighter-rouge">truncate --size=5M file2.txt</code>) and then try <code class="highlighter-rouge">rsync</code> from source to dest again?</p>
+  </li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Now that you know how to set up a Gitolite server and add users and repositories to it, you can now use your VM (before we delete it at the end of the semester)
+as a git remote to back up your programming projects, fanfic collections, etc., free from the prying eyes of our Github overlords.</p>
+
+<h2 id="checkoff">Checkoff</h2>
+
+<p>The checkoff form is <a href="https://goo.gl/forms/8QMYcjnHHQQT426A3">here</a>. Please double-check that you’ve completed the Gitolite section successfully, as we will be running <code class="highlighter-rouge">ssh gitolite3@[username].decal.xcf.sh info</code> to
+check you off on the Gitolite section. If you’d like to double-check that you added the decal-checkoff user properly, you can add another new user with a different SSH key (maybe from your laptop or an OCF desktop),
+and run the <code class="highlighter-rouge">ssh info</code> command from that machine.</p>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

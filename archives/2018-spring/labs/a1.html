@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Advanced Lab 1 - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Advanced Lab 1</h1>
+  <p>Lecture: Thurs 2/1
+Released: Mon 2/5
+Due: End of Feb</p>
+
+<h1 id="advanced-section-lab-1">Advanced section, Lab 1</h1>
+
+<h2 id="grading-note">Grading note</h2>
+<p>Labs are graded on completion. Treat this lab as seeds of exploration instead 
+of just a grade. If you don’t pass on the first submission, you can have it 
+checked off in-person by a decal facilitator.</p>
+
+<p>Since you know how to use unix tools (though you may be more or less familiar 
+with certain tools), the goal of this lab is to drop you in the wilderness. You 
+can find your way out! :D</p>
+
+<h2 id="composability--workflows">Composability &amp; workflows</h2>
+<p>This lab can be done on your own UNIX-like machine, or you can ssh into 
+<code class="highlighter-rouge">tsunami.ocf.berkeley.edu</code> using your OCF account to finish the lab there. As 
+always, <code class="highlighter-rouge">man</code> and Google will be your friends.</p>
+
+<h3 id="shell-web-fetching-parsing-and-frequency-analysis">Shell. web fetching, parsing, and frequency analysis.</h3>
+<ul>
+  <li>
+    <p>[ ] Download Alice in Wonderland by parsing out a download link from Project 
+Gutenberg.</p>
+
+    <p>https://www.gutenberg.org/ebooks/11</p>
+  </li>
+</ul>
+
+<p>As it turns out, Project Gutenberg doesn’t like users of <code class="highlighter-rouge">curl</code>, and will 
+demand you enable javascript.  It’s probably a resonable defense against
+naive abuse of <code class="highlighter-rouge">curl</code> by people scraping the site, but it’s annoying to deal 
+with.</p>
+
+<p>You can just tell the server that you’re Firefox instead:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -s -A "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/51.0.2704.79 Chrome/51.0.2704.79 Safari/537.36" https://www.gutenberg.org/
+</code></pre></div></div>
+
+<p>Credit to: <a href="https://medium.com/@gurditsbedi/automating-download-from-project-gutenberg-using-the-linux-terminal-e9f35bbbd06c">gurditsbedi on 
+medium</a></p>
+
+<ul>
+  <li>[ ] Isolate the body content from the headers and footers, perhaps saving to 
+an intermediate file.</li>
+</ul>
+
+<p>Hints:</p>
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">less</code> may be useful for inspection, and <code class="highlighter-rouge">sed</code> with no-echo option.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">sed</code>’s “#,#p” line-number/print argument (play with ranges, offset, and 
+start/end of file chars…twist on regex line terminators).</p>
+  </li>
+  <li>
+    <p>[ ] Process the document to get word counts. You may need to clean up the 
+data, especially punctuation.</p>
+  </li>
+</ul>
+
+<p>Hints:</p>
+
+<ul>
+  <li>
+    <p>As with all text processing in the shell, regex 
+will be your friend (and worst enemy). Check out <a href="https://regexr.com/">regexr</a> 
+to help you construct proper regular expressions.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">grep</code> has options to match whole words, and to print only match-contents 
+(instead of a whole line containing a match). You need not use 
+“regex-grouping”, just a pattern.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">sed</code> may also be useful for filtering by whitelisting and/or blacklisting 
+characters. In either case, character classes <code class="highlighter-rouge">[_]</code> and (defining them 
+negatively) <code class="highlighter-rouge">[^_]</code> can help. In both cases, use, but beware the <code class="highlighter-rouge">-</code> dash 
+character: it gets interpreted as a range and triggers cryptic errors when that 
+range is invalid. <code class="highlighter-rouge">tr</code>, <code class="highlighter-rouge">cut</code>, <code class="highlighter-rouge">sort</code>, and <code class="highlighter-rouge">uniq</code> also may be
+useful.</p>
+  </li>
+</ul>
+
+<h3 id="questions-answer-on-google-form">Questions (answer on Google form)</h3>
+<ol>
+  <li>What are the top 10 words, and their frequency?</li>
+</ol>
+
+<h2 id="niche-tools--little-support">niche tools &amp; little support</h2>
+
+<h3 id="jq-jshawn">jq. jshawn.</h3>
+<p>These tools allow you to parse, restructure, and create 
+<a href="https://www.json.org/">JSON</a> documents on the 
+command line. Today, we’re using <code class="highlighter-rouge">jq</code>. It should be installed already on <code class="highlighter-rouge">tsunami</code></p>
+
+<ul>
+  <li>[ ] Get location, lat long from a json api.</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl 'http://api.geonames.org/postalCodeSearchJSON?postalcode=12345&amp;maxRows=10&amp;username=ocf_decal' -o location.json
+</code></pre></div></div>
+<ul>
+  <li>[ ] Parse out values with <code class="highlighter-rouge">jq</code>
+Some command snippets that may help you with <code class="highlighter-rouge">jq</code>:</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat location.json  \
+        | jq '.postalCodes[] | select(.placeName=="Berkeley") | {"lat": .lat, 
+"long": .lng}'
+
+    location.json -&gt; { key: [ {...}, {...}] }
+    jq '.key'   -&gt; [1,2]
+    jq '.key[]' -&gt; 1,2
+
+    jq '.[] | select(.key == "value")'
+
+    jq '. | { "k1": .key1, "k2": .key2 }'
+</code></pre></div></div>
+
+<ul>
+  <li>[ ] Get ISS flyovers by location.
+Docs:
+  http://open-notify.org/Open-Notify-API/ISS-Pass-Times/</li>
+</ul>
+
+<p>Consider using the pipemill pattern with <code class="highlighter-rouge">date</code>. It can take an argument for 
+time to display, but it requires some syntax mangling you can find in the man 
+pages.</p>
+
+<h3 id="questions">Questions</h3>
+<ol>
+  <li>When is the next flyovers of Berkeley? Berlin?</li>
+</ol>
+
+<p>(Look up at the sky.)</p>
+
+<h4 id="other-apis">Other APIs</h4>
+<p>SpaceX has a <a href="https://github.com/r-spacex/SpaceX-API">beautiful API</a> presenting 
+information about at least launches.
+Something you found fun or interesting (optional)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://github.com/toddmotto/public-apis
+https://github.com/jdorfman/awesome-json-datasets
+https://www.data.gov/
+</code></pre></div></div>
+
+<h2 id="submission">Submission</h2>
+<p>Fill out the <a href="https://goo.gl/forms/ukSe8KIW96Egrbh72">Google form</a></p>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

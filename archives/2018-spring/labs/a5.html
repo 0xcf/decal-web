@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 5 - Networking 102 - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 5 - Networking 102</h1>
+  <h2 id="overview">Overview</h2>
+<p>This lab will go over some concepts of networking and how certain parts of a network stack are implemented and configured in linux systems.  <strong>It is assumed that you are familiar with concepts presented in the basic lab found <a href="/labs/b5">here</a>.</strong></p>
+
+<p><strong>Additionally more information about certain files discussed here can be found in their corresponding <code class="highlighter-rouge">man</code> pages by typing <code class="highlighter-rouge">man &lt;filename&gt;</code>.</strong></p>
+
+<hr />
+
+<h2 id="network-interfaces">Network Interfaces</h2>
+
+<p>Network interfaces represent a point of connection between a computer and a network.  Typically network interfaces are associated with a physical piece of hardware e.g. a network interface card.  However interfaces can be entirely implemented in software and have no physical counterpart – take the loopback interface <code class="highlighter-rouge">lo</code> for example.  <code class="highlighter-rouge">lo</code> is a virtual interface, it simulates a network interface with only software.</p>
+
+<h3 id="etcnetworkinterfaces">/etc/network/interfaces</h3>
+<p>Network interface configuration is stored under the <strong>/etc/network/interfaces</strong> file on your system.  This file defines how interfaces should be configured, and there is plenty of room for complexity.  For example, you can have certain interfaces automatically brought up by hooking them to system boot scripts or specify some interfaces to only be available under certain circumstances, with some of the provided control flow options.</p>
+
+<p>This lab will go over some common configuration keywords but keep in mind there is much more to the file. For a detailed page of the features and syntax of the file simply type <code class="highlighter-rouge">man interfaces</code> to pull up the <code class="highlighter-rouge">man</code> page for the file.</p>
+
+<p>Firstly, configurations are logically divided into units known as <a href="https://askubuntu.com/questions/863274/what-is-a-stanza-in-linux-context-and-where-does-the-world-come-from">stanzas</a>.  The <strong>/etc/network/interfaces</strong> file is comprised of zero or more stanzas which begin with <code class="highlighter-rouge">iface</code>,  <code class="highlighter-rouge">mapping</code>, <code class="highlighter-rouge">auto</code>, <code class="highlighter-rouge">allow-</code>, <code class="highlighter-rouge">source</code>, or <code class="highlighter-rouge">source-directory</code>.  For brevity, we will go over the two most commonly used stanzas <code class="highlighter-rouge">auto</code> and <code class="highlighter-rouge">iface</code>.</p>
+
+<p>The <code class="highlighter-rouge">auto</code> stanza is fairly simple, its syntax is <code class="highlighter-rouge">auto &lt;iface&gt;</code>.  The <code class="highlighter-rouge">auto</code> stanza flags an interface to be brought up whenever <code class="highlighter-rouge">ifup</code> is run with the <code class="highlighter-rouge">-a</code> option (More on <code class="highlighter-rouge">ifup</code> below).  Additionally, since system boot scripts use <code class="highlighter-rouge">ifup</code> with the <code class="highlighter-rouge">-a</code> option, this means that these interfaces are brought up during boot.  Multiple <code class="highlighter-rouge">auto</code> stanzas will be executed in the same order as they are written in the file.</p>
+
+<p>The <code class="highlighter-rouge">iface</code> stanzas has much more syntax and lets you express complex configurations for individual interfaces by leveraging its features. It’s syntax is <code class="highlighter-rouge">iface &lt;iface&gt; &lt;address-family&gt; &lt;method&gt;</code>.  Let’s go over some of the arguments the stanza takes.</p>
+
+<p><code class="highlighter-rouge">&lt;address-family&gt;</code> identifies the addressing that the interface will be using. The most common address families that you’re probably familiar with are:</p>
+<ul>
+  <li>IPv4 denoted by <code class="highlighter-rouge">inet</code> in the file</li>
+  <li>IPv6 denoted by <code class="highlighter-rouge">inet6</code> in the file</li>
+</ul>
+
+<p>Address families can be configured via different methods expressed by the <code class="highlighter-rouge">&lt;method&gt;</code> option.  Some common methods you should be familiar with are:</p>
+<ul>
+  <li><code class="highlighter-rouge">loopback</code> defines this interface as the loopback</li>
+  <li><code class="highlighter-rouge">dhcp</code> is for interface configuration via a DHCP server.</li>
+  <li><code class="highlighter-rouge">static</code> is for static interface configuration</li>
+  <li><code class="highlighter-rouge">manual</code> brings up the interface with <strong>no</strong> default configuration.</li>
+</ul>
+
+<p>Methods also have options that let you supply certain configuration parameters.  For example, for the <code class="highlighter-rouge">static</code> method you can additionally use the <code class="highlighter-rouge">address &lt;ip-address&gt;</code> and <code class="highlighter-rouge">netmask &lt;mask&gt;</code> options to specify the static IP address and netwask you want the interface to use.</p>
+
+<p>Moreover, the <code class="highlighter-rouge">iface</code> stanza additionally has its own options compatible with all families and methods.  To present just a few, we have:</p>
+<ul>
+  <li><code class="highlighter-rouge">pre-[up|down] &lt;command&gt;</code> runs the given <code class="highlighter-rouge">&lt;command&gt;</code> before the interface is either taken up or down</li>
+  <li><code class="highlighter-rouge">post-[up|down] &lt;command&gt;</code> runs the given <code class="highlighter-rouge">&lt;command&gt;</code> after the interface is either taken up or down</li>
+</ul>
+
+<p>As a final note, any changes to the configurations done in this file during runtime are <strong>not</strong> applied automatically.  Changes have to be reloaded via calls to <code class="highlighter-rouge">ifupdown</code>, the de facto command suite for interacting with <strong>/etc/network/interfaces</strong>.</p>
+
+<h2 id="proc-filesystem">/proc filesystem</h2>
+
+<p><code class="highlighter-rouge">proc</code> is special since it is a virtual filesystem.  <code class="highlighter-rouge">proc</code> presents runtime system information in a file-like structure.  This file-like interface provides a standardized method for querying and interacting with the kernel.  The kernel dumps metrics in the read-only files located in this directory and using a tool like <code class="highlighter-rouge">cat</code> lets a user dynamically read those files at runtime.  But keep in mind, there are no ‘real’ files within <code class="highlighter-rouge">proc</code>.</p>
+
+<h3 id="procnet">/proc/net/</h3>
+<p>We will be focusing on certain portions of <code class="highlighter-rouge">proc</code>, the first of which being <strong>/proc/net/</strong>.  This subdirectory in <code class="highlighter-rouge">proc</code> contains information about various parts of the network stack in the form of virtual files.  Many commands, such as netstat, use these files when you run them.</p>
+
+<h4 id="procnetdev">/proc/net/dev</h4>
+<p>This file contains information and statistics on network devices.  <code class="highlighter-rouge">ifconfig</code> is an example command that reads from this file.  Take a look below and notice how the information presented in the ifconfig output corresponds to data dumped in <code class="highlighter-rouge">dev</code> on how many bytes and packets have been received or transmitted by an interface.
+<img src="https://i.imgur.com/MC03IMA.png" alt="alt text" title="/proc/net/dev" /></p>
+
+<h4 id="procnettcpudpraw">/proc/net/[tcp|udp|raw]</h4>
+<p>The<code class="highlighter-rouge">tcp</code>, <code class="highlighter-rouge">raw</code>, and <code class="highlighter-rouge">udp</code> files each contain metrics on open system sockets for their respective protocols, i.e. reading <code class="highlighter-rouge">tcp</code> displays info on TCP sockets.  As a side note, raw sockets are network sockets that offer a finer degree of control over the header and payload of packets at each network layer as opposed to leaving that responsibility to the kernel.  They are ideal for uses cases that send or receive packets of a type not explicitly supported by a kernel, think ICMP. For additional information check <a href="http://opensourceforu.com/2015/03/a-guide-to-using-raw-sockets/">this article</a> out. These files are read by <code class="highlighter-rouge">ss</code>, <code class="highlighter-rouge">netstat</code>, etc. Check out the example for tcp below.
+<img src="https://i.imgur.com/5ETFK84.png" alt="alt text" title="/proc/net/tcp" /></p>
+
+<h4 id="procnetroute">/proc/net/route</h4>
+<p>This file contains information about the kernel routing table.  Some commands that use this file include <code class="highlighter-rouge">ip</code> and <code class="highlighter-rouge">netstat</code>. Take a look at how the file is parsed and processed by the <code class="highlighter-rouge">netstat</code> command.</p>
+
+<p><img src="https://i.imgur.com/tD3oKfO.png" alt="alt text" /></p>
+
+<h4 id="procnetarp">/proc/net/arp</h4>
+<p>This file contains a dump of the system’s ARP cache.  The <code class="highlighter-rouge">arp</code> command reads from this file.  For example, look at how closely the output of the <code class="highlighter-rouge">arp</code> command resembles the raw text dumped by the kernel into the file.</p>
+
+<p><img src="https://i.imgur.com/CI7nUJL.png" alt="alt text" /></p>
+
+<h4 id="procnetsnmp">/proc/net/snmp</h4>
+<p>This file contains statistics intended to be used by SNMP agents, which are a part of the Simple Network Management Protocol (SNMP).  Regardless of whether or not your system is running SNMP, the data in this file is useful for investigating the network stack.  Take the screenshot below for example, examining the fields we see <code class="highlighter-rouge">InDiscards</code> which according to <a href="https://tools.ietf.org/html/rfc1213">RFC 1213</a> indicates packets that are discarded since problems were encountered that prevented their continued processing.  Lack of buffer space is a possible cause of having a high number of discards.  Having a statistic like this one, amonst others, can help pinpoint a network issue.   For additional information on fields please refer to the header file <a href="https://elixir.bootlin.com/linux/v4.4/source/include/net/snmp.h">here</a>.  The image is a bit small so feel free to <strong>right click -&gt; “Open image in a new tab” to magnify the output.</strong></p>
+
+<p><img src="https://i.imgur.com/5vomFYZ.png" alt="alt text" /></p>
+
+<h3 id="procsys">/proc/sys/</h3>
+<p>Whereas the files and subdirectories mentioned above are read-only that isn’t true about the <strong>/proc/sys</strong> subdirectory which contains virtual files that also allow writes.  You can not only query for system runtime parameters but also write new parameters into these files.  This means you have the power to adjust kernel behavior without the need for a reboot or recompilation.</p>
+
+<p><strong>Mind-blowing.</strong></p>
+
+<p>While the <strong>/proc/sys</strong> directory contains a variety of subdirectories corresponding to aspects of the machine, the one we will be focusing on is <strong>/proc/sys/net</strong> which concerns various networking topics. Depending on configurations at the time of kernel compilation, different subdirectories are made available in <strong>/proc/sys/net</strong>, such as <code class="highlighter-rouge">ethernet/</code>, <code class="highlighter-rouge">ipx/</code>, <code class="highlighter-rouge">ipv4/</code>, and etc.  Given the sheer variety of possible configurations, we will confine the scope of this discussion to the most common directories.</p>
+
+<h4 id="procsysnetcore">/proc/sys/net/core/</h4>
+<p><code class="highlighter-rouge">core/</code> is the first subdirectory that we’ll cover.  As its name implies, it deals with core settings that direct how the kernel interacts with various networking layers.</p>
+
+<p>Now we can go over some specific files in this directory, their functionality, and motivations behind adjusting them.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">message_burst</code> and <code class="highlighter-rouge">message_cost</code>
+Both of these parameters take a single integer argument and together control the logging frequency of the kernel.  <code class="highlighter-rouge">message_burst</code> defines entry frequency and <code class="highlighter-rouge">message_cost</code> defines time frequency in seconds. For example, let’s take a look at their defaults. <code class="highlighter-rouge">message_burst</code> defaults to 10 and <code class="highlighter-rouge">message_cost</code> defaults to 5.   This means the kernel is limited to logging 10 entries every 5 seconds.</p>
+
+    <p>When adjusting the parameters in these two files, a sysadmin must keep in mind that the tradeoff here is between the granularity of the logs and the performance/storage limitations of the system.  Increasing overall logging frequency can translate to a hit to system performance or huge log files eating up disk.  But if logging is too infrequent, parts of the network may fail silently and bugs may become much harder to identify.</p>
+  </li>
+  <li><code class="highlighter-rouge">netdev_max_backlog</code>
+This file takes one integer parameter that defines the maximum number of packets allowed to queue on a particular interface.</li>
+  <li><code class="highlighter-rouge">rmem_default</code> and <code class="highlighter-rouge">rmem_max</code>
+These files define the default and maximum buffer sizes for receive sockets, respectively.</li>
+  <li>
+    <p><code class="highlighter-rouge">smem_default</code> and <code class="highlighter-rouge">smem_max</code>
+These files define the default and maximum buffer sizes for send sockets, respectively.</p>
+
+    <p>For the above sets of system parameters, adjusting queue lengths have the nice effect of allowing our system to hold more packets and avoid dropping packets due to a fast sender for example.  This boils down to optimizing flow control.  However, there is no such thing as a free lunch.  Increasing queue sizes can only mitigate problems with arrival rates being greater than service rates for so long.  For more information on why that is check out <a href="https://en.wikipedia.org/wiki/Queueing_theory">queueing theory</a>.  Moreover, having many packets stored in long queues also has its own drawback.  Storing packet information isn’t free and the more packets stored in the queue, the more resources the system needs.  As a result, too many packets may lead to increased <a href="https://en.wikipedia.org/wiki/Paging">paging</a> and ultimately <a href="https://en.wikipedia.org/wiki/Thrashing_(computer_science)">thrashing</a>.  Once again, we have another tradeoff, but this time between flow control and paging.</p>
+  </li>
+</ul>
+
+<p>As a sysadmin many of the configuration decisions you make will be balancing between two extremes and the optimal point isn’t hard and fast.  Many times you’ll have to adjust system parameters on a case-by-case basis and, after empirical testing, come to a good point.</p>
+
+<h4 id="procsysnetipv4">/proc/sys/net/ipv4/</h4>
+<p><code class="highlighter-rouge">ipv4/</code> is another common subdirectory that contains setting relevant to IPv4.  Often the settings used in this subdirectory are used, in conjunction with other tools, as a security measure to mitigate network attacks or to customize behavior when the system acts as a router.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">icmp_echo_ignore_all</code>
+This file configures the system’s behavior towards ICMP ECHO packets.  This file has two states <code class="highlighter-rouge">0</code> for off and <code class="highlighter-rouge">1</code> for on.  If on, the system will ignore ICMP ECHO packets from every host.</li>
+  <li><code class="highlighter-rouge">icmp_echo_ignore_broadcasts</code>
+This file is similar to the one above, except turning this parameter on only makes the system ignore ICMP ECHO packets from broadcast and multicast.</li>
+</ul>
+
+<p>One argument against disabling ICMP is that it makes obtaining diagnostic information about servers much harder.  The output of tools that rely on ICMP, i.e. <code class="highlighter-rouge">ping</code>, are no longer as useful. On the other hand, allowing ICMP might be a bad idea if your goal is to hide certain machines.  Additionally, ICMP has been used in the past in <a href="https://en.wikipedia.org/wiki/Ping_of_death">DOS attacks</a>.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">ip_forward</code>
+Turning this parameter on permits interfaces on the system to forward packets.  Take for example, if your computer has two interfaces, each connected to two different subnets, <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>.  While your machine can individually send and receive traffic to hosts on either network, machines on <code class="highlighter-rouge">A</code> cannot send packets to machines on <code class="highlighter-rouge">B</code> via your machine.  Turning <code class="highlighter-rouge">ip_forward</code> on is the first step to configuring your linux machine to act as a router.  It is common to see this on machines that act as VPN servers, forwarding traffic on behalf of hosts.</p>
+  </li>
+  <li><code class="highlighter-rouge">ip_default_ttl</code>
+This is a simple file that configures the default TTL (time to live) for outbound IP packets.</li>
+  <li><code class="highlighter-rouge">ip_local_port_range</code>
+This file takes two integer parameters.  The first integer specifies the lower bound of the range and the second specifies the upper bound.  Together, the two numbers define the range of ports that can be used by TCP or UDP when a local port is needed.  For example, when a socket is instantiated to send a TCP SYN, the port given to the socket is selected by the operating system and lies within the specified range.  The ports in this range are as known as <a href="https://en.wikipedia.org/wiki/Ephemeral_port">ephemeral ports</a>.</li>
+  <li><code class="highlighter-rouge">tcp_syn_retries</code>
+This file limits the number of times the system re-transmits a SYN packet when attempting to make a connection.  When attempting to connect to either a ‘flaky’ host or over a ‘flaky’ network, setting this number higher might be desirable.  But this comes at the cost of adding additional traffic to the network and potential blocking other processes while waiting for a SYN-ACK that might never come.</li>
+  <li><code class="highlighter-rouge">tcp_retries1</code>
+This file limits the number of re-transmissions before signaling the network layer about a potential problem with the connection.</li>
+  <li><code class="highlighter-rouge">tcp_retries2</code>
+This file limits the number of re-transmissions before killing active connections.  This implies the following relationship: <code class="highlighter-rouge">tcp_retries2</code> &gt;= <code class="highlighter-rouge">tcp_retries1</code>.  The two retry values configure how ‘patient’ your system should be when it comes to waiting on <a href="https://www.extrahop.com/company/blog/2016/retransmission-timeouts-rtos-application-performance-degradation/">RTOs</a>.</li>
+</ul>
+
+<p><strong>Additional information on configurable system parameters can be found either at this <a href="https://www.frozentux.net/ipsysctl-tutorial/chunkyhtml/index.html">tutorial</a> or in documentation via <a href="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt">kernel.org</a> or <a href="https://elixir.bootlin.com/linux/v4.4/source/Documentation/networking/ip-sysctl.txt">bootlin</a>.</strong></p>
+
+<h2 id="arp-configuration">ARP configuration</h2>
+<p>The entries in the kernel’s arp cache can be read during system runtime via <strong>/proc/net/arp</strong> as mentioned above.</p>
+
+<p>Additionally, ARP can be configured with persistent static entries.  This typically done via a file.  Batches of static entries can be included in such a file.  The line-by-line format should be <code class="highlighter-rouge">&lt;mac-address&gt; &lt;ip-address&gt;</code>.  To load the file’s entries into the system’s ARP cache one can run <code class="highlighter-rouge">arp -f &lt;file&gt;</code>.  Typically the file that holds these entries has the path <strong>/etc/ethers</strong>.</p>
+
+<p>Static ARP entries are cleared from the system ARP cache on reboot, meaning one would have to run the above command on each boot if we wanted the mappings to ‘persist’.  To automate the procedure of running the command we can leverage the interface configuration workflow.  Recall that <strong>/etc/network/interfaces</strong> provides the <code class="highlighter-rouge">auto</code> stanza to identify interfaces to be automatically configured on boot.  Used in conjunction with the <code class="highlighter-rouge">iface</code> stanza and its <code class="highlighter-rouge">post-up &lt;command&gt;</code> option, we can execute the <code class="highlighter-rouge">arp -f /etc/ethers</code> command. This effectively has static entries ‘persist’ by having them added alongside interface configuration during boot.</p>
+
+<h2 id="dns-configuration">DNS configuration</h2>
+
+<p>Some of the DNS configuration files that we will be going over are <strong>/etc/hosts</strong>, <strong>/etc/resolv.conf</strong>, <strong>/etc/nsswitch.conf</strong>.</p>
+
+<h3 id="etchosts">/etc/hosts</h3>
+
+<p>This is simple text file that stores static mappings from IP addresses to hostnames.  The format for each line is <code class="highlighter-rouge">&lt;ip-address&gt; &lt;cannonical-hostname&gt; [aliases]</code>.  An example line would be
+<code class="highlighter-rouge">31.13.70.36 www.facebook.com fb ZuccBook</code></p>
+
+<p>Thanks to this entry we have mapped <code class="highlighter-rouge">www.facebook.com</code> and any aliases we listed to <code class="highlighter-rouge">31.13.70.36</code>.  A very common example entry is <code class="highlighter-rouge">localhost</code> which also has the aliases <code class="highlighter-rouge">ip6-localhost</code>,<code class="highlighter-rouge">ip6-loopback</code> which explains why running something like <code class="highlighter-rouge">ping localhost</code> or <code class="highlighter-rouge">ping ip6-loopback</code> works. This file is one way to manually define translations for certain hostnames.</p>
+
+<h3 id="etcresolvconf">/etc/resolv.conf</h3>
+<p>Whereas <strong>/etc/hosts</strong> is for static translations of specific hostnames, many times we want to dynamically resolve names by issuing a query to a name server.  There are usually many nameservers, public or private, available to fufill such a query and deciding which ones to query is the job of <strong>/etc/resolv.conf</strong> amongst other configuration options.</p>
+
+<p><strong>/etc/resolv.conf</strong> is the configuration file for the system resolver which is the entity that communciates with DNS name servers on your machine’s behalf.  If this file does not exist, queries will default to the name server on your local machine.  This file consists of one <code class="highlighter-rouge">domain</code> or <code class="highlighter-rouge">search</code> lines up to three <code class="highlighter-rouge">nameserver</code> lines and any number of options.  Let’s dive into the details behind these configuration options.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">domain</code>
+Using this option will specific a local domain name.  Short queries, which are queries that don’t contain any domain identifiers, then have the local domain appended to them during DNS queries.</p>
+
+    <p>To understand this better take <code class="highlighter-rouge">death</code> as one of the machines within the OCF domain, <code class="highlighter-rouge">ocf.berkeley.edu</code>.  One can issue a DNS query for death by typing <code class="highlighter-rouge">dig death.ocf.berkeley.edu</code> but that’s an awful lot to type.  By specifying <code class="highlighter-rouge">domain ocf.berkeley.edu</code> in <strong>/etc/resolv.conf</strong> the query can be shortened to just <code class="highlighter-rouge">dig death</code>.  In fact, any tool that takes a domain name can now use this shortened version, i.e. <code class="highlighter-rouge">ping death</code>.  This is because your machine’s resolver is responsible for translating this domain name, and the <code class="highlighter-rouge">domain</code> configuration automatically appends the written domain to these short queries.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">search</code>
+The format for this option is <code class="highlighter-rouge">search &lt;search-list&gt;</code>.  Using this options specifies a list of domain names to iterate through when attempting to look up queries.</p>
+
+    <p>Let’s examine an example use case, imagine we owned two networks <code class="highlighter-rouge">ocf.berkeley.edu</code> and <code class="highlighter-rouge">xcf.berkeley.edu</code> and wanted to query a machine which may either be in either network.  To enable this we can simply add the line <code class="highlighter-rouge">search ocf.berkeley.edu xcf.berkeley.edu</code>.  Queries to resolve a domain name will now append those listed domains in order until a successful DNS response.  If we assume <code class="highlighter-rouge">death</code> is on <code class="highlighter-rouge">ocf.berkeley.edu</code> and another machine, <code class="highlighter-rouge">life</code>, is on <code class="highlighter-rouge">xcf.berkeley.edu</code>, both <code class="highlighter-rouge">dig death</code> and <code class="highlighter-rouge">dig life</code> are now resolved properly thanks to our configuration.</p>
+  </li>
+</ul>
+
+<p>One thing to note is that <strong><code class="highlighter-rouge">search</code> and <code class="highlighter-rouge">domain</code> are mutually exclusive keywords</strong> and having both defined causes the last instance to take precedence and override earlier entries.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">nameserver</code>
+The <code class="highlighter-rouge">nameserver</code> keyword is fairly self explanatory and follows the format of <code class="highlighter-rouge">nameserver &lt;ip-address&gt;</code> where <code class="highlighter-rouge">&lt;ip-address&gt;</code> is the IP address of the intended name server.  One can have up to <code class="highlighter-rouge">MAXNS</code> (default 3) <code class="highlighter-rouge">nameserver</code> entries in this file.  The resolver will query nameservers in the same order as they are written in the file.</li>
+</ul>
+
+<p>Following are additional useful configurable options in this file. Options are defined in this format <code class="highlighter-rouge">options &lt;option1&gt; [additional-options]</code>.  Some example options follow below:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">ndots</code>
+This option, formatted as <code class="highlighter-rouge">ndots:n</code>, configures the threshold,<code class="highlighter-rouge">n</code>, at which  an initial absolute query is made.  Since the default value for this option is 1, any name with at least 1 dot will first be queried as an absolute name before appending domains from <code class="highlighter-rouge">search</code>.  When less than <code class="highlighter-rouge">ndots</code> are present, the queries automatically begin appending elements in <code class="highlighter-rouge">&lt;search-list&gt;</code>.</p>
+
+    <p>Take <code class="highlighter-rouge">death.ocf.berkeley.edu</code> as an example, and  let’s assume we have the following line <code class="highlighter-rouge">search ocf.berkeley.edu</code> in our configuration.  Running <code class="highlighter-rouge">ping death</code> works because there are 0 dots in <code class="highlighter-rouge">death</code> and the query automatically appends <code class="highlighter-rouge">search</code> elements so that our query becomes <code class="highlighter-rouge">death.ocf.berkeley.edu</code>.  If we instead ran <code class="highlighter-rouge">ping death.</code> the resolver will first issue a query for <code class="highlighter-rouge">death.</code> since it has 1 dot, which fails.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">timeout</code>
+This opton is in the format <code class="highlighter-rouge">timeout:n</code> and configures the amount of time <code class="highlighter-rouge">n</code>, in seconds, that a resolver will wait for a response from a name server before retrying the query via another name server.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">attempts</code>
+This option is in the format <code class="highlighter-rouge">attempts:n</code> and configures the number of attempts <code class="highlighter-rouge">n</code> that the resolver will make to the entire list of name servers in this file.</p>
+  </li>
+</ul>
+
+<h3 id="etcnsswitchconf">/etc/nsswitch.conf</h3>
+<p>With multiple sources of information for resolving hostnames, one can’t help but wonder how the system decides which sources to query and in what order.  This is answered with the <strong>/etc/nsswitch.conf</strong> file.  It is this file’s responsibility to list sources of information and configure prioritization between sources.  Similar information sources can be grouped into categories that are referred to as ‘databases’ within the context of the file.  The format of the file is as follows: <code class="highlighter-rouge">database [sources]</code>.  While this file provides configuration for a wide array of name-service databases, we will focus on an example relevant to the topic at hand.</p>
+
+<p>The <code class="highlighter-rouge">hosts</code> database configures the behavior of system name resolution.  So far we have introduced two ways to resolve names:</p>
+<ol>
+  <li>Using entries in <strong>/etc/hosts</strong></li>
+  <li>Using a resolver to issue DNS queries to DNS name servers</li>
+</ol>
+
+<p>To let the system know about the above two sources of information there are corresponding keywords, <code class="highlighter-rouge">files</code> and <code class="highlighter-rouge">dns</code>, respectively.</p>
+
+<p>We can then configure name resolution by writing the line
+<code class="highlighter-rouge">hosts: files dns</code> 
+The example syntax above tells the system to first prioritize files before issuing DNS queries.  Naturally, this can be customized to best fit your use case.</p>
+
+<h2 id="dhcp-client-configuration">DHCP client configuration</h2>
+<p>The Internet Systems Consortium DHCP client, known as <em>dhclient</em>, ships with Debian and can be configured via <strong>/etc/dhcp/dhclient.conf</strong>.  Lines in this file are terminated with a semicolon unless contained within brackets, like in the C programming language.  Some potentially interesting parameters to configure include:</p>
+
+<h3 id="timing">Timing</h3>
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">timeout</code>
+This format for this statement is <code class="highlighter-rouge">timeout &lt;time&gt;</code> and defines time to the maximum amount of time, in seconds, that a client will wait for a response from a DHCP server.</p>
+
+    <p>Once a timeout has occured the client will look for static leases defined in the configuration file, or unexpired leases in <strong>/var/lib/dhclient/dhclient.leases</strong>. The client will loop through these leases and if it finds one that appears to be valid, it will use that lease’s address. If there are no valid static leases or unexpired leases in the lease database, the client will restart the protocol after the defined <code class="highlighter-rouge">retry</code> interval.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">retry</code>
+The format for this statement is <code class="highlighter-rouge">retry &lt;time&gt;</code> and configures the amount of time, in seconds, that a client must wait after a timeout before attempting to contact a DHCP server again.</p>
+  </li>
+</ul>
+
+<p>A client with multiple network interfaces may require different behaviour depending on the interface being configured. Timing parameters and certain declarations can be enclosed in an interface declaration, and those parameters will then be used only for the interface that matches the specified name.</p>
+
+<p>The syntax for an example interface snippet is:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface &lt;iface-name&gt; {
+    send host-name "death.ocf.berkeley.edu";
+    request subnet-mask, broadcast-address, time-offset, routers,
+       domain-search, domain-name, domain-name-servers, host-name;
+    [additional-declarations];
+}
+
+</code></pre></div></div>
+
+<p>As mentioned above this file also supports defining static leases via a <code class="highlighter-rouge">lease</code> declaration.  Defining such leases may be useful as a fallback in the event that a DHCP server cannot be contacted.</p>
+
+<p>The syntax for a example static lease is:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lease {
+#  interface "eth0";
+#  fixed-address 192.33.137.200;
+#  option host-name "death.ocf.berkeley.edu";
+#  option subnet-mask 255.255.255.0;
+#  option broadcast-address 192.33.137.255;
+#  option routers 192.33.137.250;
+#  option domain-name-servers 127.0.0.1;
+#  renew 2 2000/1/12 00:00:01;
+#  rebind 2 2000/1/12 00:00:01;
+#  expire 2 2000/1/12 00:00:01;
+#}
+</code></pre></div></div>
+
+<p>While the function of most keywords in the above snippet can be inferred from their syntax, more information can be found by simply reading the <code class="highlighter-rouge">man</code> page for this file (<code class="highlighter-rouge">man dhclient.conf</code>).</p>
+
+<h2 id="sysadmin-commands">Sysadmin commands</h2>
+
+<h3 id="ifupdown">ifupdown</h3>
+<p><code class="highlighter-rouge">ifupdowm</code> is a simple suite of commands for interacting with network interfaces.  The two commands you’ll be using most are <code class="highlighter-rouge">ifup</code> and <code class="highlighter-rouge">ifdown</code> which are relatively self-explanatory.  <code class="highlighter-rouge">ifup</code> brings and interface up and vice versa for <code class="highlighter-rouge">ifdown</code>.  These two commands should be your de facto commands for bringing interfaces up or down since using these commands loads configurations defined in <strong>/etc/network/interfaces</strong>.</p>
+
+<h3 id="mtr">mtr</h3>
+<p><code class="highlighter-rouge">mtr</code> is a command that combines the functionality of <code class="highlighter-rouge">traceroute</code> with that of <code class="highlighter-rouge">ping</code>. Take a look at <a href="https://linode.com/docs/networking/diagnostics/diagnosing-network-issues-with-mtr/">this article</a> for a good primer for using <code class="highlighter-rouge">mtr</code> and interpreting its output.</p>
+
+<h3 id="iptables">iptables</h3>
+<p>In favor of not reinventing the wheel please check out these excellent and pretty short articles by <strong>DigitalOcean</strong>, who sponsored this semester’s offering of the decal by supplying us with VMs.</p>
+<ol>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-the-iptables-firewall-works">An Introduction to iptables</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-iptables-on-ubuntu-14-04">Adding rules</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/how-to-list-and-delete-iptables-firewall-rules">Deleting rules</a></li>
+  <li><a href="https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands">Common rules and tips</a></li>
+</ol>
+
+<h1 id="exercises">Exercises</h1>
+<p><strong>Checkoff form can be found <a href="https://goo.gl/forms/OCxyAu1otMn91Oa13">here</a>.  Please read the sections below as well, there are instructions for setting up your environment.</strong></p>
+
+<h2 id="riddle-me-this">Riddle Me This</h2>
+<ol>
+  <li>Is the result of running <code class="highlighter-rouge">ping</code> enough to determine whether or not you can reach a server, i.e. if you can ping a server you can reach a server and vice versa.  Justify.</li>
+  <li>Describe the <code class="highlighter-rouge">tcp_syncookies</code> <code class="highlighter-rouge">sysctl</code> option.  How can we toggle this value on, and when would we want this on?</li>
+  <li>Please write a few stanzas that configures an interface called <code class="highlighter-rouge">test</code> and configures it so that it is brought up on boot and given the following address: <code class="highlighter-rouge">192.168.13.37/16</code>.  Where should this snippet be placed?</li>
+  <li>If we preferred name resolution be done dynamically rather than using static entries in <strong>/etc/hosts</strong> what file do we need to edit and what is the line we should add?</li>
+  <li>Assume the following information:
+    <ul>
+      <li><strong>/etc/resolv.conf</strong> file has 3 <code class="highlighter-rouge">nameserver</code> entries and a <code class="highlighter-rouge">options timeout:1</code> entry.</li>
+      <li>A successful DNS response takes 20 ms.</li>
+    </ul>
+
+    <p>You need to add the <code class="highlighter-rouge">retry:n</code> option so that you retry a query as many times as possible but the total time to resolve a name, irrelevant of success or failure, takes less than <strong>5</strong> seconds.  What should the value of n be?</p>
+  </li>
+</ol>
+
+<h2 id="fire-this-is-fine-fire">:fire: This is fine :fire:</h2>
+<p>This section will have you thinking like a sysadmin.</p>
+
+<p>Each script <strong>might</strong> make changes to your network stack with the intent of damaging your machine’s connectivity.  To confine the scope of the ‘attacks’, scripts will specifically try to alter your connectivity to <code class="highlighter-rouge">google.com</code> and <code class="highlighter-rouge">ocf.berkeley.edu</code>.  These scripts are <strong>dangerous</strong> so we are having you run them inside a disposable vm which you should install using the following steps.</p>
+
+<ol>
+  <li>Install <code class="highlighter-rouge">vagrant</code> by either downloading it <a href="https://www.vagrantup.com/downloads.html">here</a> or using the appropriate package manager for your system.</li>
+  <li>
+    <p>Install <code class="highlighter-rouge">virtualbox</code> by either downloading it <a href="https://www.virtualbox.org/wiki/Downloads">here</a> or using the appropriate package manager for your system.</p>
+
+    <p>As a side note the installation and configuration scripts have been tested with  <code class="highlighter-rouge">vagrant 2.0.2</code> and <code class="highlighter-rouge">virtualbox 5.2.8</code>.  They have additionally been confirmed to work with <code class="highlighter-rouge">vagrant v1.9.x</code> and <code class="highlighter-rouge">virtualbox 5.1.34</code>.  Compatibility issues may arise with other versions, please try shifting to the above listed versions or come to office hours.</p>
+  </li>
+  <li>On your own local machine i.e. laptop or desktop, clone the repo found <a href="https://github.com/0xcf/decal-labs">here</a>.</li>
+  <li>Go into the vm directory <code class="highlighter-rouge">cd decal-labs/a5/vm</code>.</li>
+  <li>Run <code class="highlighter-rouge">vagrant up</code>.  Vagrant will automatically bring up a virtual machine on your local machine according to the files in the <code class="highlighter-rouge">vm</code> directory.</li>
+  <li><code class="highlighter-rouge">ssh</code> into your machine by running <code class="highlighter-rouge">ssh vagrant@192.168.42.42</code>, if this prompts you for a password it should default to <code class="highlighter-rouge">vagrant</code>.</li>
+  <li>Your vm should be configured and also have the <code class="highlighter-rouge">decal-labs</code> repo cloned to your home directory.  Scripts are numbered and located under <code class="highlighter-rouge">decal-labs/a5/scenarios</code>.</li>
+  <li><strong>Launch scripts, one at a time, with sudo, i.e. <code class="highlighter-rouge">sudo python3 &lt;script.py&gt;</code>.</strong></li>
+  <li>For each script, follow this two step process.  <strong>Only move onto another script, once you have finished resolving your current one.</strong>
+    <ol>
+      <li>Analyze whether or not your connectivity has been damaged. If your stack has been damaged identify the issue or which part of your network is no longer functioning as intended.</li>
+      <li>If you concluded there was a problem, resolve the issue.  What commands did you use and how did you conclude things were fully functional again?</li>
+    </ol>
+
+    <p><strong>Additionally, for each step you must explain the tools you used and how you came to your  conclusions i.e.</strong></p>
+    <blockquote>
+      <p>I ran <code class="highlighter-rouge">example --pls --fix computer</code> and I noticed that line 3: <code class="highlighter-rouge">computer-is-broken</code> meant my machine was f*****.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>This script damaged my ability to connect to google.com by poisoning my arp cache with bogus entries.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h2 id="net-ninjas">Net Ninjas</h2>
+<p><strong>Files for this part can also be found in the repo on your <code class="highlighter-rouge">vagrant</code> vm.</strong></p>
+<ol>
+  <li>The ninja has spent a few years training in a dojo and has mastered fireball (<code class="highlighter-rouge">火球</code>) jutsu.  He can use his new skills to tamper with your network stack, incinerating your attempts to catch him.  Run <code class="highlighter-rouge">sudo python3 advanced_ninja_port.py</code>.  Fix the damage he has done and then successfully send him a <code class="highlighter-rouge">found you</code> message!</li>
+</ol>
+
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

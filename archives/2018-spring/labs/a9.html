@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 9 - Configuration Management with Puppet (Advanced) - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 9 - Configuration Management with Puppet (Advanced)</h1>
+  <h2 id="the-setting">The Setting</h2>
+<p>You’re suddenly awoken by an alarm. Still drowsy from sleep, you check the time on your phone. <em>7:00am??</em> you think to
+yourself. <em>No way. I don’t even have any 8ams. In fact, I haven’t woken up this early since…</em> Looking back at your
+phone again, which you realize is now 2 times thicker and suddenly has a 3.5mm audio port, you check the year. You may
+have thought Berkeley was hell, but now you’ve traveled back in time for some true suffering: high school.</p>
+
+<p>After getting dressed and lamenting your disastrous teenage fashion sense, you get a text message on your dumb phone.
+Sighing, you open it even though it’s going to cost you 10 cents.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM: 5cr1p7k1dd1337
+MSG: w31c0m3 b4ck t0 h1ghsk00l. i h4v3 a t45k f0r j00: j00 mu5t 1n5ta11 th3
+f0ll0w1ng 5cr1p7 0n 3v3ry c0mput3r 1n j00r sk00l by the 3nd 0f t0d4y, 0r j00l
+b3 5tuCk 5ever.
+
+j00r sk00l u535 puppet, s0 j00 c4n ju57 wr1t3 a m0dul3 f0r th15. F1l3s R @
+https://github.com/0xcf/decal-labs 1n a9/
+</code></pre></div></div>
+
+<p>Rubbing your eyes, you try to understand 5cr1p7k1dd1337’s arcane runes once again:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Welcome back to high school. I have a task for you: you must install the
+following script on every computer in your school by the end of today, or
+you'll be stuck forever.
+
+Your school uses puppet, so you can just write a module for this. Files are in
+the decal-labs repo (https://github.com/0xcf/decal-labs) in the a9/ directory.
+</code></pre></div></div>
+
+<p><em>Great</em>, you think to yourself, <em>good thing I’m currently taking the best DeCal at UC Berkeley, the Unix SysAdmin
+DeCal! This is gonna be a piece of cake</em></p>
+
+<h2 id="your-task-in-plain-english">Your task, in plain English</h2>
+
+<p>You need to write a puppet module that places a script <code class="highlighter-rouge">hack_everything</code> into <code class="highlighter-rouge">/usr/local/bin/</code> and sets up a cronjob
+to run the script repeatedly and append its output to a file. Your module will need to install the dependencies for the
+script and ensure that all of the pieces are installed correctly.</p>
+
+<p>There are three main parts that you’ll need to work on:</p>
+
+<ol>
+  <li>Installing the packages the script depends on</li>
+  <li>Placing the script in the right directory and placing a file the script depends on in the right directory</li>
+  <li>Setting up a cronjob to run the script every 30 minutes and append its output to a file</li>
+</ol>
+
+<p>We’ve provided skeleton code for you in the <a href="https://github.com/0xcf/decal-labs"><code class="highlighter-rouge">decal-labs</code> repository</a> If you
+haven’t cloned this repo yet, then <code class="highlighter-rouge">git clone https://github.com/0xcf/decal-labs</code> should get you the files.
+Otherwise, a simple <code class="highlighter-rouge">git pull</code> from the root of the repository should fetch the files for you. The script is located in
+<code class="highlighter-rouge">a9/modules/hacked/files/hack_everything</code></p>
+
+<p>The only file you will need to change is in <code class="highlighter-rouge">a9/modules/hacked/manifests/hacked.pp</code>. We’ve included some hints and
+pointers to relevant documentation that will help you complete this manifest.</p>
+
+<p>Although we are only applying your manifest on one machine (your DeCal VM), you could in theory apply this module on
+thousands of machines that are connected to a puppet-master! How neat is that!</p>
+
+<p>While you’re writing your manifest, there’s an easy way to check your syntax: you can use the command
+<code class="highlighter-rouge">puppet parser validate hacking.pp</code></p>
+
+<p>Once you have completed your manifest, you can apply the changes to your system with this command (I assume you cloned
+things into $HOME):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo puppet apply --modulepath=$HOME/decal-labs/a9/modules $HOME/decal-labs/a9/manifests/default.pp
+</code></pre></div></div>
+
+<p>Basically, we’re running puppet locally on the module we just created. <code class="highlighter-rouge">default.pp</code> is just a file that includes the
+<code class="highlighter-rouge">hacked</code> module you’re editing, and we need to be sure to include the path to the modules so puppet can find them.</p>
+
+<p>Once this is done, you should be able to run the command <code class="highlighter-rouge">hack_everything</code> (as the script is now in your path). Try it
+out!</p>
+
+<p>Hints (if you need them):</p>
+<ul>
+  <li>The skeleton code has links to relevant docs</li>
+  <li><a href="https://github.com/ocf/puppet/blob/8bcd62077de1c2ff499805f768026213de0c0dbc/modules/ocf_desktop/manifests/suspend.pp">Here is an example puppet manifest that might be helpful</a></li>
+</ul>
+
+<p>After you think everything works, fill out the Google form (you’ll need to copy paste your <code class="highlighter-rouge">hacking.pp</code> manifest)
+<a href="https://goo.gl/forms/0BLpL672hFM3uMWw2">here</a></p>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+
