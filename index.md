@@ -9,7 +9,7 @@ layout: home
 This course will cover the basics of setting up and administering a
 production-quality Linux-based server environment in the manner of the EECS
 instructional machines (hivexx.cs.berkeley.edu) and those of the Open Computing
-Facility (tsunami.ocf.b.e). By the end of this course, we expect you to:
+Facility (tsunami.ocf.berkeley.edu). By the end of this course, we expect you to:
 
 * be comfortable using GNU/Linux
 * understand how different parts of the OS work together,
@@ -44,9 +44,8 @@ Lectures are scheduled for **Tuesdays** for the Basic section and **Thursdays**
 for the Advanced section, from from **8 to 9pm** the OCF Lab, located at
 **171 MLK** (MLK basement down the hall from the student store).
 **Attendance is mandatory, with two allowed unexcused absences.** Some other
-conflicts, such as exams, may be excused with prior notice. Please only come
-to the lab on the day corresponding to the section you are in in order to save
-seats for students enrolled in the section being taught on that day. 
+conflicts, such as exams, may be excused if you provide prior notice. Please
+only come to the lab on the day corresponding to the section you are in.
 
 The primary assignment in this course will be **weekly lab work**.
 Labs are designed to be be significantly hands-on. You will be **working on
