@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hands-On UNIX System Administration DeCal</title>
+    <meta name="description" content="The OCF/XCF SysAdmin DeCal at UC Berkeley.">
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link href="assets/round-about.css" rel="stylesheet">
+    <link rel="canonical" href="https://decal.ocf.berkeley.edu/">
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">UNIX SysAdmin DeCal</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="syllabus.pdf" target="_blank">Syllabus</a>
+            </li>
+            <li>
+              <a href="#calendar">Calendar</a>
+            </li>
+            <li>
+              <a href="#staff">Staff</a>
+            </li>
+            <li>
+              <a href="archives.html">Archive</a>
+            </li>
+            <li>
+              <a href="mailto:decal@ocf.berkeley.edu">Contact</a>
+            </li>
+            <li>
+              <a href="https://www.ocf.berkeley.edu/">OCF</a>
+            </li>
+            <li>
+              <a href="https://xcf.berkeley.edu">XCF</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <div class="container">
+      <h2 id="welcome-to-the-hands-on-unix-sysadmin-decal-spring-2018-edition">Welcome to the Hands-On UNIX SysAdmin DeCal, Spring 2018 Edition!</h2>
+      <p>This course will cover the basics of setting up and administering a
+        production-quality Linux-based server environment in the manner of the EECS
+        instructional machines (hivexx.cs.berkeley.edu) and those of the Open Computing
+        Facility (tsunami.ocf.b.e). By the end of this course, we expect you to:</p>
+      <ul>
+        <li>be completely comfortable using GNU/Linux</li>
+        <li>have a general understanding of the various parts of the OS,
+          e.g. init, filesystems, services, daemons, etc.</li>
+        <li>understand basic networking</li>
+        <li>have a good sense about maintaining system security</li>
+        <li>understand system administration essentials</li>
+        <li>get a practical taste of what sysadmins do in industry.</li>
+      </ul>
+      <p>Lectures are scheduled for <strong>Tuesdays (Beginner) and Thursdays (Advanced) 
+          from 8 to 9pm</strong> the OCF Lab, located at <strong>171 MLK</strong> (MLK basement down the 
+        hall from the student store). <strong>Attendance is mandatory, with two allowed 
+          unexcused absences.</strong> Some other conflicts, such as exams, may be excused 
+        with prior notice. Please only come to the lab on the day corresponding to 
+        the section you are in in order to save seats for students enrolled in the 
+        section being taught on that day.</p>
+      <p>The primary assignment in this course will be <strong>weekly lab work</strong>.
+        In keeping with the name of the course, labs will be significantly hands-on.
+        You will be <strong>working on real systems</strong>, configuring and fixing things.
+        <strong>Lecture will double as office hours</strong> for students to come in and ask
+        questions about the lab work. This is a <strong>2 unit DeCal</strong>.</p>
+      <p>An important skill for system administrators is the <strong>willingness to learn
+          quickly</strong> about new and unfamiliar technologies, so while we expect many
+        students will have a CS background, <strong>the only real prerequisite is a desire
+          to learn</strong>. We know potential students will have varied backgrounds in terms
+        of CS and sysadmin experience, therefore, we will be teaching this course in
+        two tracks: a beginner’s track that will focus more on introducing new users
+        to GNU/Linux, and an advanced track that will cater to students with more
+        experience using Linux. Both tracks will get get started fast and move
+        quickly - there’s a lot of material to cover.</p>
+      <p>Another important skill to learn is patience and perseverence.
+        Don’t be discouraged if things don’t work with the first time: the internet
+        is held together with the programmatic equivalent of duct tape, and the job
+        of a sysadmin is best described as applying new duct tape when the old stuff
+        wears out, which happens a lot.</p>
+      <div class="segment">
+        <h2 class="page-header" id="calendar">Beginner Track Calendar</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Date</th>
+              <th>Lecture Title</th>
+              <th>Lab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>Tue. 01/23</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1tqg3xR4MHki29Rf_FCQJlrX01_A51gHGj55dR46D2G0/edit">
+                  Info Session
+                </a>
+              </td>
+              <td>
+                <a href="labs/0">
+                  Lab 0
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Tue. 01/30</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1bKUFmdxdsTSoizwrqXi_qndcDWN-AtPiPyafF3rVCZs/edit">
+                  History of UNIX, intro to shell, FOSS
+                </a>
+              </td>
+              <td>
+                <a href="labs/b1">
+                  Lab b1
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Tue. 02/06</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1thjDyoh7HMwzhXoTppI0p7nH5ky2s3IhjGuLvFw1wX0/edit">
+                  Core Shell
+                </a>
+              </td>
+              <td>
+                <a href="labs/b2">
+                  Lab b2
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Tue. 02/13</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1jYLICb69ja0NXJ0FWZggYPL0JDMxUNWr0plgC6Q1kA0/edit">
+                  Shell Scripting
+                </a>
+              </td>
+              <td>
+                <a href="labs/b3">
+                  Lab b3
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Tue. 02/20</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1erO5olp0xrrwgtrVwKfkIM_wWQn02AF-48xzAqaUDV4/edit">
+                  Debian, Packages, Compilation
+                </a>
+              </td>
+              <td>
+                <a href="labs/b4">
+                  Lab b4
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Tue. 02/27</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1Jhkx6AgHqS524gzg27qdyHStFGUBO1VSEfYAwgokslA/edit">
+                  Networking 101
+                </a>
+              </td>
+              <td>
+                <a href="labs/b5">
+                  Lab b5
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Tue. 03/06</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/16tHxXpOQkJgFQ5Oi5hJ7KiA3uhSktUeof37mW-0U7hA/edit">
+                  Processes and Services
+                </a>
+              </td>
+              <td>
+                <a href="labs/b6">
+                  Lab b6
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Tue. 03/13</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1TjpMI-99XfRFXYjbn2bZ8wM1BEpl7A211PUYSj1yTLY/edit">
+                  Networked Services
+                </a>
+              </td>
+              <td>
+                <a href="labs/b7">
+                  Lab b7
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Tue. 03/20</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1rKOiW5KY1AxZm60e_yr160LATQI5kbWp3uw0keo7neM/edit">
+                  Security Fundamentals
+                </a>
+              </td>
+              <td>
+                <a href="labs/b8">
+                  Lab b8
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Tue. 04/03</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1TBch_j19USu8Et6ciT94KSoGznNWwP4XCe8LIvpgQ7g/edit">
+                  Cloud, Containers, Configuration Management
+                </a>
+              </td>
+              <td>
+                <a href="labs/b9">
+                  Lab b9
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Tue. 04/10</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1AbIrg1z8jD2Vq3a70P4SGBLKBBGho2qEYyRDjdd2Xuc/edit?usp=sharing">
+                  HPC, Backups
+                </a>
+              </td>
+              <td>
+                <a href="labs/b10">
+                  Lab b10
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="segment">
+        <h2 class="page-header">Advanced Track Calendar</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Date</th>
+              <th>Lecture Title</th>
+              <th>Lab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>Tue. 01/23</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1tqg3xR4MHki29Rf_FCQJlrX01_A51gHGj55dR46D2G0/edit">
+                  Info Session
+                </a>
+              </td>
+              <td>
+                <a href="labs/0">
+                  Lab 0
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Thu. 02/01</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1a2VyWY9tZCz6Cspt_9GkDFLemP75Z-ERUY2rYgWXUcw/edit">
+                  Intro to Advanced UNIX
+                </a>
+              </td>
+              <td>
+                <a href="labs/a1">
+                  Lab a1
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Thu. 02/08</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1WoC2mdBbbDPD-VLUCzpOASFBsiE-Us-gE6AGJHJlMik/edit">
+                  Packages and Troubleshooting and Packaging
+                </a>
+              </td>
+              <td>
+                <a href="labs/a2">
+                  Lab a2
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Thu. 02/15</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1jNWZ0DMqf6rQa7qMSudnsVv6Zf6EJRWGfd3ERr6nMN8/edit">
+                  DIY Linux Pre-Install
+                </a>
+              </td>
+              <td>
+                -
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Thu. 02/22</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1r3pl2XccayoUaKCFtG3wF6N_qun8VVw7jH5MEvVTBSw/edit">
+                  DIY Linux Post-Install
+                </a>
+              </td>
+              <td>
+                <a href="labs/a4">
+                  Lab a4
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Thu. 03/01</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1ik9XsyGMjOWLwta-KnxrC7hjxTWJGwm5ngZUdwtafxo/edit">
+                  Networking 102
+                </a>
+              </td>
+              <td>
+                <a href="labs/a5">
+                  Lab a5
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Thu. 03/08</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1otwlR9nrOHNMTp4FsIILSfFeKu2SDj-9PQjmCQrwhEk/edit">
+                  Processes and Services
+                </a>
+              </td>
+              <td>
+                -
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Thu. 03/15</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1k4L4oWoMbhkpS2XF84Mlcsun54MhM7nbnP5JZeDzVM0/edit">
+                  Networked Services
+                </a>
+              </td>
+              <td>
+                <a href="labs/a7">
+                  Lab a7
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Thu. 03/22</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1fPqrhrPcGUqCIEnjCFn0bug4fAhwWQjuqNqBJoMvUus/edit">
+                  Security Fundamentals
+                </a>
+              </td>
+              <td>
+                <a href="labs/a8">
+                  Lab a8
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Thu. 04/05</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1bUVT_U_-kkibGZcyuYbFud_UU6VOs3iUFnpEkJl9rJY/edit">
+                  Configuration Management, Version Control, Backups
+                </a>
+              </td>
+              <td>
+                <a href="labs/a9">
+                  Lab a9
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Thu. 04/12</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1NwDo1HIGrVD_Gu40x-G3dVtgRwCX4hRMdNdpwX3MyFE/edit?usp=sharing">
+                  Containers, Container Orchestration, Architecture
+                </a>
+              </td>
+              <td>
+                <a href="labs/a10">
+                  Lab a10
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Fri. 04/27</td>
+              <td>
+                <a href="https://decal.ocf.berkeley.edu/static/a12_career_lecture.pdf">
+                  Guest Lecture - Careers in Tech by Ethan Jackson
+                </a>
+              </td>
+              <td>
+                -
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Team Members Row -->
+      <div class="row" id='staff'>
+        <div class="col-lg-12">
+          <h2 class="page-header">Course Staff</h2>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="https://nyx.ocf.io/gravatar.png" alt="Picture of Abizer Lokhandwala">
+          <h3>Abizer Lokhandwala
+	        <small>Head Facilitator</small>
+          </h3>
+          <p>I am a junior CS major. Please include your favorite color, mother's maiden name, and social security number when signing up for this course.</p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/baisang.jpg" alt="Picture of Brian Sang">
+          <h3>Brian Sang
+	        <small>Head Facilitator</small>
+          </h3>
+          <p>Hi everyone! My name is Brian and I'm a senior CS major from Cleveland, Ohio. Feel free to hit me up for boba or if you want to talk about our Lord and Savior, LeBron James</p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/ian.jpg" alt="Picture of Ian McDonald">
+          <h3>Ian McDonald
+	        <small>Facilitator</small>
+          </h3>
+          <p>I’m a senior studying computer science. I started using Linux after taking some bad advice and I haven’t looked back since.</p>
+        </div>
+        <div class="clearfix visible-lg-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/kuoh.png" alt="Picture of Harrison Kuo">
+          <h3>Harrison Kuo
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a senior studying EECS/MSE and I like messing with old or broken computers on my free time. I'm also a deputy manager at the OCF.</p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/jvperrin.jpg" alt="Picture of Jason Perrin">
+          <h3>Jason Perrin
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a junior EECS major who enjoys security, systems, webcomics, and running, though hopefully not running away from angry decal students!</p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/keur.jpg" alt="Picture of Kevin Kuehler">
+          <h3>Kevin Kuehler
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a junior CS transfer student from San Diego. Using Linux is what got me interested in computer science, and I'm excited to share that interest with others!</p>
+        </div>
+        <div class="clearfix visible-lg-block"></div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/dkessler.png" alt="Picture of Daniel Kessler">
+          <h3>Daniel Kessler
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a junior studying computer science and economics. I've been messing around with Linux servers for years, and I'm excited to help out with this DeCal!</p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/tonyc2.jpg" alt="Picture of Tony Situ">
+          <h3>Tony Situ
+	        <small>Facilitator</small>
+          </h3>
+          <p>California born and raised; chasing whatever catches my curiosity at the time. On the side, I love tabletop, hiking, photography, and value (especially value).</p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/mcint.jpg" alt="Picture of Loren McIntyre">
+          <h3>Loren McIntyre
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a 4th-year CS major who took some time off along the way. I like to talk about software philosophy, life, and living in the co-ops.</p>
+        </div>
+        <div class="clearfix visible-lg-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/tanx.png" alt="Picture of Xufei Tan">
+          <h3>Xufei Tan
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a sophomore CS student from Pennsylvania who enjoys reading, playing League, and boba. I'm still learning about Unix, so tell me about anything cool you found!</p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/shasan.png" alt="Picture of Sahil Hasan">
+          <h3>Sahil Hasan
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a junior EECS major that spends far too much time in the OCF or playing CS:GO, not that those two are mutually exlusive.</p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/mdcha.png" alt="Picture of Mathew Cha">
+          <h3>Mathew Cha
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a 3rd-year Math / CS student from SoCal. In my free time, I play board games, League, and cook!</p>
+        </div>
+        <div class="clearfix visible-lg-block"></div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/bzh.jpg" alt="Picture of Benjamin Zhang">
+          <h3>Benjamin Zhang
+	        <small>Facilitator</small>
+          </h3>
+          <p>I'm a freshman studying Astrophysics and CS. My favorite hobby is sleeping, my second favorite is falling asleep, and my third favorite is playing board games.</p>
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center">
+          <img class="img-circle img-responsive img-center" src="images/minos.png" alt="Picture of Minos Park">
+          <h3>Minos Park
+	        <small>Facilitator</small>
+          </h3>
+          <p>Berkeley is my spritual home. Fell in love with this place whiling living in the Bay Area for 5+ years now. Also Orange, Lee, 180-29-8724.</p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+      </div>
+    </div>
+    <footer>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p>
+            <a href="https://www.digitalocean.com">
+              <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+            </a>
+            With great appreciation to
+            <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+            VMs used in both tracks of the DeCal
+          </p>
+          <p>
+            <a href="https://www.ocf.berkeley.edu">
+              <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+                   alt="Hosted by the OCF" style="border: 0;" />
+            </a>
+            Copyright &copy; 2017-2018
+            <a href="https://www.ocf.berkeley.edu">
+              Open Computing Facility
+            </a>
+            and
+            <a href="https://xcf.berkeley.edu">
+              eXperimental Computing Facility
+            </a>
+          </p>
+          <p>
+            This website is licensed under the terms of the
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              CC BY-NC-SA 4.0
+            </a>
+            License.
+            <a href="https://github.com/0xcf/decal-web/">
+              Source Code
+            </a>
+            available on GitHub
+          </p>
+        </div>
+        <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+    </footer>
+  </body>
+</html>

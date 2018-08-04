@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 8 - Security Fundamentals - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 8 - Security Fundamentals</h1>
+  <h1 id="security">Security</h1>
+
+<p>In this note, we will briefly cover a variety of topics that are of interest to
+those studying computer security.</p>
+
+<p>There are many aspects to security, and the field spans a number of
+disciplines. We will cover the following:</p>
+
+<ul>
+  <li>Security Building Blocks
+    <ul>
+      <li>Encryption - Symmetric and Public-Key Crypto</li>
+      <li>Certs, Signatures</li>
+      <li>Hashing</li>
+    </ul>
+  </li>
+  <li>File Security</li>
+  <li>Network Security</li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The most important thing to remember when designing secure systems is
+understanding your threat model. No system is guaranteed to be secure or able
+to withstand all attacks, nor is this even possible in the face of extreme
+adversaries. However, you can (and should) take precautions against the threats
+you are likely to face. Balancing the need for authorized users to get access
+to the system while keeping unauthorized users out is very easy to get wrong.
+Fortunately, smart people have distilled the principles of security down to a
+few axioms, covered very well in the first <a href="http://www.icir.org/vern/cs161-sp17/notes/Principles.1.19.pdf">lecture note</a> of CS 161
+(credit to Prof. David Wagner). It is recommended to read the lecture note.</p>
+
+<h2 id="security-building-blocks">Security Building Blocks</h2>
+
+<h4 id="encryption">Encryption</h4>
+
+<p>Hiding information from those who are not authorized to view it is a critical
+element of computer security. How can you make sure this property can be
+maintained in the event of having to transport this information in the open? By
+encrypting it.</p>
+
+<p>Encryption involves taking the information you want to hide, called the
+<em>plaintext</em>, and transforming it by means of a mathematical function into a
+format that is indecipherable without a key, called the <em>ciphertext</em>. There are
+many different types of encryption algorithms, with different types of
+encryption keys, encryption speeds, security, and usefulness. The most
+important quality of encryption algorithms is the fact that they are one-way:
+it is easy to compute the ciphertext from the plaintext (encrypt) but extremely
+difficult to compute the plaintext from the ciphertext (decrypt) without the
+secret key.</p>
+
+<p>There are two primary types of encryption: <strong>symmetric key cryptography</strong>, and
+asymmetric-key or <strong>public-key cryptography</strong>. The invention of public key
+cryptography was critical to many of the security features we take for granted
+today.</p>
+
+<p>For the purpose of this lab, we will be using several tools for performing
+encryption operations, among them <strong>GnuPG</strong>, a free implementation of the
+<a href="https://openpgp.org/">OpenPGP</a> standard, and
+<a href="https://openssl.com"><strong>OpenSSL</strong></a>, a library for implementing TLS, or
+Transport Layer Security.</p>
+
+<h4 id="symmetric-key-cryptography">Symmetric Key Cryptography</h4>
+
+<p>Symmetric-key cryptography is named for the fact that a single key both
+encrypts and decrypts a particular plaintext to ciphertext and vice-versa. The
+most widely used method of symmetric crypto is AES, or <em>Advanced Encryption
+Standard</em>, which is certified and trusted by the US Government to encrypt
+information critical to national security. An easy way to visualize the basics
+of symmetric key crypto is by the XOR function: <code class="highlighter-rouge">a XOR b</code> is true if and only
+if a and b are different. Suppose our plaintext is the bitstring
+<code class="highlighter-rouge">100110100101</code>, and we want to apply a bitwise XOR with the bitstring
+<code class="highlighter-rouge">010010100010</code>, which is our key. The result of this operation is
+<code class="highlighter-rouge">110100000111</code>. If we XOR the resulting ciphertext with the key again, we get
+the original plaintext: <code class="highlighter-rouge">100110100101</code>. The XOR function is trivially
+reversible, but military-grade symmetric key cryptography algorithms are much
+more difficult to reverse. The security of symmetric-key crypto, therefore, is
+dependent on keeping the encryption key secret.</p>
+
+<p><img src="https://www.pcmag.com/encyclopedia_images/XOR.GIF" alt="alt text" title="xor in crypto" /></p>
+
+<p>What is symmetric key crypto useful for? Almost everything: encrypting data in
+transit (for example, in HTTPS), encrypting data at rest (for example, on your
+iPhone or Android device, which is “encrypted by default” in recent versions),
+and many other applications. On the iPhone specifically, several layers of
+symmetric crypto are at play: the iPhone’s internal storage is encrypted with a
+set of AES keys stored on a chip inside the phone, generated at the factory.
+These keys are in turn encrypted with your PIN. Your pin allows the phone to
+unlock the keys that allow it to decrypt the rest of the filesystem. This is
+also how the iPhone is able to quickly wipe your data in the event your phone is
+stolen: the phone simply deletes the keys that are stored on the internal chip.
+Now, even with your PIN, there are no keys to decrypt and the encrypted data in
+the phone’s storage is, for all intents and purposes, irretrievable and
+indistinguishable from random data.</p>
+
+<h4 id="public-key-cryptography">Public Key Cryptography</h4>
+
+<p>Unlike symmetric key cryptography, there are 2 keys in a public-key
+cryptosystem, the public key and the private key. As the name suggests, the
+public key is shared publicly, and this is the means by which other people
+encrypt data that’s meant for you. You use your private key to decrypt this
+data. As long as no one has your private key, anyone can use your public key to
+encrypt data and be assured that only you can decrypt it. This is a powerful
+expansion on the symmetric-key paradigm, as beyond encryption, it also allows
+for signatures and non-repudiation: a way for someone to verify that the person
+they are talking to is in fact the person they intend to be talking to, and for
+someone to prove (without the ability to deny it) that they are who they say
+they are.</p>
+
+<p>Nowadays, public-key cryptography is synonymous with the RSA algorithm, which
+was one of the first proven dual-key schemes. You will encounter the RSA
+algorithm in CS 70 and CS 161 if you plan to take those courses, or already
+have. In short, the security of RSA depends on the theoretical difficulty of
+factoring large numbers on conventional computers. This is expected to continue
+to be a difficult problem until quantum computers become practical.</p>
+
+<p>Here’s a brief overview of how RSA public key crypto works: the RSA algorithm,
+by means of some advanced mathematics involving prime numbers and modular
+arithmetic, returns 3 numbers: a public exponent (aka key), a private exponent,
+and a modulus. The two keys work such that data encrypted with one key can only
+be decrypted with the other key. In order to encrypt data, one performs modular
+exponentiation over the data using one of the exponents and the modulus. In
+order to decrypt data, one performs modular exponentation on the encrypted data
+with the partner key and modulus. In common use, one uses the larger exponent
+as the private key, which is used for decrypting data and creating signatures,
+and the smaller exponent as the public key, which is used for encryping data
+and verifying signatures.</p>
+
+<p>In <a href="a4#generating-and-using-ssh-keys">lab a4</a>, one task was to generate an SSH
+key, using the command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen -t rsa -b 4096
+</code></pre></div></div>
+
+<p>This command would generate two files, <code class="highlighter-rouge">~/.ssh/id_rsa</code> and <code class="highlighter-rouge">~/.ssh/id_rsa.pub</code>.
+As the command suggests, this command generates a 4096-bit RSA key pair. You
+should be able to guess which file represents the public key and which one must
+therefore be the private key. In order to affect secure SSH logins using the
+RSA key, the user must first transfer the public key they wish to use to
+identify themselves to the server in advance. Then, once a session has been
+established between the server and the client, the server will encrypt a random
+number with the user’s public key and transmit it to the user. The user will
+then decrypt the value using their private key and return a hash of that value
+to the server, who can then hash the value themselves to determine if the user
+was able to successfully decrypt the random number, thus indicating posession
+of the matching secret key and serving as proof for authentication.</p>
+
+<h4 id="signatures-and-certificates">Signatures and Certificates</h4>
+
+<p>Public Key cryptography allows for a number of important security objects,
+including signatures and certificates for digital identity verification.
+Suppose you are an important public entity (maybe your pseudonym is Natoshi
+Sakamoto). You are in charge of an important project, hereafter known at
+Litcoin. You’d like to maintain anonymity, but still need to lead your project.
+How can your loyal followers know that statements supposedly made by Natoshi
+Sakamoto are actually from you? There’s a significant incentive to make false
+statements supposedly “from” Mr. Sakamoto, because each Litcoin is apparently
+worth a significant amount of real money, and some people stand to gain
+substantially if they are able to influence the direction of the project in
+their favor. You can avoid this by signing your messages: in the beginning, you
+would publish Natoshi’s public key, and thereafter, for every post you make, you
+would encrypt the content of the message using your (Natoshi’s) private key and
+post that along with your original message. Then, anyone who wants to verify
+that Natoshi (i.e. the owner of the private key corresponding to the public key
+that belongs to Natoshi) did in fact publish a particular message can simply
+use Natoshi’s public key to decrypt the encrypted signature and compare the
+content against the original message. Pretenders to Natoshi’s throne will be
+unable to sign their false statements such that they can be verified with
+Natoshi’s published public key because they don’t have Natoshi’s private key,
+and you can rest assured that no one will unduly influence your project in your
+name while you go into hiding from the IRS and DEA, unless they happen to have
+warehouses full of ASICs and lots of cheap electricity.</p>
+
+<p>However, in this scheme, how do you prevent an adversary from publishing a fake
+public key and claiming to be you (they can make valid signatures against that
+fake public key)? Somehow, you need to “bootstrap” trust: someone would need to
+verify your identity and publicly affirm that your public key actually
+corresponds to you. We do this by means of certificates: a signed statement
+claiming that a particular public key does, in fact, belong to who it claims to
+belong to. Who signs this certificate? A certificate authority, someone we
+trust to be responsible about verifying identities and issuing signatures. But
+how do we know which CAs to trust, and how can we trust that a CA that claims
+to be trustworthy actually is? They probably need a certificate as well. It
+sounds like it might be turtles all the way down; however, the chain does end
+somewhere: the so-called root of trust, the root CAs. These are the CAs whose
+certificates are pre-installed by browsers and operating systems and therefore
+intrinsically trusted, without any further certificates necessary. If a root CA
+signs your certificate, we assume they’ve done the due diligence necessary to
+be willing to risk their reputation by signing your certificate, and basically
+take their word for it. This model, known as the “Web of Trust” is how network
+security works today. Unfortunately, it isn’t as reliable as we may have hoped:
+some CAs are scummy and will sign anything for enough money, resulting in valid
+certificates being issued for domains like microsoft.com and github.com to
+entities who are very obviously not Microsoft or GitHub.<sup id="fnref:badwosign"><a href="#fn:badwosign" class="footnote">1</a></sup> Furthermore,
+any entity with enough border control can force the installation of their own
+root certificates (e.g. the government of Kazakhstan<sup id="fnref:badkazakh"><a href="#fn:badkazakh" class="footnote">2</a></sup>) and intercept
+any traffic by issuing their own bogus certificates for any domain.</p>
+
+<p>You might not realize it, but you use and rely on certificates and signatures
+every day. Any time you see a green lock near the address bar of a website you
+visit, you are accesssing the site over a TLS or HTTPS connection, and the data
+being transferred between you and the website is encrypted. When your browser
+connects to the website’s server, it asks for the server’s public key in order
+to set up an encrypted connection, and the server’s certificate in order to
+verify its identity as the server authorized to serve the domain you have
+requested. Your browser then validates the public key by verifiying the
+signatures on the certificate. If someone is attempting to perform a
+man-in-the-middle attack on you, this certificate verification step will fail,
+because it should be unlikely that a trusted CA will have issued a signed cert
+for your domain to an entity other than you (unless you have the misfortune of
+living in Kazakhstan). You will get a very intrusive notification informing you
+of this fact, and it is a bad idea to ignore the certificate verification
+failure notification.</p>
+
+<h4 id="hashing">Hashing</h4>
+
+<p>There are many times where we have large amounts of data but need to operate on
+smaller representations of that data. For example, suppose you download a 1GB
+file from the internet. You want to make sure that the file you downloaded has
+not been modified on its way to you (after having taken the DeCal, you know
+that integrity is a critical goal of computer security). How could you figure
+out if the file has been changed? You could try downloading another copy to see
+if there’s a difference, but both copies could have been modified, and it takes
+a long time to download 1GB. You could use your knowledge of signatures to see
+if the source has provided a signature of the file you could verify, but the
+signature would have to be over the whole file<sup id="fnref:pkcsize"><a href="#fn:pkcsize" class="footnote">3</a></sup> and this is even more
+expensive. What we really need is a deterministic way to generate fixed-length
+representations of arbitrary-length data. Luckily, mathematics has our back
+with functions known as hash functions. If you took CS 61B, you probably
+implemented a hash table at some point, and may be familiar with the concept.
+Here’s an example of hash functions at work. Enter the following commands on
+your student VM (i.e. <code class="highlighter-rouge">ssh username.decal.xcf.sh</code>) to calculate the SHA1<sup id="fnref:sha1"><a href="#fn:sha1" class="footnote">4</a></sup>
+hash of a 100MB file.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">wget decal.ocf.berkeley.edu/static/a8/lab8.img</code></li>
+  <li><code class="highlighter-rouge">sha1sum lab8.img</code></li>
+</ol>
+
+<p>You should see <code class="highlighter-rouge">fbd392c452040c72b08f73d90db972630056357</code>, a 40-digit string.
+As you can imagine, transferring this string is much easier than transferring a
+large, 100MB file, and because of the properties of the SHA-1 algorithm, you
+can be reasonably sure that this file, and only this file, will always hash to
+that particular value. This means, if you want to verify that the file you
+downloaded hasn’t been corrupted, you can simply compare the hashes (or more
+specifically, a signature over the hash) to ensure that the file you’ve
+downloaded hasn’t been tampered with.</p>
+
+<h3 id="submission">Submission</h3>
+
+<p>Please use this <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLVyg8hiEy5oB4HzE9QRSH9dJA4FIWBJYYriSvd2O7yQl7yg/viewform?usp=sf_link">Google Form</a>
+for submitting solutions for this lab.</p>
+
+<h3 id="encryption-lab-activity">Encryption Lab Activity</h3>
+
+<p>In this lab, we will be exploring the topics covered so far: symmetric
+encryption and public key cryptography, hashing, signatures, and certificates.
+Please make sure you are logged into the appropriate server over ssh prior to
+completing any of the following tasks.</p>
+
+<h5 id="introduction-making-ssh-keys">Introduction: Making SSH keys</h5>
+
+<p>We’ll begin our exploration of security building blocks by creating SSH
+keypairs for ourselves, in case you haven’t already. If you already have an SSH
+key on your personal computer that you would like to continue to use, or one on
+<code class="highlighter-rouge">tsunami</code>, feel free to skip these steps and proceed to task 1, but please make
+sure that you can use that key to log into your student VM.</p>
+
+<p>As mentioned earlier in this document, and in
+<a href="a4#generating-and-using-ssh-keys">lab a4</a>, here is how to create a 4096-bit
+RSA SSH keypair:</p>
+
+<ol>
+  <li>Log into <code class="highlighter-rouge">tsunami.ocf.berkeley.edu</code> with your OCF account credentials
+(potentially not the same as your decal VM credentials). It is important you
+do these steps on <code class="highlighter-rouge">tsunami</code> and not your laptop, an OCF desktop, or your
+decal VM.</li>
+  <li>Check to make sure you do not have an existing SSH key:
+    <ol>
+      <li>Enter <code class="highlighter-rouge">ls -l ~/.ssh</code></li>
+      <li>If you see files like <code class="highlighter-rouge">id_rsa</code> or <code class="highlighter-rouge">id_rsa.pub</code> then you already have an
+SSH key.</li>
+    </ol>
+  </li>
+  <li>If no key is present, create a new key now by typing <code class="highlighter-rouge">ssh-keygen -t rsa -b
+4096</code>, and hit enter when prompted.</li>
+  <li>If you are asked to type a password to protect the key, you may choose to
+enter one, but for the purpose of this lab, it is advisable to skip doing
+so.</li>
+</ol>
+
+<p>You should now see two new files in the <code class="highlighter-rouge">~/.ssh/</code> directory. <code class="highlighter-rouge">id_rsa</code> is your
+SSH private key, and it should like the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat ~/.ssh/id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+&lt;random characters&gt;
+-----END RSA PRIVATE KEY------
+</code></pre></div></div>
+
+<p>Please try to not lose or leak this private key. The public key, <code class="highlighter-rouge">id_rsa.pub</code>,
+should be much shorter and look like the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat ~/.ssh/id_rsa.pub
+ssh-rsa &lt;characters&gt; &lt;username&gt;@&lt;host&gt;
+</code></pre></div></div>
+
+<p>It is safe to transfer your RSA public key out in the open, whereas you should
+never do so with your private key. It should only be transferred over trusted
+and encrypted communication channels over machines you trust.</p>
+
+<p>You’ve just created for yourself an RSA keypair suitable for SSH authentication.</p>
+
+<p>For the remaining tasks in this lab, you will be tasked with figuring out the
+appropriate commands yourself, by Googling, reading man pages, etc. Hints will
+be given as footnotes as necessary. Please document the commands you use and be
+prepared to provide a rationale for why you believe those commands are correct.</p>
+
+<h4 id="task-1">Task 1</h4>
+
+<p>Figure out how to use the SSH key you’ve created to log into your student
+VM.<sup id="fnref:ssh-copy-id"><a href="#fn:ssh-copy-id" class="footnote">5</a></sup></p>
+
+<p><strong>Perform the remaining tasks on your student VM unless otherwise specified.</strong></p>
+
+<h4 id="task-2---symmetric-encryption">Task 2 - Symmetric Encryption</h4>
+
+<p>In order to explore encryption, we’re going to be using the <code class="highlighter-rouge">gpg</code> command.</p>
+
+<ol>
+  <li>
+    <p>Download<sup id="fnref:wget"><a href="#fn:wget" class="footnote">6</a></sup> the two files named <code class="highlighter-rouge">a8q1.gpg</code> and <code class="highlighter-rouge">a8q2.gpg</code> from
+<a href="https://decal.ocf.berkeley.edu/static/a8/">https://decal.ocf.berkeley.edu/static/a8/</a>,
+decrypt them using <code class="highlighter-rouge">gpg</code> and the passwords <code class="highlighter-rouge">weak_password</code> and
+<code class="highlighter-rouge">weaker_password</code> respectively, and answer the questions contained therein.</p>
+  </li>
+  <li>
+    <p>Create a text file with your full name, username, and a random question in
+it. Then, use <code class="highlighter-rouge">gpg</code> to symmetrically encrypt this text file using the
+TWOFISH algorithm and a password of your choice. Make sure the resulting
+encrypted file is in ASCII-armored format<sup id="fnref:armor"><a href="#fn:armor" class="footnote">7</a></sup>. Figure out how to
+distribute this encrypted file to someone else in the lab<sup id="fnref:nginx"><a href="#fn:nginx" class="footnote">8</a></sup>, and have
+them demonstrate their ability to decrypt the file with your chosen
+passphrase. Get one such file from someone else yourself and do the
+same.<sup id="fnref:extracredit"><a href="#fn:extracredit" class="footnote">9</a></sup></p>
+  </li>
+</ol>
+
+<h4 id="task-3---asymmetric-encryption">Task 3 - Asymmetric Encryption</h4>
+
+<p>Remember to perform all the following steps on your student VM.</p>
+
+<p>In this task, we will be using <code class="highlighter-rouge">gpg</code> to create a PGP key.</p>
+
+<p>Step 0: Figure out how to do make this key<sup id="fnref:ghgpg"><a href="#fn:ghgpg" class="footnote">10</a></sup>, and create a 4096-bit
+RSA/RSA PGP key.</p>
+
+<p>You might be wondering: didn’t we just create a 4096-bit RSA key for use in
+SSH? Why can’t we just use the same key for GPG? The short answer is that,
+while technically possible, it is
+<a href="https://serverfault.com/questions/346958/how-do-i-import-a-rsa-ssh-key-into-gpg-as-the-primary-private-key">inadvisable</a>
+to do so for security reasons.</p>
+
+<ol>
+  <li>
+    <p>After creating the key, retrieve the key ID and put it in the checkoff form.</p>
+  </li>
+  <li>
+    <p>Export the public portion of the key in ASCII armor format and figure out
+how to distribute it. For every subsequent step, make sure to do everything
+using ASCII armored output where applicable.</p>
+  </li>
+  <li>
+    <p>The DeCal staff have a <a href="http://decal.ocf.berkeley.edu/static/a8/staff_public_key.gpg">public key
+available</a>.
+Figure out how to import the key, and write down the key id.</p>
+  </li>
+  <li>
+    <p>Decrypt the files from Task 2 again: now that you have imported the Staff
+GPG key, has anything changed in the output?</p>
+  </li>
+  <li>
+    <p>Create a text file with a new random question, as in task 2. Find someone in
+the lab, retrieve and import their public key, encrypt your text file using
+their public key and figure out how to get it to them. They should do the
+same for you. Decrypt their file and keep it around for the lab checkoff
+form. <sup id="fnref:extracredit:1"><a href="#fn:extracredit" class="footnote">9</a></sup></p>
+  </li>
+  <li>
+    <p>Repeat step 5, but this time, sign the encrypted file, and verify the
+signature on the file your receive in turn, using the appropriate <code class="highlighter-rouge">gpg</code>
+options.</p>
+  </li>
+  <li>
+    <p>The DeCal staff have uploaded a
+<a href="http://decal.ocf.berkeley.edu/static/a8/ocf_address.asc">file</a> to help you
+figure out how to get to the OCF. However, we suspect nefarious elements may
+be trying to modify the file in an effort to divert students to their
+location. Figure out if the file has been modified, and if so, fix the file.</p>
+  </li>
+  <li>
+    <p>Where is your private key located? Write down the location where you expect
+the private key to be.</p>
+  </li>
+</ol>
+
+<p>We will return to encryption later in the lab.</p>
+
+<h4 id="task-4---hashing">Task 4 - Hashing</h4>
+
+<p>Fortunately all the common hashing algorithms have been implemented for us by
+various libraries. For this lab, please compute the requested hashes by any
+method you deem appropriate. It would be advisable to do these on an OCF
+desktop, or on your student VMs, but <em>not</em> on tsunami, because this leaves
+around a large file that takes up extra space if not cleaned up.</p>
+
+<ol>
+  <li>
+    <p>Download a copy of the CentOS 7 NetInstall ISO from the <a href="http://mirrors.ocf.berkeley.edu/centos/7/isos/x86_64/">OCF
+mirrors</a> and verify
+that its SHA256 hash is correct. Also compute its SHA1 and MD5 hashes.</p>
+  </li>
+  <li>
+    <p>You may have noticed that the CentOS project provides a signature over the
+hashes it provides (the .asc file in the same directory as above). Briefly
+explain why this is a good, efficient security measure, knowing what you do
+about how signatures, hashing, and malicious attempts at file corruption
+work.</p>
+  </li>
+</ol>
+
+<h4 id="task-5-certificates-and-signatures">Task 5: Certificates and Signatures</h4>
+
+<p>In this task, we’re going to set up one of the most common uses of certificates
+and signatures: HTTPS. As you might have realized, you are now in possession of
+a website and webserver, (&lt;you&gt;.decal.xcf.sh), at least for the time
+being. Perform the following tasks on your student VM.</p>
+
+<p>Suppose you want to start hosting files on your site for other people to visit
+and see.</p>
+
+<p>First, install the <code class="highlighter-rouge">nginx</code> package to get a web server, and then customize the
+file at <code class="highlighter-rouge">/var/www/html/index.html</code> to reflect your indiviuality. You can see
+this new file at <code class="highlighter-rouge">&lt;you&gt;.decal.xcf.sh</code> in a web browser.</p>
+
+<p>Now that you have a website, you decide that, as a good internet citizen, you
+want to protect your visitors from the prying eyes of the government, by
+setting up HTTPS. You know already that you will need a public key and a
+certificate signed by a trusted root CA in order to do this. How do you go
+about getting one? Searching the internet, you find a wonderful project called
+<a href="https://letsencrypt.org">Let’s Encrypt</a> that provides free, signed
+certificates. Let’s go about acquiring one.</p>
+
+<p>For the purpose of this lab, we will be performing all the required steps
+manually instead of using the automated tools for educational purposes.</p>
+
+<ol>
+  <li>
+    <p>The first step in acquiring a signed certificate is to generate the public
+and private key that the certificate will validate. We can do so by using
+the <code class="highlighter-rouge">openssl</code> command.</p>
+
+    <p><code class="highlighter-rouge">$ openssl genrsa 4096 &gt; domain.key</code></p>
+
+    <p>As you probably guessed, we just created another 4096-bit RSA keypair, this
+ time, in PEM format. Both the public and private keys are encoded in the
+ file <code class="highlighter-rouge">domain.key</code>, which you can see using <code class="highlighter-rouge">cat</code>.</p>
+  </li>
+  <li>
+    <p>For Let’s Encrypt, we’ll also need an another key for our Lets Encrypt
+account. Repeat the command from above, but this time, output to a file
+called <code class="highlighter-rouge">account.key</code>.<sup id="fnref:account-key"><a href="#fn:account-key" class="footnote">11</a></sup> Let’s also export the public portion of
+this key as you’ll need it soon when you authenticate to LetsEncrypt.</p>
+
+    <p><code class="highlighter-rouge">$ openssl rsa -in account.key -pubout &gt; account.pub</code></p>
+  </li>
+  <li>
+    <p>Now that we have a keypair that we want signed, (<code class="highlighter-rouge">domain.key</code>), let’s
+generate a “Certificate Signing Request” for it. This will be what you send
+to Let’s Encrypt in order to get a certificate for your public key. It
+contains the metadata necessary for LE to issue a certificate.</p>
+
+    <p><code class="highlighter-rouge">$ openssl req -new -sha256 -key domain.key -subj "/C=US/ST=CA/L=UC
+ Berkeley/O=Open Computing
+ Facility/emailAddress=&lt;you&gt;@ocf.berkeley.edu/CN=&lt;you&gt;.decal.xcf.sh" -out
+ csr.pem -outform pem</code></p>
+
+    <p>You’ll find a file in your directory called <code class="highlighter-rouge">csr.pem</code> that starts with
+ <code class="highlighter-rouge">BEGIN CERTIFICATE REQUEST</code>. What did you just do? You asked for a <code class="highlighter-rouge">-new</code>
+ certificate signing <code class="highlighter-rouge">req</code>uest for the public <code class="highlighter-rouge">-key</code> in <code class="highlighter-rouge">domain.key</code>, using
+ <code class="highlighter-rouge">-sha256</code> for hashing. You are &lt;you&gt;@something from the OCF at UC
+ Berkeley, CA, US, and you’re making this request for the domain name (aka
+ <code class="highlighter-rouge">C</code>ommon <code class="highlighter-rouge">N</code>ame) &lt;you&gt;.decal.xcf.sh. You’d also like the CSR to be in
+ <code class="highlighter-rouge">pem</code> format.</p>
+
+    <p>Now, we have all the data we need to actually get a certificate. Let’s
+ submit the request to Let’s Encrypt.</p>
+  </li>
+  <li>
+    <p>Install the <code class="highlighter-rouge">certbot</code> utility and do the following:</p>
+
+    <p>Enter the following command at a terminal:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo certbot certonly
+      --authenticator manual \
+      --server https://acme-v01.api.letsencrypt.org/directory \
+      --text \
+      --email &lt;you&gt;@email.address \
+      --csr csr.pem
+</code></pre></div>    </div>
+
+    <p>You will be asked to answer some questions, read them and type “Y” when
+ prompted. On the last prompt, you will be asked to make a file available in the
+ root directory of the web server, either by copying the file yourself or by
+ executing the Python code provided by the <code class="highlighter-rouge">certbot</code> program. It is recommended
+ to use the Python code in a new terminal window. Here is what the code should
+ look like: (<em>do not copy and paste this</em>, use the code provided by <code class="highlighter-rouge">certbot</code>)</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> # mkdir -p /tmp/certbot/public_html/.well-known/acme-challenge
+ # cd /tmp/certbot/public_html
+ # printf "%s" &lt;random&gt; &gt; .well-known/acme-challenge/&lt;random&gt;
+   # run only once per server:
+ # sudo $(command -v python2 || command -v python2.7 || command -v python2.6) -c \
+    "import BaseHTTPServer, SimpleHTTPServer; \
+    s = BaseHTTPServer.HTTPServer(('', 80), SimpleHTTPServer.SimpleHTTPRequestHandler); \
+    s.serve_forever()"
+</code></pre></div>    </div>
+
+    <p>After this, the <code class="highlighter-rouge">certbot</code> client will verify that the domain is legit and issue
+ a certificate, writing it to your current directory, likely as
+ <code class="highlighter-rouge">0000_chain.pem</code>.</p>
+
+    <p>This <code class="highlighter-rouge">.pem</code> file is your signed certificate! Once you set it up with a web
+ server, people will be able to securely browse your website.</p>
+
+    <p>Let’s configure the webserver to use your new certificate to secure requests.</p>
+  </li>
+  <li>
+    <p>Make sure that <code class="highlighter-rouge">nginx</code> is installed, otherwise you won’t be able to view
+your website.</p>
+
+    <p><code class="highlighter-rouge">nginx</code> stores its configuration information in <code class="highlighter-rouge">/etc/nginx</code>.
+From the <a href="https://github.com/0xcf/decal-labs/">decal-labs</a> repository,
+add the file <code class="highlighter-rouge">a8/nginx-a8.conf</code> to the <code class="highlighter-rouge">/etc/nginx/sites-enabled/</code>
+directory.</p>
+  </li>
+  <li>
+    <p>Edit <code class="highlighter-rouge">nginx-a8.conf</code> using your preferred text editor and fix it according
+to the instructions contained therein.</p>
+  </li>
+  <li>
+    <p>Rename <code class="highlighter-rouge">nginx-lab8.conf</code> to <code class="highlighter-rouge">default</code> and reload nginx.<sup id="fnref:reloadnginx"><a href="#fn:reloadnginx" class="footnote">12</a></sup></p>
+  </li>
+</ol>
+
+<p>Now, if you visit <code class="highlighter-rouge">https://&lt;you&gt;.decal.xcf.sh</code>, you should see the green lock
+in the address bar indicating that your website is secured with HTTPS!</p>
+
+<p>For checkoff, paste in your site URL with HTTPS configured to show that your
+have successfully requested and received a signed certificate and have
+configured nginx to serve files using the certificate and key to secure the
+HTTPS session.</p>
+
+<h3 id="file-security">File Security</h3>
+
+<p>Now that you have some experience with the primitives of encryption, let’s
+cover some practical topics in securing files on UNIX-based systems.</p>
+
+<h4 id="file-security-and-permissions">File Security and Permissions</h4>
+
+<p>The base layer in the UNIX security hierarchy is file permissions. Every file
+and process is owned by a user (and group), and by default, only the user/group
+that owns the file can edit it. You can see this by typing <code class="highlighter-rouge">ls -la</code> in your
+terminal:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>admin@staff:~$ ls -la
+total 104
+drwxr-xr-x 9 admin admin  4096 Oct  3 13:01 .
+drwxr-xr-x 5 root  root   4096 Oct  2 16:49 ..
+drwxr-xr-x 2 admin admin  4096 Sep 21 21:11 .augeas
+-rw------- 1 admin admin 27932 Oct  6 14:05 .bash_history
+-rw-r--r-- 1 admin admin   220 May 15 12:45 .bash_logout
+-rw-r--r-- 1 admin admin  3526 May 15 12:45 .bashrc
+drwx------ 3 admin admin  4096 Sep 17 12:02 .config
+drwxr-xr-x 4 admin admin  4096 Oct  3 12:47 .gem
+drwxr-xr-x 2 admin admin  4096 Oct  3 12:46 .nano
+-rw-r--r-- 1 admin admin   675 May 15 12:45 .profile
+drwxr-xr-x 4 admin admin  4096 Sep 17 14:23 .puppet
+drwx------ 2 admin admin  4096 Sep 17 12:09 .ssh
+drwxr-xr-x 3 admin admin  4096 Oct  3 12:38 test
+-rw------- 1 admin admin 21980 Oct  2 16:42 .viminfo
+</code></pre></div></div>
+
+<p>The first column, e.g. <code class="highlighter-rouge">-rw-------</code>, is the read/write/execute permissions for
+the file. The third and fourth columns are the user and group that own the file.</p>
+
+<p>Let’s break down the permissions seen in the example above. You’ll notice that
+there are 10 entries: they either start with <code class="highlighter-rouge">d</code> for directory or <code class="highlighter-rouge">-</code> for
+regular files<sup id="fnref:firstpermflag"><a href="#fn:firstpermflag" class="footnote">13</a></sup>, the the remaining 9 entries are split into 3
+groups of 3 permission each: <code class="highlighter-rouge">r</code>ead, <code class="highlighter-rouge">w</code>rite, and e<code class="highlighter-rouge">x</code>ecute for <code class="highlighter-rouge">u</code>user,
+<code class="highlighter-rouge">g</code>roup, and <code class="highlighter-rouge">o</code>ther. That means <code class="highlighter-rouge">-rw-------</code> refers to a regular file, where
+the owner can read and write but not execute the file, and no one else can
+either read, write, nor execute the file. On the other hand, the permissions
+on the <code class="highlighter-rouge">test</code> entry (<code class="highlighter-rouge">drwxr-xr-x</code>) indicate that it is a directory, everyone
+can enter the directory (<code class="highlighter-rouge">d--x--x--x</code>), anyone can list files inside the
+directory (<code class="highlighter-rouge">dr--r--r--</code>), but only the owning user can write files inside the
+directory (<code class="highlighter-rouge">d-w-------</code>). A key point to remember is the difference between
+execute permissions on files vs. directories: on directories, it refers to the
+ability to enter the directory.</p>
+
+<p><img src="https://www.comentum.com/images/permissions.jpg" alt="alt test" /></p>
+
+<p>The kernel enforces file permissions, preventing running programs from reading
+or modifying files they aren’t allowed to, and preventing users from executing
+programs that they don’t have access or permission for. This is important for a
+variety of reasons. For example, certain UNIX user accounts have their
+account information stored in a file called <code class="highlighter-rouge">/etc/passwd</code> and password hashes
+in <code class="highlighter-rouge">/etc/shadow</code>. These files are owned by <code class="highlighter-rouge">root</code>, preventing regular users
+from reading or changing this information without permission.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ ls -la /etc/shadow
+-rw------- 1 root root 861 Oct  9 02:22 /etc/shadow
+</code></pre></div></div>
+
+<p>This highlights a common security issue in UNIX: programs running as the <code class="highlighter-rouge">root</code>
+user. When a program is started, it inherits its user and group IDs from its
+parent process, and keeps them unless it manually drops permissions. If you
+start a program as the root user, because, for example, it requires deeper
+system access, a vulnerability in the program means that an attacker can
+interact with your computer as the root user. This is a common problem in
+misconfigured webservers, where a server running as root with a directory
+traversal vulnerability might allow an attacker to read secret credentials
+stored on the server’s filesystem.</p>
+
+<p>The moral of this story is tied to the principle of least privilege: wherever
+possible, only give the minimum amount of permission or privilege possible. If
+a program doesn’t need root credentials, don’t run it as a privileged user. If
+a file has sensitive content, don’t make it world-readable.</p>
+
+<p>How do you change permissions? There are two primary commands for doing so:
+<code class="highlighter-rouge">chmod</code> and <code class="highlighter-rouge">chown</code>. <code class="highlighter-rouge">chmod</code> changes the file mode, i.e. permissions, and an
+example of its syntax follows:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls -la ~/
+drwxr-xr-x 3 admin admin  4096 Oct  3 12:38 test
+$ chmod 644 test
+$ ls -la
+drw-r--r-- 3 admin admin  4096 Oct  3 12:38 test
+$ chmod u+x test
+drwxr--r-- 3 admin admin  4096 Oct  3 12:38 test
+$ chmod 000 test
+d--------- 3 admin admin  4096 Oct  3 12:38 test
+$ chmod +r test
+dr--r--r-- 3 admin admin  4096 Oct  3 12:38 test
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">chmod</code> accepts file permissions in octal notation, which is the
+following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>rwx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7</td>
+      <td>rwx</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>rw-</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>r-x</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>r–</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>-wx</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>-w-</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>–x</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="highlighter-rouge">chown</code> on the other hand changes the owner and group of a file. For example,
+suppose a file <code class="highlighter-rouge">instructions.txt</code> is created in your home directory (<code class="highlighter-rouge">~you</code>) by
+user <code class="highlighter-rouge">staff</code> with permissions <code class="highlighter-rouge">-rw-------</code>. You need to read this file to
+follow the instructions, but the <code class="highlighter-rouge">staff</code> user did not make the file
+world-readable so you could open it. In order to read it, you may first want to
+<code class="highlighter-rouge">chown</code> the file to yourself, by running <code class="highlighter-rouge">chown you:you instructions.txt</code>. This
+would change the file’s owner and owning group, previously “staff” and “staff”,
+to you. The basic syntax of <code class="highlighter-rouge">chown</code> is fairly simple:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chown [-R] [user]:[group] PATH
+</code></pre></div></div>
+
+<p>where <code class="highlighter-rouge">PATH</code> is the file or directory whose ownership you wish to modify, and <code class="highlighter-rouge">-R</code>
+means ‘recursive.’</p>
+
+<p>Making sure that files are only accessible to those who should be allowed to do
+so, and that vulnerable programs are not given too many permissions, is a
+critical part of maintaining system security on Linux.</p>
+
+<h4 id="task-6---file-security">Task 6 - File Security</h4>
+
+<p>Lets practice using the commands and concepts covered above.</p>
+
+<p><code class="highlighter-rouge">cd</code> into the folder <code class="highlighter-rouge">/opt/a8</code> on your student VM. You should see a number of
+files named <code class="highlighter-rouge">file1.txt</code> through <code class="highlighter-rouge">file9.txt</code>. Please answer the following
+questions with regards to each of the files, and make note of what commands you
+use for checkoff.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">file1.txt</code>: make this file readable using <code class="highlighter-rouge">chmod</code> and answer the question
+contained therein.</li>
+  <li><code class="highlighter-rouge">file2.txt</code>: if you read this file, you’ll notice it contains important
+decal secrets. Use <code class="highlighter-rouge">chmod</code> and <code class="highlighter-rouge">chown</code> to make the file readable only to
+you.</li>
+  <li><code class="highlighter-rouge">file3.txt</code>: this is an even more important file. Only root should be able
+to read this file, and no one should be able to edit it.</li>
+  <li><code class="highlighter-rouge">file4.txt</code> and <code class="highlighter-rouge">file5.txt</code>: these files are owned by another user. Choose
+any method to make the files readable to you and unreadable to the previous
+owner.</li>
+  <li><code class="highlighter-rouge">file6.txt</code> and <code class="highlighter-rouge">file7.txt</code>: look at the permissions for these two files and
+explain what they allow and disallow.</li>
+  <li><code class="highlighter-rouge">file8.txt</code> and <code class="highlighter-rouge">file9.txt</code>: provide a strategy to make these files readable
+only to you and the <code class="highlighter-rouge">a8user</code> user, and no one else.</li>
+</ol>
+
+<h4 id="network-security">Network Security</h4>
+
+<p>On UNIX based operating systems, the network is the most common method of
+gaining unauthorized access to a machine. Why this is the case should be
+obvious: the network allows one to interact with a machine without needing any
+physical presence. Anyone on the same network as your machine can connect, and
+therefore attack, your machine. On the internet, this means the whole world can
+attack your machine. This introduces a number of security considerations when
+running networked applications.</p>
+
+<p>The first step in securing machines connected to a network, or the open
+internet, is to make it as hard as possible for attackers to get to your
+machine. As you may recall from the networking lecture, processes interact with
+one another over a network by means of sockets and ports. Many protocols listen
+on well-known ports, such as SSH on port 22, HTTP on port 80, FTP on port 21,
+etc. We use firewalls and similar software to prevent unauthorized users from
+connecting to your machine.</p>
+
+<p>The second step in maintaining network security is to audit which programs are
+running on your server, and to design your network to reduce the attack vectors
+on any single machine by separating concerns as much as reasonably possible.
+For example, it may not be a good idea to run a critical database server and a
+potentially insecure webserver on the same machine, as a vulnerability in one
+could easily lead to the compromising of the other. At the very least, all these
+programs should be run as minimally privileged users, and never as <code class="highlighter-rouge">root</code> unless
+necessary, like <code class="highlighter-rouge">sshd</code>.</p>
+
+<p>Finally, the hardest part of online security is auditing your own code.
+Ultimately, most security vulnerabilities arise from code you need to run to
+affect your business functions. For example, the popular CMS software
+WordPress, which is estimated to power nearly a quarter of all websites, has
+historically been extremely vulnerable to security bugs, especially because people
+like to install WordPress plugins, often written by amateur coders, which are even
+less secure. Unfortunately, the only real defense against one’s own imperfection
+as a programmer is to be vigilant about monitoring one’s programs for vulnerabilities
+and servers for intrusion, and following good defensive programming practices on the
+road towards the impossible goal of secure, bug-free programs.</p>
+
+<h4 id="task-7---network-security-lab-activity">Task 7 - Network Security Lab Activity</h4>
+
+<ol>
+  <li>
+    <p>Make a list of all the services running on your student VM that are
+accessible from the public internet, what user they are running as, and what
+port they are listening on. Use the tools you learned about in lab 5, such
+as <code class="highlighter-rouge">netstat</code>, as well as tools like <code class="highlighter-rouge">ps</code>. You may also want to point <code class="highlighter-rouge">nmap
+-A</code> at your VM from another machine, such as <code class="highlighter-rouge">tsunami</code>.</p>
+  </li>
+  <li>
+    <p>Use <code class="highlighter-rouge">less</code> and <code class="highlighter-rouge">grep</code> to open up and search your SSH login log file, located
+in <code class="highlighter-rouge">/var/log/auth.log</code>. Besides yourself, is anyone trying to log in? Who
+and why?</p>
+  </li>
+</ol>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:badwosign">
+      <p>https://thehackernews.com/2016/08/github-ssl-certificate.html <a href="#fnref:badwosign" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:badkazakh">
+      <p>https://news.ycombinator.com/item?id=10663843 <a href="#fnref:badkazakh" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:pkcsize">
+      <p>limitations on the size of data that public key crypto can operate over render this option nontrivial and difficult to implement. <a href="#fnref:pkcsize" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:sha1">
+      <p>https://en.wikipedia.org/wiki/SHA1 <a href="#fnref:sha1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:ssh-copy-id">
+      <p>hint: look at the man page <code class="highlighter-rouge">ssh-copy-id</code> command. <a href="#fnref:ssh-copy-id" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:wget">
+      <p>use of wget is recommended <a href="#fnref:wget" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:armor">
+      <p>see the <code class="highlighter-rouge">--armor</code> option <a href="#fnref:armor" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:nginx">
+      <p>consider that you have a functioning web server (<code class="highlighter-rouge">apache</code> or <code class="highlighter-rouge">nginx</code>) running on your student VM already from lab 6. It is advisable to use <code class="highlighter-rouge">nginx</code>. Furthermore, take a look at the <a href="http://nginxlibrary.com/enable-directory-listing/">autoindex</a> directive. Another option would be to use your OCF-provided <a href="https://www.ocf.berkeley.edu/docs/services/web/">web hosting</a>, or using netcat to transfer the files. <a href="#fnref:nginx" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:extracredit">
+      <p>This question is extra credit, but it’s highly recommended you do it <a href="#fnref:extracredit" class="reversefootnote">&#8617;</a> <a href="#fnref:extracredit:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:ghgpg">
+      <p>GitHub has <a href="https://help.github.com/articles/generating-a-new-gpg-key/">excellent documentation</a> on creating all kinds of cryptographic keys. <a href="#fnref:ghgpg" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:account-key">
+      <p><code class="highlighter-rouge">$ openssl genrsa 4096 &gt; account.key</code> <a href="#fnref:account-key" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:reloadnginx">
+      <p>recall lab 6: <code class="highlighter-rouge">systemctl reload nginx</code> <a href="#fnref:reloadnginx" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:firstpermflag">
+      <p>There are others too, like ‘l’ for symbolic link <a href="#fnref:firstpermflag" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

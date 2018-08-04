@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 6 - Processes and Services - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 6 - Processes and Services</h1>
+  <h2 id="overview">Overview</h2>
+<p>At any given moment, there are anywhere from dozens to thousands of process running on a Unix system. The large majority of these processes, called daemons, run in the background. Daemons are crucial to having a usable system and provide much of a system’s core functionality, including the graphics server, sound server, and networking services to name a few.</p>
+
+<p>Today we’ll explore these background processes and create some of our own! Make sure the following exercises are executed on your VM unless explicitly specified otherwise. Make sure to answer the questions on the google form as you work through the lab:</p>
+
+<p><a href="https://goo.gl/forms/cLLL8BaPze4ESq913">Google Form Exercises</a></p>
+
+<h2 id="which-processes-are-running-on-my-system">Which processes are running on my system?</h2>
+<p>Open up a terminal and run the <code class="highlighter-rouge">ps</code> command. You should see something like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  PID TTY          TIME CMD
+ 3634 pts/2    00:00:00 ps
+15015 pts/2    00:00:00 bash
+</code></pre></div></div>
+
+<p>Now open up <strong>another</strong> terminal and run <code class="highlighter-rouge">sleep 1000</code> in the background, and then run <code class="highlighter-rouge">ps</code>. It should look like:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sleep 1000 &amp;
+[1] 29756
+$ ps
+  PID TTY          TIME CMD
+29446 pts/2    00:00:00 bash
+29756 pts/2    00:00:00 sleep
+29757 pts/2    00:00:00 ps
+</code></pre></div></div>
+<p>In the <strong>first</strong> terminal run <code class="highlighter-rouge">ps</code> again. You should notice that the <code class="highlighter-rouge">sleep</code> process is not showing up, even though the thousand seconds haven’t expired. (Exercise 1) Why do you think this behavior occurs (hint: TTY column)?</p>
+
+<p>We can get the process to display on the first terminal by running <code class="highlighter-rouge">ps -u</code>, which displays all the processes running as your user. Notice the PID column; each process has a unique ID assigned to it by the kernel. One thing we can do with this PID is send signals to the process. <code class="highlighter-rouge">sleep 1000</code> is pretty useless, so go ahead and kill it – <code class="highlighter-rouge">kill 29756</code> (substitute <code class="highlighter-rouge">29756</code>  with whatever PID <code class="highlighter-rouge">ps</code> outputted for you).</p>
+
+<p>The most common use of <code class="highlighter-rouge">ps</code> is to run <code class="highlighter-rouge">ps -ef</code> to see all the processes running on the system. Run <code class="highlighter-rouge">ps -e</code> and <code class="highlighter-rouge">ps -f</code> independently to see how the flags work together.</p>
+
+<h2 id="htop">htop</h2>
+<p>Make sure <code class="highlighter-rouge">htop</code> is installed by running <code class="highlighter-rouge">sudo apt install htop</code>.</p>
+
+<p>Now, open up a terminal and run the <code class="highlighter-rouge">htop</code> command. <code class="highlighter-rouge">htop</code> can be thought of as a more extensive version of <code class="highlighter-rouge">ps -ef</code>, whereby process stats are updated in real-time.</p>
+
+<p>First press <code class="highlighter-rouge">&lt;F2&gt;</code>, scroll down to Display options, and check “Hide userland process threads.” We won’t be dealing with those in this lab.</p>
+
+<p>Now open up another terminal and SSH into your VM. Run the command <code class="highlighter-rouge">yes</code>. It uses a lot of resources as it prints a continuous stream of <code class="highlighter-rouge">y</code>’s. (Exercise 2) What resource specifically does the <code class="highlighter-rouge">yes</code> command exhaust? If you are having trouble finding this, press <code class="highlighter-rouge">&lt;</code> to choose which resource to order processes by. Make sure to quit out of <code class="highlighter-rouge">yes</code> (^C) once you are finished.</p>
+
+<h3 id="the-process-hierarchy">The process hierarchy</h3>
+<p>Run <code class="highlighter-rouge">htop</code> once more. This time click <code class="highlighter-rouge">&lt;F5&gt;</code> to enter Tree View. You should see a visual representation of the process hierarchy on your system, with everything stemming from <code class="highlighter-rouge">/sbin/init</code> (systemd).</p>
+
+<p>For curious students that are interested in seeing a more extensive process hierarchy on a large system, you are encouraged to run <code class="highlighter-rouge">htop</code> on the OCF server <code class="highlighter-rouge">tsunami</code>. Let us know of any cool processes that you find!</p>
+
+<h3 id="orphan-processes">Orphan processes</h3>
+<p>Open a second terminal and SSH to your VM. Now run <code class="highlighter-rouge">sleep 1000 &amp;</code>. You should see this new process pop into your <code class="highlighter-rouge">htop</code> session on your first terminal. If not, press <code class="highlighter-rouge">&lt;F3&gt;</code> and search for “sleep.” (Exercise 3) What is its parent?</p>
+
+<p>Select this parent and press <code class="highlighter-rouge">&lt;F9&gt;</code> to kill it. Send the <code class="highlighter-rouge">SIGTERM</code> signal. The sleep process now has <code class="highlighter-rouge">init</code> as its new parent, which is PID 1. What you just did is manually orphan a process; when that happens said process is subsequently re-parented by the <code class="highlighter-rouge">init</code> process.</p>
+
+<p>Now go through the same steps again. This time, send the parent a <code class="highlighter-rouge">SIGHUP</code> (hangup) signal. Can you still find the sleep process? When <code class="highlighter-rouge">SIGHUP</code> is sent to a parent shell, the parent subsequently sends hangup signals to any child processes before terminating; all processes that receive <code class="highlighter-rouge">SIGHUP</code> from a parent shell will terminate – this is one way to avoid creating orphan processes.</p>
+
+<p>If you are interested in learning about the different signals, run <code class="highlighter-rouge">man 7 signal</code>. Note that you can run <code class="highlighter-rouge">man man</code> for an explanation about the different manual section numbers.</p>
+
+<h2 id="cron">Cron</h2>
+<p>So much infrastructure in the computing world relies on scheduled processes. This is the job of the cron daemon. For example, at the OCF, we use a cron job that runs every thirty minutes to keep our servers and desktops updated via <code class="highlighter-rouge">puppet</code>. To get a feel for the cron scheduler, we’re going to write a basic cron job.</p>
+
+<p>(Exercise 4) Open the cron editor by running <code class="highlighter-rouge">crontab -e</code> (if the editor of your choice isn’t being launched, set the <code class="highlighter-rouge">EDITOR</code> environment variable), which will create a crontab for your user. Below is a sample task. Put this in your crontab:</p>
+
+<p><code class="highlighter-rouge">* * * * * date +"\%T" &gt;&gt; $HOME/timestamps.txt</code></p>
+
+<p>Right now this runs every minute. Modify it to run every five minutes and quit out of the editor. Make sure to leave this running while you complete the remainder of the lab as you will be turning this file in.</p>
+
+<p>If you get stuck, visit <a href="https://crontab.guru">crontab.guru</a>!</p>
+
+<h2 id="using-systemd">Using systemd</h2>
+
+<h3 id="what-services-are-running-right-now">What services are running right now?</h3>
+<p>Run <code class="highlighter-rouge">systemctl</code>. You’ll see a long table of every unit known to systemd.</p>
+
+<p>Let’s narrow it down to services for now. Run <code class="highlighter-rouge">systemctl --type=service</code>. Now you can see a list of all services running on your computer. Each of these services is a daemon running in the background. Do you see any familiar services running?</p>
+
+<h3 id="controlling-services">Controlling Services</h3>
+<p>Now let’s use <code class="highlighter-rouge">systemd</code> to control a an nginx web server. Install nginx by issuing <code class="highlighter-rouge">sudo apt install nginx</code>. Once that is done we can tell systemd to start the service with the following: <code class="highlighter-rouge">sudo systemctl start nginx</code>. Run <code class="highlighter-rouge">systemctl status nginx</code> to ensure it is running and navigate to http://<em>yourvm</em>.decal.xcf.sh/ – you should be greeted by the nginx default landing page.</p>
+
+<p>Now let’s make nginx listen for connections on the nonstandard port 420. In <code class="highlighter-rouge">/etc/nginx/sites-available/default</code> change the following lines:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">listen</span> <span class="mi">80</span> <span class="s">default_server</span><span class="p">;</span>
+<span class="k">listen</span> <span class="s">[::]:80</span> <span class="s">default_server</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>to:</p>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">listen</span> <span class="mi">420</span> <span class="s">default_server</span><span class="p">;</span>
+<span class="k">listen</span> <span class="s">[::]:420</span> <span class="s">default_server</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Tell systemd that nginx has changed configuration and needs reloading with: <code class="highlighter-rouge">sudo systemctl reload nginx</code>. Now, accessing  http://<em>yourvm</em>.decal.xcf.sh/ should now give you a connection refused error and your webserver will only be accessible via http://<em>yourvm</em>.decal.xcf.sh:420/.</p>
+
+<p>Note that not all services can be reloaded; systemd will notify you if this is the case and such services will have to be restarted instead with: <code class="highlighter-rouge">sudo systemctl restart yourservice</code>.</p>
+
+<p>Finally go ahead and stop the nginx service with <code class="highlighter-rouge">sudo systemctl stop nginx</code>.</p>
+
+<p>(Exercise 5) What is the difference between <code class="highlighter-rouge">systemctl reload yourservice</code> and <code class="highlighter-rouge">systemctl reload restart yourservice</code>?</p>
+
+<h3 id="creating-a-service">Creating a service</h3>
+<p>Let’s set up a web server and create a systemd unit for it. Make sure <code class="highlighter-rouge">git</code> is installed; if it’s not, install it using apt.</p>
+
+<p>To get the code run:
+<code class="highlighter-rouge">git clone https://github.com/0xcf/decal-labs.git</code></p>
+
+<p>If you have already cloned the repository, go to your <code class="highlighter-rouge">decal-labs</code> directory and run <code class="highlighter-rouge">git pull</code>. The materials for this part of the lab will be in the <code class="highlighter-rouge">b6</code> directory.</p>
+
+<p>We will also need to install some dependencies. Go ahead and execute the following commands:
+<code class="highlighter-rouge">sudo apt update</code>
+<code class="highlighter-rouge">sudo apt install build-essential make python-virtualenv</code></p>
+
+<p>Now run <code class="highlighter-rouge">./run</code>. This should start up a simple web server at http://yourvm.decal.xcf.sh:5000</p>
+
+<p>Your mission, should you choose to accept it, is to write a systemd service that manages this web server. To do this, make a new unit file in <code class="highlighter-rouge">/etc/systemd/system/toy.service</code>. Refer to the slides for an example; DigitalOcean also has a <a href="https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files">good guide</a> on how to write systemd units. Here is a skeleton; all you need to do is fill in the values for each field.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=
+Requires=
+After=
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+ExecStart=
+User=
+</code></pre></div></div>
+
+<p>Some questions worth considering while writing this unit file are:</p>
+<ul>
+  <li>What units needs to be started before a webserver starts (Hint: network)?</li>
+  <li>What script should systemd run to start the webserver?</li>
+  <li>Units run by root as default. Is that a safe practice for web servers?</li>
+</ul>
+
+<p>You are encouraged to experiment with other fields as suits your liking.</p>
+
+<p>Once you have finished creating <code class="highlighter-rouge">toy.service</code>, let’s start the service and have the it start whenever our machine is booted.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># systemctl start toy.service
+# systemctl enable toy.service
+</code></pre></div></div>
+
+<h3 id="debugging">Debugging</h3>
+<p>You can check if the unit file succeeded by running <code class="highlighter-rouge">systemctl status toy.service</code>. If you are having issues with the unit file or the web server, check the logs for this unit by running <code class="highlighter-rouge">journalctl -u toy.service</code>.  If you run into errors don’t get demoralized (it is, after all, only a decal); as a sysadmin you’ll have to become comfortable making sense of arcane error messages.</p>
+
+<h3 id="crash-the-service">Crash the service!</h3>
+<p>(Exercise 6) One of the great benefits of using systemd to manage your services is that you don’t have to worry unnecessarily about bringing a process back up if it crashes. So let’s crash the service! You can do this by either sending a POST request with the json payload <code class="highlighter-rouge">'{"crash":"true"}'</code> to http://yourvm.decal.xcf.sh:5000/crash (Hint: use <code class="highlighter-rouge">cURL</code>) or by killing the webserver manually by sending a signal – both will cause the unit to crash. You can verify if you succeeded by running <code class="highlighter-rouge">systemctl status toy.service</code>, and the unit should either be in an <code class="highlighter-rouge">inactive</code> or <code class="highlighter-rouge">failed</code> state, depending on how you killed it.</p>
+
+<p>Now add the following the <code class="highlighter-rouge">/etc/systemd/system/toy.service</code> under the <code class="highlighter-rouge">Service</code> directive:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Restart=always
+RestartSec=10
+</code></pre></div></div>
+<p>To tell systemd that the unit file has changed run <code class="highlighter-rouge">sudo systemctl daemon-reload</code>. Now start your webserver and kill it again in any way you please, and you should see that it come back online after 10 seconds! Note that you can also run daemon-reload and change a unit file while a service is running.</p>
+
+<p>(Exercise 7) Upload your fully featured <code class="highlighter-rouge">toy.service</code> file to the google form.</p>
+
+<h2 id="exploration">Exploration</h2>
+<p>Congratulations, you have completed the lab! This is just the tip of the iceberg when it comes to processes and services. If you want to learn more, here are some related topics you can look into.</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Init">Wikipedia’s article on init systems</a></li>
+  <li><a href="https://felipec.wordpress.com/2013/11/04/init/">The construction of a basic init system</a></li>
+  <li><a href="https://engineeringblog.yelp.com/2016/01/dumb-init-an-init-for-docker.html">Yelp’s dumb-init, a lightweight init system for docker containers</a></li>
+  <li><a href="https://www.howtogeek.com/119815/htg-explains-what-is-a-zombie-process-on-linux/">Zombie Processes</a></li>
+  <li><a href="http://0pointer.de/blog/projects/socket-activated-containers.html">Socket activation</a></li>
+  <li>Systemd has been the source of a considerable amount of controversy. <a href="http://without-systemd.org/wiki/index.php/Main_Page">Opponents</a> allege that it violates the Unix philosophy of “do one thing and do it well”, and that it has had too much scope creep, among other complaints.</li>
+  <li>Everything you wanted to know about Unix <a href="https://www.win.tue.nl/~aeb/linux/lk/lk-10.html">threads, processes, process groups and sessions</a>. Bear in mind that this document is a little dated when it comes to the code about threads, and its description of what happens when a pseudotty is closed is not actually correct.</li>
+</ul>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

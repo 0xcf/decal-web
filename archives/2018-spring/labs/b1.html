@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Beginner Lab 1 - Unix, the Shell, OSS - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Beginner Lab 1 - Unix, the Shell, OSS</h1>
+  <p>Welcome to the first lab! Here are some commands you might find helpful:
+<code class="highlighter-rouge">cat, cd, emacs, file, grep, less, ls, man, nano, tar, wget, vim</code></p>
+
+<p>Remember: Google and <code class="highlighter-rouge">man</code> are your friends!</p>
+
+<h2 id="shell-spelunking">Shell spelunking</h2>
+<p><strong>Everything should be done via the shell!</strong></p>
+
+<p>The purpose of this lab is to get you comfortable with using the shell for
+things you might typically use a GUI for. While these tasks may seem simplistic
+or limited, you’ll quickly find that the commands have many different options
+(flags) to perform tasks that are either impossible or incredibly tedious /
+difficult to complete using traditional methods.</p>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">ssh</code> into <code class="highlighter-rouge">tsunami.ocf.berkeley.edu</code> using your OCF account, or login at
+<a href="https://ssh.ocf.berkeley.edu">ssh.ocf.berkeley.edu</a></p>
+  </li>
+  <li>
+    <p>Run the following command to download the file we have provided:
+<code class="highlighter-rouge">wget https://decal.ocf.berkeley.edu/static/b1/b01.tgz</code></p>
+
+    <p>A <code class="highlighter-rouge">.tgz</code> file is actually a composition of two file formats. Sometimes
+you’ll see these files as <code class="highlighter-rouge">.tar.gz</code> instead. A common (and old) way of
+archiving is with magnetic tapes. However, in order to archive the data, it
+needs to be a single file, and often you want to archive multiple files at
+once. This is where the <code class="highlighter-rouge">tar</code> command comes in (<code class="highlighter-rouge">tar</code> stands for tape
+archive). Tar will group (or ungroup) multiple files into a single one.</p>
+
+    <p><code class="highlighter-rouge">tar</code>, unless you ask it to, doesn’t compress files itself though. This is
+where either <code class="highlighter-rouge">gzip</code> (or <code class="highlighter-rouge">bzip2</code>) comes in. <code class="highlighter-rouge">gzip</code> will compress your file,
+and so, tar + gzip is often used in conjunction. It looks something like
+this: <code class="highlighter-rouge">file --(tar)--&gt; file.tar --(gzip)--&gt; fill.tar.gz</code>.</p>
+
+    <p>If you read the <code class="highlighter-rouge">tar</code> documentation carefully enough, you’ll see that you
+can give the command an option to compress your files using <code class="highlighter-rouge">gzip</code> as well,
+saving you a total of one line of shell command!</p>
+
+    <p>To unarchive the file we provide you, run the following command:
+<code class="highlighter-rouge">tar xvzf b01.tgz</code>. This will provide a <code class="highlighter-rouge">b01</code> directory for you with some
+files for the rest of this lab.</p>
+
+    <p><code class="highlighter-rouge">tar</code> has a reputation for being a bit tricky with its options:
+<img src="https://imgs.xkcd.com/comics/tar.png" alt="XKCD 1168" /></p>
+  </li>
+  <li>
+    <p>Go into the <code class="highlighter-rouge">b01</code> directory. Make sure you’re in there by running <code class="highlighter-rouge">cwd</code>
+(Current working directory). What does <code class="highlighter-rouge">cwd</code> give you?</p>
+  </li>
+  <li>
+    <p>There’s a hidden file in the <code class="highlighter-rouge">b01</code> directory. What is the secret?</p>
+  </li>
+  <li>
+    <p>A malicious user made its way into my computer and added a bunch of nonsense
+files. What do the files say? (Hint: They all have the same contents). Help
+me get rid of them by deleting all of these files and the directory they are
+in.</p>
+  </li>
+  <li>
+    <p>There’s a file in <code class="highlighter-rouge">b01</code> called <code class="highlighter-rouge">big_data.txt</code>. It’s 80 megabytes worth of
+random text. For reference, Leo Tolstoy’s “War and Peace”, the novel with a
+whopping 57,287 words depicting the French invasion of Russia and the impact
+of the Napoleonic era on Tsarist society through the stories of five Russian
+aristocratic families with several chapters solely dedicated to
+philosophical prose, is only 3.2 megabytes large.</p>
+
+    <p>For that reason, I don’t recommend using <code class="highlighter-rouge">cat</code> to print the file. You can
+try it, but you’ll be sitting there for a while. There’s some text you need
+to find in there! Go find it! (Hint: It’s a url)</p>
+  </li>
+  <li>
+    <p>There’s a file called <code class="highlighter-rouge">trojan_horse.txt</code>. Try reading it. Surprise! It’s not
+a text file.  Find out what file it is and what it depicts.</p>
+  </li>
+  <li>
+    <p>Finally, there’s an empty file called <code class="highlighter-rouge">hello_world</code> in the directory. Write
+your name in it!</p>
+  </li>
+  <li>
+    <p>Once you’re done <strong>remember to fill out the <a href="https://goo.gl/forms/H7odCjvpDYslkvSb2">Google
+form</a></strong>. There’s some other questions
+you’ll have to answer and some feedback we’d like you to fill out!</p>
+  </li>
+</ol>
+
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

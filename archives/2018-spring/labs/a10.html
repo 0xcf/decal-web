@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 10 - Special Topics - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 10 - Special Topics</h1>
+  <h2 id="docker">Docker</h2>
+<p>This exercise is designed to give you some hands-on experience with Docker!
+By the end of this assignment, you should be able to:</p>
+<ul>
+  <li>Create and use a Docker container interactively</li>
+  <li>Create a Dockerfile, which allows you to declaratively define your containers</li>
+  <li>Run detached containers and understand port forwarding</li>
+  <li>Use <code class="highlighter-rouge">docker-compose</code> to run a multi-container web application</li>
+</ul>
+
+<p>Just a forewarning: this lab holds your hand until the last section. Not that the last part is super hard, but it’ll
+have a lot less instruction than previous portions which are designed to gently introduce you to Docker.</p>
+
+<p><a href="https://goo.gl/forms/BJ5f7OQyCdjCfIzm1">Here is a link to the Google form</a></p>
+
+<h3 id="installing-docker">Installing Docker</h3>
+<p>Unfortunately, Docker isn’t in the official Debian <code class="highlighter-rouge">apt</code> repository. This means there are two methods we can use to
+install it:</p>
+
+<ol>
+  <li>Add the official Docker repository to <code class="highlighter-rouge">/etc/apt/sources.list</code>. This allows us to update the version of Docker we
+have on our machines with a simple <code class="highlighter-rouge">apt update</code> and <code class="highlighter-rouge">apt upgrade</code></li>
+  <li>Download the <code class="highlighter-rouge">.deb</code> manually and just install it. If we want to upgrade Docker after we do this, we’ll have to do it
+manually as well.</li>
+</ol>
+
+<p>You’re welcome to use either method to install Docker. For the first method, refer to the <a href="https://docs.docker.com/install/linux/docker-ce/debian/#install-docker-ce">Docker website for
+instructions</a>. For the second method, here
+is a link to a recent <code class="highlighter-rouge">.deb</code> you can use:
+<code class="highlighter-rouge">https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_18.03.0~ce-0~debian_amd64.deb</code>. At
+this point in the course, I trust you can figure out how to install it just given that link 🙂 <em>hint: use <code class="highlighter-rouge">wget</code> and<code class="highlighter-rouge">dpkg</code></em></p>
+
+<p>After installing, I recommend running the command <code class="highlighter-rouge">sudo usermod -aG docker $USER</code> so
+you can use Docker as a non-root user. This means you won’t have to type <code class="highlighter-rouge">sudo docker</code> all the time. This is optional
+but for the rest of this exercise I’m going to assume that you did this. If you see some output like</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sent invalidate(passwd) request, exiting
+sent invalidate(group) request, exiting
+</code></pre></div></div>
+
+<p>This is normal, it’s just adding a user to a group.</p>
+
+<h3 id="creating-your-first-docker-container">Creating your first Docker container</h3>
+<p>To verify that you installed things correctly, try running</p>
+
+<p><code class="highlighter-rouge">docker run hello-world</code></p>
+
+<p>You should see some friendly output like so (hashes are probably different, don’t worry about it):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+b04784fba78d: Already exists
+Digest: sha256:f3b3b28a45160805bb16542c9531888519430e9e6d6ffc09d72261b0d26ff74f
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://cloud.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/engine/userguide/
+</code></pre></div></div>
+
+<p>Some <a href="https://docs.docker.com/get-started/#a-brief-explanation-of-containers">quick definitions from Docker’s website:</a></p>
+
+<p>An <strong>image</strong> is a lightweight, stand-alone, executable package that includes everything needed to run a piece of
+software, including the code, a runtime, libraries, environment variables, and config files. Images are useful primarily for their
+speed, but images can also be used as a base to be built on top of in future images, as you’ll see later with Dockerfiles. In the
+last example hello-world was the image used to test our docker installation.</p>
+
+<p>A <strong>container</strong> is a runtime instance of an image—what the image becomes in memory when actually executed.
+It runs completely isolated from the host environment by default, only accessing host files and ports if configured to
+do so. A container gets created upon executing docker run on an image.</p>
+
+<p>This is similar to the distinction between objects and classes in Object Oriented Programming. Images would be classes,
+and containers would be objects.</p>
+
+<p>Be sure to read through the output from running the hello-world image to get an understanding of what the Docker daemon
+was doing.</p>
+
+<h3 id="running-an-interactive-container">Running an interactive container</h3>
+<p>We’re now going to walk you through running a container interactively. This is useful if you ever need to play around
+and install stuff on a bare system without messing up your current system. Try running the following command:</p>
+
+<p><code class="highlighter-rouge">docker run -it ubuntu:xenial /bin/bash</code></p>
+
+<p>The <code class="highlighter-rouge">-i</code> flag tells docker to keep <code class="highlighter-rouge">STDIN</code> open to your container, and the <code class="highlighter-rouge">-t</code> flag allocates a
+<a href="https://en.wikipedia.org/wiki/Pseudoterminal">pseudo-TTY</a> for you. Basically you need both for you to have a way to
+enter text and have this display properly. At the end of the command, <code class="highlighter-rouge">/bin/bash</code> is just the command you want to run
+once the container starts up. Try installing some packages from <code class="highlighter-rouge">apt</code> or just play around. It should look like a bare
+Linux system.</p>
+
+<p>You can exit the container with <code class="highlighter-rouge">CTRL+D</code>.</p>
+
+<p>Notice how even though your VM is running Debian, you were able to run the Xenial version of Ubuntu in a container. If
+you are curious about other variants of Linux, you can run a lot of them inside containers as well! This all works because
+Linux distributions all share the Linux kernel. For that same reason, you won’t be able to run MacOS or Windows in a container.
+You can try running <a href="https://getfedora.org/">Fedora</a> (<em>*tips hat*</em> M’Linux), another long-running Linux distribution:</p>
+
+<p><code class="highlighter-rouge">docker run -it fedora:latest /bin/bash</code></p>
+
+<h4 id="questions-answer-on-google-form">Questions (answer on Google form)</h4>
+
+<ol>
+  <li>What user are you logged in as by default?</li>
+  <li>If you start and then exit an interactive container, and then use the <code class="highlighter-rouge">docker run -it ubuntu:xenial /bin/bash</code>
+command again, is it the same container? How can you tell?</li>
+</ol>
+
+<h3 id="basic-management">Basic Management</h3>
+<p>The Docker CLI (Command Line Interface) has some basic commands for you to monitor running and stopped containers,
+downloaded images, and other information. We’ll go over the basic commands you’ll probably use, but be sure to check
+out <a href="https://docs.docker.com/engine/reference/commandline/cli/">the full reference</a> if you’re interested.</p>
+
+<p>Firstly, you might want to see the running containers on a system. Use the following command:</p>
+
+<p><code class="highlighter-rouge">docker ps</code></p>
+
+<p>Since you (likely) have no containers running, you probably won’t see anything interesting. However, if you pass in the
+<code class="highlighter-rouge">-a</code> flag, you’ll also be able to see containers that have stopped (make your terminal wider or it’ll display weird):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>baisang@rapture ~/d/labs&gt; docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                            PORTS               NAMES
+35c048c03588        fedora:latest       "/bin/bash"              7 minutes ago       Exited (130) About a minute ago                       mystifying_edison
+dd8f7cc2e0cd        fedora:latest       "/bin/bash"              10 minutes ago      Exited (1) 8 minutes ago                              romantic_mahavira
+</code></pre></div></div>
+
+<p>This lets you see a lot of useful information about the container. Observe that each container has a unique container
+id and a unique human-readable name. To get more information about a container, you can use the <code class="highlighter-rouge">docker logs</code> command
+to fetch the logs of a container (whether it’s still running or exited):</p>
+
+<p><code class="highlighter-rouge">docker logs &lt;container_id_or_name&gt;</code></p>
+
+<p>This basically just gives you <code class="highlighter-rouge">stdout</code> and <code class="highlighter-rouge">stderr</code> for process(es) running in the container.</p>
+
+<p>At some point, you may want to cleanup containers that have exited and you don’t plan on using anymore:</p>
+
+<p><code class="highlighter-rouge">docker rm &lt;container_id_or_name&gt;</code></p>
+
+<p>will remove the container.</p>
+
+<p>You may have noticed when you were running the Ubuntu or Fedora containers the first time that Docker downloaded a good
+chunk of data before running the image. This is the image of the container. You can view all of the images you’ve
+downloaded with the <code class="highlighter-rouge">docker images</code> command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>baisang@rapture ~/d/labs&gt; docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+fedora              latest              9110ae7f579f        2 weeks ago         235MB
+ubuntu              xenial              f975c5035748        3 weeks ago         112MB
+</code></pre></div></div>
+
+<p>Images can take up quite a bit of space on your machine, so you may want to clean up images that you don’t plan on
+using. This is especially relevant if you get errors about not having enough disk space on your machine:</p>
+
+<p><code class="highlighter-rouge">docker rmi &lt;image_id&gt;</code></p>
+
+<p>The image files, as well as various filesystems of containers, are stored in <code class="highlighter-rouge">/var/lib/docker</code></p>
+
+<p>We’ll go over more commands later on in the lab.</p>
+
+<h3 id="dockerfiles">Dockerfiles</h3>
+<p>A more powerful way to interface with Docker is by using a Dockerfile. A Dockerfile allows you to define an image by
+specifying all of the commands you would type manually to create an image. Docker can then build images from a specified
+Dockerfile. These Dockerfiles can be put into version control and the images distributed as a binary to keep track of
+both how the image is constructed and also to keep pre-built images around.</p>
+
+<p>Dockerfiles are very powerful and have many different commands and features. We’ll go over a basic example, but you
+should check out the <a href="https://docs.docker.com/engine/reference/builder/">reference page</a> if you are trying to do anything more
+complex.</p>
+
+<p>Here is an example Dockerfile that will build an image that has <code class="highlighter-rouge">python3.6</code> installed.
+It will also run <code class="highlighter-rouge">python3.6</code> directly, so you’ll be at a python prompt instead of a bash prompt when you run it.</p>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> ubuntu:bionic</span>
+
+<span class="k">RUN </span>apt-get update <span class="o">&amp;&amp;</span> apt-get install <span class="nt">-y</span> python3.6 <span class="nt">--no-install-recommends</span>
+
+<span class="k">CMD</span><span class="s"> ["/usr/bin/python3.6", "-i"]</span>
+</code></pre></div></div>
+
+<p>Note: there are some “best practices” for writing Dockerfiles that the above example doesn’t use,
+because it’s a basic example. For instance, we probably would want to delete <code class="highlighter-rouge">/var/lib/apt/lists/*</code>, where <code class="highlighter-rouge">apt</code>
+stores the package list information from <code class="highlighter-rouge">apt update</code>, after we are done installing packages. We may also choose to use
+Linux variants that are smaller and lighter, e.g. Alpine Linux. The general philosophy is
+containers should be kept as small and “light” as possible. If you’re interested in this stuff, <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">check out this
+article</a>.</p>
+
+<p>What is this doing? We specify a base image <code class="highlighter-rouge">ubuntu:bionic</code> (release 18.04 of ubuntu, soon to be the latest LTS as of writing).
+We then specify that we should run (<code class="highlighter-rouge">RUN</code>) the command <code class="highlighter-rouge">apt-get update</code> and then <code class="highlighter-rouge">apt-get install python3.6</code> so we can
+install <code class="highlighter-rouge">python3.6</code> (note that this package probably isn’t in <code class="highlighter-rouge">apt</code> on your own VMs, which are running an older Debian stable!)
+Then we set the default command (<code class="highlighter-rouge">CMD</code>) of the container to run the <code class="highlighter-rouge">python3.6</code> interpreter in interactive mode.</p>
+
+<p>Copy the contents of the Dockerfile above into a file named <code class="highlighter-rouge">Dockerfile</code>.
+Then use Docker to build it with the following command:</p>
+
+<p><code class="highlighter-rouge">docker build -t mypython:latest .</code></p>
+
+<p>This tells Docker to look in the current directory for a Dockerfile to build, and build it.
+The <code class="highlighter-rouge">-t</code> flag tells it to tag this build with the name <code class="highlighter-rouge">mypython:latest</code>.
+Docker will look for a Dockerfile in the current directory since you specified <code class="highlighter-rouge">.</code></p>
+
+<p>Remember, you can see all of the images you’ve built on your machine with the <code class="highlighter-rouge">docker images</code> command.</p>
+
+<h4 id="questions">Questions</h4>
+<ol>
+  <li>Run the image you just built. Since we specified the default <code class="highlighter-rouge">CMD</code>, you can just do <code class="highlighter-rouge">docker run -it
+mypython:latest</code>. What do you observe?</li>
+  <li>Write and build a Dockerfile that installs the packages <code class="highlighter-rouge">fortune</code> and <code class="highlighter-rouge">fortunes-min</code> and runs the <code class="highlighter-rouge">fortune</code>
+executable (located in <code class="highlighter-rouge">/usr/games/fortune</code> after you install it). Note that you won’t need to use the <code class="highlighter-rouge">-it</code> flags when you run
+the container as <code class="highlighter-rouge">fortune</code> doesn’t need <code class="highlighter-rouge">STDIN</code>.
+Submit your Dockerfile with this lab. Hint: if you’re having trouble writing your Dockerfile, try booting an
+interactive container and installing both packages. Translate what you did into a Dockerfile.
+How can you translate what you did interactively to a Dockerfile?</li>
+  <li>Paste the output of your <code class="highlighter-rouge">docker images</code> command after questions 1 and 2.</li>
+</ol>
+
+<h3 id="detached-containers-and-ports">Detached Containers and Ports</h3>
+<p>You might not always want containers to be running interactively. For instance, if you are running a web server, you’ll
+likely want the container to continue keep running until you explicitly want to end it. Docker supports this use case
+with the <code class="highlighter-rouge">-d</code> flag, which starts containers in <a href="https://docs.docker.com/engine/reference/run/#detached--d">detached
+mode</a>.</p>
+
+<p>We’ll explore a bit about detached containers by running a standalone Apache container. The image has already been
+built for you; you can find it on <a href="https://hub.docker.com/_/httpd/">Docker Hub</a> as <code class="highlighter-rouge">httpd</code>.</p>
+
+<p>Docker creates a separate virtual network for containers, so you will need to do forward your host port to your
+container’s port (this is called <a href="https://en.wikipedia.org/wiki/Port_forwarding">port forwarding</a>, or port mapping).
+The container is listening on port 80, so let’s try to forward our host machine’s port 5050 to the container’s
+port 80 when we run the container:</p>
+
+<p><code class="highlighter-rouge">docker run -d -p=5050:80 httpd</code></p>
+
+<p>The <code class="highlighter-rouge">-p</code> flag takes in a colon separated pair of <code class="highlighter-rouge">HOST_PORT:CONTAINER_PORT</code> (it can actually accept a ton of more
+options, but don’t worry about that for now). You should be able to view visit <code class="highlighter-rouge">&lt;url_of_host_machine&gt;:5050</code>, assuming
+you don’t have anything else running on that port (if you’re not on campus, you can just <code class="highlighter-rouge">curl &lt;url_of_host_machine&gt;:5050</code>
+from your VM or another machine on campus, e.g. ssh.ocf.berkeley.edu), and see the words “<strong>It works!</strong>”. You may need to allow
+the port 5050 on your firewall, simply run the command <code class="highlighter-rouge">ufw allow 5050</code></p>
+
+<p>You can actually “attach” to running containers and run more commands in them, similar to how <code class="highlighter-rouge">docker run</code> works. Use
+the <code class="highlighter-rouge">docker exec</code> command:</p>
+
+<p><code class="highlighter-rouge">docker exec &lt;container_id_or_name&gt; &lt;command&gt;</code></p>
+
+<p>To stop this container, use <code class="highlighter-rouge">docker stop &lt;container_id_or_name&gt;</code>.</p>
+
+<p>You can restart the container using <code class="highlighter-rouge">docker restart &lt;container_id_or_name&gt;</code>.</p>
+
+<h4 id="questions-1">Questions</h4>
+<ol>
+  <li>With <code class="highlighter-rouge">httpd</code> running in a detached container, run <code class="highlighter-rouge">/bin/bash</code> on the same container and paste the output of <code class="highlighter-rouge">ps
+aux</code>. Observe that there’s very few processes running as compared to running <code class="highlighter-rouge">ps aux</code> on your VM. Why is this the case?</li>
+</ol>
+
+<h3 id="dungeons-and-docker-compose">Dungeons and <code class="highlighter-rouge">docker-compose</code></h3>
+<p>Congratulations! You’ve just been hired by some trash SF Bay Area tech bubble startup as their systems administrator.
+Unfortunately, both the CEO and CTO are busy handling the business side, which leaves it up to you to get their web
+application deployed using Docker and <code class="highlighter-rouge">docker-compose</code>.</p>
+
+<p>Don’t worry though – while you may not have health insurance or a nice salary, you do have some of the CTO’s notes and
+equity to help you with your task. You get off BART at 12pm and enter your cramped SOMA coworking space, sitting down
+at the desk you share with the CTO while cracking open a cold LaCroix. Checking your email, you find the following
+notes from the CTO:</p>
+
+<h4 id="about-docker-compose">About <code class="highlighter-rouge">docker-compose</code></h4>
+<p><code class="highlighter-rouge">docker-compose</code> lets you define applications that require more than one container to function. For example, on a web
+application you may want your actual web application running inside of a single container, and your database running in
+a different container.</p>
+
+<p>Typically you define applications in terms of <strong>services</strong>. Again, going with the web application example, there are
+two distinct services: the app itself, and the database backing it. <code class="highlighter-rouge">docker-compose</code> lets you define different services
+within a <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> file and run the services accordingly.</p>
+
+<p>One of the nice things about <code class="highlighter-rouge">docker-compose</code> is that it automatically sets up a network for your containers in which:</p>
+<ul>
+  <li>each container for a service is on the network and reachable from other containers on the network</li>
+  <li>each container is discoverable on the network via its container name</li>
+</ul>
+
+<p>This means it should be pretty simple to get our web app to connect to the database.</p>
+
+<h4 id="installing">Installing</h4>
+<p><code class="highlighter-rouge">docker-compose</code> is really just a python package, so ideally we should just install it with <code class="highlighter-rouge">virtualenv</code> and <code class="highlighter-rouge">pip</code> (as with most
+things, the version packaged in Debian stable is too old, so we can’t just <code class="highlighter-rouge">apt install</code> it).
+Feel free to do it this way if you want, but since we’re a hotshot tech startup we’re gonna do this the cowboy way
+(yeehaw):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre></div></div>
+
+<h4 id="the-web-application">The web application</h4>
+<p>The web application is written only the most badass rockstar tech,
+<a href="https://www.youtube.com/watch?v=bzkRVzciAZg">Node.js</a>. For the database, it uses the most webscale, reliable, and
+persistent database available on the market today, <a href="https://www.youtube.com/watch?v=b2F-DItXtZs">MongoDB</a>.</p>
+
+<p><img src="https://i.fluffy.cc/bKHw92JKd8fKRgkK73vC881PzkXj4q9V.gif" alt="everything he just said was wrong" /></p>
+
+<p>The web application can be found on GitHub. Note that the web app listens on port 8080, so you’ll need to forward or
+expose that port. Don’t forget to allow it on your firewall, <code class="highlighter-rouge">ufw allow 8080</code>. Instructions for setting it up are located in the
+<code class="highlighter-rouge">README.md</code> of the repository: <a href="https://github.com/0xcf/decal-sp18-a10">https://github.com/0xcf/decal-sp18-a10</a></p>
+
+<p>For MongoDB, you can just use the image on <a href="https://hub.docker.com/_/mongo/">DockerHub</a> (a website where people can
+upload built Docker images). It’s just called <code class="highlighter-rouge">mongo</code>. For example, if you wanted to run MongoDB within a container in
+detached mode:</p>
+
+<p><code class="highlighter-rouge">docker run -d mongo:latest</code></p>
+
+<h4 id="putting-it-all-together">Putting it all together</h4>
+<p>Your task is to use <code class="highlighter-rouge">docker-compose</code> to deploy the Node.js app with the MongoDB database. The CTO has roughly mapped
+out a suggested order of tasks:</p>
+
+<ol>
+  <li>Write a <code class="highlighter-rouge">Dockerfile</code> that will allow you to run the Node.js web application</li>
+  <li>Write a <code class="highlighter-rouge">docker-compose.yml</code> file that will glue the Node.js app container with a MongoDB container</li>
+</ol>
+
+<p>Here is a basic skeleton for <code class="highlighter-rouge">docker-compose.yml</code>. You will need to fill out the <code class="highlighter-rouge">web</code> and <code class="highlighter-rouge">database</code> service entries:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: '3'
+services:
+  web:
+  database:
+</code></pre></div></div>
+
+<p>By default, the Node.js web application is designed to look for a MongoDB instance at hostname <code class="highlighter-rouge">database</code>, so be sure
+that your MongoDB service is defined under that name. <code class="highlighter-rouge">docker-compose</code> will make sure that the hostname <code class="highlighter-rouge">database</code> maps
+to the container for that service.</p>
+
+<p>One huge caveat: your hotshot CTO unfortunately wrote the Node.js app in a crap way where if it’s not able to connect
+to the MongoDB database once it starts, it’ll fail and exit without retrying. Since Javascript is poison, you’ll need
+to find a way to make sure that the Node.js app only starts after the MongoDB container is ready to accept incoming
+connections <em>without</em> modifying <code class="highlighter-rouge">server.js</code>. I included a wrapper script <code class="highlighter-rouge">wait-for</code> in the repo for the Node.js app
+that will allow you to wait for the MongoDB service to be ready before launching the Node.js app. But, in order to use
+the script, you will need to have <code class="highlighter-rouge">netcat</code> installed in your container, so be sure to include that in your Dockerfile.
+See the <a href="https://github.com/Eficode/wait-for">repo for the script</a> for instructions on how to use the script. Feel free
+to come up with other ways to solve this issue though!</p>
+
+<p>You will likely find the <a href="https://docs.docker.com/compose/compose-file/">Compose File Reference</a> useful. Additionally,
+the <a href="https://docs.docker.com/compose/gettingstarted/">Getting Started</a> guide will help as well, although it’s a python
+example instead of the superior Node.js /s I suggest poking around at other docs on that site also. I expect you to run
+into errors and difficulties – this is intended as part of the lab. Please try googling error messages and coming up
+with your own fixes before asking for help, but of course feel free to ask if you get really stuck.</p>
+
+<p>Hints (if you want them):</p>
+<ul>
+  <li>For the Node.js Dockerfile, I recommend basing it off of <code class="highlighter-rouge">ubuntu:xenial</code> and installing everything you need
+(<code class="highlighter-rouge">nodejs</code>, <code class="highlighter-rouge">npm</code>, etc.) via <code class="highlighter-rouge">apt</code>. These aren’t in Debian’s <code class="highlighter-rouge">apt</code> repository so you’d have to find another way to
+install them if you use Debian.</li>
+  <li><code class="highlighter-rouge">npm install</code> needs to be run within the directory containing the repository (i.e. needs to be run within the
+directory that has the <code class="highlighter-rouge">package.json</code> file). If you want to change the current working directory within your
+Dockerfile, use the <a href="https://docs.docker.com/engine/reference/builder/#workdir"><code class="highlighter-rouge">WORKDIR</code> command</a></li>
+  <li>If you change your Dockerfile after running <code class="highlighter-rouge">docker-compose up</code>, you will need to run <code class="highlighter-rouge">docker-compose build</code> to
+rebuild your services</li>
+</ul>
+
+<p>Once you’ve set things up properly, just running <code class="highlighter-rouge">docker-compose up</code> in the same directory as the <code class="highlighter-rouge">docker-compose.yml</code>
+file will bring up your web application!</p>
+
+<h4 id="questions-2">Questions</h4>
+<ol>
+  <li>Paste your <code class="highlighter-rouge">Dockerfile</code> for the Node.js web application</li>
+  <li>Paste your <code class="highlighter-rouge">docker-compose.yml</code> file</li>
+</ol>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

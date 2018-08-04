@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 8 - Security Fundamentals - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 8 - Security Fundamentals</h1>
+  <p>For the purpose of this lab, we will be primarily using <a href="https://gnupg.org">GnuPG</a> (also referred to as GPG), a free implementation of the <a href="https://openpgp.org/">OpenPGP standard</a>. As stated by GPG’s website:</p>
+<blockquote>
+  <p>GnuPG allows you to encrypt and sign your data and communications; it features a versatile key management system, along with access modules for all kinds of public key directories.</p>
+</blockquote>
+
+<p>The <a href="https://www.gnupg.org/gph/de/manual/r1023.html">GPG manual page</a> might be useful.</p>
+
+<h2 id="encryption-and-decryption">Encryption and Decryption</h2>
+<p>Encryption takes in a plaintext and a key, returning ciphertext. Decryption takes in a ciphertext and a key, recovering and returning the original plaintext only if the decryption key is valid. The keys for encryption and decryption are long strings of random bits to make it computationally infeasible for an attacker to guess the key and decrypt a ciphertext.</p>
+
+<p><img src="https://docs.oracle.com/cd/E19424-01/820-4811/images/scrypt.gif" alt="alt" /></p>
+
+<h3 id="symmetric-cryptography">Symmetric Cryptography</h3>
+<p>In symmetric cryptography, the keys used for encryption and decryption are the same.</p>
+
+<p>To try it out:</p>
+<ol>
+  <li><code class="highlighter-rouge">gpg --symmetric [FILE]</code> on any file to output a <code class="highlighter-rouge">[FILE].gpg</code> file which is the encrypted version of the inputted file. You’ll need to enter a password when encrypting the file.</li>
+  <li><code class="highlighter-rouge">gpg --decrypt [FILE].gpg</code> on the encrypted version of original file, upon which you’ll need to enter the original password.</li>
+</ol>
+
+<p>In this GPG implementation, encryption and decryption of your file both require knowledge of a single password, which in this case serves as the symmetric key.</p>
+
+<h3 id="asymmetric-cryptography">Asymmetric Cryptography</h3>
+<p>In asymmetric cryptography, two separate keys are respectively used for encryption and decryption. These two keys come in a public-private pair. The public key is made known publicly and used to encrypt data. Whereas, the private key is kept secret by the owner and used to decrypt data. Encryption of a file with a public key implies that only someone with the corresponding private key can the decrypt the resulting encrypted file.</p>
+
+<h4 id="gpg-keyring-abstraction">GPG Keyring Abstraction</h4>
+<p>GPG uses a “keyring” as a centralized location to hold all of a user’s keys. You’ll need to add/import a key to your keyring if you wish to use it and keep it around. Similarly, if you wish to share a key with someone else, you can export your key (which makes a copy of your key) and have them import it to their keyring.</p>
+
+<p>To try it out:</p>
+<ol>
+  <li><code class="highlighter-rouge">gpg --full-generate-key</code> to generate a GPG public-private key pair. It’ll ask for a password.
+<em>If your machine is taking a while to generate a key, it may be due to a lack of entropy (randomness) that is needed for a long, random key. <code class="highlighter-rouge">sudo apt-get install haveged</code> will install a daemon that generates entropy.</em></li>
+  <li><code class="highlighter-rouge">gpg --recipient [RECIPIENT] --encrypt [FILE]</code> which’ll encrypt <code class="highlighter-rouge">[FILE]</code> with <code class="highlighter-rouge">[RECIPIENT]</code>’s public key (for now, try encrypting a file with your own public key).</li>
+  <li><code class="highlighter-rouge">gpg --decrypt [FILE].gpg</code> will search through your keyring and decrypt the file with the appropriate private key (if you possess the correct private key, of course). 
+<em>You don’t need to specify which key to decrypt a file with because GPG-encrypted files and keys contain metadata that allow GPG to pick the correct key from the keyring to decrypt the file with.</em></li>
+</ol>
+
+<h3 id="signatures">Signatures</h3>
+<p>The asymmetric scheme involving encryption with public key and decryption with private key can also be reversed to implement digital signatures whose role is equivalent to that of physical signatures. In this reversed scheme, the private key is used to sign a file, producing a signature on that file. And the corresponding public key is used to verify the signature. Therefore, only a person with the private key can produce a signature, but anyone with the corresponding public key can verify that signature.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/1280/1*313akmm3vKOhK0bVNMxtSQ.png =400x250" alt="alt" /></p>
+
+<p>To try it out:
+<code class="highlighter-rouge">gpg --sign [FILE]</code> to sign <code class="highlighter-rouge">[FILE]</code> with your private key. <code class="highlighter-rouge">gpg --verify [FILE].gpg</code> to verify that the file was signed by one of public keys on your keyring.</p>
+
+<h2 id="hashing-checksums">Hashing (Checksums)</h2>
+<p>Hash functions deterministically map arbitrary-length data to a fixed-length string of bits (AKA a hash). As a result, the latter can serve as a summary of the former if the former exceeds the latter in terms of byte length. For instance, if we download a 1GB file and want to verify its integrity, instead of re-downloading the entire file again, we can simply compute a 256-bit hash of the file on our end and compare it to the 256-bit hash of source, which is known as a checksum.</p>
+
+<p>To try it out:</p>
+<ol>
+  <li><code class="highlighter-rouge">sha1sum [FILE]</code> to get the SHA1 hash of <code class="highlighter-rouge">[FILE]</code>.</li>
+  <li><code class="highlighter-rouge">md5sum [FILE]</code> to get the MD5 hash of <code class="highlighter-rouge">[FILE]</code>.</li>
+</ol>
+
+<p>There are <a href="https://en.wikipedia.org/wiki/List_of_hash_functions">many hash functions</a>, only some of which satisfy the requirements of cryptographic hash functions. Crytographic hash functions primarily differ from their non-cryptographic counterparts in that they provide a property that make it computationally infeasible to forge a pre-hash file that maps to the same hash. If you are interested in all of the properties of a cryptographic hash function, <a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">read here</a>. In particular, SHA1 and MD5 have been proven to no longer be cryptographically secure and are only used for checksums to ensure data integrity.</p>
+
+<h2 id="file-security">File Security</h2>
+<p>The UNIX permission model has 3 components: permissions given to the file’s (1) owning user, (2) owning group and (3) others/everyone else. Permissions themselves have 3 subcomponents: (1) read, (2) write and (3) execute, enforcing the ability to read, write or execute a file.</p>
+
+<p><img src="https://www.comentum.com/images/permissions.jpg" alt="alt" /></p>
+
+<p>To try it out:</p>
+<ol>
+  <li><code class="highlighter-rouge">ls -l</code> shows all the permissions of the current directory’s files in the leftmost column.</li>
+  <li><code class="highlighter-rouge">chown [-R] [NEWUSER]:[NEWGROUP] [FILE]</code> to change <code class="highlighter-rouge">[FILE]</code>’s  user and group ownerships respectively to <code class="highlighter-rouge">[NEWUSER]</code> and `[NEWGROUP].</li>
+  <li><code class="highlighter-rouge">chmod [-R] [PERMISSIONS] [FILE]</code> to set <code class="highlighter-rouge">[FILE]</code> with specified <code class="highlighter-rouge">[PERMISSIONS]</code>.</li>
+</ol>
+
+<h2 id="lab-checkoff">Lab Checkoff</h2>
+<p>You’ll be working in <code class="highlighter-rouge">/opt/b8/</code>. Here is the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMDLNgyiIlXPz-DMig56Z10OAj0DU6nQOt5Ase4Y8dxoLPtw/viewform">checkoff form</a>.</p>
+
+<h3 id="encryption-and-decryption-1">Encryption and Decryption</h3>
+<ol>
+  <li>Decrypt <code class="highlighter-rouge">b8/file1.txt.gpg</code> with the password <code class="highlighter-rouge">ocfdecal</code> (<em>for real-life purposes, never store passwords in plaintext</em>). What are the decrypted contents of <code class="highlighter-rouge">b8/file1.txt.gpg</code>?</li>
+  <li>How does one import a key?</li>
+  <li>How does one export a key to a file? (Add the <code class="highlighter-rouge">--armor</code> flag to ASCII-encode the key so it can be sent easily in text form)</li>
+  <li>How does one see all of the keys on his/her keyring?</li>
+  <li>Use this private key <code class="highlighter-rouge">b8/privkey</code> to decrypt <code class="highlighter-rouge">b8/file2.txt.gpg</code> (<em>for real-life purposes, it is necessary to keep private keys secret</em>). What are the decrypted contents of <code class="highlighter-rouge">b8/file2.txt.gpg</code>?</li>
+</ol>
+
+<h3 id="hashing-checksums-1">Hashing (Checksums)</h3>
+<ol>
+  <li>What is the MD5 hash of <code class="highlighter-rouge">b8/file3.txt</code>?</li>
+  <li>What is the SHA1 hash of the MD5 hash of <code class="highlighter-rouge">b8/file3.txt</code>? In other words, what is <code class="highlighter-rouge">SHA1(MD5(file3.txt))</code>?</li>
+</ol>
+
+<h3 id="file-security-1">File Security</h3>
+<ol>
+  <li><code class="highlighter-rouge">b8/file4.txt</code>: What are the permissions of this file? Explain what they allow and disallow.</li>
+  <li><code class="highlighter-rouge">b8/file5</code>: Make this file executable and execute it. What is its printout?</li>
+  <li><code class="highlighter-rouge">b8/file6.txt</code>: Change this file to be under your ownership.</li>
+  <li><code class="highlighter-rouge">b8/file7.txt</code>: Make this file readable only to you.</li>
+  <li><code class="highlighter-rouge">b8/file8.txt</code>: Change this file’s permissions such that only root should be able to read this file and no one should be able to edit it.</li>
+  <li><code class="highlighter-rouge">b8/file9.txt</code>: Choose any method to make this file readable to you and unreadable to the previous owner.</li>
+</ol>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

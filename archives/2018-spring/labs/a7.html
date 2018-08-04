@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 7 - Networked Services - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 7 - Networked Services</h1>
+  <h2 id="overview">Overview</h2>
+
+<p>Networking is key to many services because it allows processes and computers to
+communicate with each other. In this lab, we’ll work with a couple different
+types of services and set up a service of your own from scratch!</p>
+
+<p>Make sure, as always, that you are doing all of these steps on your provided
+DigitalOcean VM (available at <code class="highlighter-rouge">yourusername@yourusername.decal.xcf.sh</code>), as we
+have provided some resources for you to use for this lab that are only
+accessible from your student VMs.</p>
+
+<h2 id="which-networked-services-are-already-running">Which networked services are already running?</h2>
+
+<p>Connect to your VM using SSH, and then run <code class="highlighter-rouge">sudo netstat -plunt</code> (or <code class="highlighter-rouge">sudo
+netstat -peanut</code> if you’d prefer) to show the services running on your VM
+already. You should see something like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address State  PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*       LISTEN 789/sshd
+tcp6       0      0 :::22                   :::*            LISTEN 789/sshd
+udp        0      0 10.138.132.55:123       0.0.0.0:*              792/ntpd
+udp        0      0 10.46.0.38:123          0.0.0.0:*              792/ntpd
+udp        0      0 159.65.76.196:123       0.0.0.0:*              792/ntpd
+udp        0      0 127.0.0.1:123           0.0.0.0:*              792/ntpd
+udp        0      0 0.0.0.0:123             0.0.0.0:*              792/ntpd
+udp6       0      0 fe80::b0a7:c1ff:fef:123 :::*                   792/ntpd
+udp6       0      0 fe80::38c5:f3ff:fe0:123 :::*                   792/ntpd
+udp6       0      0 ::1:123                 :::*                   792/ntpd
+udp6       0      0 :::123                  :::*                   792/ntpd
+</code></pre></div></div>
+
+<p>Why are there so many services already running? We haven’t even really done
+anything yet! Well, to start off with, <code class="highlighter-rouge">sshd</code> must have been running already,
+otherwise how would you have connected to the machine in the first place using
+SSH?  However, the other service (ntpd) is a bit more mysterious. Let’s check
+it out!</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ man ntpd
+
+DESCRIPTION
+
+The ntpd program is an operating system daemon which sets and maintains the
+system time of day in synchronism with Internet standard time servers. It is a
+complete implementation of the Network Time Protocol (NTP) version 4, but also
+retains compatibility with version 3, as defined by RFC-1305, and version 1 and
+2, as defined by RFC-1059 and RFC-1119, respectively. ntpd does most
+computations in 64-bit floating-point arithmetic and does relatively clumsy
+64-bit fixed-point operations only when necessary to preserve the ultimate
+precision, about 232 picoseconds. While the ultimate precision is not
+achievable with ordinary workstations and networks of today, it may be required
+with future gigahertz CPU clocks and gigabit LANs.
+</code></pre></div></div>
+
+<p>The last sentence of this description snippet above is pretty funny, because
+gigahertz CPU clocks and gigabit LANs are both pretty common these days!
+Anyway, as mentioned in the lecture and in the manpage description above, NTP
+is used for time synchronization on a computer using network time servers, so
+it would make sense for this to already be running to allow your VM to always
+have the correct system time. This is especially important for VMs compared to
+using unix on a physical system. VMs can often be quite far off in terms of
+system time if NTP is not running (if they are suspended and then later resumed
+for example, or if the host for the virtual machine is under heavy load).
+<a href="http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time">Here’s a pretty awesome post</a> with a list of falsehoods that
+programmers believe about time, there’s a surprising number of them.</p>
+
+<h2 id="etcservices">/etc/services</h2>
+
+<p>One tip that might help when trying to find what a service does is to look at
+which port it is listening on. For instance, from above, <code class="highlighter-rouge">ntpd</code> is listening on
+port <code class="highlighter-rouge">123</code>. If you open the file <code class="highlighter-rouge">/etc/services</code> on most unix machines, you
+will get a list of protocols and the ports they typically use. Here are the
+lines for the port that <code class="highlighter-rouge">ntpd</code> is using:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ntp             123/tcp
+ntp             123/udp                         # Network Time Protocol
+</code></pre></div></div>
+
+<p>This helps make it clearer that <code class="highlighter-rouge">ntpd</code> is most likely doing something with the
+Network Time Protocol, which in this case was pretty clear, however, if you
+have not seen the service before then <code class="highlighter-rouge">/etc/services</code> can be more useful. Keep
+in mind that any port can be used by any service but by convention they follow
+the mapping in <code class="highlighter-rouge">/etc/services</code>. Also keep in mind that for higher numbered
+ports (above 1024), that they can be used by any user if a service is not
+running on the port already, so this can be a security risk if you do not
+properly secure these ports. That being said, most people follow convention if
+possible to make their services easier to maintain, so checking <code class="highlighter-rouge">/etc/services</code>
+is a good first step if trying to figure out what a specific port/service is
+for.</p>
+
+<h1 id="questions">Questions</h1>
+
+<p>To submit the lab, answer the questions in <a href="https://goo.gl/forms/q3twPu4UWVVGwORS2">this Google form</a>.</p>
+
+<h2 id="nfs">NFS</h2>
+
+<p>We have provided a NFS server for you to connect to at <code class="highlighter-rouge">staff</code> with two
+different directories, one read-only and one read-write. First install the
+<code class="highlighter-rouge">nfs-common</code> package so that you can mount directories over NFS. Then, use the
+<code class="highlighter-rouge">mount</code> command (remember to look at the <code class="highlighter-rouge">man</code> pages or search online if you do
+not recognize a command) to mount from <code class="highlighter-rouge">staff:/opt/lab7/public</code> (the remote
+directory) to your local directory at <code class="highlighter-rouge">/opt/lab7/read-only</code>. Once you do this,
+you should see a file with a secret inside it in <code class="highlighter-rouge">/opt/lab7/read-only</code>. You can
+tell if you are connected or not by running <code class="highlighter-rouge">df</code> and checking if there is
+something that looks like <code class="highlighter-rouge">staff:/opt/lab7/public</code> present in the list. What is
+the secret in the file? If NFS takes a excessive time to mount or you cannot
+read the file because it hangs while doing so, please let us know. Try creating
+a file in the read-only directory (note that you will want to try with <code class="highlighter-rouge">sudo</code>,
+otherwise you will get a permission denied error because <code class="highlighter-rouge">root</code> owns the
+directory mounted over NFS)</p>
+
+<p>If you’d like to disconnect again, make sure you are <em>not</em> in the directory
+that has the file (otherwise it is unable to disconnect because it is still
+loaded and you will get an error message like <code class="highlighter-rouge">umount.nfs4:
+/opt/lab7/read-only: device is busy</code>). Then use <code class="highlighter-rouge">umount</code> to disconnect from
+NFS. If you run <code class="highlighter-rouge">df</code>, you should see that the entry that was present before has
+now disappeared.</p>
+
+<p>Next, mount the directory at <code class="highlighter-rouge">staff:/opt/lab7/private/&lt;your username&gt;</code> to
+<code class="highlighter-rouge">/opt/lab7/read-write</code> using <code class="highlighter-rouge">mount</code> in a similar way to before. What do you
+see in <code class="highlighter-rouge">/opt/lab7/read-write</code> now? Follow the instructions in the file given
+there, note that you will have to use <code class="highlighter-rouge">sudo</code> here too to create a new file
+since the directory mounted over NFS is owned by root, not your user.</p>
+
+<p>Again, if NFS takes an excessive time to mount during any of this or you cannot
+read files because it hands while doing so, please let us know on Piazza or by
+email (or at office hours if you’d prefer). We’ve had some problems in the past
+with NFS being very slow to mount/read and needing a restart.</p>
+
+<h2 id="dns">DNS</h2>
+
+<p>In this section we are going to be setting up our own DNS server! Remember that
+DNS is the system that maps from a domain like <code class="highlighter-rouge">ocf.berkeley.edu</code> to an IP like
+<code class="highlighter-rouge">169.229.226.23</code> (and <code class="highlighter-rouge">2607:f140:8801::1:23</code> for IPv6) so that computers know
+how to send information over the network to servers without people having to
+remember a bunch of numbers to connnect to everything. A more thorough
+description of this is in <a href="/labs/a5#dns-configuration">Lab 5</a> if you’d like a refresher or want
+more information.</p>
+
+<p>First, install the <code class="highlighter-rouge">bind9</code> package on your VM to set up a DNS server. By
+default, the service is not running yet. What is the <code class="highlighter-rouge">systemctl</code> command to
+show if the <code class="highlighter-rouge">bind9</code> service is running or not?</p>
+
+<p>In the output of the <code class="highlighter-rouge">systemctl</code> command, you should see that the <code class="highlighter-rouge">bind9</code>
+service is not running (yet) and has a unit file at
+<code class="highlighter-rouge">/lib/systemd/system/bind9.service</code>. If you print that file, you should see
+something like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=BIND Domain Name Server
+Documentation=man:named(8)
+After=network.target
+Wants=nss-lookup.target
+Before=nss-lookup.target
+
+[Service]
+EnvironmentFile=/etc/default/bind9
+ExecStart=/usr/sbin/named -f $OPTIONS
+ExecReload=/usr/sbin/rndc reload
+ExecStop=/usr/sbin/rndc stop
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>This should look pretty familiar to you after the lecture on services! Don’t
+worry if it doesn’t all look familiar since there are some options you haven’t
+seen yet in here, but you should at least recognize some of the options used.</p>
+
+<p>If you now run <code class="highlighter-rouge">dig ocf.berkeley.edu @localhost</code> from your VM, you should see
+that the command eventually times out after trying to run for about 15 seconds.
+This is because it is trying to send DNS requests to your VM, but the DNS
+server is not actually running yet so it doesn’t get a response. However, if
+<code class="highlighter-rouge">@localhost</code> is left off the end of the command, it succeeds. Why is this the
+case? What DNS server are requests currently being sent to if <code class="highlighter-rouge">@localhost</code> is
+not specified in the command?</p>
+
+<p>Try starting the DNS server using the relevant <code class="highlighter-rouge">systemctl</code> command. If you
+check the status of the <code class="highlighter-rouge">bind9</code> service after starting it, you should see the
+status has changed to say that the service is active and running.</p>
+
+<p>If you now run <code class="highlighter-rouge">dig ocf.berkeley.edu @localhost</code> from your VM, you should now
+see a response containing the correct IP (<code class="highlighter-rouge">169.229.226.23</code>)!</p>
+
+<p>Make sure to add port 53 to be allowed through your firewall with <code class="highlighter-rouge">ufw</code> (set up
+in lab a4) if you would like to access your DNS server from outside your VM.</p>
+
+<p>Now to the exciting part, the configuration! Edit <code class="highlighter-rouge">/etc/bind/named.conf.local</code>
+with your favorite text editor. Inside this file, it should be empty apart
+from a few comments at the top because you haven’t done any local configuration
+yet. Add a new zone in this file for <code class="highlighter-rouge">example.com</code> with these contents:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zone "example.com" {
+  type master;
+  file "/etc/bind/db.example.com";
+};
+</code></pre></div></div>
+
+<p>Then, create a file <code class="highlighter-rouge">/etc/bind/db.example.com</code> to contain the responses to give
+if anyone sends requests to your DNS server for <code class="highlighter-rouge">example.com</code>. The easiest way
+to do this is generally to copy an existing config and then make changes from
+there to get what you want for your config instead of having to start from
+scratch. To make this easier, we’ve provided a valid config at
+<code class="highlighter-rouge">/opt/lab7/db.example.com</code> that you can copy in place at
+<code class="highlighter-rouge">/etc/bind/db.example.com</code>. It is prefilled with your VM’s IP, and includes a
+subdomain that does not usually exist, named <code class="highlighter-rouge">test.example.com</code>. Please add few
+more records of your choice. Try to add one A record, and a couple of other
+types of records (CNAME, SRV, TXT, etc.).  Make sure to reload the <code class="highlighter-rouge">bind9</code>
+service after changing anything in <code class="highlighter-rouge">/etc/bind9</code>, since you want the running
+service to change its configuration.</p>
+
+<p>If you now run the <code class="highlighter-rouge">dig</code> commands below, you should see that your VM’s domain
+name (<code class="highlighter-rouge">&lt;username&gt;.decal.xcf.sh</code>) is returned for the first result, for the
+second result (<code class="highlighter-rouge">example.com</code>) your VM’s IP address should be returned, and for
+<code class="highlighter-rouge">test.example.com</code> you should see <code class="highlighter-rouge">93.184.216.34</code> as the result.</p>
+
+<p>What commands did you use to query for each of the records (including the ones
+you added)?</p>
+
+<p>Make sure to run these commands from your VM, or if you want to run them from
+your laptop or from an OCF computer, substitute <code class="highlighter-rouge">localhost</code> in any commands
+with your VM’s domain name (it’ll be in the format <code class="highlighter-rouge">&lt;username&gt;.decal.xcf.sh</code>).</p>
+
+<h2 id="load-balancing">Load Balancing</h2>
+
+<p>For this section we will be using <a href="https://www.haproxy.org/">HAProxy</a>, a
+commonly-used open-source load balancer. <a href="https://nginx.org/">NGINX</a> is
+actually <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/">starting to become a load balancer</a> alongside being a web
+server, which is pretty interesting, but HAProxy is still commonly used.</p>
+
+<p>First, grab the python file for the service you will be running from the
+<a href="https://github.com/0xcf/decal-labs/blob/master/a7/server.py">decal-labs repo</a> using <code class="highlighter-rouge">wget</code> or something similar to download
+it. When run (<code class="highlighter-rouge">python3 server.py</code>), this script will start up 6 different HTTP
+server workers listening on ports 8080 to 8085 (inclusive). Each worker returns
+different content to make it clear which one your are talking to for this lab
+(“Hello, I am ID 0” for instance), but in real usage they would generally all
+return the same content. You would still want something to distinguish between
+them (maybe a HTTP header saying which host or instance they are?), but only
+for debugging purposes, not like in this lab where they have actually differing
+content.</p>
+
+<p>The idea behind using a load balancer is that requests will be spread out among
+instances so that if a lot of requests are coming in all at once, they will not
+overload any one instance. Another very useful feature is that if one of the
+instances happens to crash or become unavailable for whatever reason, another
+working server will be used instead. This requires some kind of health checks
+to be implemented to decide whether a server is healthy or not.</p>
+
+<p>HAProxy has already been installed on your VM, but your job is to do the
+configuration to get it to work with the services you are given! The main
+config file is at <code class="highlighter-rouge">/etc/haproxy/haproxy.cfg</code> and you should only have to append
+to the end of this file to finish this lab. One snippet is provided here for you
+to add to the config already, this will give you a nice status page that you
+can use to see which of the servers is up or down:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listen stats
+  bind    0.0.0.0:7001
+  mode    http
+  stats   enable
+  stats   hide-version
+  stats   uri /stats
+</code></pre></div></div>
+
+<p>Make sure to add ports 7000 and 7001 to be allowed through your firewall with
+<code class="highlighter-rouge">ufw</code> (set up in lab a4) to allow access to your load balancer server and the
+stats page from other computers.</p>
+
+<p>After adding this, if you restart the <code class="highlighter-rouge">haproxy</code> service and open
+<code class="highlighter-rouge">http://&lt;username&gt;.decal.xcf.sh:7001/stats</code> in a web browser, you should see a
+page with a table and some statistics information on HAProxy (pid, sessions,
+bytes transferred, uptime, etc.).</p>
+
+<h4 id="part-1-configuration">Part 1: Configuration</h4>
+
+<p>Your goal is to add a backend and frontend to haproxy’s config that proxies to
+all of the running workers on the ports from 8080 to 8085 and listens on port
+7000 on your VM, so that if you go to <code class="highlighter-rouge">http://&lt;username&gt;.decal.xcf.sh:7000</code> you
+can see the responses from the workers. Try refreshing, what do you notice
+happening? Do you notice a pattern? What <a href="http://cbonte.github.io/haproxy-dconv/1.7/configuration.html#4-balance">load balancing algorithm</a>
+are you using from your observations? What config did you add to the haproxy
+config file to get this to work?</p>
+
+<h4 id="part-2-health-checks">Part 2: Health Checks</h4>
+
+<p>Now, after adding all the servers to the backend in the config, add health
+checks for each of them. If you refresh the stats page, what do you notice has
+changed? What color are each of the servers in your backend?</p>
+
+<h4 id="part-3-crashing">Part 3: Crashing</h4>
+
+<p>If you make a request to <code class="highlighter-rouge">http://&lt;username&gt;.decal.xcf.sh:7000/crash</code>, it will
+crash the worker that you connect to. What changes in the HAProxy stats page?
+(Try refreshing a few times, the health checks can take a couple seconds to
+update the status from UP -&gt; DOWN) If you make a lot of requests to
+<code class="highlighter-rouge">http://&lt;username&gt;.decal.xcf.sh:7000</code> again, are all the servers present in the
+IDs that are returned in your requests or not? Try crashing a particular worker
+by running <code class="highlighter-rouge">curl localhost:&lt;port&gt;/crash</code>, substituting the port with one of the
+workers that is still up on your instance. What happens on the HAProxy stats
+page? If you crash all the workers, what status code does HAProxy return to you
+when you make a request to the service?</p>
+
+<h3 id="extra-fun-optional-questions">Extra Fun (optional questions)</h3>
+
+<p>Make sure to add port 53 to be allowed through your firewall with <code class="highlighter-rouge">ufw</code> (set up
+in lab a4) if you would like to access your DNS server from outside your VM.</p>
+
+<p>Once you have set up your DNS server, try changing your laptop’s settings to
+use your VM as a DNS server and navigate to <code class="highlighter-rouge">http://example.com:7000</code> and you
+should see the load-balanced services you set up. Also try navigating to
+<code class="highlighter-rouge">test.example.com</code>. What type of error do you see? Why do you think that this
+causes a error and does not display the page that http://example.com normally
+shows even though example.com resolves to the IP that you used
+(<code class="highlighter-rouge">93.184.216.34</code>)?</p>
+
+<p>Also note that your DNS server is set up to only accept queries, especially
+recursive queries, from within Berkeley networks. If you try to use it
+off-campus somewhere, you will not be able to make queries to your DNS server.
+This is because <a href="https://serverfault.com/q/573465">open relays</a> are a security
+problem that can be abused by attackers, so we’ve restricted your DNS server to
+only accept queries from specific IP ranges that are more likely to be safe.</p>
+
+<p><strong>Again, the form for getting this lab checked off can be found
+<a href="https://goo.gl/forms/q3twPu4UWVVGwORS2">here</a>.</strong></p>
+
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

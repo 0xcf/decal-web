@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Beginner Lab 2 - Core Shell - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Beginner Lab 2 - Core Shell</h1>
+  <p>Welcome to Lab 2! In this lab you will be learning how to work productively in a shell.</p>
+
+<p>Don’t forget to use Google and <code class="highlighter-rouge">man</code> when stuck. The resources linked at the bottom may be helpful as well.</p>
+
+<p><img src="https://imgs.xkcd.com/comics/automation.png" alt="XKCD 1319" /></p>
+
+<h2 id="setting-up">Setting up</h2>
+<p>This lab requires a bash shell, <code class="highlighter-rouge">vim</code>, and <code class="highlighter-rouge">tmux</code>.</p>
+
+<h2 id="ssh-secure-shell">SSH (Secure Shell)</h2>
+<p>SSH allows you to log in to a remote computer through the internet.
+It is the equivalent of opening a shell on a remote computer.</p>
+
+<p>The usage is <code class="highlighter-rouge">ssh [remote username]@[remote host]</code>.</p>
+
+<h3 id="question">Question</h3>
+<ol>
+  <li>Log on to <code class="highlighter-rouge">tsunami.ocf.berkeley.edu</code> with your OCF username and password. There is a file in <code class="highlighter-rouge">~staff/public_html/decal</code>. Open it. What is the secret in the file?</li>
+</ol>
+
+<h2 id="pipes-and-redirection">Pipes and Redirection</h2>
+<p>Chaining together commands is essential to automating your way through the shell. Here’s a quick cheat sheet:</p>
+
+<p><code class="highlighter-rouge">&gt;</code> : Redirect stdout to a file. (Will overwrite the file)</p>
+
+<p><code class="highlighter-rouge">&gt;&gt;</code> : Append stdout to a file.</p>
+
+<p><code class="highlighter-rouge">&lt;</code> : Read input from a file.</p>
+
+<p><code class="highlighter-rouge">|</code> : Send output from one program to the input of the next.</p>
+
+<h3 id="questions">Questions</h3>
+<ol>
+  <li>What line could you use to save the first 10 lines of a file that do not contain any vowels to a new file called <code class="highlighter-rouge">return.txt</code>?</li>
+  <li>How could you write <code class="highlighter-rouge">cat output.txt | grep "Cal"</code> without using a pipe? (Hint: Use a temp file)</li>
+</ol>
+
+<h3 id="other-useful-tricks">Other useful tricks</h3>
+<p><code class="highlighter-rouge">!!</code> can be used to repeat the previous command in the shell.</p>
+
+<p>E.g.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python program.py = python program.py
+sudo !!           = sudo python program.py
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">!:[num]</code> is treated as the previous command’s [num] argument.</p>
+
+<p>E.g.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch doc.txt = touch doc.txt
+vim doc.txt   = vim !:1
+</code></pre></div></div>
+
+<p>Note: This behavior is from bash and some other shells that implement it.</p>
+
+<h2 id="a-quick-intro-to-vim">A quick intro to <code class="highlighter-rouge">vim</code></h2>
+<h3 id="why-vim">Why <code class="highlighter-rouge">vim</code>?</h3>
+<ul>
+  <li>It’s a descendant of vi, which was written in Berkeley by Bill Joy, who went on to found Sun Microsystems.</li>
+  <li>Sometimes you will be suddenly thrown into <code class="highlighter-rouge">vim</code> via merging git conflicts or other programs.</li>
+  <li>It’s included in practically every UNIX environment.</li>
+  <li>You can be very productive when familiar with it.</li>
+</ul>
+
+<h3 id="hello-world">Hello World</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Vim is a modal text editor, meaning that you can change editing modes in order to do different things. There are 3 primarily used modes: **Normal**, **Insert**, and **Visual** mode. #### Normal mode:  - Used for moving around and editing text    - `hjkl` to move left, up, down, and right    - `G` to move to end of file, `gg` to move to beginning    - `i` to enter **i**nsert mode (`a`, `o` also change mode in different ways)    - `dd` to cut a line    - `yy` to copy a line    - `p` to paste    - `/` to search    - `u` to undo  - Type in commands with `:`    - Save with `:w`    - Exit with `:q`  - Explore more commands online!
+</code></pre></div></div>
+
+<h4 id="insert-mode">Insert mode:</h4>
+<p><img src="https://d26aqo05ggejx9.cloudfront.net/i.gif" alt="Example" /></p>
+<ul>
+  <li>Used for editing text like a usual editor</li>
+  <li>Arrow keys to move</li>
+  <li>Esc to exit to normal mode (lots of people bind it to Caps Lock)</li>
+</ul>
+
+<h4 id="visual-mode">Visual mode:</h4>
+<ul>
+  <li>Enter with <code class="highlighter-rouge">v</code> from normal mode</li>
+  <li>Used to select text visually</li>
+  <li>Modify selection with normal mode movement commands</li>
+  <li>Use <code class="highlighter-rouge">o</code> to move the cursor to the other side of the selection</li>
+  <li>Yanking, deleting, and pasting use <code class="highlighter-rouge">y</code>, <code class="highlighter-rouge">d</code>, <code class="highlighter-rouge">p</code> (sound familiar?)</li>
+</ul>
+
+<p>A key feature of <code class="highlighter-rouge">vim</code> is <strong>chaining together commands</strong>.
+  Normal mode is essentially a massive amount of shortcuts that you can combine to quickly navigate and edit a file.
+  Want to move down 3 lines?
+  You know that <code class="highlighter-rouge">j</code> means move down 1 line, so you can use <code class="highlighter-rouge">3j</code> to move down 3.
+  <code class="highlighter-rouge">d</code> is for deletion and <code class="highlighter-rouge">w</code> is to jump to the next word, so what does <code class="highlighter-rouge">dw</code> do?</p>
+
+<h3 id="questions-1">Questions</h3>
+<p>Try playing around with <a href="https://raw.githubusercontent.com/tanx16/decal-web/acbe5e9c8fb16bdfb26c39d4b29090240cba6d7d/labs/b2.md">lab2.md</a> while looking up some new commands. Use <code class="highlighter-rouge">wget</code> to download it!</p>
+<ul>
+  <li>How would you delete the previous 10 lines?</li>
+  <li>How would you jump back to the shell without exiting <code class="highlighter-rouge">vim</code>?</li>
+  <li>How would you edit a new file alongside another file?</li>
+  <li>How would you indent a block of text?</li>
+</ul>
+
+<h3 id="if-youre-interested-in-emacs-instead">If you’re interested in <code class="highlighter-rouge">emacs</code> instead</h3>
+<ul>
+  <li>Use <a href="http://readline.kablamo.org/emacs.html">this</a> cheatsheet</li>
+</ul>
+
+<h2 id="a-quick-intro-to-tmux">A quick intro to tmux</h2>
+<p><img src="https://lightrains.com/assets/img/blog/tmux-tips.png" alt="Example" /></p>
+<h3 id="why-tmux">Why tmux?</h3>
+<ul>
+  <li>You can open multiple windows when sshed into a machine.</li>
+  <li>You can go compile and run programs while editing them.</li>
+  <li>You can logout and ssh back in without having to reopen all your files.</li>
+</ul>
+
+<h3 id="getting-started">Getting Started:</h3>
+<ul>
+  <li>Start a session with <code class="highlighter-rouge">tmux</code>.</li>
+  <li>Detach from a session with <code class="highlighter-rouge">Ctrl-b d</code> (press d after releasing <code class="highlighter-rouge">Ctrl-b</code>)</li>
+  <li>Split into 2 panes with <code class="highlighter-rouge">Ctrl-b %</code> (vertical) and <code class="highlighter-rouge">Ctrl-b "</code> (horizontal)</li>
+  <li>Swap current pane with <code class="highlighter-rouge">Ctrl-b o</code></li>
+  <li>Create new window with <code class="highlighter-rouge">Ctrl-b c</code></li>
+  <li>Go to next window with <code class="highlighter-rouge">Ctrl-b n</code></li>
+  <li>Go to previous window with <code class="highlighter-rouge">Ctrl-b p</code></li>
+</ul>
+
+<h3 id="question-1">Question</h3>
+<ul>
+  <li>Take a screenshot of a tmux session with multiple windows, panes, and a named window with your username.</li>
+</ul>
+
+<h3 id="advanced-usage-optional">Advanced usage (optional)</h3>
+<ul>
+  <li>Tmux can be used to share your session with others.</li>
+  <li>Try remapping shortcuts like the prefix <code class="highlighter-rouge">Ctrl-b</code> to something more convenient.</li>
+  <li><code class="highlighter-rouge">Ctrl-b [</code> can be used to scroll around buffers and copy things.</li>
+</ul>
+
+<h3 id="checking-off">Checking off</h3>
+<p>Once you’re done remember to fill out the <a href="https://goo.gl/rDqwi7">check off form</a>.
+ There are multiple valid answers for some of the questions.
+ Don’t be stressed about getting something exactly correct.
+ Please answer the feedback questions if there’s anything you want to say!</p>
+
+<h3 id="resources">Resources</h3>
+<p><a href="http://teohm.com/blog/shortcuts-to-move-faster-in-bash-command-line/">Keybindings</a></p>
+
+<p><a href="http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/">Learning vim progressively</a></p>
+
+<p><a href="https://gist.github.com/MohamedAlaa/2961058">Tmux cheat sheet</a></p>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

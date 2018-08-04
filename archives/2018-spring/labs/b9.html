@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Lab 9 - Containers and Configuration Management - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Lab 9 - Containers and Configuration Management</h1>
+  <h2 id="overview">Overview</h2>
+
+<p>This lab is designed to give you some hands-on experience with Docker and Puppet! By the end of this assignment, you should be able to:</p>
+
+<ul>
+  <li>Create and use a Docker container interactively  and create a Dockerfile, which allows you to declaratively define your containers.</li>
+  <li>Write a basic Puppet manifest and apply the configuration to your VM.</li>
+</ul>
+
+<p>To submit the lab, answer the questions in <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZcfT3tDtQV8ecEjgvLDcb6uEnV4Q57BAw949InCkvjG5lYA/viewform?usp=sf_link">this Google form</a></p>
+
+<h4 id="installing-docker">Installing Docker</h4>
+
+<p>One of the annoying things about Docker is it’s usually not in <code class="highlighter-rouge">apt</code> and, if it is, it’s always under a different name. Here’s a link to the .deb for Docker Community Edition you can download and install on your VM: <a href="https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_18.03.0~ce-0~debian_amd64.deb">https://download.docker.com/linux/debian/dists/stretch/pool/stable/amd64/docker-ce_18.03.0~ce-0~debian_amd64.deb</a>.</p>
+
+<p>I trust by this point in the course installing this on your Linux machine should be a breeze :).</p>
+
+<p>Hint: use <code class="highlighter-rouge">wget</code> and <code class="highlighter-rouge">dpkg</code>.</p>
+
+<p>After installing, I recommend running <code class="highlighter-rouge">sudo usermod -aG docker $USER</code>. This adds your user to the docker group so you can run <code class="highlighter-rouge">docker</code> as a non-root user. This means you won’t have to type <code class="highlighter-rouge">sudo docker</code> all the time. This is optional but for the rest of the lab I’m going to assume that you did this. You might see output like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sent invalidate(passwd) request, exiting
+sent invalidate(group) request, exiting
+</code></pre></div></div>
+
+<p>This is normal when adding users to groups.</p>
+
+<h4 id="creating-your-first-docker-container">Creating your first Docker container</h4>
+
+<p>To verify that you installed things correctly, try running:</p>
+
+<p><code class="highlighter-rouge">docker run hello-world</code></p>
+
+<p>You should see some friendly output like so:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+ca4f61b1923c: Pull complete
+Digest: sha256:97ce6fa4b6cdc0790cda65fe7290b74cfebd9fa0c9b8c38e979330d547d22ce1
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+[...]
+</code></pre></div></div>
+
+<p>This message shows that your installation appears to be working correctly. To generate this message, Docker took the following steps:</p>
+
+<ol>
+  <li>The Docker client contacted the Docker daemon.</li>
+  <li>The Docker daemon pulled the “hello-world” image from the Docker Hub.</li>
+  <li>The Docker daemon created a new container from that image which runs the executable that produces the output you are currently reading.</li>
+  <li>The Docker daemon streamed that output to the Docker client, which sent it to your terminal.</li>
+</ol>
+
+<p>Some <a href="https://docs.docker.com/get-started/#a-brief-explanation-of-containers">quick definitions from Docker’s website</a>:</p>
+
+<p>An <code class="highlighter-rouge">image</code> is a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files. Images are useful primarily for their speed, but images can also be used as a base to be built on top of in future images, as you’ll see later with Dockerfiles. In the last example hello-world was the image used to test our docker installation.</p>
+
+<p>A <code class="highlighter-rouge">container</code> is a runtime instance of an image—what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so. A container gets created upon executing <code class="highlighter-rouge">docker run</code> on an image.</p>
+
+<p>Be sure to read through the output from running the hello-world image to get an understanding of what the Docker daemon was doing.</p>
+
+<h4 id="running-an-interactive-container">Running an interactive container</h4>
+
+<p>We’re now going to walk you through running a container interactively. This is useful if you ever need to play around and install stuff on a bare system without messing up your current system. Try running the following command:</p>
+
+<p><code class="highlighter-rouge">docker run -it ubuntu:latest</code></p>
+
+<p>The -i flag tells docker to keep <code class="highlighter-rouge">STDIN</code> open to your container, and the <code class="highlighter-rouge">-t</code> flag allocates a <a href="https://en.wikipedia.org/wiki/Pseudoterminal">pseudo-TTY</a> for you. Basically you need both for you to have a shell into your newly started container. Try installing some packages from apt or just play around. It should look like a bare Linux system.</p>
+
+<p>You can exit the container with CTRL+D.</p>
+
+<h5 id="questions">Questions</h5>
+
+<ol>
+  <li>What user are you logged in as by default?</li>
+  <li>If you start and then exit an interactive container, and then use the <code class="highlighter-rouge">docker run -it ubuntu:latest</code> command again; is it the same container? How can you tell?</li>
+</ol>
+
+<h4 id="dockerfiles">Dockerfiles</h4>
+
+<p>A more powerful way to interface with Docker is by using a <code class="highlighter-rouge">Dockerfile</code>. A Dockerfile allows you to define an image by specifying all of the commands you would type manually to create an image. Docker can then build images from a specified Dockerfile. These Dockerfiles can be put into version control and the images distributed as a binary to keep track of both how the image is constructed and also to keep pre-built images around.</p>
+
+<p>Dockerfiles are very powerful and have many different commands and features. We’ll go over a basic example, but you should check out the <a href="https://docs.docker.com/engine/reference/builder/">reference page</a> if you are trying to do anything more complex.</p>
+
+<p>Here is an example <code class="highlighter-rouge">Dockerfile</code> that will build an image based on Fedora Linux that has <code class="highlighter-rouge">python3.6</code> installed by default. Note that <code class="highlighter-rouge">docker</code> will automatically fetch <code class="highlighter-rouge">fedora:latest</code> when building the <code class="highlighter-rouge">Dockerfile</code>. The code for this exercise can be found in b9 directory of the decal labs repo <code class="highlighter-rouge">~/decal-labs/b9/missile</code> (don’t forget to <code class="highlighter-rouge">git pull</code> if it’s not there!).</p>
+
+<div class="language-docker highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> fedora:latest</span>
+
+<span class="k">RUN </span>yum update <span class="nt">-y</span> <span class="o">&amp;&amp;</span> yum install python3-pip <span class="o">&amp;&amp;</span> <span class="se">\
+</span>    pip3 install <span class="nt">--upgrade</span> pip <span class="o">&amp;&amp;</span> <span class="se">\
+</span>    pip3 install pyfiglet termcolor
+
+<span class="k">ADD</span><span class="s"> missile.py /</span>
+<span class="k">CMD</span><span class="s"> ["/usr/bin/python3.6", "missile.py"]</span>
+</code></pre></div></div>
+
+<p>Note: there are some “best practices” for writing Dockerfiles that the above example doesn’t use, because it’s a basic example. If you’re interested in this stuff, <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">check out this article.</a></p>
+
+<p>What is this doing? We first specify a base image <code class="highlighter-rouge">fedora:latest</code> (Fedora 27). We then specify that we should run (<code class="highlighter-rouge">RUN</code>) the command <code class="highlighter-rouge">yum update</code> (<code class="highlighter-rouge">yum</code> is Fedora’s package manager), and then <code class="highlighter-rouge">yum install pip3</code> installs <code class="highlighter-rouge">pip</code> for <code class="highlighter-rouge">python3</code>. Then we install the <code class="highlighter-rouge">pyfiglet</code> and <code class="highlighter-rouge">termcolor</code> packages via <code class="highlighter-rouge">pip3</code> since our python script depends on them. We put the <code class="highlighter-rouge">missile.py</code> script in the container, and lastly we run the script with <code class="highlighter-rouge">python3.6</code>. Take a moment to appreciate how cool this is. We have a completely different Linux distribution running on our system that ships with a version of python that is not in <code class="highlighter-rouge">apt</code> on your student VMs!</p>
+
+<p>Build the <code class="highlighter-rouge">Dockerfile</code> with the following:</p>
+
+<p><code class="highlighter-rouge">docker build -t missile:latest .</code></p>
+
+<p>This tells Docker to look in the current directory for a <code class="highlighter-rouge">Dockerfile</code> to build, and builds it. The <code class="highlighter-rouge">-t</code> flag tells Docker to tag this build with the name <code class="highlighter-rouge">missile:latest</code>. Note that building the missile image will take a couple of minutes to complete.</p>
+
+<p>You can see all of the images you’ve built on your machine with the <code class="highlighter-rouge">docker images</code> command.</p>
+
+<h5 id="questions-1">Questions</h5>
+
+<ol>
+  <li>Run the image you just built with no flags. What do you observe?</li>
+  <li>Write and build a <code class="highlighter-rouge">Dockerfile</code> based on <code class="highlighter-rouge">ubuntu:xenial</code> that installs the packages <code class="highlighter-rouge">fortune</code> and <code class="highlighter-rouge">fortunes-min</code> and runs the fortune executable (located in <code class="highlighter-rouge">/usr/games/fortune</code> after you install it). Note that you won’t need to use the <code class="highlighter-rouge">-it</code> flags when you run the container as fortune doesn’t need <code class="highlighter-rouge">STDIN</code>. Submit your <code class="highlighter-rouge">Dockerfile</code> with this lab.  Hint: if you’re having trouble writing your Dockerfile, try booting an interactive container and installing both packages. How can you translate what you did interactively to a Dockerfile?</li>
+  <li>Paste the output of running <code class="highlighter-rouge">docker images</code> command after questions 1 and 2.</li>
+</ol>
+
+<h4 id="dockerizing-a-web-server">Dockerizing a Web Server</h4>
+
+<p>For our last trick, we’re going to use Docker to run multiple Apache web servers inside containers.</p>
+
+<p>For simplicity, you will not have to write this <code class="highlighter-rouge">Dockerfile</code>. Go ahead and pull the <code class="highlighter-rouge">httpd</code> image from Docker Hub. Now, it’s your job to figure out how to run three instances of the Apache containers on your machine.</p>
+
+<p>Docker creates a separate network for containers, so you will need to forward your host port to your container’s port (this is called <a href="https://en.wikipedia.org/wiki/Port_forwarding">port forwarding</a>, or port mapping). The container is listening on port 80 by default. It is your job to run each instance on ports 4000, 4001, and 4002.  I recommend running the containers in detached mode with the <code class="highlighter-rouge">-d</code> flag. Detached mode will run a container in the background and print its new container ID. You can view running containers with <code class="highlighter-rouge">docker ps</code>.</p>
+
+<p>Hints (if you want them):</p>
+<ul>
+  <li>The <code class="highlighter-rouge">-p</code> flag takes in a colon separated pair of <code class="highlighter-rouge">HOST_PORT:CONTAINER_PORT</code> (it can actually accept a ton of more options, but don’t worry about that for now).</li>
+  <li>You should be able to view the web server from your host machine by visiting <code class="highlighter-rouge">&lt;url_of_host_machine&gt;:4000</code> (also be sure to check it works on ports 4001 and 4002 too!), assuming you don’t have anything else running on that port.</li>
+</ul>
+
+<h5 id="questions-2">Questions</h5>
+
+<ol>
+  <li>While your three containerized Apache web servers are running in detached mode, paste the output of <code class="highlighter-rouge">docker ps</code>.</li>
+  <li>Observe that in the output of <code class="highlighter-rouge">docker ps</code> each container has an associated container ID. Explain why containers have IDs rather than being named after the image, for example httpd.</li>
+  <li>Now go ahead and stop your containers (see slide 30). Paste the command you used to stop one of the containers.</li>
+</ol>
+
+<p>Congratulations! You’ve successfully Dockerized and ran a web server without affecting your setup on your machine :) There’s a lot more about Docker and containers to learn about, but I hope this was enough to wrap your head around the basic concepts and get some experience working with it.</p>
+
+<p>For further reading, I recommend just reading the <a href="https://docs.docker.com/">official documentation</a> so you can see what is possible with the Docker container format.</p>
+
+<h4 id="puppet">Puppet</h4>
+
+<p>To get some hands on experience with Puppet, we are going to write a very basic manifest that pulls quotes from the internet and appends them to a file every two minutes. Although you were taught that in production environments we have the puppet master running on its own server, for simplicity you will apply the manifest locally, making you both the puppet master and the puppet agent. If you are confused about the Puppet vocabulary, check out slide 21.</p>
+
+<p>First things first. We plan to pull quotes from the web, so we need to ensure the <code class="highlighter-rouge">wget</code> package is installed on our system. Next we need to create a user, ‘quotes’, that runs this command for us. We create a separate user for this task because Puppet runs everything as <code class="highlighter-rouge">root</code> by default, and pulling anything from the web poses a security risk. For example, a malicious actor could perform a <a href="https://en.wikipedia.org/wiki/Domain_hijacking">domain hijacking</a> attack to get remote code execution as the <code class="highlighter-rouge">root</code> user; the severity of this threat is significantly reduced if the attack is performed on a user with less privileges. Also take note of the dependency between the ‘quotes’ user and the ‘quotegather’ group. The require line says the ‘quotegather’ group must exist for the user ‘quotes’ to be created.</p>
+
+<p>Because we have full control over our user, let’s make its home directory <code class="highlighter-rouge">/tmp</code>. Since this user has one purpose, to pull quotes from the web, they don’t need a login shell. Go ahead and set it to <code class="highlighter-rouge">/bin/false</code>.</p>
+
+<p>Now we need a <code class="highlighter-rouge">cron</code> resource that grabs the quotes for us. I went ahead and filled in the command, so all you need to do is specify which user is to run the cron job and the interval at which it runs (every 2 minutes).</p>
+
+<p>Below I’ve provided a skeleton manifest <code class="highlighter-rouge">quotes.pp</code>. This can also be found in <code class="highlighter-rouge">~/decal-labs/b9/puppet/quotes.pp</code>, but comments are included here for your convenience.</p>
+
+<div class="language-puppet highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">package</span> <span class="p">{</span> <span class="s1">''</span><span class="p">:</span> <span class="p">}</span> <span class="c"># What package is required for this script to run?
+</span>
+<span class="n">group</span> <span class="p">{</span> <span class="s1">'quotegather'</span><span class="p">:</span>
+  <span class="py">ensure</span>  <span class="p">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="c"># Do we want the group on this system?
+</span><span class="p">}</span>
+
+<span class="n">user</span> <span class="p">{</span> <span class="s1">'quotes'</span><span class="p">:</span>
+  <span class="py">ensure</span>  <span class="p">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="c"># Do we want the user on this system?
+</span>  <span class="py">gid</span>     <span class="p">=&gt;</span> <span class="p">,</span> <span class="c"># Note that we can pass a group name to gid
+</span>  <span class="py">home</span>    <span class="p">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="py">shell</span>   <span class="p">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+  <span class="c"># Do not create the user quotes unless the quotegather group exists
+</span>  <span class="kp">require</span> <span class="p">=&gt;</span> <span class="nc">Group</span><span class="p">[</span><span class="s1">'quotegather'</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">cron</span> <span class="p">{</span> <span class="s1">'getquote'</span><span class="p">:</span>
+  <span class="py">user</span>     <span class="p">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="c"># Which user do we want to run this cron job?
+</span>  <span class="c"># You can ignore this, it pulls the quotes from an API and appends
+</span>  <span class="c"># them to a file.
+</span>  <span class="py">command</span>  <span class="p">=&gt;</span> <span class="s2">"curl -X POST http://api.forismatic.com/api/1.0/ -d 'method=getQuote' -d 'format=text' -d 'lang=en' &gt;&gt; quotes &amp;&amp; echo &gt;&gt; quotes"</span><span class="p">,</span>
+  <span class="py">minute</span>   <span class="p">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="c"># Hint: passing * means this runs every minute
+</span><span class="p">}</span>
+</code></pre></div></div>
+<p>Once you have completed your manifest, you can apply the changes to your system with the command <code class="highlighter-rouge">sudo puppet apply quotes.pp</code>.</p>
+
+<p>Some tips for writing this manifest:</p>
+<ul>
+  <li>Read the <a href="https://puppet.com/docs/puppet/4.8/type.html">Offical Puppet Documentation</a> about different resources if you are confused about commands</li>
+  <li>Here is an <a href="https://github.com/ocf/puppet/blob/60b00bae03f79b146f3f8cbcc13e64ff18decdb9/modules/ocf_mail/manifests/init.pp">OCF mail server manifest with similar resources</a>. You can safely ignore the <code class="highlighter-rouge">include</code> lines</li>
+  <li>You can check your puppet syntax with <code class="highlighter-rouge">puppet parser validate quotes.pp</code></li>
+  <li>List ‘quotes’ cron jobs with <code class="highlighter-rouge">sudo crontab -u quotes -l</code></li>
+  <li><a href="https://crontab.guru/">https://crontab.guru/</a></li>
+</ul>
+
+<p>Wait 10 minutes or so and running <code class="highlighter-rouge">cat /tmp/quotes</code> should yield a list of quotes.</p>
+
+<h5 id="questions-3">Questions</h5>
+
+<ol>
+  <li>Submit your completed <code class="highlighter-rouge">quotes.pp</code> file.</li>
+</ol>
+
+<p>Congratulations! You have successfully written your own puppet manifest. This could easily be added to a puppet master and deployed on thousands of systems with ease. Take a minute to consider how powerful this technology is and curious students are encouraged to take a look at the <a href="https://github.com/ocf/puppet/tree/master/modules">OCF’s extensive puppet configuration</a> to get an idea for how manifests and modules are grouped.</p>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
+
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+
+	@media (max-width: 767px) {
+		.markdown-body {
+			padding: 15px;
+		}
+	}
+</style>
+
+<title>Beginner Lab 4 - Debian, packages, compiling software - Hands-On UNIX System Administration DeCal</title>
+
+<article class="markdown-body">
+  <h1>Beginner Lab 4 - Debian, packages, compiling software</h1>
+  <h2 id="what-is-a-distribution">What is a distribution?</h2>
+
+<p>A distribution is a combination of the a kernel, init system, libraries,
+drivers, and other critical software. There are many distributions, for Linux
+and other kernels as well, such as BSD and Solaris.</p>
+
+<h2 id="what-should-i-use-then">What should I use then?</h2>
+
+<p>Currently, there are around 300 actively developed Linux distributions listed
+on <a href="https://distrowatch.com">DistroWatch</a>. It might be a bit overwhelming with
+so many choices. Popular distributions include Debian, Ubuntu, Arch Linux,
+CentOS, and Red Hat Enterprise Linux, but in this course, we’ll only be using
+Debian.</p>
+
+<h3 id="what-is-debian">What is Debian?</h3>
+
+<p>Debian is a distribution developed by the <a href="https://debian.org">Debian Project</a>
+starting in 1993. This distribution strives to provide a completely free
+(libre) software experience. In the context of free software, “libre” means
+that the source code is available under a permissive license, enabling
+downstream modification and rediistribution. Many other distributions are based
+on Debian, as Debian releases are usually very stable, meaning that the
+software provided by the distribution has been tested to be as bug-free as
+possible. One such distribution is Ubuntu, which is very popular and has
+spawned its own family of distributions. What defines the Debian family of
+distributions is the use of the DEB package format and the dpkg package
+manager.</p>
+
+<h2 id="but-what-about-these-package-managers">But what about these “package managers”?</h2>
+
+<p>If you come from the Windows or MacOS ecosystems, you might be wondering what a
+package manager is. On those operating systems, the most common method of
+installing new programs is to run an installer executable that unpacks and
+copies files into the correct location, and updates the OS registry to reflect
+this.</p>
+
+<p>Enter the package manager, a centralized way to install, update, and remove
+software from your computer using verified sources called repositories.  Most
+package managers work in the same way: the package manager gets a list of
+packages from the repository, and then, when asked to install a package,
+fetches the package from the repository, verifies that it is legit, and
+installs it. A package manager is like a librarian. When a patron wants to read
+a book, the librarian consults a catalog (which is the package database) and
+then fetches the book from the shelf and gives it to the patron (installing the
+package).  Sometimes, the librarian has to update the catalog because new
+editions of the books were added (updating the package database). When the
+patron is done, the librarian knows where to return the book (cleaning up after
+removing a package).  Contrast this to the approach on Windows, where dedicated
+uninstaller programs are occasionally necessary as the OS does not know where
+programs install their own files.</p>
+
+<h2 id="debian-an-example">Debian: An Example</h2>
+
+<p>In this class, we will be focused on using Debian. As noted before, Debian uses
+<code class="highlighter-rouge">apt</code> or <code class="highlighter-rouge">dpkg</code> as its package manager.</p>
+
+<p>We invoke the package manager by using <code class="highlighter-rouge">apt</code>. Before installing anything, you
+shoud update your local copy of packages and versions to ensure the package
+manager installs the latest and most up-to-date packages. To do that, run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt update
+</code></pre></div></div>
+
+<p>To find the package to install:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ apt search [package|description]
+</code></pre></div></div>
+
+<p>To install a package, run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install package
+</code></pre></div></div>
+
+<p>To remove a package, run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt remove package
+</code></pre></div></div>
+
+<p>Easy? When you want to upgrade the packages that you have installed when
+new versions are released, you can do so by calling:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt upgrade
+</code></pre></div></div>
+
+<p>There are also other commands, such as removing unneeded dependencies (<code class="highlighter-rouge">sudo
+apt autoremove</code>) and purging packages (<code class="highlighter-rouge">sudo apt purge</code>) but that is what the
+man pages are for.</p>
+
+<h3 id="example">Example</h3>
+
+<p>We are going to install GCC for the next step of the lab.</p>
+
+<p><strong>This, and all other parts of the lab, should be done on your DigitalOcean
+VMs, as you cannot install packages on OCF machines.</strong></p>
+
+<p>Please note that you can only connect to your VM from inside the Berkeley
+network, so you will have to either be on campus wifi, or you will have to SSH
+through <code class="highlighter-rouge">ssh.ocf.berkeley.edu</code> (or a similar on-campus host) to access your VM.
+You should be able to connect to it at <code class="highlighter-rouge">&lt;OCF username&gt;.decal.xcf.sh</code> by running
+<code class="highlighter-rouge">ssh &lt;username&gt;@&lt;username&gt;.decal.xcf.sh</code> and the password you set when your
+first logged in, or using the email you received.</p>
+
+<p>Simply run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install gcc
+</code></pre></div></div>
+
+<p>Now check if GCC is installed by running the following to check GCC’s version:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gcc --version
+</code></pre></div></div>
+
+<p>Now install the <code class="highlighter-rouge">ruby-dev</code> and <code class="highlighter-rouge">ruby-ffi</code> packages for the next parts of the
+lab.</p>
+
+<h2 id="but-what-about-software-that-isnt-in-the-repositories">But what about software that isn’t in the repositories?</h2>
+
+<p>Sometimes it happens that a program you want to install hasn’t been
+packaged for your distributions, or hasn’t been packaged at all. You have
+several options in this scenario to install the software you want:</p>
+
+<h4 id="warning">Warning:</h4>
+<p><strong>Installing software not from a repository carries the same risks as
+installing software from a random .exe or .msi on Windows.</strong></p>
+
+<p>Linux is popularly considered more secure than Windows or MacOS because of
+its use of repositories – but a malicious package installed manually can
+pwn your system as easily as malware on any other OSes.
+<strong>Use common sense! Only manually install from sources you trust.</strong></p>
+
+<p><em>(For users of Ubuntu: PPAs, or third-party repositories, carry the same
+risks of running malicious third-party code.)</em></p>
+
+<p>If the developers provide a package compatible with your distribution (.deb for
+Debian-based distros), you can download that package and install it using:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install ./package.deb
+</code></pre></div></div>
+
+<p>Another way is to find a generic binary package from the developer. This can
+come in the form of shady shell scripts, or a binary tarball that you can just
+extract it and run, or an appimage, which is a special type of executable that
+includes its own dependencies.</p>
+
+<p>The last way is to compile your software from scratch. What does that mean?
+Open source software must have its source code publicly available somehow,
+(GitHub, GitLab, their website). If you fetch their source code, it
+won’t magically run out of the box. The source code is like the recipe, while
+the software itself is like food. A package is like a food that is put into a
+box but we won’t covering the details of making a package yourself (there are
+tools that do that for you and it varies from platform to platform).</p>
+
+<h2 id="so-how-do-i-compile">So how do I compile?</h2>
+
+<p>Compiling software on Linux can be a mixed bag. Sometimes, all the dependencies
+(like libraries) are installed on your computer and there is no fiddling around.
+Sometimes, the dependencies don’t even exist pre-compiled for your distribution
+so you have to compile those yourself in order to compile what’s at hand. Most
+of the time, these steps are simplified through the use of a Makefile, which
+controls the Make build system.</p>
+
+<p>In most source tarballs, there is usually a Makefile that contains a set of
+directives to compile a project. This is because there are usually multiple
+files across many directories that need to be compiled together into the
+final executable. On top of that, there are multiple settings that control, for
+example, optimizations, size of the executable, static vs. dynamic linking,
+and whether to link against system libraries or alternatives.</p>
+
+<p>Many projects that have to be compiled are usually in C, C++, or similar
+lower-level languages. On most Linux distributions, there are usually three
+compiler “options”. There is the GNU Toolchain which provides <code class="highlighter-rouge">gcc</code> or the GNU
+C Compiler, LLVM which provides <code class="highlighter-rouge">clang</code>, and Intel’s proprietary toolkit,
+<code class="highlighter-rouge">icc</code>. Both <code class="highlighter-rouge">gcc</code> and <code class="highlighter-rouge">clang</code> are open-source and free software. While <code class="highlighter-rouge">clang</code>
+was designed to be a drop-in replacement for <code class="highlighter-rouge">gcc</code>, several quirks remain that
+make porting large programs nontrivial.</p>
+
+<p>To compile software that provides a Makefile, assuming you have the
+dependencies, simply type:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ make
+</code></pre></div></div>
+
+<p>This is will usually choose the correct compiler and compile the whole project.
+Once the compilation is done, the resulting executables are usually stored in
+<code class="highlighter-rouge">./bin</code> or <code class="highlighter-rouge">./build</code>.</p>
+
+<p>GCC and clang also have compiler flags that allow certain features to be
+enabled. Usually the flags that actually matter are optimization flags.
+Depending on what you want to optimize for, either space or memory or speed,
+there is a flag for it.</p>
+
+<p>Now, we will make a very simple application in C that prints “Hello Penguin!”
+named <code class="highlighter-rouge">hellopenguin</code>. Run:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ nano hellopenguin.c
+</code></pre></div></div>
+
+<p>to create a file named <code class="highlighter-rouge">hellopenguin.c</code>, and type in the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+int main()
+{
+    printf("Hello Penguin!");
+    return 0;
+}
+</code></pre></div></div>
+
+<p>Now save and exit.</p>
+
+<p>We will now compile the source file that you have just written:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gcc hellopenguin.c -o hellopenguin
+</code></pre></div></div>
+
+<p>What this does is take the source file <code class="highlighter-rouge">hellopenguin.c</code> and compile it, writing
+the executable output to a file named <code class="highlighter-rouge">hellopenguin</code>.</p>
+
+<h1 id="how-do-i-package-stuff">How do I package stuff?</h1>
+
+<p>Packaging manually for Debian can frustrating, especially for first timers.
+That’s why for this class, we’ll be using a really cool Ruby called <code class="highlighter-rouge">fpm</code> which
+simplifies the task of packaging a lot. Please note that if you were going to
+package for Debian’s own repositories, this is NOT the  correct/formal way to
+go about packaging. It is merely a great way to backport or package your own
+applications extremely quickly. First make sure <code class="highlighter-rouge">ruby</code> and its own package
+manager called <code class="highlighter-rouge">gem</code> is installed. If they aren’t, run <code class="highlighter-rouge">sudo apt install
+ruby-dev ruby-ffi</code>.  Now run the following to install <code class="highlighter-rouge">fpm</code> locally:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gem install fpm --user
+</code></pre></div></div>
+
+<p>Try invoking <code class="highlighter-rouge">fpm</code> and if it doesn’t work, add <code class="highlighter-rouge">~/.gem/ruby/2.3.0/bin</code> to your
+<code class="highlighter-rouge">PATH</code>. To do that, add this to your <code class="highlighter-rouge">.bashrc</code>, or just type the following into
+Bash to temporarily add it to your PATH:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export PATH=~/.gem/ruby/2.3.0/bin:$PATH
+</code></pre></div></div>
+
+<p>Now we will create a very simple package using the <code class="highlighter-rouge">hellopenguin</code> executable
+that you made above. First, we will make a new folder named <code class="highlighter-rouge">packpenguin</code> and
+move into it:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir packpenguin
+
+$ cd packpenguin
+</code></pre></div></div>
+
+<p>Now we will create the folder structure of where the executable will reside.</p>
+
+<p>In Debian, user-level packages usually reside in the folder <code class="highlighter-rouge">/usr/bin/</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir -p usr/bin
+</code></pre></div></div>
+
+<p>Now move your <code class="highlighter-rouge">hellopenguin</code> into the <code class="highlighter-rouge">packpenguin/usr/bin/</code> folder.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ../ # cd into the directory where the hellpenguin executable is
+$ mv hellopenguin packpenguin/usr/bin/
+</code></pre></div></div>
+
+<p>Now we will create a package called <code class="highlighter-rouge">hellopenguin</code>. Move into the parent
+directory of the hellopenguin folder and invoke the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ fpm -s dir -t deb -n hellopenguin -v 1.0~ocf1 -C packpenguin
+</code></pre></div></div>
+
+<p>This specifies that you want to take in a directory, using the <code class="highlighter-rouge">-s</code> flag, and
+to output a .deb package using the <code class="highlighter-rouge">-t</code> flag. It takes in a directory called
+<code class="highlighter-rouge">packpenguin</code>, using the <code class="highlighter-rouge">-C</code> flag, and output a .deb file named hellopenguin,
+using <code class="highlighter-rouge">-n</code>, with a version number of <code class="highlighter-rouge">1.0~ocf1</code>, using the <code class="highlighter-rouge">-v</code> flag.</p>
+
+<p>Now test it by invoking <code class="highlighter-rouge">apt</code> and installing it, replacing <code class="highlighter-rouge">&lt;version+arch&gt;</code>
+with the appropriate version and architecture that the package is built for,
+which will be provided by fpm when the package is built:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install ./hellopenguin_&lt;version+arch&gt;.deb
+</code></pre></div></div>
+
+<p>Now you should be able to run <code class="highlighter-rouge">hellopenguin</code> by doing the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ hellopenguin
+</code></pre></div></div>
+
+<p>If all of this works, you’re ready to be
+<a href="https://goo.gl/forms/OUqfAHxA75xmPEau2">checked off!</a></p>
+
+
+  <br>
+<footer>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <p>
+        <a href="https://www.digitalocean.com">
+          <img src="/images/digitalocean.png" style="height: 34px; width: 200px;" />
+        </a>
+        With great appreciation to
+        <a href="https://www.digitalocean.com">DigitalOcean</a> for sponsoring the
+        VMs used in both tracks of the DeCal
+      </p>
+
+      <p>
+        <a href="https://www.ocf.berkeley.edu">
+          <img src="https://www.ocf.berkeley.edu/hosting-logos/ocf-hosted-penguin.svg"
+               alt="Hosted by the OCF" style="border: 0;" />
+        </a>
+        Copyright &copy; 2017-2018
+        <a href="https://www.ocf.berkeley.edu">
+          Open Computing Facility
+        </a>
+        and
+        <a href="https://xcf.berkeley.edu">
+          eXperimental Computing Facility
+        </a>
+      </p>
+      <p>
+        This website is licensed under the terms of the
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+          CC BY-NC-SA 4.0
+        </a>
+        License.
+        <a href="https://github.com/0xcf/decal-web/">
+          Source Code
+        </a>
+        available on GitHub
+      </p>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+</footer>
+
+</article>
+
