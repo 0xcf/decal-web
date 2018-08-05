@@ -30,7 +30,7 @@ try {
                     // The positions of the slashes are important here:
                     // There should be a slash after _site BUT not at the end
                     // of the command.
-                    sh 'rsync -avzpce "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static ocfdecal@decal.ocf.berkeley.edu:/srv/www/decal'
+                    sh 'rsync -avzpce "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static decal@ssh.ocf.berkeley.edu:public_html'
                 }
             }
         }
