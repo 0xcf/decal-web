@@ -23,3 +23,7 @@ build:
 .PHONY: clean
 clean:
 	rm -rf .bundle vendor
+
+.PHONY: deploy
+deploy:
+	rsync -avzpce "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static decal@ssh.ocf.berkeley.edu:public_html
