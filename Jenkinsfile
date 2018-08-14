@@ -11,16 +11,22 @@ pipeline {
 
   stages {
     stage('bundle') {
-      sh 'make bundle'
+      steps {
+        sh 'make bundle'
+      }
     }
 
     stage('build') {
-      sh 'make build'
+      steps {
+        sh 'make build'
+      }
     }
 
     stage('deploy') {
-      sshagent (credentials: ['decal-ssh-key']) {
-        sh 'make deploy'
+      steps {
+        sshagent (credentials: ['decal-ssh-key']) {
+          sh 'make deploy'
+        }
       }
     }
   }
