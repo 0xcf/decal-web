@@ -12,7 +12,7 @@
   title: Head Facilitator
   img: images/mdcha.png
   description: I'm a senior interested in all things math and computer related. Super excited to teach the DeCal this year!
-
+  
 - name: Xufei Tan
   title: Head Facilitator
   img: images/tanx.png
@@ -22,3 +22,8 @@
   title: Facilitator
   img: images/nikitn.jpg
   description: Junior in CS. I like philosophy. 
+
+- name: George Lee
+  title: Facilitator
+  img: images/gleeb.jpg
+  description: I'm a senior studying the computer sciences. I enjoy working into the early hours on my Linux machine. See you around the DeCal!
