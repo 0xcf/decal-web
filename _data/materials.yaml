@@ -4,3 +4,8 @@
   name: Info Session
   slides: https://docs.google.com/presentation/d/1uenK9bMB5aA3F8lRyvUs8ura_xNNhBRLddEmyR098RE/edit?usp=sharing
   lab: https://goo.gl/forms/ww8zEuCxN4gdMMAS2
+
+- id: b1
+  name: History of UNIX, intro to shell, FOSS
+  slides: https://docs.google.com/presentation/d/1pBwcUE3lc4fxyefsIq0g2rbZfeJbH683YLJybEfo7eY/edit?usp=sharing
+  lab: b1
