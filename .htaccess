@@ -3,10 +3,10 @@
 RewriteEngine On
 
 # Redirect signups to the google form
-RewriteRule ^signup$	https://drive.google.com/open?id=1eNfytADVE3P2oJukUWHXzr_DPFFFe8Q0ytEGn1KUvGo [R=302,L]
 RewriteRule ^syllabus$	syllabus.pdf [R=302,L]
-
-RewriteRule ^piazza$	https://piazza.com/class/j6tnwydlhx62jp [R=302,L]
+RewriteRule ^signin$ https://docs.google.com/forms/d/e/1FAIpQLSdmoLZVM5YQkFYZr6eV12UTaaRrVSJOC4Gxb3QkbbLly8NvTQ/viewform [R=302,L]
+RewriteRule ^gdrive$ https://drive.google.com/drive/folders/0ABo8c7NywpcMUk9PVA
+RewriteRule ^piazza$	https://piazza.com/class/jku13vim2ln3c9 [R=302,L]
 
 {% for item in site.data.materials %}
 {% if item.slides %}
@@ -17,5 +17,3 @@ RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
 {% endif %}
 {% endfor %}
 
-RewriteRule ^signin$ https://docs.google.com/forms/d/e/1FAIpQLSdmoLZVM5YQkFYZr6eV12UTaaRrVSJOC4Gxb3QkbbLly8NvTQ/viewform [R=302,L]
-RewriteRule ^gdrive$ https://drive.google.com/drive/u/0/folders/0BxasqbXBiFNhc1N0NnBUUmt1ekk
