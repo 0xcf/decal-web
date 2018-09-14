@@ -9,3 +9,8 @@
   name: History of UNIX, intro to shell, FOSS
   slides: https://docs.google.com/presentation/d/1pBwcUE3lc4fxyefsIq0g2rbZfeJbH683YLJybEfo7eY/edit?usp=sharing
   lab: b1
+
+- id: a1
+  name: Advanced Shell and Linux Background
+  slides: https://docs.google.com/presentation/d/13gGNFCxESJxycjV94jpAtH2XZHZC0w4AxNMauXmz6XM/edit?usp=sharing
+  lab: a1
