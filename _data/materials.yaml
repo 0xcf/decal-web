@@ -10,6 +10,11 @@
   slides: https://docs.google.com/presentation/d/1pBwcUE3lc4fxyefsIq0g2rbZfeJbH683YLJybEfo7eY/edit?usp=sharing
   lab: b1
 
+- id: b2
+  name: Core Shell
+  slides: https://docs.google.com/presentation/d/1JY2NEhDNbu3OqNeS70U9-hjumbkirkt-3EpQFR17kpU/edit?usp=sharing
+  lab: b2
+
 - id: a1
   name: Advanced Introduction to UNIX
   slides: https://docs.google.com/presentation/d/13gGNFCxESJxycjV94jpAtH2XZHZC0w4AxNMauXmz6XM/edit?usp=sharing
