@@ -4,7 +4,7 @@ RewriteEngine On
 
 # Redirect signups to the google form
 RewriteRule ^syllabus$	syllabus.pdf [R=302,L]
-RewriteRule ^signin$ https://docs.google.com/forms/d/e/1FAIpQLSdmoLZVM5YQkFYZr6eV12UTaaRrVSJOC4Gxb3QkbbLly8NvTQ/viewform [R=302,L]
+RewriteRule ^signin$ https://ocf.io/signin [R=302,L]
 RewriteRule ^gdrive$ https://drive.google.com/drive/folders/0ABo8c7NywpcMUk9PVA
 RewriteRule ^piazza$	https://piazza.com/class/jku13vim2ln3c9 [R=302,L]
 
