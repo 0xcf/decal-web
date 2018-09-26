@@ -24,3 +24,8 @@
   name: Packages
   slides: https://docs.google.com/presentation/d/17QutRbvg00PmQQ74DGVOg0e1WKQAdF19zcA6hmjOWzg/edit?usp=sharing
   lab: a2
+
+- id: b3
+  name: Shell Scripting
+  slides: https://docs.google.com/presentation/d/1rAzd0I8A6pwTfALup2lcRnUeRds0EoVY1PLjzxpXdUA/edit?usp=sharing
+  lab: b3
