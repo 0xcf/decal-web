@@ -33,3 +33,7 @@
 - id: a3
   name: DIY Linux Pre-Install
   slides: https://docs.google.com/presentation/d/1nb3OckrQxStfdyInzJOvh1EWWZfv7JUccp5nWW0pxQQ/edit
+
+- id: b4
+  name: Compiling, Distros, and Packaging
+  slides: https://docs.google.com/presentation/d/1Nyl-G02Oef3SsfcpBvVpv5z8EUdzSXZRm8SRiwCS6V4/edit
