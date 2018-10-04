@@ -33,3 +33,7 @@
 - id: a3
   name: DIY Linux Pre-Install
   slides: https://docs.google.com/presentation/d/1nb3OckrQxStfdyInzJOvh1EWWZfv7JUccp5nWW0pxQQ/edit
+
+- id: a4
+  name: Linux Post-Install
+  slides: https://docs.google.com/presentation/d/1bvOK6vl2HatxbWt5W0YTc-SHI0GBgdXWu7APdIuDa0Y/edit
