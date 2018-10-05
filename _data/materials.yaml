@@ -38,3 +38,7 @@
   name: Linux Post-Install
   slides: https://docs.google.com/presentation/d/1bvOK6vl2HatxbWt5W0YTc-SHI0GBgdXWu7APdIuDa0Y/edit
   lab: a4
+
+- id: b4
+  name: Compiling, Distros, and Packaging
+  slides: https://docs.google.com/presentation/d/1Nyl-G02Oef3SsfcpBvVpv5z8EUdzSXZRm8SRiwCS6V4/edit
