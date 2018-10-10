@@ -42,3 +42,8 @@
 - id: b4
   name: Compiling, Distros, and Packaging
   slides: https://docs.google.com/presentation/d/1Nyl-G02Oef3SsfcpBvVpv5z8EUdzSXZRm8SRiwCS6V4/edit
+
+- id: b5
+  name: Networking
+  slides: https://docs.google.com/presentation/d/12E1T_7eJR3SjSkMJ11y5gL0_teqajVx40smFV7vb9xc/edit
+  lab: b5
