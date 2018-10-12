@@ -45,6 +45,11 @@
   lab: b4
 
 - id: b5
-  name: Networking
+  name: Networking 101
   slides: https://docs.google.com/presentation/d/12E1T_7eJR3SjSkMJ11y5gL0_teqajVx40smFV7vb9xc/edit
   lab: b5
+
+- id: a5
+  name: Networking 102
+  slides: https://docs.google.com/presentation/d/1mVfJF6OCwNTv4clP1kFpuUnLHImc5iD4y1OYH73ewn8/edit
+  
