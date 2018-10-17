@@ -19,7 +19,7 @@
   name: Advanced Introduction to UNIX
   slides: https://docs.google.com/presentation/d/13gGNFCxESJxycjV94jpAtH2XZHZC0w4AxNMauXmz6XM/edit?usp=sharing
   lab: a1
- 
+
 - id: a2
   name: Packages
   slides: https://docs.google.com/presentation/d/17QutRbvg00PmQQ74DGVOg0e1WKQAdF19zcA6hmjOWzg/edit?usp=sharing
@@ -49,7 +49,12 @@
   slides: https://docs.google.com/presentation/d/12E1T_7eJR3SjSkMJ11y5gL0_teqajVx40smFV7vb9xc/edit
   lab: b5
 
+- id: b6
+  name: Processes
+  slides: https://docs.google.com/presentation/d/1av6kkCuN-x_fVWowgS3y6a3LRKmxvf26ETJm0MV5dbc/edit
+  lab: b6
+
 - id: a5
   name: Networking 102
   slides: https://docs.google.com/presentation/d/1mVfJF6OCwNTv4clP1kFpuUnLHImc5iD4y1OYH73ewn8/edit
-  
+
