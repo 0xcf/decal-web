@@ -57,6 +57,7 @@
 - id: a5
   name: Networking 102
   slides: https://docs.google.com/presentation/d/1mVfJF6OCwNTv4clP1kFpuUnLHImc5iD4y1OYH73ewn8/edit
+  lab: a5
 
 - id: a6
   name: Processes and Services
@@ -65,3 +66,7 @@
 - id: b7
   name: Services
   slides: https://docs.google.com/presentation/d/1_HE8ZYb9WV1QTEyJbyt_a_dibo9e45VNVXNyZUbX3gs/edit
+
+- id: ag0
+  name: Facebook Guest Lecture
+  slides: #
