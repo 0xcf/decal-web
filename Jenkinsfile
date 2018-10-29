@@ -23,6 +23,9 @@ pipeline {
     }
 
     stage('deploy') {
+      when {
+        branch 'master'
+      }
       steps {
         sshagent (credentials: ['decal-ssh-key']) {
           sh 'make deploy'
