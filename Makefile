@@ -1,8 +1,9 @@
 LISTEN_IP := 0.0.0.0
+RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) + 2 )))
 
 .PHONY: dev
 dev: bundle
-	bundle exec jekyll serve --host $(LISTEN_IP)
+	bundle exec jekyll serve --host $(LISTEN_IP) -P $(RANDOM_PORT)
 
 .PHONY: local-dev
 local-dev: LISTEN_IP=127.0.0.1
