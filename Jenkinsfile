@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('check-gh-trust') {
       steps {
-        checkGitHubAccess(org: '0xcf')
+        checkGitHubAccess('0xcf')
       }
     }
 
