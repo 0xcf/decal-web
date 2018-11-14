@@ -34,7 +34,7 @@
               {% endif %}
             </td>
             <td>
-	      {{ item.lecturer | default: - }}
+	      {{ item.lecturer | default: - | xml_escape }}
             </td>
             <td>
               {% if item.lab %}
@@ -91,7 +91,7 @@
               {% endif %}
             </td>
             <td>
-	      {{ item.lecturer | default: - }}
+	      {{ item.lecturer | default: - | xml_escape }}
             </td>
             <td>
               {% if item.lab %}
