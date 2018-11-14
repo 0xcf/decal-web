@@ -80,3 +80,13 @@
   name: Security Fundamentals
   slides: https://docs.google.com/presentation/d/1vm71mYGELfS5boi-wd-sqgrwIkqau4k8_UkCc7KaY90/edit
   lab: b8
+
+- id: b9
+  name: Version Control and Backups
+  slides: https://docs.google.com/presentation/d/1j2qM2CN5FKjSThBMRO4k6dbOSb1TUUU_peUfWTwVgCo/edit?usp=sharing
+  lab: #
+
+- id: a9
+  name: Advanced Security
+  slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit?usp=sharing
+  lab: #

@@ -10,6 +10,12 @@ pipeline {
   }
 
   stages {
+    stage('check-gh-trust') {
+      steps {
+        checkGitHubAccess('0xcf')
+      }
+    }
+
     stage('bundle') {
       steps {
         sh 'make bundle'
