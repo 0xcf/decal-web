@@ -71,6 +71,11 @@
   name: Facebook Guest Lecture
   slides: #
 
+- id: a8
+  name: Networked Services
+  slides: https://docs.google.com/presentation/d/19rW9LnaNiEq_ulXO6XSdBXy52VyJczTcNoi9YkkTrzk/edit
+  lab: a8
+
 - id: b8
   name: Security Fundamentals
   slides: https://docs.google.com/presentation/d/1vm71mYGELfS5boi-wd-sqgrwIkqau4k8_UkCc7KaY90/edit
