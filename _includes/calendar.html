@@ -6,6 +6,7 @@
         <th>Week</th>
         <th>Date</th>
         <th>Lecture Title</th>
+        <th>Lecturer</th>
         <th>Lab</th>
         <th>Lab Due Date</th>
       </tr>
@@ -31,6 +32,9 @@
               {% if item.slides %}
                 </a>
               {% endif %}
+            </td>
+            <td>
+	      {{ item.lecturer | default: - | xml_escape }}
             </td>
             <td>
               {% if item.lab %}
@@ -59,6 +63,7 @@
         <th>Week</th>
         <th>Date</th>
         <th>Lecture Title</th>
+        <th>Lecturer</th>
         <th>Lab</th>
         <th>Lab Due Date</th>
       </tr>
@@ -84,6 +89,9 @@
               {% if item.slides %}
                 </a>
               {% endif %}
+            </td>
+            <td>
+	      {{ item.lecturer | default: - | xml_escape }}
             </td>
             <td>
               {% if item.lab %}
