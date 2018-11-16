@@ -6,7 +6,7 @@
 - date: 2018-09-04
   week: 0
   id: 0
-  lecturenote: Infosession
+  note: Infosession
 
 - date: 2018-09-13
   week: 1
@@ -30,8 +30,7 @@
 - date: 2018-10-11
   week: 5
   id: a5
-  labdue:
-  lecturenote: No submission required for lab
+  labdue: None
 
 - date: 2018-10-18
   week: 6
@@ -45,7 +44,27 @@
   week: 8
   id: a8
   
-- date: 2018-11-18
+- date: 2018-11-08
   week: 9
   id: a9
   labdue: 2018-11-29
+
+- date: 2018-11-15
+  week: 10
+  id: a10
+  labdue: #
+
+- date: 2018-11-22
+  week: 11
+  id: ag1
+  labdue: None
+
+- date: 2018-11-26
+  week: 12
+  id: a11
+  labdue: #
+
+- date: 2018-12-06
+  week: 13
+  id: ag2
+  labdue: None
