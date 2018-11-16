@@ -9,84 +9,129 @@
   name: History of UNIX, intro to shell, FOSS
   slides: https://docs.google.com/presentation/d/1pBwcUE3lc4fxyefsIq0g2rbZfeJbH683YLJybEfo7eY/edit?usp=sharing
   lab: b1
+  lecturer: Mathew Cha <mdcha>
 
 - id: b2
   name: Core Shell
   slides: https://docs.google.com/presentation/d/1JY2NEhDNbu3OqNeS70U9-hjumbkirkt-3EpQFR17kpU/edit?usp=sharing
   lab: b2
+  lecturer: Xufei Tan <tanx>
 
 - id: a1
   name: Advanced Introduction to UNIX
   slides: https://docs.google.com/presentation/d/13gGNFCxESJxycjV94jpAtH2XZHZC0w4AxNMauXmz6XM/edit?usp=sharing
   lab: a1
+  lecturer: Abizer Lokhandwala <abizer>
 
 - id: a2
   name: Packages
   slides: https://docs.google.com/presentation/d/17QutRbvg00PmQQ74DGVOg0e1WKQAdF19zcA6hmjOWzg/edit?usp=sharing
   lab: a2
+  lecturer: George Lee <gleeb>
 
 - id: b3
   name: Shell Scripting
   slides: https://docs.google.com/presentation/d/1rAzd0I8A6pwTfALup2lcRnUeRds0EoVY1PLjzxpXdUA/edit?usp=sharing
   lab: b3
+  lecturer: Alex Welty <awelty>
 
 - id: a3
   name: DIY Linux Pre-Install
   slides: https://docs.google.com/presentation/d/1nb3OckrQxStfdyInzJOvh1EWWZfv7JUccp5nWW0pxQQ/edit
+  lecturer: Daniel Kessler <dkessler>
 
 - id: a4
   name: Linux Post-Install
   slides: https://docs.google.com/presentation/d/1bvOK6vl2HatxbWt5W0YTc-SHI0GBgdXWu7APdIuDa0Y/edit
   lab: a4
+  lecturer: Daniel Kessler <dkessler>
 
 - id: b4
   name: Compiling, Distros, and Packaging
   slides: https://docs.google.com/presentation/d/1Nyl-G02Oef3SsfcpBvVpv5z8EUdzSXZRm8SRiwCS6V4/edit
   lab: b4
+  lecturer: Ethan Smith <ethanhs>
 
 - id: b5
   name: Networking 101
   slides: https://docs.google.com/presentation/d/12E1T_7eJR3SjSkMJ11y5gL0_teqajVx40smFV7vb9xc/edit
   lab: b5
+  lecturer: Night, Christopher Cooper <cooperc>
 
 - id: b6
   name: Processes
   slides: https://docs.google.com/presentation/d/1av6kkCuN-x_fVWowgS3y6a3LRKmxvf26ETJm0MV5dbc/edit
   lab: b6
+  lecturer: Kevin Kuehler <keur>
 
 - id: a5
   name: Networking 102
   slides: https://docs.google.com/presentation/d/1mVfJF6OCwNTv4clP1kFpuUnLHImc5iD4y1OYH73ewn8/edit
   lab: a5
+  lecturer: Abizer Lokhandwala <abizer>
 
 - id: a6
   name: Processes and Services
+  lecturer: Chris Kuehl <ckuehl>, Yelp
   slides: https://docs.google.com/presentation/d/14lLlKtffCSwCrPAdawVLinZFeVyqXHg6jA_-UfTOWLE/edit
 
 - id: b7
   name: Services
   slides: https://docs.google.com/presentation/d/1_HE8ZYb9WV1QTEyJbyt_a_dibo9e45VNVXNyZUbX3gs/edit
+  lecturer: Jason Perrin <jvperrin>, Yelp
 
 - id: ag0
-  name: Facebook Guest Lecture
+  name: Developing at Scale
+  lecturer: Douglas Wong <ldw>, Facebook
   slides: #
 
 - id: a8
   name: Networked Services
   slides: https://docs.google.com/presentation/d/19rW9LnaNiEq_ulXO6XSdBXy52VyJczTcNoi9YkkTrzk/edit
+  lecturer: Kevin Peng <kpengboy>, Google
   lab: a8
 
 - id: b8
   name: Security Fundamentals
   slides: https://docs.google.com/presentation/d/1vm71mYGELfS5boi-wd-sqgrwIkqau4k8_UkCc7KaY90/edit
   lab: b8
+  lecturer: Tony Liu <trliu>
 
 - id: b9
   name: Version Control and Backups
   slides: https://docs.google.com/presentation/d/1j2qM2CN5FKjSThBMRO4k6dbOSb1TUUU_peUfWTwVgCo/edit?usp=sharing
   lab: #
+  lecturer: Ben Zhang <bzh>
 
 - id: a9
   name: Advanced Security
   slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit?usp=sharing
   lab: a9
+  lecturer: Abizer Lokhandwala <abizer>
+
+- id: b10
+  name: Cloud, Containers, and Config Management
+  slides: https://docs.google.com/presentation/d/1g5bk5USrGoMXE4h6l285wOsO10fQyLa-vFh73LLCVn8/edit?usp=sharing
+  lab: #
+  lecturer: "Nikit Nainwal <nikitnainwal>"
+
+- id: a10
+  name: Config Management, High Performance Computing
+  slides: #
+  lecturer: Liam Porr <wporr>, Ben Zhang <bzh>
+  lab: #
+
+- id: ag1
+  name: Thanksgiving Break
+
+- id: a11
+  name: Cloud, Containers, Hyperconverged Infrastructure
+  slides: #
+  lecturer: #
+  lab: #
+
+- id: ag2
+  name: Guest Lectuer - Careers in Tech
+  lecturer: Ethan Jackson
+  lab: #
+  slides: #
