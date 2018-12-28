@@ -25,5 +25,3 @@ at the top of the document, otherwise the markdown will not be rendered. e.g.
     layout: lab
     ---
 
-Lab materials should be stored, as much as possible, in Puppet, which is located
-in the [decal-puppet](https://github.com/0xcf/decal-puppet) repository.

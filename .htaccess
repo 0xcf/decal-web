@@ -2,14 +2,11 @@
 ---
 RewriteEngine On
 
+RedirectMatch 404 /\.git
+
 # Redirect signups to the google form
-RewriteRule ^syllabus$	syllabus.pdf [R=302,L]
-RewriteRule ^signin$ https://ocf.io/signin [R=302,L]
 RewriteRule ^gdrive$ https://drive.google.com/drive/u/1/folders/1l6ZT4p75_JD2gFWLnWs4SP7a6x-gORvL [R=302,L]
 RewriteRule ^piazza$ https://piazza.com/class/jku13vim2ln3c9 [R=302,L]
-RewriteRule ^absent$ https://docs.google.com/spreadsheets/d/1bWuCSVNEtBlwbKmp55c9NaCotxaPMCvjgWW2CiMLh_w/edit#gid=0 [R=302,L]
-RewriteRule ^checkoff$ https://docs.google.com/forms/d/e/1FAIpQLSfnENPbyHNzr8s23tvu6N6faG3EQCkULgztsp2aXUs8A8pfKw/viewform [R=302,L]
-RewriteRule ^facilitators$ https://docs.google.com/spreadsheets/d/1GAKL-zfd_UKbw5wZMHDxmG-nHAI_jWY26ZSXibWxVA0/edit?usp=sharing [R=302,L]
 
 {% for item in site.data.materials %}
 {% if item.slides %}
