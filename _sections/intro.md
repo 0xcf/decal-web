@@ -18,12 +18,12 @@ Facility (tsunami.ocf.berkeley.edu). By the end of this course, we expect you to
 The course will be taught in two sections: one for students with minimal
 prior background in GNU/Linux or system administration, and one for
 students with more background/experience in the same. The sections are
-titled Basic and Advanced, respectively.
+titled Beginner and Advanced, respectively.
 
 An important skill for system administrators is the **willingness to learn
 quickly** about new and unfamiliar technologies, so while we expect many
 students will have a CS background, **the only real prerequisite is a desire
-to learn**. The Basic section has been designed to introduce new users to Linux,
+to learn**. The Beginner section has been designed to introduce new users to Linux,
 and the Advanced section has been designed to give more experienced users a
 taste of what Linux is capable of.
 

@@ -3,9 +3,9 @@
 ---
 ## Administrivia
 
-Lectures are scheduled for **Tuesdays** for the Basic section and **Thursdays**
-for the Advanced section, from from **8 to 9pm** the OCF Lab, located at
-**171 MLK** (MLK basement down the hall from the student store).
+Lectures are scheduled for **Tuesdays** for the Beginner section and
+**Thursdays** for the Advanced section, from **8 to 9pm** the OCF Lab,
+located at **171 MLK** (MLK basement down the hall from the student store).
 **Attendance is mandatory, with two allowed unexcused absences.** Some other
 conflicts, such as exams, may be excused if you provide prior notice. Please
 only come to the lab on the day corresponding to the section you are in.
