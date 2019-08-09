@@ -1,6 +1,71 @@
 # If links to slides or labs are included here, those pages will redirect to the
 # provided link.
 - id: 0
-  name: Info Session
+  name: Infosession
   slides: https://docs.google.com/presentation/d/1tqg3xR4MHki29Rf_FCQJlrX01_A51gHGj55dR46D2G0/edit
-  lab: https://goo.gl/forms/NoYFEGbOuAACIDMI3
+  # lab: # not posted yet
+
+
+
+# beginner
+
+- id: b1
+  name: History of UNIX, intro to shell, FOSS
+
+- id: b2
+  name: Core Shell
+
+- id: b3
+  name: Shell Scripting
+
+- id: b4
+  name: Compiling, Distros, and Packaging
+
+- id: b5
+  name: Networking 101
+
+- id: b6
+  name: Processes
+
+- id: b7
+  name: Services
+
+- id: b8
+  name: Security Fundamentals
+
+- id: b9
+  name: Version Control and Backups
+
+- id: b10
+  name: Cloud, Containers, and Config Management
+
+
+
+# advanced
+
+- id: a1
+  name: Advanced Introduction to UNIX
+
+- id: a2
+  name: DIY Linux Pre-Install
+
+- id: a4
+  name: Linux Post-Install
+
+- id: a5
+  name: Networking 102
+
+- id: a6
+  name: Processes and Services
+
+- id: a7
+  name: Developing at Scale
+
+- id: a8
+  name: Networked Services
+
+- id: a9
+  name: Advanced Security
+
+- id: a10
+  name: Config Management
