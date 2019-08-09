@@ -5,7 +5,7 @@ RewriteEngine On
 RedirectMatch 404 /\.git
 
 # Redirect signups to the google form
-RewriteRule ^gdrive$ https://drive.google.com/drive/u/2/folders/1RJk3uFtdeT3ZF2ZfwyeFPIbeZBMp3oPg [R=302,L]
+RewriteRule ^gdrive$ https://drive.google.com/drive/folders/1RJk3uFtdeT3ZF2ZfwyeFPIbeZBMp3oPg [R=302,L]
 RewriteRule ^piazza$ https://piazza.com/class/jku13vim2ln3c9 [R=302,L]
 
 {% for item in site.data.materials %}
@@ -16,4 +16,3 @@ RewriteRule ^slides/{{item.id}}$ {{item.slides}} [R=302,L]
 RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]
 {% endif %}
 {% endfor %}
-
