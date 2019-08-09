@@ -46,11 +46,13 @@ layout: default
 </nav>
 
 <div class="container">
-  {{ content }}
+  {{ site.sections | where:"slug","intro" | first | content }}
 
   {% include interestform.html %}
 
   {% include calendar.html %}
-    
+
+  {{ site.sections | where:"slug","policies" | first | content }}
+
   {% include staff.html %}
 </div>

@@ -12,6 +12,9 @@ markdown: kramdown
 include:
   - ".htaccess"
 
+collections:
+  - sections
+
 # A list of files or directories to exclude from processing when building the
 # site, like any dependency management files, build files, etc.
 exclude:
