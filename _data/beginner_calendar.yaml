@@ -3,3 +3,50 @@
 # The lecturenote key can be used to display a message about the lecture
 # (which will probably be a cancellation).
 
+- date: 2019-09-03
+  week: 0
+  id: 0
+
+- date: 2019-09-05
+  week: 0
+  id: 0
+
+- date: 2019-09-10
+  week: 1
+  id: b1
+
+- date: 2019-09-17
+  week: 2
+  id: b2
+
+- date: 2019-09-24
+  week: 3
+  id: b3
+
+- date: 2019-10-01
+  week: 4
+  id: b4
+
+- date: 2019-10-08
+  week: 5
+  id: b5
+
+- date: 2019-10-15
+  week: 6
+  id: b6
+
+- date: 2019-10-22
+  week: 7
+  id: b7
+
+- date: 2019-10-29
+  week: 8
+  id: b8
+
+- date: 2019-11-05
+  week: 9
+  id: b9
+
+- date: 2019-11-12
+  week: 10
+  id: b10

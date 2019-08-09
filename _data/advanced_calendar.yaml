@@ -2,3 +2,51 @@
 # Lecture and Lab IDs should correspond to IDs in materials.yaml.
 # The lecturenote key can be used to display a message about the lecture
 # (which will probably be a cancellation).
+
+- date: 2019-09-03
+  week: 0
+  id: 0
+
+- date: 2019-09-05
+  week: 0
+  id: 0
+
+- date: 2019-09-12
+  week: 1
+  id: a1
+
+- date: 2019-09-19
+  week: 2
+  id: a2
+
+- date: 2019-09-27
+  week: 3
+  note: Thanksgiving break, no lecture
+
+- date: 2019-10-03
+  week: 4
+  id: a4
+
+- date: 2019-10-10
+  week: 5
+  id: a5
+
+- date: 2019-10-17
+  week: 6
+  id: a6
+
+- date: 2019-10-24
+  week: 7
+  id: a7
+
+- date: 2019-10-31
+  week: 8
+  id: a8
+
+- date: 2019-11-07
+  week: 9
+  id: a9
+
+- date: 2019-11-14
+  week: 10
+  id: a10

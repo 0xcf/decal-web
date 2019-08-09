@@ -1,0 +1,53 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Date</th>
+      <th>Lecture Title</th>
+      <th>Lecturer</th>
+      <th>Lab</th>
+      <th>Lab Due Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for entry in include.data %}
+  <tr>
+    <td>{{ entry.week  | default: - }}</td>
+    <td>{{ entry.date  | date: "%a. %m/%d" }}</td>
+    {% if entry.note %}
+      <td colspan="4">
+        {{ entry.note }}
+      </td>
+    {% else %}
+      {% for item in site.data.materials %}
+        {% if item.id == entry.id %}
+          <td>
+            {% if item.slides %}
+              <a href="{{ item.slides }}">
+            {% endif %}
+            {{ item.name | default: - }}
+            {% if item.slides %}
+              </a>
+            {% endif %}
+          </td>
+          <td>
+        {{ item.lecturer | default: - | xml_escape }}
+          </td>
+          <td>
+            {% if item.lab %}
+              <a href="labs/{{ item.id }}">
+                Lab {{ item.id }}
+              </a>
+            {% else %}
+              -
+            {% endif %}
+          </td>
+          <td>{{ entry.labdue  | date: "%a. %m/%d" }}</td>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
