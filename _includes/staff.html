@@ -5,7 +5,12 @@
   </div>
   {% for member in site.data.staff %}
     <div class="col-lg-4 col-sm-6 text-center">
-      <img class="img-circle img-responsive img-center" src="{{ member.img }}" alt="Picture of {{ member.name }}">
+      <img
+        class="img-circle img-responsive img-center"
+        src="{{ member.img }}"
+        alt="Picture of {{ member.name }}"
+        style="width: 200px; height: 200px;"
+      >
       <h3>{{ member.name }}
 	<small>{{ member.title }}</small>
       </h3>
