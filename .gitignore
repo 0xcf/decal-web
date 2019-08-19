@@ -13,3 +13,6 @@ _site
 # Bundler vendor folder
 vendor
 .bundle
+
+# macOS ignores 
+.DS_Store
