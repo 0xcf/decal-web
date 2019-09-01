@@ -43,6 +43,10 @@
   img: images/regex.jpg
   description: i dont do much but im here anyways
 - name: Liam Porr
-  title: Facilitator 
+  title: Facilitator
   img: images/wporr.jpg
   description: None of these things are comprehensible to you
+- name: Mathew Cha
+  title: Guest Lecturer
+  img: images/mdcha.jpg
+  description: Resident OCF weirdo.
