@@ -2,6 +2,17 @@
 # This is the first part of the main page. This is included from _layouts/home.html.
 ---
 # Welcome to the Linux System Administration DeCal!
+
+<p class="alert alert-warning">
+
+  We will be having <b>two</b> infosessions, on <b>Tuesday, Sept 3</b>
+  and <b>Thursday, Sept 5</b>, from <b>8 to 9pm</b> in the OCF lab at
+  <b>171 MLK</b>. Both infosessions will cover the exact same
+  information. Attending an infosession is required if you want to
+  take the DeCal.
+
+ </p>
+
 This course will cover the basics of setting up and administering a
 production-quality Linux server environment. By the end of this
 course, we expect you to:
