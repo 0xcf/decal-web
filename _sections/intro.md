@@ -3,15 +3,6 @@
 ---
 # Welcome to the Linux System Administration DeCal!
 
-<p class="alert alert-warning">
-
-  We are currently having enrollment issues: it seems the university
-  changed the listed capacity of the course out from under us, so you
-  may not be able to enroll immediately. We are working on it and will
-  update when we know more.
-
- </p>
-
 This course will cover the basics of setting up and administering a
 production-quality Linux server environment. By the end of this
 course, we expect you to:
