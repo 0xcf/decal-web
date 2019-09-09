@@ -5,11 +5,10 @@
 
 <p class="alert alert-warning">
 
-  We will be having <b>two</b> infosessions, on <b>Tuesday, Sept 3</b>
-  and <b>Thursday, Sept 5</b>, from <b>8 to 9pm</b> in the OCF lab at
-  <b>171 MLK</b>. Both infosessions will cover the exact same
-  information. Attending an infosession is required if you want to
-  take the DeCal.
+  We are currently having enrollment issues: it seems the university
+  changed the listed capacity of the course out from under us, so you
+  may not be able to enroll immediately. We are working on it and will
+  update when we know more.
 
  </p>
 
