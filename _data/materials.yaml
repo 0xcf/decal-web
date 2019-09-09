@@ -49,6 +49,9 @@
 - id: a2
   name: DIY Linux Pre-Install
 
+- id: a3
+  name: Packages
+
 - id: a4
   name: Linux Post-Install
 
