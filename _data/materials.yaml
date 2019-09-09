@@ -47,10 +47,10 @@
   name: Advanced Introduction to UNIX
 
 - id: a2
-  name: DIY Linux Pre-Install
+  name: Packages
 
 - id: a3
-  name: Packages
+  name: DIY Linux Pre-Install
 
 - id: a4
   name: Linux Post-Install
