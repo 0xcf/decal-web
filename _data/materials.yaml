@@ -11,6 +11,9 @@
 
 - id: b1
   name: History of UNIX, intro to shell, FOSS
+  slides: https://drive.google.com/open?id=1_W4k2PDTjHVvk75GVm9DsmnYnGxIzpnkpo5Y4e5Z070
+  lab: b1
+  lecturer: Andy Lo <andylo>
 
 - id: b2
   name: Core Shell
