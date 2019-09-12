@@ -48,6 +48,9 @@
 
 - id: a1
   name: Advanced Introduction to UNIX
+  slides: https://docs.google.com/presentation/d/1gRpdHjNyYE8SvV-Hs4-L8Pl6JPYkaits0vi47h0WMaA/edit
+  lab: a1
+  lecturer: Mathew Cha <mdcha>
 
 - id: a2
   name: Packages
