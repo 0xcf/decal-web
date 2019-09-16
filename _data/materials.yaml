@@ -17,6 +17,9 @@
 
 - id: b2
   name: Core Shell
+  slides: https://docs.google.com/presentation/d/1X0jkf3anhLgzCeL3UtsgPhRBPxUDtMuSKM4OyfgF3JQ/edit
+  lab: b2
+  lecturer: Stefan Kuklinsky <skuklinsky>
 
 - id: b3
   name: Shell Scripting
