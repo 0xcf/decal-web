@@ -57,6 +57,9 @@
 
 - id: a2
   name: Packages
+  slides: https://drive.google.com/open?id=158rSvIgQo9HxFp10Ms3Nh2c5yPN4Xchcqkofv_yjC8U
+  lab: a2
+  lecturer: Mathew Cha <mdcha>
 
 - id: a3
   name: DIY Linux Pre-Install
