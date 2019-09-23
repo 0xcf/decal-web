@@ -23,6 +23,9 @@
 
 - id: b3
   name: Shell Scripting
+  slides: https://docs.google.com/presentation/d/14ILw4JcumdrYoX6WiB1P-d9Ic9TY2hIdV2uzylIaYLA/edit?usp=sharing
+  lab: b3
+  lecturer: Bernard Zhao <bernardzhao>
 
 - id: b4
   name: Compiling, Distros, and Packaging
