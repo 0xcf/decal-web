@@ -66,6 +66,9 @@
 
 - id: a3
   name: DIY Linux Pre-Install
+  slides: https://docs.google.com/presentation/d/1WfiYmAOZR4jtakRm2rZZgwhFu1Fy5oBSowLXSbTHkVw/edit
+  lab: a3
+  lecturer: Christopher Cooper <cooperc>
 
 - id: a4
   name: Linux Post-Install
