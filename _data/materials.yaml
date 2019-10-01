@@ -29,6 +29,9 @@
 
 - id: b4
   name: Compiling, Distros, and Packaging
+  slides: https://docs.google.com/presentation/d/1Jm24WuIR5PGofaiTsJkeMVi7hbyoA8Crjx6XYO1IOZY/edit?usp=sharing
+  lab: b4
+  lecturer: Ethan Smith <ethanhs>
 
 - id: b5
   name: Networking 101
