@@ -75,6 +75,9 @@
 
 - id: a4
   name: Linux Post-Install
+  slides: https://docs.google.com/presentation/d/1WXvw3ritRgR5fhKOug-VN_IG-SnXu2zC4vA70lvRmiw/edit
+  lab: a4
+  lecturer: Ethan Smith <ethanhs>
 
 - id: a5
   name: Networking 102
