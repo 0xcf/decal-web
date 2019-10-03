@@ -35,7 +35,7 @@
 
 - id: b5
   name: Networking 101
-
+  slides: https://docs.google.com/presentation/d/1FD5in89NlTtANV8KKxL8fsfo284ziHkcovwT9zQFM1Y/edit?usp=sharing
 - id: b6
   name: Processes
 
