@@ -40,4 +40,5 @@ be released about a week before lecture a1. Lecture a1 will be on Sept 13. Then
 lab a1 will be due before lecture a2 (that is, Sept 20 at 8pm). Please stay on
 top of lab work! If extenuating circumstances prevent you from completing your
 lab on time, please let us know as soon as possible and we will try to be
-accommodating.
+accommodating. We expect that you turn in all labs on time, but allow **two
+unexcused late labs** to be turned in before the semester ends. 
