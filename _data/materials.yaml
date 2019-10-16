@@ -41,6 +41,9 @@
 
 - id: b6
   name: Processes
+  slides: https://docs.google.com/presentation/d/10RWmMcyqNkU-nN946kMo4fZdcwQYsgkq3C9eeC4G6dc/edit?usp=sharing
+  lab: b6
+  lecturer: Rachel Gregory <regex>
 
 - id: b7
   name: Services
