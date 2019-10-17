@@ -90,6 +90,10 @@
 
 - id: a6
   name: Processes and Services
+  slides: https://docs.google.com/presentation/d/1-GFD25uA6Pkr575UGk55QAkOxmYycfvtkYu4cgthCGg/edit?usp=sharing
+  lab: a6
+  lecturer: keur
+
 
 - id: a7
   name: Developing at Scale
