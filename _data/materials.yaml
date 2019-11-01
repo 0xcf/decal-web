@@ -5,8 +5,6 @@
   slides: https://docs.google.com/presentation/d/1KEtI8ts1Y4xi0wjNWDGVedySMmG0bQhMdhx-d-39C8s/edit
   lab: https://docs.google.com/forms/d/e/1FAIpQLSd8cMIh5OT6nMDI0uiBbvRD-aQNHU1xXl3S1U8P8Wt6YwPP6A/viewform
 
-
-
 # beginner
 
 - id: b1
@@ -57,14 +55,11 @@
   lab: b8
   lecturer: Ning Zhang <zhangning>
 
-
 - id: b9
   name: Version Control and Backups
 
 - id: b10
   name: Cloud, Containers, and Config Management
-
-
 
 # advanced
 
@@ -93,7 +88,7 @@
   lecturer: Ethan Smith <ethanhs>
 
 - id: a5
-  name: Networking 102
+  name: Lecture Cancelled for Power Outage
 
 - id: a6
   name: Processes and Services
@@ -101,15 +96,19 @@
   lab: a6
   lecturer: keur
 
-
 - id: a7
-  name: Developing at Scale
+  name: 'Guest Lecture: Developing at Scale'
+  lecturer: ldw
 
 - id: a8
-  name: Networked Services
+  name: Networking 102
+  lecturer: abizer
 
 - id: a9
-  name: Advanced Security
+  name: Networked Services
 
 - id: a10
+  name: Advanced Security
+
+- id: a11
   name: Config Management
