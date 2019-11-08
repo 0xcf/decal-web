@@ -109,6 +109,8 @@
 
 - id: a9
   name: Networked Services
+  slides: https://docs.google.com/presentation/d/1Yg2rZuZLAwmgR_eq7E3rVumWl-7EhNa9seZ_UbSi4Zw/edit
+  lecturer: jvperrin
 
 - id: a10
   name: Advanced Security
