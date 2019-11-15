@@ -119,7 +119,8 @@
 - id: a10
   name: Config Management
   slides: https://docs.google.com/presentation/d/1OfIJHu6bSfTOLLswpKnVr7oxL8R-H4aPM8LLRHuecCY/edit
-  lecturer: fydai
+  lab: a10
+  lecturer: Frank Dai <fydai>
 
 - id: a11
   name: Advanced Security
