@@ -117,7 +117,9 @@
   lecturer: jvperrin
 
 - id: a10
-  name: Advanced Security
+  name: Config Management
+  slides: https://docs.google.com/presentation/d/1OfIJHu6bSfTOLLswpKnVr7oxL8R-H4aPM8LLRHuecCY/edit
+  lecturer: fydai
 
 - id: a11
-  name: Config Management
+  name: Advanced Security
