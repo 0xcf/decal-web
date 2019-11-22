@@ -124,3 +124,6 @@
 
 - id: a11
   name: Advanced Security
+  slides: https://docs.google.com/presentation/d/1ExmZpm-nSkuFM-FTB6ZT3oP8frAh7g4jSIUiTQ1ddSM/edit?usp=sharing
+  lab: a11
+  lecturer: Mathew Cha <mdcha>
