@@ -130,6 +130,9 @@
 
 - id: a12
   name: Virtualization, Containers, Distributed Architecture
+  slides: https://docs.google.com/presentation/d/1iqdy4u2NKD05o0Jrcioy8ngGaVuke63e8QOReszEGbE/edit#slide=id.p
+  lab: a12
+  lecturer: Brian Sang <baisang>
 
 - id: bonus
   name: 'Optional Guest Lecture: Careers in Tech'
