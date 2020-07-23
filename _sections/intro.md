@@ -3,6 +3,8 @@
 ---
 # Welcome to the Linux System Administration DeCal!
 
+> **Outdated Notice for Fall 2020:** The DeCal website is currently in the process of being updated for the Fall 2020 semester. The current content (slides, labs, and dates) on this website is reflective of the Fall 2019 curriculum. Stay tuned for updates to the website or [view the archives](/archives.html) for content from previous semesters!
+
 This course will cover the basics of setting up and administering a
 production-quality Linux server environment. By the end of this
 course, we expect you to:
