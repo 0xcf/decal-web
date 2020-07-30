@@ -3,65 +3,54 @@
 # The lecturenote key can be used to display a message about the lecture
 # (which will probably be a cancellation).
 
-- date: 2019-09-03
+- date: 2020-09-08
   week: 0
   id: 0
-  labdue: 2019-09-07
 
-- date: 2019-09-05
+- date: 2020-09-10
   week: 0
   id: 0
-  labdue: 2019-09-07
 
-- date: 2019-09-10
+- date: 2020-09-15
   week: 1
   id: b1
-  labdue: 2019-09-17
 
-- date: 2019-09-17
+- date: 2020-09-22
   week: 2
   id: b2
-  labdue: 2019-09-24
 
-- date: 2019-09-24
+- date: 2020-09-29
   week: 3
   id: b3
-  labdue: 2019-10-01
 
-- date: 2019-10-01
+- date: 2020-10-06
   week: 4
   id: b4
-  labdue: 2019-10-08
 
-- date: 2019-10-08
+- date: 2020-10-13
   week: 5
   id: b5
-  labdue: 2019-10-18
 
-- date: 2019-10-15
+- date: 2020-10-20
   week: 6
   id: b6
-  labdue: 2019-10-22
 
-- date: 2019-10-29
+- date: 2020-10-27
   week: 7
   id: b7
 
-- date: 2019-10-29
+- date: 2020-11-03
   week: 8
   id: b8
-  labdue: 2019-11-5
 
-- date: 2019-11-05
+- date: 2020-11-10
   week: 9
   id: b9
-  labdue: 2019-11-12
 
-- date: 2019-11-12
+- date: 2020-11-17
   week: 10
   id: b10
-  labdue: 2019-11-19
 
-- date: 2019-12-03
+- date: 2020-12-03
   week: 12
   id: bonus
