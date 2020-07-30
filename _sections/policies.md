@@ -4,24 +4,38 @@
 ## Administrivia
 
 ### Enrollment
-This is a **2 unit DeCal**. Since it is a DeCal, the course is P/NP. You must
-attend an infosession and complete Lab 0 to apply. If you are selected for the
-course, we will send you a course enrollment code by September 9.
+This is a **2 unit DeCal**. Since it is a DeCal, the course is P/NP. **You must
+attend an infosession and complete Lab 0 to apply.** If you are selected for the
+course, we will send you a course enrollment code by September 14.
 
 ### Lecture
 Lectures are scheduled for **Tuesdays** for the Beginner section and
-**Thursdays** for the Advanced section, from **8 to 9pm** the OCF Lab, located
-at **171 MLK** (MLK basement down the hall from the student store). **Attendance
-is mandatory, with two allowed unexcused absences.** Some other conflicts, such
-as exams, may be excused if you provide prior notice. Please only come to the
-lab on the day corresponding to the section you are in.
+**Thursdays** for the Advanced section, from **8 to 9pm.** Due to the online
+nature of this semester, we will hold lectures over Zoom or a comparable
+streaming platform (to be announced). Additionally, lecture recordings will
+be made available on this website.
+
+<!-- Not applicable for fa20
+OCF Lab, located at 171 MLK (MLK basement down the hall from the student store).
+**Attendance is mandatory, with two allowed unexcused absences.** Some other
+conflicts, such as exams, may be excused if you provide prior notice. Please only
+come to the lab on the day corresponding to the section you are in.
+ -->
+
+While we normally mandate attendance, this will no longer be a requirement for
+Fall 2020 given the remote nature of the course. Nonetheless, students will be
+expected to view all lectures, as knowledge of their content will be assumed in
+lab assignments.
 
 **Lecture will double as office hours** for students to come in and ask
-questions about the lab work. The one-hour "lecture" slot will include some
-lecturing but will also include time to to work on the lab assignment with the
-help of present facilitators. Note that we only have 30 computers in the lab,
+questions about lab work or covered material. The one-hour lecture slot will 
+include some lecturing but will also include time to to work on the lab assignment
+with the help of present facilitators. 
+
+<!-- Not applicable for fa20
+Note that we only have 30 computers in the lab,
 but 40 people are enrolled in each course, so **please bring a laptop** if you
-can.
+can. -->
 
 ### Labs
 The primary assignment in this course will be **weekly lab work**.
@@ -36,9 +50,10 @@ lecture each week. This will allow you to better utilize the help of the
 facilitators, and will help you understand the lecture in a concrete way.
 
 Each lab will be due **before the following lecture**. For example, lab a1 will
-be released about a week before lecture a1. Lecture a1 will be on Sept 13. Then
-lab a1 will be due before lecture a2 (that is, Sept 20 at 8pm). Please stay on
+be due by **8pm on Thursday, 9/24** which is when Lecture a2 will be held. Please stay on
 top of lab work! If extenuating circumstances prevent you from completing your
 lab on time, please let us know as soon as possible and we will try to be
-accommodating. We expect that you turn in all labs on time, but allow **two
-unexcused late labs** to be turned in before the semester ends. 
+accommodating.
+
+**You must complete all labs to receive credit for taking the course.** However,
+we will allow **two unexcused late labs** to be turned in before the semester ends. 
