@@ -23,7 +23,7 @@
       {% for item in site.data.materials %}
         {% if item.id == entry.id %}
           <td>
-            {% if item.slides %}
+            {% if item.slides and item.hidelink != true %}
               <a href="{{ item.slides }}">
             {% endif %}
             {{ item.name | default: - }}
@@ -36,9 +36,13 @@
           </td>
           <td>
             {% if item.lab %}
-              <a href="{{ item.lab }}">
+              {% if item.hidelink %}
                 Lab {{ item.id }}
-              </a>
+              {% else %}
+                 <a href="{{ item.lab }}">
+                  Lab {{ item.id }}
+                </a>
+              {% endif %}
             {% else %}
               -
             {% endif %}
