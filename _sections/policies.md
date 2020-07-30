@@ -57,3 +57,46 @@ accommodating.
 
 **You must complete all labs to receive credit for taking the course.** However,
 we will allow **two unexcused late labs** to be turned in before the semester ends. 
+
+## FAQ
+
+### Will the DeCal be offered in the Fall 2020 semester?
+**Yes!** We will release an interest form and application soon!
+
+### How do I know which track is best for me?
+**Beginner Track** is intended for those who have little to no prior experience of
+using Linux-based systems. We will be providing an overview to several important
+concepts in systems administration, such as networking, shell scripting, version
+control, and security. It's perfectly OK if you've never worked with or heard of
+these concepts before- but if you're familiar with them, we recommend you opt
+for the advanced track. Overall, we welcome everyone to this track!
+
+**Advanced Track** is intended for those who have used Linux-based systems before
+and are at least somewhat familiar with some of the concepts mentioned in the
+beginner track description above. While there are no hard/enforced prerequisites,
+we do recommend that you have experience with one or more of the following:
+ - Using Linux as a primary/secondary OS
+ - Using a package manager such as `apt` or `pacman`
+ - Writing scripts to automate basic tasks
+ - Basic networking (such as working with IP addresses)
+
+If you are still unsure about which track to choose,
+you can email us at [decal@ocf.berkeley.edu][email].
+
+### I don't want units / wasn't accepted / am not a student. Can I audit this course?
+We are working hard to get all of our materials online this semester for everyone to
+access! Since we are no longer bound by physical constraints, feel free to attend
+any of our scheduled lectures or complete any of the labs on your own. (You will
+need your own Linux VM though- you can 
+[install one locally](https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/)
+or get one from a provider such as [DigitalOcean](https://www.digitalocean.com/).)
+
+### I'm stuck on a lab/concept! Where can I find help?
+The best way to get support with course content is to either join our Slack channel at [#decal-general][slack], or
+ask us during scheduled lecture times.
+
+### I have another question!
+Email us at [decal@ocf.berkeley.edu][email].
+
+[email]: mailto:decal@ocf.berkeley.edu
+[slack]: https://fco.slack.com/archives/CN0FQ9BUN
