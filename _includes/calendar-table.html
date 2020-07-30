@@ -32,11 +32,11 @@
             {% endif %}
           </td>
           <td>
-        {{ item.lecturer | default: - | xml_escape }}
+        {{ item.lecturer | default: "TBA" | xml_escape }}
           </td>
           <td>
             {% if item.lab %}
-              <a href="labs/{{ item.id }}">
+              <a href="{{ item.lab }}">
                 Lab {{ item.id }}
               </a>
             {% else %}

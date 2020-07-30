@@ -51,6 +51,10 @@
   week: 10
   id: b10
 
+- date: 2020-11-26
+  week: 11
+  id: thanksgiving
+
 - date: 2020-12-03
   week: 12
   id: bonus
