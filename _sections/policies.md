@@ -61,7 +61,7 @@ we will allow **two unexcused late labs** to be turned in before the semester en
 ## FAQ
 
 ### Will the DeCal be offered in the Fall 2020 semester?
-**Yes!** We will release an interest form and application soon!
+**Yes!** Please fill out our [interest form](https://docs.google.com/forms/d/1znWVZaEIb69zExQtinJty5-bRTSovGoMlY6w-brLrGM) if you'd like to stay updated!
 
 ### How do I know which track is best for me?
 **Beginner Track** is intended for those who have little to no prior experience of
