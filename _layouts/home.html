@@ -27,6 +27,9 @@ layout: default
           <a href="#administrivia">Policies</a>
         </li>
         <li>
+          <a href="#faq">FAQ</a>
+        </li>
+        <li>
           <a href="#staff">Staff</a>
         </li>
         <li>
@@ -51,6 +54,8 @@ layout: default
 <div class="container">
   {{ site.sections | where:"slug","intro" | first | content }}
 
+  {% include interestform.html %}
+  
   {% include calendar.html %}
 
   {{ site.sections | where:"slug","policies" | first | content }}
