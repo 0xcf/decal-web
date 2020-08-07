@@ -3,137 +3,138 @@
 - id: 0
   name: Infosession
   slides: https://docs.google.com/presentation/d/1KEtI8ts1Y4xi0wjNWDGVedySMmG0bQhMdhx-d-39C8s/edit
-  lab: https://docs.google.com/forms/d/e/1FAIpQLSd8cMIh5OT6nMDI0uiBbvRD-aQNHU1xXl3S1U8P8Wt6YwPP6A/viewform
+  lab: https://docs.google.com/forms/d/1lFVW7TQ0414qH15bRbeuwxYWXIw8lOxLL9n_hnwIBgA/
+  lecturer: '-'
 
 # beginner
 
 - id: b1
   name: History of UNIX, intro to shell, FOSS
   slides: https://drive.google.com/open?id=1_W4k2PDTjHVvk75GVm9DsmnYnGxIzpnkpo5Y4e5Z070
-  lab: b1
-  lecturer: Andy Lo <andylo>
+  lab: labs/b1
+  hidelink: true
 
 - id: b2
   name: Core Shell
   slides: https://docs.google.com/presentation/d/1X0jkf3anhLgzCeL3UtsgPhRBPxUDtMuSKM4OyfgF3JQ/edit
-  lab: b2
-  lecturer: Stefan Kuklinsky <skuklinsky>
+  lab: labs/b2
+  hidelink: true
 
 - id: b3
   name: Shell Scripting
   slides: https://docs.google.com/presentation/d/14ILw4JcumdrYoX6WiB1P-d9Ic9TY2hIdV2uzylIaYLA/edit?usp=sharing
-  lab: b3
-  lecturer: Bernard Zhao <bernardzhao>
+  lab: labs/b3
+  hidelink: true
 
 - id: b4
   name: Compiling, Distros, and Packaging
   slides: https://docs.google.com/presentation/d/1Jm24WuIR5PGofaiTsJkeMVi7hbyoA8Crjx6XYO1IOZY/edit?usp=sharing
-  lab: b4
-  lecturer: Ethan Smith <ethanhs>
+  lab: labs/b4
+  hidelink: true
 
 - id: b5
   name: Networking 101
   slides: https://docs.google.com/presentation/d/1FD5in89NlTtANV8KKxL8fsfo284ziHkcovwT9zQFM1Y/edit?usp=sharing
-  lab: b5
-  lecturer: Tony Lian <longlian>
+  lab: labs/b5
+  hidelink: true
 
 - id: b6
   name: Processes
   slides: https://docs.google.com/presentation/d/10RWmMcyqNkU-nN946kMo4fZdcwQYsgkq3C9eeC4G6dc/edit?usp=sharing
-  lab: b6
-  lecturer: Rachel Gregory <regex>
+  lab: labs/b6
+  hidelink: true
 
 - id: b7
   name: Services
   slides: https://docs.google.com/presentation/d/1Isn9pMZBLnpZ_IFbGpbeai-AZ1l4cAa7Z6eL5wPtCXY/edit
-  lab: b7
-  lecturer: Ryan Chan <rrchan>
+  lab: labs/b7
+  hidelink: true
 
 - id: b8
   name: Security Fundamentals
   slides: https://drive.google.com/open?id=1t6fU6qPELZvBo7N_KZLDiLDsS2DJPcgySIXZjIVfKho
-  lab: b8
-  lecturer: Ning Zhang <zhangning>
+  lab: labs/b8
+  hidelink: true
 
 - id: b9
   name: Version Control and Backups
   slides: https://docs.google.com/presentation/d/1NxdvuLkWSzRvtnj41AkvGU00ub_XUbk8wlIxWxm0ok4/edit
-  lab: b9
-  lecturer: Liam Porr <wporr>
+  lab: labs/b9
+  hidelink: true
 
 - id: b10
   name: Cloud, Containers, and Config Management
   slides: https://docs.google.com/presentation/d/1y2BRjD36e31Cc3y1NmmznK3F5sa0VtkE9qJE1AAAKtk/edit
-  lab: b10
-  lecturer: Ja (Thanakul) Wattanawong <jaw>
+  lab: labs/b10
+  hidelink: true
 
 # advanced
 
 - id: a1
   name: Advanced Introduction to UNIX
   slides: https://docs.google.com/presentation/d/1gRpdHjNyYE8SvV-Hs4-L8Pl6JPYkaits0vi47h0WMaA/edit
-  lab: a1
-  lecturer: Mathew Cha <mdcha>
+  lab: labs/a1
+  hidelink: true
 
 - id: a2
   name: Packages
   slides: https://drive.google.com/open?id=158rSvIgQo9HxFp10Ms3Nh2c5yPN4Xchcqkofv_yjC8U
-  lab: a2
-  lecturer: Mathew Cha <mdcha>
+  lab: labs/a2
+  hidelink: true
 
 - id: a3
   name: DIY Linux Pre-Install
   slides: https://docs.google.com/presentation/d/1WfiYmAOZR4jtakRm2rZZgwhFu1Fy5oBSowLXSbTHkVw/edit
-  lab: a3
-  lecturer: Christopher Cooper <cooperc>
+  lab: labs/a3
+  hidelink: true
 
 - id: a4
   name: Linux Post-Install
   slides: https://docs.google.com/presentation/d/1WXvw3ritRgR5fhKOug-VN_IG-SnXu2zC4vA70lvRmiw/edit
-  lab: a4
-  lecturer: Ethan Smith <ethanhs>
+  lab: labs/a4
+  hidelink: true
 
 - id: a5
-  name: Lecture Cancelled for Power Outage
-
-- id: a6
   name: Processes and Services
   slides: https://docs.google.com/presentation/d/1-GFD25uA6Pkr575UGk55QAkOxmYycfvtkYu4cgthCGg/edit?usp=sharing
-  lab: a6
-  lecturer: keur
+  lab: labs/a5
+  hidelink: true
 
-- id: a7
-  name: 'Guest Lecture: Developing at Scale'
-  lecturer: ldw
-
-- id: a8
+- id: a6
   name: Networking 102
   slides: https://docs.google.com/presentation/d/1e1GrMlF8mUw8mqf8Sfs7Ec6wgnGsNEYvgRxL5KHshVo/edit
-  lecturer: abizer
+  lab: labs/a6
+  hidelink: true
 
-- id: a9
+- id: a7
   name: Networked Services
   slides: https://docs.google.com/presentation/d/1Yg2rZuZLAwmgR_eq7E3rVumWl-7EhNa9seZ_UbSi4Zw/edit
-  lecturer: jvperrin
+  lab: labs/a7
+  hidelink: true
 
-- id: a10
+- id: a8
   name: Config Management
   slides: https://docs.google.com/presentation/d/1OfIJHu6bSfTOLLswpKnVr7oxL8R-H4aPM8LLRHuecCY/edit
-  lab: a10
-  lecturer: Frank Dai <fydai>
+  lab: labs/a8
+  hidelink: true
 
-- id: a11
+- id: a9
   name: Advanced Security
   slides: https://docs.google.com/presentation/d/1ExmZpm-nSkuFM-FTB6ZT3oP8frAh7g4jSIUiTQ1ddSM/edit?usp=sharing
-  lab: a11
-  lecturer: Mathew Cha <mdcha>
+  lab: labs/a9
+  hidelink: true
 
-- id: a12
+- id: a10
   name: Virtualization, Containers, Distributed Architecture
   slides: https://docs.google.com/presentation/d/1iqdy4u2NKD05o0Jrcioy8ngGaVuke63e8QOReszEGbE/edit#slide=id.p
-  lab: a12
-  lecturer: Brian Sang <baisang>
+  lab: labs/a10
+  hidelink: true
+
+# Extras
+
+- id: thanksgiving
+  name: 'No Lecture - Thanksgiving Week'
+  lecturer: '-'
 
 - id: bonus
-  name: 'Optional Guest Lecture: Careers in Tech'
-  lecturer: Ethan Jackson
+  name: 'TBD'
