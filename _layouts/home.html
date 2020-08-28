@@ -18,13 +18,16 @@ layout: default
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
-          <a href="https://docs.google.com/document/d/e/2PACX-1vQHjDreiiccsUkoC8orWd4EWds-lZ18zPK8ZYclyGatQMIlIVm2vxQ9VPSn36qXWyVsXcu5XDigfjuH/pub" target="_blank">Syllabus</a>
+          <a href="https://docs.google.com/document/u/4/d/e/2PACX-1vQwMYxii-b0OLO7qEbnSvq4MP9fp95XORznytEuK-FWMlIzx_WLvivUIcZ2yIfNzHdwBAJGorebaGxf/pub" target="_blank">Syllabus</a>
         </li>
         <li>
           <a href="#calendar">Calendar</a>
         </li>
         <li>
           <a href="#administrivia">Policies</a>
+        </li>
+        <li>
+          <a href="#faq">FAQ</a>
         </li>
         <li>
           <a href="#staff">Staff</a>
@@ -51,6 +54,8 @@ layout: default
 <div class="container">
   {{ site.sections | where:"slug","intro" | first | content }}
 
+  {% include interestform.html %}
+  
   {% include calendar.html %}
 
   {{ site.sections | where:"slug","policies" | first | content }}

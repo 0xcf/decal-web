@@ -23,7 +23,7 @@
       {% for item in site.data.materials %}
         {% if item.id == entry.id %}
           <td>
-            {% if item.slides %}
+            {% if item.slides and item.hidelink != true %}
               <a href="{{ item.slides }}">
             {% endif %}
             {{ item.name | default: - }}
@@ -32,13 +32,17 @@
             {% endif %}
           </td>
           <td>
-        {{ item.lecturer | default: - | xml_escape }}
+        {{ item.lecturer | default: "TBA" | xml_escape }}
           </td>
           <td>
             {% if item.lab %}
-              <a href="labs/{{ item.id }}">
+              {% if item.hidelink %}
                 Lab {{ item.id }}
-              </a>
+              {% else %}
+                 <a href="{{ item.lab }}">
+                  Lab {{ item.id }}
+                </a>
+              {% endif %}
             {% else %}
               -
             {% endif %}
