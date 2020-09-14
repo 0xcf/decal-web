@@ -6,12 +6,15 @@ RedirectMatch 404 /\.git
 
 # Redirect signups to the google form
 RewriteRule ^gdrive$ https://drive.google.com/drive/folders/1RJk3uFtdeT3ZF2ZfwyeFPIbeZBMp3oPg [R=302,L]
-RewriteRule ^piazza$ https://piazza.com/berkeley/fall2019/cs198008 [R=302,L]
-RewriteRule ^syllabus(\.pdf)?$ https://docs.google.com/document/d/e/2PACX-1vQHjDreiiccsUkoC8orWd4EWds-lZ18zPK8ZYclyGatQMIlIVm2vxQ9VPSn36qXWyVsXcu5XDigfjuH/pub [R=302,L,NC]
+RewriteRule ^slack$ https://fco.slack.com [R=302,L]
+RewriteRule ^syllabus(\.pdf)?$ https://docs.google.com/document/u/4/d/e/2PACX-1vQwMYxii-b0OLO7qEbnSvq4MP9fp95XORznytEuK-FWMlIzx_WLvivUIcZ2yIfNzHdwBAJGorebaGxf/pub [R=302,L,NC]
 
 {% for item in site.data.materials %}
 {% if item.slides %}
 RewriteRule ^slides/{{item.id}}$ {{item.slides}} [R=302,L]
+{% endif %}
+{% if item.video %}
+RewriteRule ^video/{{item.id}}$ {{item.video}} [R=302,L]
 {% endif %}
 {% if item.lab %}
 RewriteRule ^labs/{{item.id}}$ {{item.lab}} [R=302,L]

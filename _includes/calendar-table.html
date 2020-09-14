@@ -23,13 +23,18 @@
       {% for item in site.data.materials %}
         {% if item.id == entry.id %}
           <td>
-            {% if item.slides and item.hidelink != true %}
-              <a href="{{ item.slides }}">
+            {% if item.video and item.hidelink != true %}
+              <a href="{{ item.video }}">
             {% endif %}
             {{ item.name | default: - }}
-            {% if item.slides %}
+            {% if item.video %}
               </a>
             {% endif %}
+
+            {% if item.video and item.hidelink != true %}
+              <a href="{{ item.slides }}" style="font-size: 15px">(slides)</a>
+            {% endif %}
+
           </td>
           <td>
         {{ item.lecturer | default: "TBA" | xml_escape }}

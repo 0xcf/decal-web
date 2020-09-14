@@ -1,8 +1,9 @@
-# If links to slides or labs are included here, those pages will redirect to the
-# provided link.
+# If links to slides, labs, or lecture videos are included here, those pages will 
+# redirect to the provided link.
 - id: 0
   name: Infosession
   slides: https://docs.google.com/presentation/d/1lTx2vAodmr0i5evZ5VFUOEZDVm0v6PGL7IGJM1M7Jro/edit?usp=sharing
+  video: https://www.youtube.com/watch?v=QCUXD8fwVS4
   lab: https://docs.google.com/forms/d/1lFVW7TQ0414qH15bRbeuwxYWXIw8lOxLL9n_hnwIBgA/
   lecturer: '-'
 
@@ -10,26 +11,32 @@
 
 - id: b1
   name: History of UNIX, intro to shell, FOSS
-  slides: https://drive.google.com/open?id=1_W4k2PDTjHVvk75GVm9DsmnYnGxIzpnkpo5Y4e5Z070
+  slides: https://docs.google.com/presentation/d/1AtnXiOZniLuP9QcnG8_OT1lwmhISRk2_zeANpXgycaY/edit?usp=sharing
+  video: https://youtu.be/pkSYJpxb9hk
   lab: labs/b1
-  hidelink: true
+  lecturer: Ben Cuan <bencuan>
+  hidelink: false
 
 - id: b2
   name: Core Shell
   slides: https://docs.google.com/presentation/d/1X0jkf3anhLgzCeL3UtsgPhRBPxUDtMuSKM4OyfgF3JQ/edit
   lab: labs/b2
+  lecturer: Nikhil Jha <njha>
   hidelink: true
 
 - id: b3
   name: Shell Scripting
   slides: https://docs.google.com/presentation/d/14ILw4JcumdrYoX6WiB1P-d9Ic9TY2hIdV2uzylIaYLA/edit?usp=sharing
+  video: https://www.youtube.com/watch?v=7xAGcmhkflM
   lab: labs/b3
+  lecturer: Richard Huang <rihu>
   hidelink: true
 
 - id: b4
   name: Compiling, Distros, and Packaging
   slides: https://docs.google.com/presentation/d/1Jm24WuIR5PGofaiTsJkeMVi7hbyoA8Crjx6XYO1IOZY/edit?usp=sharing
   lab: labs/b4
+  lecturer: Ethan Smith <ethanhs>
   hidelink: true
 
 - id: b5
@@ -72,26 +79,30 @@
 
 - id: a1
   name: Advanced Introduction to UNIX
-  slides: https://docs.google.com/presentation/d/1gRpdHjNyYE8SvV-Hs4-L8Pl6JPYkaits0vi47h0WMaA/edit
+  slides: https://docs.google.com/presentation/d/1P4HcAr1NcxFEL1m9bIokiBP1zOODHj8YQMPFSafeWko/edit?usp=sharing
   lab: labs/a1
-  hidelink: true
+  lecturer: Bernard Zhao <bernardzhao>
+  hidelink: false
 
 - id: a2
   name: Packages
   slides: https://drive.google.com/open?id=158rSvIgQo9HxFp10Ms3Nh2c5yPN4Xchcqkofv_yjC8U
   lab: labs/a2
+  lecturer: Daniel Kessler <dkessler>
   hidelink: true
 
 - id: a3
   name: DIY Linux Pre-Install
   slides: https://docs.google.com/presentation/d/1WfiYmAOZR4jtakRm2rZZgwhFu1Fy5oBSowLXSbTHkVw/edit
   lab: labs/a3
+  lecturer: Edric Xiang <exiang>
   hidelink: true
 
 - id: a4
   name: Linux Post-Install
   slides: https://docs.google.com/presentation/d/1WXvw3ritRgR5fhKOug-VN_IG-SnXu2zC4vA70lvRmiw/edit
   lab: labs/a4
+  lecturer: Ben Cuan <bencuan>
   hidelink: true
 
 - id: a5
