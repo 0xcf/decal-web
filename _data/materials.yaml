@@ -80,7 +80,6 @@
 - id: a1
   name: Advanced Introduction to UNIX
   slides: https://docs.google.com/presentation/d/1P4HcAr1NcxFEL1m9bIokiBP1zOODHj8YQMPFSafeWko/edit?usp=sharing
-  video: https://www.youtube.com/watch?v=xntBs4-ahCM
   lab: labs/a1
   lecturer: Bernard Zhao <bernardzhao>
   hidelink: false
