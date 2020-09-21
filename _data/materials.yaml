@@ -19,10 +19,11 @@
 
 - id: b2
   name: Core Shell
-  slides: https://docs.google.com/presentation/d/1X0jkf3anhLgzCeL3UtsgPhRBPxUDtMuSKM4OyfgF3JQ/edit
+  slides: https://docs.google.com/presentation/d/1o7CWAAa21JYll_isRd-oR3dhurBAPzQA5desEhxvwH0/edit?usp=sharing
+  video: https://www.youtube.com/watch?v=BcyAb4z-INA
   lab: labs/b2
   lecturer: Nikhil Jha <njha>
-  hidelink: true
+  hidelink: false
 
 - id: b3
   name: Shell Scripting
@@ -43,36 +44,42 @@
   name: Networking 101
   slides: https://docs.google.com/presentation/d/1FD5in89NlTtANV8KKxL8fsfo284ziHkcovwT9zQFM1Y/edit?usp=sharing
   lab: labs/b5
+  lecturer: Tony Lian <tonylian>
   hidelink: true
 
 - id: b6
   name: Processes
   slides: https://docs.google.com/presentation/d/10RWmMcyqNkU-nN946kMo4fZdcwQYsgkq3C9eeC4G6dc/edit?usp=sharing
   lab: labs/b6
+  lecturer: Ryan Chan <rrchan>
   hidelink: true
 
 - id: b7
   name: Services
   slides: https://docs.google.com/presentation/d/1Isn9pMZBLnpZ_IFbGpbeai-AZ1l4cAa7Z6eL5wPtCXY/edit
   lab: labs/b7
+  lecturer: Kevin Mo <kmo>
   hidelink: true
 
 - id: b8
   name: Security Fundamentals
   slides: https://drive.google.com/open?id=1t6fU6qPELZvBo7N_KZLDiLDsS2DJPcgySIXZjIVfKho
   lab: labs/b8
+  lecturer: Stefan Kuklinsky <skuklinsky>
   hidelink: true
 
 - id: b9
   name: Version Control and Backups
   slides: https://docs.google.com/presentation/d/1NxdvuLkWSzRvtnj41AkvGU00ub_XUbk8wlIxWxm0ok4/edit
   lab: labs/b9
+  lecturer: Edric Xiang <exiang>
   hidelink: true
 
 - id: b10
   name: Cloud, Containers, and Config Management
   slides: https://docs.google.com/presentation/d/1y2BRjD36e31Cc3y1NmmznK3F5sa0VtkE9qJE1AAAKtk/edit
   lab: labs/b10
+  lecturer: Richard Huang <rihu>
   hidelink: true
 
 # advanced
@@ -87,10 +94,10 @@
 
 - id: a2
   name: Packages
-  slides: https://drive.google.com/open?id=158rSvIgQo9HxFp10Ms3Nh2c5yPN4Xchcqkofv_yjC8U
+  slides: https://docs.google.com/presentation/d/1RMNPRHNoh4a5KWwXY8fBWJ49nBafxbo4g-OvSZZ85V8/edit?usp=sharing
   lab: labs/a2
   lecturer: Daniel Kessler <dkessler>
-  hidelink: true
+  hidelink: false
 
 - id: a3
   name: DIY Linux Pre-Install
@@ -110,36 +117,42 @@
   name: Processes and Services
   slides: https://docs.google.com/presentation/d/1-GFD25uA6Pkr575UGk55QAkOxmYycfvtkYu4cgthCGg/edit?usp=sharing
   lab: labs/a5
+  lecturer: Christopher Cooper <cooperc>
   hidelink: true
 
 - id: a6
   name: Networking 102
   slides: https://docs.google.com/presentation/d/1e1GrMlF8mUw8mqf8Sfs7Ec6wgnGsNEYvgRxL5KHshVo/edit
   lab: labs/a6
+  lecturer: Abizer Lokhandwala <abizer>
   hidelink: true
 
 - id: a7
   name: Networked Services
   slides: https://docs.google.com/presentation/d/1Yg2rZuZLAwmgR_eq7E3rVumWl-7EhNa9seZ_UbSi4Zw/edit
   lab: labs/a7
+  lecturer: Loren McIntyre <mcint>
   hidelink: true
 
 - id: a8
   name: Config Management
   slides: https://docs.google.com/presentation/d/1OfIJHu6bSfTOLLswpKnVr7oxL8R-H4aPM8LLRHuecCY/edit
   lab: labs/a8
+  lecturer: Ja (Thanakul) Wattanawong <jaw> 
   hidelink: true
 
 - id: a9
   name: Advanced Security
   slides: https://docs.google.com/presentation/d/1ExmZpm-nSkuFM-FTB6ZT3oP8frAh7g4jSIUiTQ1ddSM/edit?usp=sharing
   lab: labs/a9
+  lecturer: Matthew Cha <mdcha>
   hidelink: true
 
 - id: a10
   name: Virtualization, Containers, Distributed Architecture
   slides: https://docs.google.com/presentation/d/1iqdy4u2NKD05o0Jrcioy8ngGaVuke63e8QOReszEGbE/edit#slide=id.p
   lab: labs/a10
+  lecturer: Bernard Zhao <bernardzhao>
   hidelink: true
 
 # Extras
