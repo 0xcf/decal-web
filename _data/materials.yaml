@@ -31,7 +31,7 @@
   video: https://www.youtube.com/watch?v=7xAGcmhkflM
   lab: labs/b3
   lecturer: Richard Huang <rihu>
-  hidelink: true
+  hidelink: false
 
 - id: b4
   name: Compiling, Distros, and Packaging
@@ -44,7 +44,7 @@
   name: Networking 101
   slides: https://docs.google.com/presentation/d/1FD5in89NlTtANV8KKxL8fsfo284ziHkcovwT9zQFM1Y/edit?usp=sharing
   lab: labs/b5
-  lecturer: Tony Lian <tonylian>
+  lecturer: Tony Lian <longlian>
   hidelink: true
 
 - id: b6
@@ -95,20 +95,21 @@
 - id: a2
   name: Packages
   slides: https://docs.google.com/presentation/d/1RMNPRHNoh4a5KWwXY8fBWJ49nBafxbo4g-OvSZZ85V8/edit?usp=sharing
+  video: https://youtu.be/M0vPXQycer0
   lab: labs/a2
   lecturer: Daniel Kessler <dkessler>
   hidelink: false
 
 - id: a3
   name: DIY Linux Pre-Install
-  slides: https://docs.google.com/presentation/d/1WfiYmAOZR4jtakRm2rZZgwhFu1Fy5oBSowLXSbTHkVw/edit
+  slides: https://docs.google.com/presentation/d/1oLtsjsEIsvChOI31_5YYFhILfzGlyx7Hk9DsL1Nv-mc/edit?usp=sharing
   lab: labs/a3
   lecturer: Edric Xiang <exiang>
-  hidelink: true
+  hidelink: false
 
 - id: a4
   name: Linux Post-Install
-  slides: https://docs.google.com/presentation/d/1WXvw3ritRgR5fhKOug-VN_IG-SnXu2zC4vA70lvRmiw/edit
+  slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
   lab: labs/a4
   lecturer: Ben Cuan <bencuan>
   hidelink: true
