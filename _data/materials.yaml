@@ -109,7 +109,7 @@
 
 - id: a4
   name: Linux Post-Install
-  slides: https://docs.google.com/presentation/d/1WXvw3ritRgR5fhKOug-VN_IG-SnXu2zC4vA70lvRmiw/edit
+  slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
   lab: labs/a4
   lecturer: Ben Cuan <bencuan>
   hidelink: true
