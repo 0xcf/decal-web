@@ -103,6 +103,7 @@
 - id: a3
   name: DIY Linux Pre-Install
   slides: https://docs.google.com/presentation/d/1oLtsjsEIsvChOI31_5YYFhILfzGlyx7Hk9DsL1Nv-mc/edit?usp=sharing
+  video: https://www.youtube.com/watch?v=MnsUBRIw-74&feature=youtu.be
   lab: labs/a3
   lecturer: Edric Xiang <exiang>
   hidelink: false
