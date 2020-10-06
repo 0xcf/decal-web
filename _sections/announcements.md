@@ -2,13 +2,19 @@
 # This is the first part of the main page. This is included from _includes/announcements.html.
 ---
 ## Announcements
- - **The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).**
+
+ - **View a lecture** by clicking on the lecture title!
+ - **Lab 3 is due this week!** (Tuesday for Beginner track, Thursday for Advanced track)
+ - Remember that **only two late labs are allowed.** If you are falling behind, please contact us to discuss accommodations!
+ - **Lab 4 is released!** Lab 4 will be due next week.
+
+<!-- 2020-09-29 - **The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).**
  - **View a lecture** by clicking on the lecture title!
  - If you missed the Advanced Track guest lecture, the recording is now available!
  - **Lab 2 is due this week!** (Tuesday for Beginner track, Thursday for Advanced track)
  - Remember that **only two late labs are allowed.** If you are falling behind, please contact us to discuss accommodations!
  - **Lab 3 is released!** Lab 3 will be due next week.
- - **Student VM's have been provisioned.** Email us if you are enrolled and didn't get one yet!
+ - **Student VM's have been provisioned.** Email us if you are enrolled and didn't get one yet! -->
 
 <!-- 2020-09-22
  - **Lecture a2 will be delivered live.** Please join the live session Thursday 8pm; there will be no prerecorded video this week for the Advanced track.

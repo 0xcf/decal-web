@@ -35,10 +35,11 @@
 
 - id: b4
   name: Compiling, Distros, and Packaging
-  slides: https://docs.google.com/presentation/d/1Jm24WuIR5PGofaiTsJkeMVi7hbyoA8Crjx6XYO1IOZY/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1UJHO7fXok-6RN7DAJ5SPTqcCXiRSR8hpGZx9OQMnMOU/edit?usp=sharing
+  video: https://youtu.be/Uh7N86zjYm4
   lab: labs/b4
   lecturer: Ethan Smith <ethanhs>
-  hidelink: true
+  hidelink: false
 
 - id: b5
   name: Networking 101
@@ -111,9 +112,10 @@
 - id: a4
   name: Linux Post-Install
   slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
+  video: https://youtu.be/BVbHnEv8L9s
   lab: labs/a4
   lecturer: Ben Cuan <bencuan>
-  hidelink: true
+  hidelink: false
 
 - id: a5
   name: Processes and Services
