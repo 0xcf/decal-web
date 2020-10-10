@@ -44,9 +44,10 @@
 - id: b5
   name: Networking 101
   slides: https://docs.google.com/presentation/d/1FD5in89NlTtANV8KKxL8fsfo284ziHkcovwT9zQFM1Y/edit?usp=sharing
+  video: https://youtu.be/8XFmQ9j3nt4
   lab: labs/b5
   lecturer: Tony Lian <longlian>
-  hidelink: true
+  hidelink: false
 
 - id: b6
   name: Processes
