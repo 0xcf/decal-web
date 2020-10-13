@@ -1,4 +1,4 @@
-# If links to slides, labs, or lecture videos are included here, those pages will 
+# If links to slides, labs, or lecture videos are included here, those pages will
 # redirect to the provided link.
 - id: 0
   name: Infosession
@@ -120,7 +120,7 @@
 
 - id: a5
   name: Processes and Services
-  slides: https://docs.google.com/presentation/d/1-GFD25uA6Pkr575UGk55QAkOxmYycfvtkYu4cgthCGg/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1sv5Bxw9Fet9utjFU8xGDntawLVmBOT9YpCt9mJ2V6Dg/edit
   lab: labs/a5
   lecturer: Christopher Cooper <cooperc>
   hidelink: true
@@ -143,7 +143,7 @@
   name: Config Management
   slides: https://docs.google.com/presentation/d/1OfIJHu6bSfTOLLswpKnVr7oxL8R-H4aPM8LLRHuecCY/edit
   lab: labs/a8
-  lecturer: Ja (Thanakul) Wattanawong <jaw> 
+  lecturer: Ja (Thanakul) Wattanawong <jaw>
   hidelink: true
 
 - id: a9
