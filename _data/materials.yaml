@@ -121,6 +121,7 @@
 - id: a5
   name: Processes and Services
   slides: https://docs.google.com/presentation/d/1sv5Bxw9Fet9utjFU8xGDntawLVmBOT9YpCt9mJ2V6Dg/edit
+  video: https://youtu.be/AS293JoAr8s
   lab: labs/a5
   lecturer: Christopher Cooper <cooperc>
   hidelink: false
