@@ -43,10 +43,11 @@
 
 - id: b5
   name: Networking 101
-  slides: https://docs.google.com/presentation/d/1FD5in89NlTtANV8KKxL8fsfo284ziHkcovwT9zQFM1Y/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1DCN2fViHjAS7PoS98dsVC-LNwPN_jvaAKIuVFaRJrM0/edit?usp=sharing
+  video: https://youtu.be/cPkLsSFKwPM
   lab: labs/b5
   lecturer: Tony Lian <longlian>
-  hidelink: true
+  hidelink: false
 
 - id: b6
   name: Processes
