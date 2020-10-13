@@ -63,6 +63,9 @@ we will allow **two unexcused late labs** to be turned in before the semester en
 ### Will the DeCal be offered in the Spring 2021 semester?
 There is a good chance it will! This will be updated to a more definitive yes or no by the end of October.
 
+### How does enrollment work?
+When we are open for enrollment, Lab 0 will be published on this site! We will send enrollment codes to those who complete Lab 0 by the deadline. Do note that we often have more applicants than space in the course, so getting an enrollment code is unfortunately not guaranteed.
+
 ### How do I know which track is best for me?
 **Beginner Track** is intended for those who have little to no prior experience of
 using Linux-based systems. We will be providing an overview to several important
@@ -92,7 +95,7 @@ need your own Linux VM though- you can
 or get one from a provider such as [DigitalOcean](https://www.digitalocean.com/).)
 
 ### I'm stuck on a lab/concept! Where can I find help?
-The best way to get support with course content is to either join our Slack channel at [#decal-general][slack], or
+The best way to get support with course content is to either join our Slack channel at [#decal-general][slack], our Discord channel at [#decal-general][discord], or
 ask us during scheduled lecture times.
 
 ### I have another question!
@@ -100,3 +103,4 @@ Email us at [decal@ocf.berkeley.edu][email].
 
 [email]: mailto:decal@ocf.berkeley.edu
 [slack]: https://fco.slack.com/archives/CN0FQ9BUN
+[discord]: https://ocf.io/discord

@@ -123,7 +123,7 @@
   slides: https://docs.google.com/presentation/d/1sv5Bxw9Fet9utjFU8xGDntawLVmBOT9YpCt9mJ2V6Dg/edit
   lab: labs/a5
   lecturer: Christopher Cooper <cooperc>
-  hidelink: true
+  hidelink: false
 
 - id: a6
   name: Networking 102
