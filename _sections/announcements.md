@@ -5,9 +5,9 @@
 
  - The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).
  - **View a lecture** by clicking on the lecture title!
- - **Lab 4 is due this week!** (Tuesday for Beginner track, Thursday for Advanced track)
+ - **Lab 5 is due this week!** (Tuesday for Beginner track, Thursday for Advanced track)
  - Remember that **only two late labs are allowed.** If you are falling behind, please contact us to discuss accommodations!
- - **Lab 5 is released!** Lab 4 will be due next week.
+ - **Lab 6 is released!** Lab 6 will be due next week.
 
 <!-- 2020-10-05 - The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).
  - **View a lecture** by clicking on the lecture title!

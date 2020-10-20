@@ -131,7 +131,7 @@
   slides: https://docs.google.com/presentation/d/1e1GrMlF8mUw8mqf8Sfs7Ec6wgnGsNEYvgRxL5KHshVo/edit
   lab: labs/a6
   lecturer: Abizer Lokhandwala <abizer>
-  hidelink: true
+  hidelink: false
 
 - id: a7
   name: Networked Services
