@@ -52,6 +52,7 @@
 - id: b6
   name: Processes
   slides: https://docs.google.com/presentation/d/1AS1BYX8jdBQGBviBGgcZPREIePrsgkT7pc-9Wk_RkS0/edit?usp=sharing
+  video: https://youtu.be/Z_q1zkeWEFs
   lab: labs/b6
   lecturer: Ryan Chan <rrchan>
   hidelink: false
