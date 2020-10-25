@@ -51,10 +51,11 @@
 
 - id: b6
   name: Processes
-  slides: https://docs.google.com/presentation/d/10RWmMcyqNkU-nN946kMo4fZdcwQYsgkq3C9eeC4G6dc/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/1AS1BYX8jdBQGBviBGgcZPREIePrsgkT7pc-9Wk_RkS0/edit?usp=sharing
+  video: https://youtu.be/Z_q1zkeWEFs
   lab: labs/b6
   lecturer: Ryan Chan <rrchan>
-  hidelink: true
+  hidelink: false
 
 - id: b7
   name: Services
@@ -128,7 +129,8 @@
 
 - id: a6
   name: Networking 102
-  slides: https://docs.google.com/presentation/d/1e1GrMlF8mUw8mqf8Sfs7Ec6wgnGsNEYvgRxL5KHshVo/edit
+  slides: https://docs.google.com/presentation/d/14XXyjUxUohINsg93qD-8SHP1mPpTTnBoZ3NHmMVTJqY/edit?usp=sharing
+  video: https://youtu.be/DPKRivN9ga4
   lab: labs/a6
   lecturer: Abizer Lokhandwala <abizer>
   hidelink: false
