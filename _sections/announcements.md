@@ -5,7 +5,7 @@
 
  - The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).
  - **View a lecture** by clicking on the lecture title!
- - **Lab 7 Deadline Announcement: Lab b7 due date has been pushed due to the election.** It is now due on **Thursday, 9/5/20**. 
+ - **Lab 7 Deadline Announcement: Lab b7 due date has been pushed due to the election.** It is now due on **Thursday, 11/5/20**. 
  - **Lab 6 is due this week!** (Tuesday for Beginner track, Thursday for Advanced track)
  - **Important lab a6 Updates:** We had to fix some issues in the "this is fine" problem. Since we didn't push the changes until now, we're making 3 out of the 6 scripts optional for that problem.
  - Remember that **only two late labs are allowed.** If you are falling behind, please contact us to discuss accommodations!
