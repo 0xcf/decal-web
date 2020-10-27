@@ -59,7 +59,8 @@
 
 - id: b7
   name: Services
-  slides: https://docs.google.com/presentation/d/1Isn9pMZBLnpZ_IFbGpbeai-AZ1l4cAa7Z6eL5wPtCXY/edit
+  slides: https://docs.google.com/presentation/d/1N67saQd3NWrBLrk1oEOE2UdLa4Ny_qjDBUAZQolXsUE/edit?usp=sharing
+  video: https://youtu.be/y3mIzYtCPeY
   lab: labs/b7
   lecturer: Kevin Mo <kmo>
   hidelink: false
