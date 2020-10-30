@@ -138,10 +138,11 @@
 
 - id: a7
   name: Networked Services
-  slides: https://docs.google.com/presentation/d/1Yg2rZuZLAwmgR_eq7E3rVumWl-7EhNa9seZ_UbSi4Zw/edit
+  slides: https://docs.google.com/presentation/d/11nMxy5iJTS3YDBLqT3O5i8cbbRdtS2Hxf4QRbHJiGBo/edit
+  video: https://youtu.be/5clc5xi5FDo
   lab: labs/a7
   lecturer: Loren McIntyre <mcint>
-  hidelink: true
+  hidelink: false
 
 - id: a8
   name: Config Management
