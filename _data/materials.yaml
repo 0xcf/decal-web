@@ -70,7 +70,7 @@
   slides: https://docs.google.com/presentation/d/1tKAhg5-0jeh7ZBynQFukkK10saKHeouJpyQcerboPYg/edit?usp=sharing
   lab: labs/b8
   lecturer: Stefan Kuklinsky <skuklinsky>
-  hidelink: true
+  hidelink: false
 
 - id: b9
   name: Version Control and Backups
