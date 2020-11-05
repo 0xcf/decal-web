@@ -67,10 +67,10 @@
 
 - id: b8
   name: Security Fundamentals
-  slides: https://drive.google.com/open?id=1t6fU6qPELZvBo7N_KZLDiLDsS2DJPcgySIXZjIVfKho
+  slides: https://docs.google.com/presentation/d/1tKAhg5-0jeh7ZBynQFukkK10saKHeouJpyQcerboPYg/edit?usp=sharing
   lab: labs/b8
   lecturer: Stefan Kuklinsky <skuklinsky>
-  hidelink: true
+  hidelink: false
 
 - id: b9
   name: Version Control and Backups
