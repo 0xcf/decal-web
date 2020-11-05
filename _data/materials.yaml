@@ -68,6 +68,7 @@
 - id: b8
   name: Security Fundamentals
   slides: https://docs.google.com/presentation/d/1tKAhg5-0jeh7ZBynQFukkK10saKHeouJpyQcerboPYg/edit?usp=sharing
+  video: https://www.youtube.com/watch?v=hqrWBYm5-Zg&feature=youtu.be
   lab: labs/b8
   lecturer: Stefan Kuklinsky <skuklinsky>
   hidelink: false
