@@ -147,10 +147,10 @@
 
 - id: a8
   name: Config Management
-  slides: https://docs.google.com/presentation/d/1OfIJHu6bSfTOLLswpKnVr7oxL8R-H4aPM8LLRHuecCY/edit
+  slides: https://docs.google.com/presentation/d/1ZAXSwjM9_SncvD8GGQgbPI2g3KlSsIZi2-xxeHwfSWA/edit
   lab: labs/a8
   lecturer: Ja (Thanakul) Wattanawong <jaw>
-  hidelink: true
+  hidelink: false
 
 - id: a9
   name: Advanced Security
