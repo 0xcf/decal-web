@@ -78,7 +78,7 @@
   slides: https://docs.google.com/presentation/d/1NxdvuLkWSzRvtnj41AkvGU00ub_XUbk8wlIxWxm0ok4/edit
   lab: labs/b9
   lecturer: Edric Xiang <exiang>
-  hidelink: true
+  hidelink: false
 
 - id: b10
   name: Cloud, Containers, and Config Management
@@ -148,6 +148,7 @@
 - id: a8
   name: Config Management
   slides: https://docs.google.com/presentation/d/1ZAXSwjM9_SncvD8GGQgbPI2g3KlSsIZi2-xxeHwfSWA/edit
+  video: https://youtu.be/T9hakIIYUkk
   lab: labs/a8
   lecturer: Ja (Thanakul) Wattanawong <jaw>
   hidelink: false
@@ -157,7 +158,7 @@
   slides: https://docs.google.com/presentation/d/1ExmZpm-nSkuFM-FTB6ZT3oP8frAh7g4jSIUiTQ1ddSM/edit?usp=sharing
   lab: labs/a9
   lecturer: Matthew Cha <mdcha>
-  hidelink: true
+  hidelink: false
 
 - id: a10
   name: Virtualization, Containers, Distributed Architecture
