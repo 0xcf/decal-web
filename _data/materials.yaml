@@ -158,7 +158,7 @@
   slides: https://docs.google.com/presentation/d/1ExmZpm-nSkuFM-FTB6ZT3oP8frAh7g4jSIUiTQ1ddSM/edit?usp=sharing
   lab: labs/a9
   lecturer: Matthew Cha <mdcha>
-  hidelink: false
+  hidelink: true
 
 - id: a10
   name: Virtualization, Containers, Distributed Architecture
