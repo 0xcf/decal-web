@@ -4,6 +4,7 @@
 ## Announcements
 
  - The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).
+ - **There is another live lecture this week!** Join in using the link above!
  - **View a lecture** by clicking on the lecture title!
  - **Lab 8 is due this week!** (Tuesday for Beginner track, Thursday for Advanced track)
  - **Lab b9 has been released!** It is due at the normal times next week. Lab a9 will be released soon!
