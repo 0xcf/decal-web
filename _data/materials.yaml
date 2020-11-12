@@ -76,6 +76,7 @@
 - id: b9
   name: Version Control and Backups
   slides: https://docs.google.com/presentation/d/1NxdvuLkWSzRvtnj41AkvGU00ub_XUbk8wlIxWxm0ok4/edit
+  video: https://youtu.be/X4yGMr9c64U
   lab: labs/b9
   lecturer: Edric Xiang <exiang>
   hidelink: false
