@@ -156,10 +156,10 @@
 
 - id: a9
   name: Advanced Security
-  slides: https://docs.google.com/presentation/d/1ExmZpm-nSkuFM-FTB6ZT3oP8frAh7g4jSIUiTQ1ddSM/edit?usp=sharing
+  slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit
   lab: labs/a9
-  lecturer: Matthew Cha <mdcha>
-  hidelink: true
+  lecturer: Mathew Cha <mdcha>
+  hidelink: false
 
 - id: a10
   name: Virtualization, Containers, Distributed Architecture
