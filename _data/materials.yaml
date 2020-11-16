@@ -83,10 +83,11 @@
 
 - id: b10
   name: Cloud, Containers, and Config Management
-  slides: https://docs.google.com/presentation/d/1y2BRjD36e31Cc3y1NmmznK3F5sa0VtkE9qJE1AAAKtk/edit
+  slides: https://docs.google.com/presentation/d/1aiSnR1zT2qM-RcLnrCC1FhTqjnzKOQvMyR5r_hJr9V0/edit?usp=sharing
+  video: https://www.youtube.com/watch?v=JhgEg1YTO7c&feature=youtu.be
   lab: labs/b10
   lecturer: Richard Huang <rihu>
-  hidelink: true
+  hidelink: false
 
 # advanced
 
@@ -157,6 +158,7 @@
 - id: a9
   name: Advanced Security
   slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit
+  video: https://youtu.be/j4ryvaVJURs
   lab: labs/a9
   lecturer: Mathew Cha <mdcha>
   hidelink: false
