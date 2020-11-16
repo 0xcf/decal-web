@@ -61,10 +61,10 @@ we will allow **two unexcused late labs** to be turned in before the semester en
 ## FAQ
 
 ### Will the DeCal be offered in the Spring 2021 semester?
-There is a good chance it will! This will be updated to a more definitive yes or no by the end of October.
+It is very likely that the DeCal will be back next semester! Fill out the [interest form][interestform] to get updates!
 
 ### How does enrollment work?
-When we are open for enrollment, Lab 0 will be published on this site! We will send enrollment codes to those who complete Lab 0 by the deadline. Do note that we often have more applicants than space in the course, so getting an enrollment code is unfortunately not guaranteed.
+When we are open for enrollment, Lab 0 will be published on this site. We will send enrollment codes to those who complete Lab 0 by the deadline. Do note that we often have more applicants than space in the course, so getting an enrollment code is unfortunately not guaranteed.
 
 ### How do I know which track is best for me?
 **Beginner Track** is intended for those who have little to no prior experience of
@@ -104,3 +104,4 @@ Email us at [decal@ocf.berkeley.edu][email].
 [email]: mailto:decal@ocf.berkeley.edu
 [slack]: https://fco.slack.com/archives/CN0FQ9BUN
 [discord]: https://ocf.io/discord
+[interestform]: https://docs.google.com/forms/d/e/1FAIpQLSdE6qRi1S3WyrzdhoEqHrn0qqgCft6cqZUrLjP9ak2R7Vv91g/viewform
