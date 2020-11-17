@@ -56,10 +56,12 @@
 - date: 2020-11-10
   week: 9
   id: b9
+  labdue: 2020-11-17
 
 - date: 2020-11-17
   week: 10
   id: b10
+  labdue: 2020-12-15
 
 - date: 2020-11-26
   week: 11
