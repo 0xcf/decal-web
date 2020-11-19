@@ -165,10 +165,11 @@
 
 - id: a10
   name: Virtualization, Containers, Distributed Architecture
-  slides: https://docs.google.com/presentation/d/1iqdy4u2NKD05o0Jrcioy8ngGaVuke63e8QOReszEGbE/edit#slide=id.p
+  slides: https://docs.google.com/presentation/d/1EEUT0Z-odYYEmdC9Z1AAh7gVFLH3L2om9CHpqpklhOk/edit?usp=sharing
+  video: https://www.youtube.com/watch?v=tCg77GmZUqo
   lab: labs/a10
   lecturer: Benjamin Zhang <bzh>
-  hidelink: true
+  hidelink: false
 
 # Extras
 
