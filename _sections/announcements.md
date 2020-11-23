@@ -6,8 +6,7 @@
  - The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).
  - **All labs are due by Dec. 15!** You will need a total of **10** completed labs by this date to receive a P in the course.
  - **View a lecture** by clicking on the lecture title!
- - **Lab 9 is due this week!** (Tuesday for Beginner track, Thursday for Advanced track)
- - **Lab 10 has been released!** This is the last lab of the semester, and is due by Dec. 11.
+ - **Lab 10 has been released!** This is the last lab of the semester, and is due by Dec. 15.
  - Remember that **only two late labs are allowed.** If you are falling behind, please contact us to discuss accommodations!
 
 <!-- - The link to all live meetings is [ocf.io/decalzoom](https://ocf.io/decalzoom).
