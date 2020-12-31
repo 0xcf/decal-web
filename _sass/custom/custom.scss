@@ -45,7 +45,12 @@ details {
   margin: 0 40px 1em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   align-items: center;
   display: flex;
 }
@@ -87,7 +92,7 @@ summary {
   dd {
     font-weight: normal;
 
-    + dt {
+    +dt {
       margin-top: 1em;
     }
   }
@@ -97,11 +102,11 @@ summary {
   }
 }
 
-[style*="--aspect-ratio"] > :first-child {
+[style*="--aspect-ratio"]> :first-child {
   width: 100%;
 }
 
-[style*="--aspect-ratio"] > img {
+[style*="--aspect-ratio"]>img {
   height: auto;
 }
 
@@ -120,10 +125,20 @@ summary {
     padding-bottom: calc(100% / (var(--aspect-ratio)) + (var(--add-height)));
   }
 
-  [style*="--aspect-ratio"] > :first-child {
+  [style*="--aspect-ratio"]> :first-child {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
+  }
+}
+
+@media (min-width: 66.5rem) {
+  .main {
+    margin-left: min(600px, calc((100% - 1064px) / 2 + 264px)) !important;
+  }
+
+  .side-bar {
+  max-width: 500px;
   }
 }
