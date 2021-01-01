@@ -32,6 +32,7 @@ aux_links:
     - 'https://ocf.berkeley.edu/'
   XCF:
     - 'https://xcf.berkeley.edu/'
+aux_links_new_tab: true
 # footer_content: "This website is licensed under the terms of the <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\">CC BY-NC-SA 4.0 License</a>. Source Code is available on <a href=\"https://github.com/0xcf/decal-web/\">GitHub</a>."
 
 # Collections for website data

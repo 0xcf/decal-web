@@ -17,7 +17,7 @@
     border-bottom: $border $border-color;
     border-top: $border $border-color;
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template-columns: max-content 2fr;
     margin: $sp-2 (-$sp-4);
 
     &:first-child {
@@ -29,7 +29,7 @@
     }
 
     @include mq(lg) {
-      grid-template-columns: 1fr 7fr;
+      grid-template-columns: 2fr 6fr;
     }
 
     %module-item {
@@ -71,7 +71,9 @@
         padding-top: 0;
       }
 
-      ol, ul, dl {
+      ol,
+      ul,
+      dl {
         margin: 0;
       }
 
