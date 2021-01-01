@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-nav_exclude: true
+nav_order: 1
 seo:
   type: Course
   name: Linux Sysadmin Decal
