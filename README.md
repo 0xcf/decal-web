@@ -1,4 +1,4 @@
-# OCF/XCF DeCal Website
+# OCF/XCF Linux SysAdmin DeCal Website
 
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=decal-web/master)](https://jenkins.ocf.berkeley.edu/job/decal-web/)
 

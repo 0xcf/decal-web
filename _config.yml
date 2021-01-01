@@ -14,9 +14,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Sysadmin DeCal
-tagline: The OCF/XCF Linux System Administration Decal
+tagline: Linux System Administration Decal
 description: A course covering the basics of setting up and administering a production-quality Linux server environment.
-author: Nikhil Jha
+author: Nikhil Jha, Ben Cuan
 baseurl: '/' # the subpath of your site, e.g. /blog
 url: 'https://decal.ocf.berkeley.edu/' # the base hostname & protocol for your site, e.g. http://example.com
 exclude: ["Gemfile", "Gemfile.lock", "LICENSE", "README.md", vendor]
