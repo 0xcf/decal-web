@@ -6,6 +6,9 @@ layout: table_wrappers
 
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
+<span style="display: none">
+  {% include css/just-the-docs.scss.liquid %}
+</span>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="svg-link" viewBox="0 0 24 24">
@@ -25,6 +28,7 @@ layout: table_wrappers
       </a>
     </div>
     <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">      
+      <button type="button" name="theme-toggle" class="btn theme-btn" onclick="toggleDark()">Toggle Dark Theme</button>
       {% include toc.html html=content ordered=true h_min=1 h_max=3%}
     </nav>
     </div>
@@ -60,4 +64,9 @@ layout: table_wrappers
   </div>
   
 </body>
+
+<script>
+  let dark = false;
+  let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); dark = !dark; }
+</script>
 </html>
