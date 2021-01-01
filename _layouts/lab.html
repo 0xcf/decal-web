@@ -52,6 +52,8 @@ layout: table_wrappers
       {% endunless %}
       <div id="main-content" class="main-content" role="main">
         <h1>{{ page.title }}</h1>
+        {% assign minutes = content | strip_html | number_of_words | divided_by: 180.0 | round %}
+        {{ minutes }} min read
         {% if site.heading_anchors != false %}
           {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" %}
         {% else %}
