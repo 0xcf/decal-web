@@ -92,16 +92,12 @@
       @extend .fs-2;
     }
 
-    &.lecture {
-      background-color: $grey-dk-000;
-    }
-
-    &.section {
-      background-color: $purple-000;
-    }
-
-    &.office-hours {
+    &.beginner-lab {
       background-color: $blue-000;
+    }
+
+    &.advanced-lab {
+      background-color: $red-000;
     }
   }
 }
