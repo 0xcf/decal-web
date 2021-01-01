@@ -1,8 +1,8 @@
 ---
-name: Kevin Lin
-role: Instructor
+name: Vacuum Cleaner
+role: Facilitator
 email: me@example.com
-website: https://kevinl.info
+website: https://google.com
 photo: kevin.jpg
 ---
 
