@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Announcements
+nav_order: 3
 description: A feed containing all of the class announcements.
 ---
 
