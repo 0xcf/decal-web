@@ -6,4 +6,4 @@ website: https://google.com
 photo: kevin.jpg
 ---
 
-[Schedule an appointment](#){: .btn .btn-outline }
+[Schedule an appointment](https://www.youtube.com/watch?v=dQw4w9WgXcQ){: .btn .btn-outline }
