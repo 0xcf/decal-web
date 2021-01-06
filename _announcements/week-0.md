@@ -9,4 +9,4 @@ date: 2021-1-1
 1. Learn more about the course at the [about page](/about).
 1. There will be two identical infosessions on **Tuesday, Jan. 26** and **Thursday, Jan. 28** at **8pm** on [ocf.io/decalzoom](https://ocf.io/decalzoom) (starts Berkeley time).
 1. Lab 0, which must be complete prior to enrolling, will be released after the infosessions.
-1. Any questions? Contact us at [mailto:decal@ocf.berkeley.edu](decal@ocf.berkeley.edu)!
+1. Any questions? Contact us at [decal@ocf.berkeley.edu](mailto:decal@ocf.berkeley.edu)!
