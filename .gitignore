@@ -1,18 +1,9 @@
-# Ignore vim temporary files
-*~
-*.swp
-*.swo
-
-# Ignore subversion files
-.svn*
-
-_site
-.sass-cache
+*.gem
+.bundle/
+.jekyll-cache/
 .jekyll-metadata
-
-# Bundler vendor folder
-vendor
-.bundle
-
-# macOS ignores 
-.DS_Store
+.sass-cache/
+Gemfile.lock
+_site/
+node_modules/
+vendor/
