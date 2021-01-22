@@ -1,7 +1,7 @@
 ---
 name: Will Minnis
 role: Facilitator
-email: aesthetic@berkeley.com
+email: aesthetic@berkeley.edu
 website: github.com/aesthetic
 photo: minnis.jpg
 ---
