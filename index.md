@@ -30,9 +30,9 @@ seo:
 
 Infosession
 : **Infosession**{: .label .label-yellow}[ocf.io/decalzoom](https://ocf.io/decalzoom)
-    : [Slides](https://docs.google.com/presentation/d/1lTx2vAodmr0i5evZ5VFUOEZDVm0v6PGL7IGJM1M7Jro/edit?usp=sharing)
-: **Lab**{: .label .label-yellow}Lab 0 (To be released)
-    : **Lab due Fri. 1/29**
+    : [Slides](https://docs.google.com/presentation/d/1gnrplHLppSMhJiZniV3MSoZ8AbeEOLOs0T1EsclftQw/edit)
+: **Lab**{: .label .label-yellow}[Lab 0](https://docs.google.com/forms/d/e/1FAIpQLSfY53eBRA8e1NfR2GcwsMDL9AS1Pj1cSJh-I0j_jKOEE1o7iQ/viewform)
+    : **Lab due Sat. 1/30**
 </div>
 {% for week in site.data.materials %}
 <div class="module" markdown="1">
