@@ -5,12 +5,12 @@
   date: 2/8/2021
   beginner-name: History of UNIX, intro to shell, FOSS
   beginner-slides: https://docs.google.com/presentation/d/1AtnXiOZniLuP9QcnG8_OT1lwmhISRk2_zeANpXgycaY/edit?usp=sharing
-  beginner-video: https://youtu.be/pkSYJpxb9hk
+  beginner-video: https://www.youtube.com/playlist?list=PLbFJdEcMM5GHnbRDEgJ5HNdOzmS5QrNXG
   advanced-name: Advanced Introduction to UNIX
   advanced-slides: https://docs.google.com/presentation/d/1P4HcAr1NcxFEL1m9bIokiBP1zOODHj8YQMPFSafeWko/edit?usp=sharing
   advanced-video: https://www.youtube.com/watch?v=TBsxgbGwtnA
   labdue: Fri. 2/12
-  hidelink: true
+  hidelink: false
 
 - id: 2
   date: 2/15/2021
