@@ -105,8 +105,8 @@ The best way to get support with course content is to either ask in our Slack ch
 Email us at [decal@ocf.berkeley.edu][email].
 
 [email]: mailto:decal@ocf.berkeley.edu
-[slack]: ocf.io/slack
-[discord]: ocf.io/discord
+[slack]: https://ocf.io/slack
+[discord]: https://ocf.io/discord
 
 # After this Course
 
