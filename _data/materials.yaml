@@ -9,6 +9,8 @@
   advanced-name: Advanced Introduction to UNIX
   advanced-slides: https://docs.google.com/presentation/d/1P4HcAr1NcxFEL1m9bIokiBP1zOODHj8YQMPFSafeWko/edit?usp=sharing
   advanced-video: https://www.youtube.com/watch?v=TBsxgbGwtnA
+  beginner-solutions: https://docs.google.com/document/d/13brUYoVtPL048ZnLDDGTkoHZwguHKVkKG3K9qsWVSHM/edit
+  advanced-solutions: https://docs.google.com/document/d/1_-zycSuSo6AQw4k7iHFSLpQNWx0Do6YS_Le7lIDHWFo/edit
   labdue: Sat. 2/13
   hidelink: false
 
@@ -32,7 +34,7 @@
   advanced-slides: https://docs.google.com/presentation/d/1oLtsjsEIsvChOI31_5YYFhILfzGlyx7Hk9DsL1Nv-mc/edit?usp=sharing
   advanced-video: https://www.youtube.com/watch?v=MnsUBRIw-74&feature=youtu.be
   labdue: Sat. 2/27
-  hidelink: true
+  hidelink: false
 
 - id: 4
   date: 3/1/2021
