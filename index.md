@@ -50,17 +50,29 @@ Advanced Track
 : **Lab**{: .label .label-red}Lab a{{week.id}}
     : **Lab due {{week.labdue}}**
     
-{% else %}
+{% elsif week.beginner-solutions %}
 Beginner Track
 : **Lecture**{: .label .label-green}[{{week.beginner-name}}]({{week.beginner-video}}) 
-    : [Slides]({{week.beginner-slides}})
-: **Lab**{: .label .label-blue}[Lab b{{week.id}}](/labs/b{{week.id}}) (Solution)
+    : [Slides]({{week.beginner-slides}}){:target="_blank"}
+: **Lab**{: .label .label-blue}[Lab b{{week.id}}](/labs/b{{week.id}}) [(Solution)]({{week.beginner-solutions}})
     : **Lab due {{week.labdue}}**
 
 Advanced Track
 : **Lecture**{: .label .label-purple }[{{week.advanced-name}}]({{week.advanced-video}})
     : [Slides]({{week.advanced-slides}}){:target="_blank"}
-: **Lab**{: .label .label-red}[Lab a{{week.id}}](/labs/a{{week.id}}) (Solution)
+: **Lab**{: .label .label-red}[Lab a{{week.id}}](/labs/a{{week.id}}) [(Solution)]({{week.advanced-solutions}})
+    : **Lab due {{week.labdue}}**
+{% else %}
+Beginner Track
+: **Lecture**{: .label .label-green}[{{week.beginner-name}}]({{week.beginner-video}}) 
+    : [Slides]({{week.beginner-slides}})
+: **Lab**{: .label .label-blue}[Lab b{{week.id}}](/labs/b{{week.id}})
+    : **Lab due {{week.labdue}}**
+
+Advanced Track
+: **Lecture**{: .label .label-purple }[{{week.advanced-name}}]({{week.advanced-video}})
+    : [Slides]({{week.advanced-slides}}){:target="_blank"}
+: **Lab**{: .label .label-red}[Lab a{{week.id}}](/labs/a{{week.id}})
     : **Lab due {{week.labdue}}**
 {% endif %}
 </div>
