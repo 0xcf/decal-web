@@ -22,6 +22,8 @@
   advanced-name: Packages
   advanced-slides: https://docs.google.com/presentation/d/1RMNPRHNoh4a5KWwXY8fBWJ49nBafxbo4g-OvSZZ85V8/edit?usp=sharing
   advanced-video: https://youtu.be/M0vPXQycer0
+  beginner-solutions: https://docs.google.com/document/d/1IiE-a4ZPjKhvNHzoJ0OZUdYAyJpcMXJxMwS565f04fs/edit
+  advanced-solutions: https://docs.google.com/document/d/1PQ_XYsFZ66sClWgVVw1kieXMaFZtHCMGocMn8MGUzdU/edit
   labdue: Sat. 2/20
   hidelink: false
 
@@ -45,7 +47,7 @@
   advanced-slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
   advanced-video: https://youtu.be/BVbHnEv8L9s
   labdue: Sat. 3/6
-  hidelink: true
+  hidelink: false
 
 - id: 5
   date: 3/8/2021
