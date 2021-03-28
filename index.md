@@ -77,3 +77,19 @@ Advanced Track
 {% endif %}
 </div>
 {% endfor %}
+
+
+<div class="module" markdown="1">
+## Week 11
+{: .text-gamma }
+Extra Lab! (Optional)
+: **Lab**{: .label .label-yellow} Lab 11
+    : **Lab due Sun. 5/9**
+
+Special Guest Lecture
+: **Lecture**{: .label .label-yellow} Careers in Systems Administration
+    : Date/Details TBA
+</div>
+
+
+    
