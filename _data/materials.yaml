@@ -108,7 +108,7 @@
   advanced-slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit
   advanced-video: https://youtu.be/j4ryvaVJURs
   labdue: Sat. 4/17
-  hidelink: true
+  hidelink: false
 
 - id: 10
   date: 4/19/2021
