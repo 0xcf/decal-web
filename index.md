@@ -83,7 +83,7 @@ Advanced Track
 ## Week 11
 {: .text-gamma }
 Extra Lab! (Optional)
-: **Lab**{: .label .label-yellow} Lab 11
+: **Lab**{: .label .label-yellow} [Lab 11](/labs/11)
     : **Lab due Sun. 5/9**
 
 Special Guest Lecture
