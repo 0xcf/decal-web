@@ -88,7 +88,7 @@ Extra Lab! (Optional)
 
 Special Guest Lecture
 : **Lecture**{: .label .label-yellow} Careers in Systems Administration
-    : Date/Details TBA
+    : **Thursday, 4/29 at 8:10pm, [ocf.io/decalzoom](https://ocf.io/decalzoom)**
 </div>
 
 
