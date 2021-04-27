@@ -1,33 +1,74 @@
+---
+layout: table_wrappers
+---
+
 <!DOCTYPE html>
-<meta charset="utf-8">
 
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<html lang="{{ site.lang | default: 'en-US' }}">
+{% include head.html %}
+<span style="display: none">
+  {% include css/just-the-docs.scss.liquid %}
+</span>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="svg-link" viewBox="0 0 24 24">
+      <title>Link</title>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+    </symbol>
+  </svg>
+  <div class="side-bar lab-side-bar">
+    <div class="site-header">
+      <a href="/" class="site-title lh-tight">
+        Sysadmin DeCal
+      </a>
+      <a href="#" id="menu-button" class="site-button">
+        <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+      </a>
+    </div>
+    <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">      
+      <button type="button" name="theme-toggle" class="btn theme-btn" onclick="toggleDark()">Toggle Dark Theme</button>
+      {% include toc.html html=content ordered=true h_min=1 h_max=3%}
+    </nav>
+    </div>
+  </div>
+  <div id="main" class="main">
+    <div id="main-content-wrap" class="main-content-wrap">
+      {% unless page.url == "/" %}
+        {% if page.parent %}
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list">
+              {% if page.grand_parent %}
+                <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.grand_parent }}</a></li>
+                <li class="breadcrumb-nav-list-item"><a href="{{ second_level_url }}">{{ page.parent }}</a></li>
+              {% else %}
+                <li class="breadcrumb-nav-list-item"><a href="{{ first_level_url }}">{{ page.parent }}</a></li>
+              {% endif %}
+              <li class="breadcrumb-nav-list-item"><span>{{ page.title }}</span></li>
+            </ol>
+          </nav>
+        {% endif %}
+      {% endunless %}
+      <div id="main-content" class="main-content" role="main">
+        <h1>{{ page.title }}</h1>
+        {% assign minutes = content | strip_html | number_of_words | divided_by: 180.0 | round %}
+        {{ minutes }} min read
+        {% if site.heading_anchors != false %}
+          {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" %}
+        {% else %}
+          {{ content }}
+        {% endif %}
+        <hr>
+        {% include footer_custom.html %}
+      </div>
+    </div>
+  </div>
+  
+</body>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.8.0/github-markdown.min.css">
-
-<style>
-	.markdown-body {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-	}
-
-	@media (max-width: 767px) {
-		.markdown-body {
-			padding: 15px;
-		}
-	}
-</style>
-
-<title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
-
-<article class="markdown-body">
-  {% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
-  {{ content }}
-
-  <br>
-{% include footer.html %}
-</article>
-
+<script>
+  let dark = false;
+  let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); dark = !dark; }
+</script>
+</html>

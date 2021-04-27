@@ -28,3 +28,4 @@ clean:
 .PHONY: deploy
 deploy:
 	rsync -avzpce "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static --exclude archives decal@ssh.ocf.berkeley.edu:public_html
+

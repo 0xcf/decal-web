@@ -1,27 +1,24 @@
-# OCF/XCF DeCal Website
+# OCF/XCF Linux SysAdmin DeCal Website
 
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=decal-web/master)](https://jenkins.ocf.berkeley.edu/job/decal-web/)
 
-This is the source of the OCF/XCF Unix System Administration DeCal website,
-currently available at [decal.ocf.berkeley.edu](https://decal.ocf.berkeley.edu).
+This is the source of the OCF/XCF Unix System Administration DeCal website, currently available at [decal.ocf.berkeley.edu](https://decal.ocf.berkeley.edu).
 
 The current iteration uses Jekyll to produce pages.
 
-### Preparation
+## Development
 
-Install ruby development tools and bundler:
+decal-web is built for [Jekyll](https://jekyllrb.com), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for more information.
 
-`sudo apt-get install ruby-dev && sudo gem install bundler`
+1. Install Jekyll
+```bash
+$ bundle install
+```
+1. Start your local Jekyll server.
+```bash
+$ bundle exec jekyll serve
+```
+1. Point your web browser to [http://localhost:4000](http://localhost:4000)
+1. Reload your web browser after making a change to preview its effect.
 
-### Running webserver
-
-`make dev` or `make local-dev` for local deployments.
-
-When adding new lab markdown files, please don't forget to add the front matter
-at the top of the document, otherwise the markdown will not be rendered. e.g.
-
-    ---
-    title: Lab 1 - Unix, the Shell, OSS
-    layout: lab
-    ---
-
+For more information, refer to [Just the Docs](https://pmarsceill.github.io/just-the-docs/).

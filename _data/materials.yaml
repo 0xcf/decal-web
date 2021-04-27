@@ -1,139 +1,128 @@
-# If links to slides or labs are included here, those pages will redirect to the
-# provided link.
-- id: 0
-  name: Infosession
-  slides: https://docs.google.com/presentation/d/1KEtI8ts1Y4xi0wjNWDGVedySMmG0bQhMdhx-d-39C8s/edit
-  lab: https://docs.google.com/forms/d/e/1FAIpQLSd8cMIh5OT6nMDI0uiBbvRD-aQNHU1xXl3S1U8P8Wt6YwPP6A/viewform
+# If links to slides, labs, or lecture videos are included here, those pages will
+# redirect to the provided link.
 
-# beginner
+- id: 1
+  date: 2/8/2021
+  beginner-name: History of UNIX, intro to shell, FOSS
+  beginner-slides: https://docs.google.com/presentation/d/1AtnXiOZniLuP9QcnG8_OT1lwmhISRk2_zeANpXgycaY/edit?usp=sharing
+  beginner-video: https://www.youtube.com/playlist?list=PLbFJdEcMM5GHnbRDEgJ5HNdOzmS5QrNXG
+  advanced-name: Advanced Introduction to UNIX
+  advanced-slides: https://docs.google.com/presentation/d/1P4HcAr1NcxFEL1m9bIokiBP1zOODHj8YQMPFSafeWko/edit?usp=sharing
+  advanced-video: https://www.youtube.com/watch?v=TBsxgbGwtnA
+  beginner-solutions: https://docs.google.com/document/d/13brUYoVtPL048ZnLDDGTkoHZwguHKVkKG3K9qsWVSHM/edit
+  advanced-solutions: https://docs.google.com/document/d/1_-zycSuSo6AQw4k7iHFSLpQNWx0Do6YS_Le7lIDHWFo/edit
+  labdue: Sat. 2/13
+  hidelink: false
 
-- id: b1
-  name: History of UNIX, intro to shell, FOSS
-  slides: https://drive.google.com/open?id=1_W4k2PDTjHVvk75GVm9DsmnYnGxIzpnkpo5Y4e5Z070
-  lab: b1
-  lecturer: Andy Lo <andylo>
+- id: 2
+  date: 2/15/2021
+  beginner-name: Core Shell
+  beginner-slides: https://docs.google.com/presentation/d/1o7CWAAa21JYll_isRd-oR3dhurBAPzQA5desEhxvwH0/edit?usp=sharing
+  beginner-video: https://www.youtube.com/watch?v=TXNpIIlcHm4&feature=youtu.be
+  advanced-name: Packages
+  advanced-slides: https://docs.google.com/presentation/d/1RMNPRHNoh4a5KWwXY8fBWJ49nBafxbo4g-OvSZZ85V8/edit?usp=sharing
+  advanced-video: https://youtu.be/M0vPXQycer0
+  beginner-solutions: https://docs.google.com/document/d/1IiE-a4ZPjKhvNHzoJ0OZUdYAyJpcMXJxMwS565f04fs/edit
+  advanced-solutions: https://docs.google.com/document/d/1PQ_XYsFZ66sClWgVVw1kieXMaFZtHCMGocMn8MGUzdU/edit
+  labdue: Sat. 2/20
+  hidelink: false
 
-- id: b2
-  name: Core Shell
-  slides: https://docs.google.com/presentation/d/1X0jkf3anhLgzCeL3UtsgPhRBPxUDtMuSKM4OyfgF3JQ/edit
-  lab: b2
-  lecturer: Stefan Kuklinsky <skuklinsky>
+- id: 3
+  date: 2/22/2021
+  beginner-name: Shell Scripting
+  beginner-slides: https://docs.google.com/presentation/d/1LG8G_fbduqo9K2NOtQDjHkmNCMim0kQOmo-0q3fvmRc/edit?usp=sharing
+  beginner-video: https://www.youtube.com/watch?v=7xAGcmhkflM
+  advanced-name: DIY Linux Pre-Install
+  advanced-slides: https://docs.google.com/presentation/d/1oLtsjsEIsvChOI31_5YYFhILfzGlyx7Hk9DsL1Nv-mc/edit?usp=sharing
+  advanced-video: https://www.youtube.com/watch?v=MnsUBRIw-74&feature=youtu.be
+  beginner-solutions: https://docs.google.com/document/d/1acpNF5nijQyTforve_-6Rb-Is1_UZkNlyswu2_IJjvY/edit
+  advanced-solutions: https://docs.google.com/document/d/1n_bP1V9Yz0IKypbhHPJFs0KBUpwNzAIRtNAI2Rglmbg/edit
+  labdue: Sat. 2/27
+  hidelink: false
 
-- id: b3
-  name: Shell Scripting
-  slides: https://docs.google.com/presentation/d/14ILw4JcumdrYoX6WiB1P-d9Ic9TY2hIdV2uzylIaYLA/edit?usp=sharing
-  lab: b3
-  lecturer: Bernard Zhao <bernardzhao>
+- id: 4
+  date: 3/1/2021
+  beginner-name: Compiling, Distros, and Packaging
+  beginner-slides: https://docs.google.com/presentation/d/1UJHO7fXok-6RN7DAJ5SPTqcCXiRSR8hpGZx9OQMnMOU/edit?usp=sharing
+  beginner-video: https://youtu.be/Uh7N86zjYm4
+  advanced-name: Linux Post-Install
+  advanced-slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
+  advanced-video: https://youtu.be/BVbHnEv8L9s
+  beginner-solutions: https://docs.google.com/document/d/1RHWFhoKTpqa912ST8VZKyjE-7SaWyq7hcYYDoC9iu9o/edit
+  advanced-solutions: https://docs.google.com/document/d/1UOIrDPVgj3UPneSRMkvqElRdxubSEUTi3NEkoEamJxs/edit
+  labdue: Sat. 3/6
+  hidelink: false
 
-- id: b4
-  name: Compiling, Distros, and Packaging
-  slides: https://docs.google.com/presentation/d/1Jm24WuIR5PGofaiTsJkeMVi7hbyoA8Crjx6XYO1IOZY/edit?usp=sharing
-  lab: b4
-  lecturer: Ethan Smith <ethanhs>
+- id: 5
+  date: 3/8/2021
+  beginner-name: Networking 101
+  beginner-slides: https://docs.google.com/presentation/d/1DCN2fViHjAS7PoS98dsVC-LNwPN_jvaAKIuVFaRJrM0/edit?usp=sharing
+  beginner-video: https://youtu.be/cPkLsSFKwPM
+  advanced-name: Processes and Services
+  advanced-slides: https://docs.google.com/presentation/d/1sv5Bxw9Fet9utjFU8xGDntawLVmBOT9YpCt9mJ2V6Dg/edit
+  advanced-video: https://youtu.be/AS293JoAr8s
+  beginner-solutions: https://docs.google.com/document/d/1GlpY9JVb9cGuqjez2a68suu6gwQdmpZ4GbQWIjfNAtk/edit
+  advanced-solutions: https://docs.google.com/document/d/1LSzV2I9m_YOA25GtTs6KvWnVTRJ9yknyunmRzYOBlr0/edit
+  labdue: Sat. 3/13
+  hidelink: false
 
-- id: b5
-  name: Networking 101
-  slides: https://docs.google.com/presentation/d/1FD5in89NlTtANV8KKxL8fsfo284ziHkcovwT9zQFM1Y/edit?usp=sharing
-  lab: b5
-  lecturer: Tony Lian <longlian>
+- id: 6
+  date: 3/15/2021
+  beginner-name: Processes
+  beginner-slides: https://docs.google.com/presentation/d/1AS1BYX8jdBQGBviBGgcZPREIePrsgkT7pc-9Wk_RkS0/edit?usp=sharing
+  beginner-video: https://youtu.be/Z_q1zkeWEFs
+  advanced-name: Networking 102
+  advanced-slides: https://docs.google.com/presentation/d/14XXyjUxUohINsg93qD-8SHP1mPpTTnBoZ3NHmMVTJqY/edit?usp=sharing
+  advanced-video: https://youtu.be/DPKRivN9ga4
+  beginner-solutions: https://docs.google.com/document/d/1BdsntbS_UFMG8nvzo9YgsdrRg7o24K4IudtwrkUsBYk/edit
+  advanced-solutions: https://docs.google.com/document/d/1tuuVW4nolp8awIrkXZ9zD879Cg9k86G60Ya-0n41X-c/edit
+  labdue: Mon. 3/29
+  hidelink: false
 
-- id: b6
-  name: Processes
-  slides: https://docs.google.com/presentation/d/10RWmMcyqNkU-nN946kMo4fZdcwQYsgkq3C9eeC4G6dc/edit?usp=sharing
-  lab: b6
-  lecturer: Rachel Gregory <regex>
+- id: 7
+  date: 3/29/2021
+  beginner-name: Services
+  beginner-slides: https://docs.google.com/presentation/d/1N67saQd3NWrBLrk1oEOE2UdLa4Ny_qjDBUAZQolXsUE/edit?usp=sharing
+  beginner-video: https://youtu.be/y3mIzYtCPeY
+  advanced-name: Networked Services
+  advanced-slides: https://docs.google.com/presentation/d/11nMxy5iJTS3YDBLqT3O5i8cbbRdtS2Hxf4QRbHJiGBo/edit
+  advanced-video: https://youtu.be/5clc5xi5FDo
+  beginner-solutions: https://docs.google.com/document/d/1aT6ulFJfzgo-9F2V7ePidjiZQvTbLm0UDLTFV4U7ln4/edit
+  advanced-solutions: https://docs.google.com/document/d/1PEVOGnH2huOMRbCggKrvEJJFu7TiovtKt3JF9RL01V0/edit
+  labdue: Sat. 4/3
+  hidelink: false
 
-- id: b7
-  name: Services
-  slides: https://docs.google.com/presentation/d/1Isn9pMZBLnpZ_IFbGpbeai-AZ1l4cAa7Z6eL5wPtCXY/edit
-  lab: b7
-  lecturer: Ryan Chan <rrchan>
+- id: 8
+  date: 4/5/2021
+  beginner-name: Security Fundamentals
+  beginner-slides: https://docs.google.com/presentation/d/1tKAhg5-0jeh7ZBynQFukkK10saKHeouJpyQcerboPYg/edit?usp=sharing
+  beginner-video: https://www.youtube.com/watch?v=hqrWBYm5-Zg&feature=youtu.be
+  advanced-name: Config Management
+  advanced-slides: https://docs.google.com/presentation/d/1ZAXSwjM9_SncvD8GGQgbPI2g3KlSsIZi2-xxeHwfSWA/edit
+  advanced-video: https://youtu.be/T9hakIIYUkk
+  beginner-solutions: https://docs.google.com/document/d/1XSNgV4z8ZeGiaU8_mtbPDAVnLoZNXrkuls4M4BX0Yvk/edit
+  advanced-solutions: https://docs.google.com/document/d/1A72t9c4-nD-R2tTWk2pCn7B92Ad_vbnvjOJaqow3CPs/edit
+  labdue: Sat. 4/10
+  hidelink: false
 
-- id: b8
-  name: Security Fundamentals
-  slides: https://drive.google.com/open?id=1t6fU6qPELZvBo7N_KZLDiLDsS2DJPcgySIXZjIVfKho
-  lab: b8
-  lecturer: Ning Zhang <zhangning>
+- id: 9
+  date: 4/12/2021
+  beginner-name: Version Control and Backups
+  beginner-slides: https://docs.google.com/presentation/d/1NxdvuLkWSzRvtnj41AkvGU00ub_XUbk8wlIxWxm0ok4/edit
+  beginner-video: https://youtu.be/X4yGMr9c64U
+  advanced-name: Advanced Security
+  advanced-slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit
+  advanced-video: https://youtu.be/j4ryvaVJURs
+  labdue: Sat. 4/17
+  hidelink: false
 
-- id: b9
-  name: Version Control and Backups
-  slides: https://docs.google.com/presentation/d/1NxdvuLkWSzRvtnj41AkvGU00ub_XUbk8wlIxWxm0ok4/edit
-  lab: b9
-  lecturer: Liam Porr <wporr>
-
-- id: b10
-  name: Cloud, Containers, and Config Management
-  slides: https://docs.google.com/presentation/d/1y2BRjD36e31Cc3y1NmmznK3F5sa0VtkE9qJE1AAAKtk/edit
-  lab: b10
-  lecturer: Ja (Thanakul) Wattanawong <jaw>
-
-# advanced
-
-- id: a1
-  name: Advanced Introduction to UNIX
-  slides: https://docs.google.com/presentation/d/1gRpdHjNyYE8SvV-Hs4-L8Pl6JPYkaits0vi47h0WMaA/edit
-  lab: a1
-  lecturer: Mathew Cha <mdcha>
-
-- id: a2
-  name: Packages
-  slides: https://drive.google.com/open?id=158rSvIgQo9HxFp10Ms3Nh2c5yPN4Xchcqkofv_yjC8U
-  lab: a2
-  lecturer: Mathew Cha <mdcha>
-
-- id: a3
-  name: DIY Linux Pre-Install
-  slides: https://docs.google.com/presentation/d/1WfiYmAOZR4jtakRm2rZZgwhFu1Fy5oBSowLXSbTHkVw/edit
-  lab: a3
-  lecturer: Christopher Cooper <cooperc>
-
-- id: a4
-  name: Linux Post-Install
-  slides: https://docs.google.com/presentation/d/1WXvw3ritRgR5fhKOug-VN_IG-SnXu2zC4vA70lvRmiw/edit
-  lab: a4
-  lecturer: Ethan Smith <ethanhs>
-
-- id: a5
-  name: Lecture Cancelled for Power Outage
-
-- id: a6
-  name: Processes and Services
-  slides: https://docs.google.com/presentation/d/1-GFD25uA6Pkr575UGk55QAkOxmYycfvtkYu4cgthCGg/edit?usp=sharing
-  lab: a6
-  lecturer: keur
-
-- id: a7
-  name: 'Guest Lecture: Developing at Scale'
-  lecturer: ldw
-
-- id: a8
-  name: Networking 102
-  slides: https://docs.google.com/presentation/d/1e1GrMlF8mUw8mqf8Sfs7Ec6wgnGsNEYvgRxL5KHshVo/edit
-  lecturer: abizer
-
-- id: a9
-  name: Networked Services
-  slides: https://docs.google.com/presentation/d/1Yg2rZuZLAwmgR_eq7E3rVumWl-7EhNa9seZ_UbSi4Zw/edit
-  lecturer: jvperrin
-
-- id: a10
-  name: Config Management
-  slides: https://docs.google.com/presentation/d/1OfIJHu6bSfTOLLswpKnVr7oxL8R-H4aPM8LLRHuecCY/edit
-  lab: a10
-  lecturer: Frank Dai <fydai>
-
-- id: a11
-  name: Advanced Security
-  slides: https://docs.google.com/presentation/d/1ExmZpm-nSkuFM-FTB6ZT3oP8frAh7g4jSIUiTQ1ddSM/edit?usp=sharing
-  lab: a11
-  lecturer: Mathew Cha <mdcha>
-
-- id: a12
-  name: Virtualization, Containers, Distributed Architecture
-  slides: https://docs.google.com/presentation/d/1iqdy4u2NKD05o0Jrcioy8ngGaVuke63e8QOReszEGbE/edit#slide=id.p
-  lab: a12
-  lecturer: Brian Sang <baisang>
-
-- id: bonus
-  name: 'Optional Guest Lecture: Careers in Tech'
-  lecturer: Ethan Jackson
+- id: 10
+  date: 4/19/2021
+  beginner-name: Cloud, Containers, and Config Management
+  beginner-slides: https://docs.google.com/presentation/d/1aiSnR1zT2qM-RcLnrCC1FhTqjnzKOQvMyR5r_hJr9V0/edit?usp=sharing
+  beginner-video: https://www.youtube.com/watch?v=JhgEg1YTO7c&feature=youtu.be
+  advanced-name: Virtualization, Containers, Distributed Architecture
+  advanced-slides: https://docs.google.com/presentation/d/1EEUT0Z-odYYEmdC9Z1AAh7gVFLH3L2om9CHpqpklhOk/edit?usp=sharing
+  advanced-video: https://www.youtube.com/watch?v=tCg77GmZUqo
+  labdue: Sat. 4/24
+  hidelink: false

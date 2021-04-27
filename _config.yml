@@ -1,27 +1,77 @@
-title: Hands-On Linux System Administration DeCal
-shorttitle: Linux SysAdmin DeCal
-email: decal@ocf.berkeley.edu
-description: >-
-  The OCF/XCF Linux SysAdmin DeCal at UC Berkeley
-baseurl: ""
-url: "https://decal.ocf.berkeley.edu"
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole site, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-# Build settings
-markdown: kramdown
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Sysadmin DeCal
+tagline: Linux System Administration Decal
+description: A course covering the basics of setting up and administering a production-quality Linux server environment.
+author: Nikhil Jha, Ben Cuan
+baseurl: '/' # the subpath of your site, e.g. /blog
+url: 'https://decal.ocf.berkeley.edu' # the base hostname & protocol for your site, e.g. http://example.com
+exclude: ["Gemfile", "Gemfile.lock", "LICENSE", "README.md", vendor]
 
-include:
-  - ".htaccess"
+# Theme settings
+remote_theme: pmarsceill/just-the-docs@v0.3.3
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+permalink: pretty
+aux_links:
+  OCF:
+    - 'https://ocf.berkeley.edu/'
+  XCF:
+    - 'https://xcf.berkeley.edu/'
+aux_links_new_tab: true
+# footer_content: "This website is licensed under the terms of the <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\">CC BY-NC-SA 4.0 License</a>. Source Code is available on <a href=\"https://github.com/0xcf/decal-web/\">GitHub</a>."
 
+# Collections for website data
 collections:
-  - sections
+  staffers:
+  modules:
+  schedules:
+  announcements:
+# Default layouts for each collection type
+defaults:
+  - scope:
+      path: ''
+      type: staffers
+    values:
+      layout: staffer
+      subpath: 'assets/images/'
+  - scope:
+      path: ''
+      type: modules
+    values:
+      layout: module
+  - scope:
+      path: ''
+      type: schedules
+    values:
+      layout: schedule
+  - scope:
+      path: ''
+      type: announcements
+    values:
+      layout: announcement
 
-# A list of files or directories to exclude from processing when building the
-# site, like any dependency management files, build files, etc.
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - Jenkinsfile
-  - LICENSE
-  - Makefile
-  - README.md
-  - vendor/bundle/
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+plugins:
+  - jekyll-seo-tag
