@@ -87,7 +87,7 @@ Extra Lab! (Optional)
     : **Lab due Sun. 5/9**
 
 Special Guest Lecture
-: **Lecture**{: .label .label-yellow} Careers in Systems Administration
+: **Lecture**{: .label .label-yellow} [Careers in Systems Administration](https://youtu.be/X9kIQDodW-U) [(Slides)](https://drive.google.com/file/d/1W8Q683Z8Fw224OmXKo6HsTJ5NLToyucv/view?usp=sharing)
     : **Thursday, 4/29 at 8:10pm, [ocf.io/decalzoom](https://ocf.io/decalzoom)**
 </div>
 
