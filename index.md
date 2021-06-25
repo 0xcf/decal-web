@@ -30,9 +30,9 @@ seo:
 
 Infosession
 : **Infosession**{: .label .label-yellow}[ocf.io/decalzoom](https://ocf.io/decalzoom)
-    : [Slides](https://docs.google.com/presentation/d/1lTx2vAodmr0i5evZ5VFUOEZDVm0v6PGL7IGJM1M7Jro/edit?usp=sharing)
-: **Lab**{: .label .label-yellow}Lab 0 (To be released)
-    : **Lab due Fri. 1/29**
+    : [Slides](https://docs.google.com/presentation/d/1gnrplHLppSMhJiZniV3MSoZ8AbeEOLOs0T1EsclftQw/edit)
+: **Lab**{: .label .label-yellow}[Lab 0](https://docs.google.com/forms/d/e/1FAIpQLSfY53eBRA8e1NfR2GcwsMDL9AS1Pj1cSJh-I0j_jKOEE1o7iQ/viewform)
+    : **Lab due Sat. 1/30**
 </div>
 {% for week in site.data.materials %}
 <div class="module" markdown="1">
@@ -50,18 +50,46 @@ Advanced Track
 : **Lab**{: .label .label-red}Lab a{{week.id}}
     : **Lab due {{week.labdue}}**
     
-{% else %}
+{% elsif week.beginner-solutions %}
 Beginner Track
 : **Lecture**{: .label .label-green}[{{week.beginner-name}}]({{week.beginner-video}}) 
-    : [Slides]({{week.beginner-slides}})
-: **Lab**{: .label .label-blue}[Lab b{{week.id}}](/labs/b{{week.id}}) (Solution)
+    : [Slides]({{week.beginner-slides}}){:target="_blank"}
+: **Lab**{: .label .label-blue}[Lab b{{week.id}}](/labs/b{{week.id}}) [(Solution)]({{week.beginner-solutions}})
     : **Lab due {{week.labdue}}**
 
 Advanced Track
 : **Lecture**{: .label .label-purple }[{{week.advanced-name}}]({{week.advanced-video}})
     : [Slides]({{week.advanced-slides}}){:target="_blank"}
-: **Lab**{: .label .label-red}[Lab a{{week.id}}](/labs/a{{week.id}}) (Solution)
+: **Lab**{: .label .label-red}[Lab a{{week.id}}](/labs/a{{week.id}}) [(Solution)]({{week.advanced-solutions}})
+    : **Lab due {{week.labdue}}**
+{% else %}
+Beginner Track
+: **Lecture**{: .label .label-green}[{{week.beginner-name}}]({{week.beginner-video}}) 
+    : [Slides]({{week.beginner-slides}})
+: **Lab**{: .label .label-blue}[Lab b{{week.id}}](/labs/b{{week.id}})
+    : **Lab due {{week.labdue}}**
+
+Advanced Track
+: **Lecture**{: .label .label-purple }[{{week.advanced-name}}]({{week.advanced-video}})
+    : [Slides]({{week.advanced-slides}}){:target="_blank"}
+: **Lab**{: .label .label-red}[Lab a{{week.id}}](/labs/a{{week.id}})
     : **Lab due {{week.labdue}}**
 {% endif %}
 </div>
 {% endfor %}
+
+
+<div class="module" markdown="1">
+## Week 11
+{: .text-gamma }
+Extra Lab! (Optional)
+: **Lab**{: .label .label-yellow} [Lab 11](/labs/11)
+    : **Lab due Sun. 5/9**
+
+Special Guest Lecture
+: **Lecture**{: .label .label-yellow} [Careers in Systems Administration](https://youtu.be/X9kIQDodW-U) [(Slides)](https://drive.google.com/file/d/1W8Q683Z8Fw224OmXKo6HsTJ5NLToyucv/view?usp=sharing)
+    : **Thursday, 4/29 at 8:10pm, [ocf.io/decalzoom](https://ocf.io/decalzoom)**
+</div>
+
+
+    
