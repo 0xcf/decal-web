@@ -68,7 +68,9 @@ layout: table_wrappers
 </body>
 
 <script>
-  let dark = false;
+  let dark = !(window.matchMedia && 
+    window.matchMedia('(prefers-color-scheme: dark)').matches); // Flip dark so we can run one toggle on load
   let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); dark = !dark; }
+  toggleDark();
 </script>
 </html>
