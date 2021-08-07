@@ -11,6 +11,7 @@ description: >-
 <p>Below are previous semesters' archived course websites:</p>
 
 <ul>
+    <li><a href="/archives/2021-spring/">Spring 2021</a></li>
     <li><a href="/archives/2020-fall/">Fall 2020</a></li>
     <li><a href="/archives/2019-fall/">Fall 2019</a></li>
     <li><a href="/archives/2018-fall/">Fall 2018</a></li>
