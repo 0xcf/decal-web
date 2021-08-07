@@ -80,7 +80,9 @@ In a typical semester, lectures are delivered live during the scheduled Tuesday 
 # FAQ
 
 ## Will the DeCal be offered next semester?
-It is very likely that the DeCal will be offered in the Fall 2021 semester! We're not quite ready yet, but keep checking our website for announcements and interest forms.
+The DeCal has been approved for Fall 2021 and will be happening! There will be more information on how to enroll closer to the start of the semester; in the meantime, please fill out our [interest form](https://docs.google.com/forms/d/1uY6UcbH1s1Bb7AjQiO3wbvGliEMN-L0PJvlci7qNJfI/edit) to stay updated.
+
+As for Spring 2022 and beyond, we currently have no information about the availability for this course in future semesters.
 
 ## How do I know which track is best for me?
 **Beginner Track** is intended for those who have little to no prior experience of using Linux-based systems. We will be providing an overview to several important concepts in systems administration, such as networking, shell scripting, version control, and security. It's perfectly OK if you've never worked with or heard of these concepts before- but if you're familiar with them, we recommend you opt for the advanced track. Overall, we welcome everyone to this track!
