@@ -35,7 +35,7 @@ While we expect many students will have a CS background, **the only real prerequ
 # Administrivia
 
 ## Enrollment
-This is a **2 unit DeCal**. Since it is a DeCal, the course is P/NP. **You must attend an infosession and complete Lab 0 to apply.** If you are selected for the course, we will send you a course enrollment code by February 5.
+This is a **2 unit DeCal**. Since it is a DeCal, the course is P/NP. **You must attend an infosession and complete Lab 0 to apply.** If you are selected for the course, we will send you a course enrollment code by September 5.
 
 ## Communication
 Official course communications will primarily be sent via email, and mirrored on the front page of the course website.
