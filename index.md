@@ -25,14 +25,14 @@ seo:
 # Calendar
 
 <div class="module" markdown="1">
-## Week 0: 1/25/2021
+## Week 0: 8/30/2021
 {: .text-gamma }
 
 Infosession
 : **Infosession**{: .label .label-yellow}[ocf.io/decalzoom](https://ocf.io/decalzoom)
-    : [Slides](https://docs.google.com/presentation/d/1gnrplHLppSMhJiZniV3MSoZ8AbeEOLOs0T1EsclftQw/edit)
-: **Lab**{: .label .label-yellow}[Lab 0](https://docs.google.com/forms/d/e/1FAIpQLSfY53eBRA8e1NfR2GcwsMDL9AS1Pj1cSJh-I0j_jKOEE1o7iQ/viewform)
-    : **Lab due Sat. 1/30**
+    : 
+: **Lab**{: .label .label-yellow}Lab 0 (To be released)
+    : **Lab due Sat. 9/4**
 </div>
 {% for week in site.data.materials %}
 <div class="module" markdown="1">
@@ -79,17 +79,3 @@ Advanced Track
 {% endfor %}
 
 
-<div class="module" markdown="1">
-## Week 11
-{: .text-gamma }
-Extra Lab! (Optional)
-: **Lab**{: .label .label-yellow} [Lab 11](/labs/11)
-    : **Lab due Sun. 5/9**
-
-Special Guest Lecture
-: **Lecture**{: .label .label-yellow} [Careers in Systems Administration](https://youtu.be/X9kIQDodW-U) [(Slides)](https://drive.google.com/file/d/1W8Q683Z8Fw224OmXKo6HsTJ5NLToyucv/view?usp=sharing)
-    : **Thursday, 4/29 at 8:10pm, [ocf.io/decalzoom](https://ocf.io/decalzoom)**
-</div>
-
-
-    

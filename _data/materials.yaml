@@ -2,7 +2,7 @@
 # redirect to the provided link.
 
 - id: 1
-  date: 2/8/2021
+  date: 9/13/2021
   beginner-name: History of UNIX, intro to shell, FOSS
   beginner-slides: https://docs.google.com/presentation/d/1AtnXiOZniLuP9QcnG8_OT1lwmhISRk2_zeANpXgycaY/edit?usp=sharing
   beginner-video: https://www.youtube.com/playlist?list=PLbFJdEcMM5GHnbRDEgJ5HNdOzmS5QrNXG
@@ -11,11 +11,11 @@
   advanced-video: https://www.youtube.com/watch?v=TBsxgbGwtnA
   beginner-solutions: https://docs.google.com/document/d/13brUYoVtPL048ZnLDDGTkoHZwguHKVkKG3K9qsWVSHM/edit
   advanced-solutions: https://docs.google.com/document/d/1_-zycSuSo6AQw4k7iHFSLpQNWx0Do6YS_Le7lIDHWFo/edit
-  labdue: Sat. 2/13
-  hidelink: false
+  labdue: Sat. 9/18
+  hidelink: true
 
 - id: 2
-  date: 2/15/2021
+  date: 9/20/2021
   beginner-name: Core Shell
   beginner-slides: https://docs.google.com/presentation/d/1o7CWAAa21JYll_isRd-oR3dhurBAPzQA5desEhxvwH0/edit?usp=sharing
   beginner-video: https://www.youtube.com/watch?v=TXNpIIlcHm4&feature=youtu.be
@@ -24,11 +24,11 @@
   advanced-video: https://youtu.be/M0vPXQycer0
   beginner-solutions: https://docs.google.com/document/d/1IiE-a4ZPjKhvNHzoJ0OZUdYAyJpcMXJxMwS565f04fs/edit
   advanced-solutions: https://docs.google.com/document/d/1PQ_XYsFZ66sClWgVVw1kieXMaFZtHCMGocMn8MGUzdU/edit
-  labdue: Sat. 2/20
-  hidelink: false
+  labdue: Sat. 9/25
+  hidelink: true
 
 - id: 3
-  date: 2/22/2021
+  date: 9/27/2021
   beginner-name: Shell Scripting
   beginner-slides: https://docs.google.com/presentation/d/1LG8G_fbduqo9K2NOtQDjHkmNCMim0kQOmo-0q3fvmRc/edit?usp=sharing
   beginner-video: https://www.youtube.com/watch?v=7xAGcmhkflM
@@ -37,11 +37,11 @@
   advanced-video: https://www.youtube.com/watch?v=MnsUBRIw-74&feature=youtu.be
   beginner-solutions: https://docs.google.com/document/d/1acpNF5nijQyTforve_-6Rb-Is1_UZkNlyswu2_IJjvY/edit
   advanced-solutions: https://docs.google.com/document/d/1n_bP1V9Yz0IKypbhHPJFs0KBUpwNzAIRtNAI2Rglmbg/edit
-  labdue: Sat. 2/27
-  hidelink: false
+  labdue: Sat. 10/2
+  hidelink: true
 
 - id: 4
-  date: 3/1/2021
+  date: 10/4/2021
   beginner-name: Compiling, Distros, and Packaging
   beginner-slides: https://docs.google.com/presentation/d/1UJHO7fXok-6RN7DAJ5SPTqcCXiRSR8hpGZx9OQMnMOU/edit?usp=sharing
   beginner-video: https://youtu.be/Uh7N86zjYm4
@@ -50,11 +50,11 @@
   advanced-video: https://youtu.be/BVbHnEv8L9s
   beginner-solutions: https://docs.google.com/document/d/1RHWFhoKTpqa912ST8VZKyjE-7SaWyq7hcYYDoC9iu9o/edit
   advanced-solutions: https://docs.google.com/document/d/1UOIrDPVgj3UPneSRMkvqElRdxubSEUTi3NEkoEamJxs/edit
-  labdue: Sat. 3/6
-  hidelink: false
+  labdue: Sat. 10/9
+  hidelink: true
 
 - id: 5
-  date: 3/8/2021
+  date: 10/11/2021
   beginner-name: Networking 101
   beginner-slides: https://docs.google.com/presentation/d/1DCN2fViHjAS7PoS98dsVC-LNwPN_jvaAKIuVFaRJrM0/edit?usp=sharing
   beginner-video: https://youtu.be/cPkLsSFKwPM
@@ -63,11 +63,11 @@
   advanced-video: https://youtu.be/AS293JoAr8s
   beginner-solutions: https://docs.google.com/document/d/1GlpY9JVb9cGuqjez2a68suu6gwQdmpZ4GbQWIjfNAtk/edit
   advanced-solutions: https://docs.google.com/document/d/1LSzV2I9m_YOA25GtTs6KvWnVTRJ9yknyunmRzYOBlr0/edit
-  labdue: Sat. 3/13
-  hidelink: false
+  labdue: Sat. 10/16
+  hidelink: true
 
 - id: 6
-  date: 3/15/2021
+  date: 10/18/2021
   beginner-name: Processes
   beginner-slides: https://docs.google.com/presentation/d/1AS1BYX8jdBQGBviBGgcZPREIePrsgkT7pc-9Wk_RkS0/edit?usp=sharing
   beginner-video: https://youtu.be/Z_q1zkeWEFs
@@ -76,11 +76,11 @@
   advanced-video: https://youtu.be/DPKRivN9ga4
   beginner-solutions: https://docs.google.com/document/d/1BdsntbS_UFMG8nvzo9YgsdrRg7o24K4IudtwrkUsBYk/edit
   advanced-solutions: https://docs.google.com/document/d/1tuuVW4nolp8awIrkXZ9zD879Cg9k86G60Ya-0n41X-c/edit
-  labdue: Mon. 3/29
-  hidelink: false
+  labdue: Sat. 10/23
+  hidelink: true
 
 - id: 7
-  date: 3/29/2021
+  date: 10/25/2021
   beginner-name: Services
   beginner-slides: https://docs.google.com/presentation/d/1N67saQd3NWrBLrk1oEOE2UdLa4Ny_qjDBUAZQolXsUE/edit?usp=sharing
   beginner-video: https://youtu.be/y3mIzYtCPeY
@@ -89,11 +89,11 @@
   advanced-video: https://youtu.be/5clc5xi5FDo
   beginner-solutions: https://docs.google.com/document/d/1aT6ulFJfzgo-9F2V7ePidjiZQvTbLm0UDLTFV4U7ln4/edit
   advanced-solutions: https://docs.google.com/document/d/1PEVOGnH2huOMRbCggKrvEJJFu7TiovtKt3JF9RL01V0/edit
-  labdue: Sat. 4/3
-  hidelink: false
+  labdue: Sat. 10/30
+  hidelink: true
 
 - id: 8
-  date: 4/5/2021
+  date: 11/1/2021
   beginner-name: Security Fundamentals
   beginner-slides: https://docs.google.com/presentation/d/1tKAhg5-0jeh7ZBynQFukkK10saKHeouJpyQcerboPYg/edit?usp=sharing
   beginner-video: https://www.youtube.com/watch?v=hqrWBYm5-Zg&feature=youtu.be
@@ -102,27 +102,27 @@
   advanced-video: https://youtu.be/T9hakIIYUkk
   beginner-solutions: https://docs.google.com/document/d/1XSNgV4z8ZeGiaU8_mtbPDAVnLoZNXrkuls4M4BX0Yvk/edit
   advanced-solutions: https://docs.google.com/document/d/1A72t9c4-nD-R2tTWk2pCn7B92Ad_vbnvjOJaqow3CPs/edit
-  labdue: Sat. 4/10
-  hidelink: false
+  labdue: Sat. 11/6
+  hidelink: true
 
 - id: 9
-  date: 4/12/2021
+  date: 11/8/2021
   beginner-name: Version Control and Backups
   beginner-slides: https://docs.google.com/presentation/d/1NxdvuLkWSzRvtnj41AkvGU00ub_XUbk8wlIxWxm0ok4/edit
   beginner-video: https://youtu.be/X4yGMr9c64U
   advanced-name: Advanced Security
   advanced-slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit
   advanced-video: https://youtu.be/j4ryvaVJURs
-  labdue: Sat. 4/17
-  hidelink: false
+  labdue: Sat. 11/13
+  hidelink: true
 
 - id: 10
-  date: 4/19/2021
+  date: 11/15/2021
   beginner-name: Cloud, Containers, and Config Management
   beginner-slides: https://docs.google.com/presentation/d/1aiSnR1zT2qM-RcLnrCC1FhTqjnzKOQvMyR5r_hJr9V0/edit?usp=sharing
   beginner-video: https://www.youtube.com/watch?v=JhgEg1YTO7c&feature=youtu.be
   advanced-name: Virtualization, Containers, Distributed Architecture
   advanced-slides: https://docs.google.com/presentation/d/1EEUT0Z-odYYEmdC9Z1AAh7gVFLH3L2om9CHpqpklhOk/edit?usp=sharing
   advanced-video: https://www.youtube.com/watch?v=tCg77GmZUqo
-  labdue: Sat. 4/24
-  hidelink: false
+  labdue: Sat. 11/20
+  hidelink: true
