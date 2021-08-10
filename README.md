@@ -10,15 +10,19 @@ The current iteration uses Jekyll to produce pages.
 
 decal-web is built for [Jekyll](https://jekyllrb.com), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for more information.
 
+You will need Ruby 2 to build the site (it has been tested on Ruby2.7.4). If using Arch, [follow this guide](https://gist.github.com/jhass/8839655bb038e829fba1) to install it.
+
+You may also need to install Bundler 1.16: `gem install bundler:1.16.0`
+
 1. Install Jekyll
 ```bash
 $ bundle install
 ```
-1. Start your local Jekyll server.
+1. Start your local Jekyll server. You can also use `make dev`.
 ```bash
 $ bundle exec jekyll serve
 ```
-1. Point your web browser to [http://localhost:4000](http://localhost:4000)
+1. The console should output a server address (`localhost:8xxx`). Open that address in your browser.
 1. Reload your web browser after making a change to preview its effect.
 
 For more information, refer to [Just the Docs](https://pmarsceill.github.io/just-the-docs/).
