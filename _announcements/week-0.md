@@ -5,9 +5,7 @@ date: 2021-8-25
 ---
 
 1. **The Linux SysAdmin Decal is back for Fall 2021!**
-1. If you'd like to receive more info on how to enroll, [fill out the interest form](https://docs.google.com/forms/d/1uY6UcbH1s1Bb7AjQiO3wbvGliEMN-L0PJvlci7qNJfI/edit)!
-1. Learn more about the course at the [about page](/about).
-1. There will be two similar infosessions one **in-person** at the [OCF Lab](https://www.ocf.berkeley.edu/docs/services/lab/) on **Tuesday, Aug. 31, 8 pm** and one **online** at [ocf.io/decalzoom](https://ocf.io/decalzoom) on **Thursday, Sep. 2, 8 pm**.
-1. Lab 0, which must be complete prior to enrolling, will be released after the infosessions.
-1. Any questions? Contact us at [decal@ocf.berkeley.edu](mailto:decal@ocf.berkeley.edu)!
-1. Looking for a previous semester's materials? You can view it in the [archive](/archive).
+1. To enroll, please complete [lab 0](https://docs.google.com/forms/d/10O6C7dWiRRc1O-q46jx_q-3IIWQobwFdn9TmyQ8qt5M/edit)! This is due **Saturday, 9/4** at 11:59pm.
+1. There will be one more infosession online at [ocf.io/decalzoom](https://ocf.io/decalzoom) on **Thursday, Sep. 2, 8 pm**. You can view the infosession slides [here](https://docs.google.com/presentation/u/4/d/1reHYTzb-19HYRSWwZkmXI8Oa-r328vqJ28VtHmNazGA/edit).
+4. Any questions? Contact us at [decal@ocf.berkeley.edu](mailto:decal@ocf.berkeley.edu)!
+5. Looking for a previous semester's materials? You can view it in the [archive](/archive).
