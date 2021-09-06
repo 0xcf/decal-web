@@ -1,7 +1,7 @@
 ---
 title: Week 1 Announcement
 week: 1
-date: 2021-5-9
+date: 2021-9-5
 ---
 
 1. **The Linux SysAdmin Decal is back for Fall 2021!**
