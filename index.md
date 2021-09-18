@@ -75,6 +75,21 @@ Advanced Track
 : **Lab**{: .label .label-red}[Lab a{{week.id}}](/labs/a{{week.id}})
     : **Lab due {{week.labdue}}**
 {% endif %}
+
+## Communication
+Official course communications will primarily be sent via email, and mirrored on the front page of the course website.
+
+There are several ways you can get in contact with course facilitators:
+1. Send a message on the course Piazza. (best for conceptual/debugging/content help)
+2. Send a message to #decal-general (or as a private message to a facilitator) either on [Slack][slack] or [Discord][discord]. (best for realtime communications)
+3. Send an email to [decal@ocf.berkeley.edu][email]. (best for prospective students and matters that need to go on official record)
+
+See the [about page](about.md) for more information.
+
+[email]: mailto:decal@ocf.berkeley.edu
+[slack]: https://ocf.io/slack
+[discord]: https://ocf.io/discord
+
 </div>
 {% endfor %}
 
