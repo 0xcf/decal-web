@@ -79,6 +79,8 @@ Each lab will be due by the **Saturday, 11:59pm PST** after the lab section unle
 
 **You must complete 10 labs to receive credit for taking the course.** However, we will allow **two unexcused late labs** to be turned in before the semester ends.
 
+If you need to request an **excused lab extension**, please fill out [this form](https://forms.gle/KX5o2WLYcJqgxCZE9). Doing so will not affect your two unexcused late labs.
+
 You are *highly encouraged* to look over the lab, and try to start it, *before* coming to live lab sections each week. This will allow you to better utilize the help of the facilitators.
 
 ## Live Labs
