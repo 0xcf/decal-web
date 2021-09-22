@@ -7,6 +7,7 @@ layout: table_wrappers
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
 <body>
+  <div id="loading" style="height:140%;width:140%;background-color:#ffffff;position:absolute;z-index:1000;left:-20%;top:-20%"></div>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="svg-link" viewBox="0 0 24 24">
       <title>Link</title>
@@ -223,18 +224,27 @@ layout: table_wrappers
       }
       return "";
     }
+
+    document.getElementById("loading").style["backgroundColor"] = getCookie("dark-mode") == 1 ? "#27262b" : "#ffffff"
+
+    window.addEventListener('load', (event) => {
+      console.log('page is fully loaded');
+      document.getElementById("loading").style = "";
+    });
+
+
     let dark = !(window.matchMedia && 
     window.matchMedia('(prefers-color-scheme: dark)').matches); // Flip dark so we can run one toggle on load
     
     let preference = getCookie("dark-mode");
 
     if(preference == "1") {
-      dark = true;
-    } else if(preference == "0") {
       dark = false;
+    } else if(preference == "0") {
+      dark = true;
     }
 
-    let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); setCookie("dark-mode", dark ? "1" : "0", 3652); dark = !dark;}
+    let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); setCookie("dark-mode", dark ? "0" : "1", 3652); dark = !dark;}
     toggleDark();
   </script>
 </body>
