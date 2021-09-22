@@ -1,6 +1,6 @@
 LISTEN_IP := 0.0.0.0
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) + 2 )))
-BRANCH :=$(shell git branch --show-current)
+BRANCH :=$(shell git rev-parse --abbrev-ref HEAD)
 
 .PHONY: dev
 dev: bundle
