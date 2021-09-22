@@ -7,6 +7,7 @@ layout: table_wrappers
 <html lang="{{ site.lang | default: 'en-US' }}">
 {% include head.html %}
 <body>
+  <!-- This makes the page opaque until the screen is loaded. Matches the preferred dark-mode color of the user. -->
   <div id="loading" style="height:140%;width:140%;background-color:#ffffff;position:absolute;z-index:1000;left:-20%;top:-20%"></div>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="svg-link" viewBox="0 0 24 24">
@@ -225,11 +226,10 @@ layout: table_wrappers
       return "";
     }
 
-    document.getElementById("loading").style["backgroundColor"] = getCookie("dark-mode") == 1 ? "#27262b" : "#ffffff"
+    document.getElementById("loading").style["backgroundColor"] = getCookie("dark-mode") == 1 ? "#27262b" : "#ffffff" // Set the opaque layer to the prefered color
 
     window.addEventListener('load', (event) => {
-      console.log('page is fully loaded');
-      document.getElementById("loading").style = "";
+      document.getElementById("loading").style = ""; // Remove the opaque layer when the page loads
     });
 
 
