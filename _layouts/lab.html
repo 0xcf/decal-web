@@ -68,9 +68,42 @@ layout: table_wrappers
 </body>
 
 <script>
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
   let dark = !(window.matchMedia && 
-    window.matchMedia('(prefers-color-scheme: dark)').matches); // Flip dark so we can run one toggle on load
-  let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); dark = !dark; }
+  window.matchMedia('(prefers-color-scheme: dark)').matches); // Flip dark so we can run one toggle on load
+  
+  let preference = getCookie("dark-mode");
+
+  console.log(preference)
+
+  if(preference == "1") {
+    dark = true;
+  } else if(preference == "0") {
+    dark = false;
+  }
+
+  let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); setCookie("dark-mode", dark ? "1" : "0", 3652); dark = !dark; }
   toggleDark();
 </script>
 </html>
