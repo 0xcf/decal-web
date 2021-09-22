@@ -244,7 +244,27 @@ layout: table_wrappers
       dark = true;
     }
 
-    let toggleDark = () => { jtd.setTheme(dark ? 'light' : 'dark'); setCookie("dark-mode", dark ? "0" : "1", 3652); dark = !dark;}
+    let toggleDark = () => { 
+      jtd.setTheme(dark ? 'light' : 'dark'); 
+
+      // Change input text placeholder text color
+
+      const PLACEHOLDER_TEXT_COLOR = "#959396";
+
+      if(!dark) {
+        let placeholderStyleElem = document.head.appendChild(document.createElement("style"));
+        placeholderStyleElem.id = "placeholderTextStyle"
+        placeholderStyleElem.innerHTML = "::placeholder { color: " + PLACEHOLDER_TEXT_COLOR + "; opacity: 1 }\n"; // Firefox requires opacity
+        placeholderStyleElem.innerHTML += ":-ms-input-placeholder { color: " + PLACEHOLDER_TEXT_COLOR + "; }\n"; // IE 10+
+        placeholderStyleElem.innerHTML += "::-ms-input-placeholder { color: " + PLACEHOLDER_TEXT_COLOR + "; }\n"; // Edge
+      } else {
+        let placeholderStyleElem = document.getElementById("placeholderTextStyle");
+        if(placeholderStyleElem) placeholderStyleElem.remove();
+      }
+
+      setCookie("dark-mode", dark ? "0" : "1", 3652); 
+      dark = !dark;
+    }
     toggleDark();
   </script>
 </body>
