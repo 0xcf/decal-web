@@ -202,6 +202,26 @@ layout: table_wrappers
       <div class="search-overlay"></div>
     {% endif %}
   </div>
+  {% if page.url == "/staff/" %}
+  <script>
+    function main() {
+      const url = window.location.href;
+      const idLocation = url.indexOf("#");
+
+      if(idLocation != -1 && url.length > idLocation + 1) {
+        const focusedElem = document.getElementById(url.substring(idLocation + 1));
+        const spotlight = document.createElement("div");
+        
+        spotlight.classList.add("spotlight");
+        focusedElem.parentElement.replaceChild(spotlight, focusedElem)
+        spotlight.appendChild(focusedElem);
+        spotlight.style = "width:auto; height:auto; background-color: rgba(200, 200, 0, 0.25); padding: 5px; border-radius: 10px";
+      }
+    }
+
+    window.onload = main;
+  </script>
+  {% endif %}
   <script>
     function setCookie(cname, cvalue, exdays) {
       const d = new Date();
