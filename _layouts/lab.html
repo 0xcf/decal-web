@@ -52,8 +52,10 @@ layout: table_wrappers
         {% endif %}
       {% endunless %}
       <div id="main-content" class="main-content" role="main">
-        <h1>{{ page.title }}</h1>
-        <p>By: {{ page.facilitator }}</p>
+        <h1 style="margin-bottom:0">{{ page.title }}</h1>
+        {% if page.facilitator != null %}
+        <p>By: <a href="/staff#{{ page.facilitator | replace: ' ', '-' | downcase }}">{{ page.facilitator }}</a></p>
+        {% endif %}
         {% assign minutes = content | strip_html | number_of_words | divided_by: 180.0 | round %}
         {{ minutes }} min read
         {% if site.heading_anchors != false %}
