@@ -1,4 +1,4 @@
-<div class="staffer">
+<div class="staffer" id="{{ page.name | replace: ' ', '-' | downcase }}">
   {% if page.photo %}
   <img class="staffer-image" src="{{ site.baseurl }}{{ page.subpath }}{{ page.photo }}" alt="">
   {% endif %}
