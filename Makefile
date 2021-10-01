@@ -1,6 +1,5 @@
 LISTEN_IP := 0.0.0.0
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) + 2 )))
-BRANCH :=$(shell git rev-parse --abbrev-ref HEAD)
 
 .PHONY: dev
 dev: bundle
@@ -20,7 +19,6 @@ bundle:
 
 .PHONY: build
 build:
-	echo $(BRANCH)
 	bundle exec jekyll build --verbose --trace
 
 .PHONY: clean
