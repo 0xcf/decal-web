@@ -35,8 +35,8 @@
   advanced-name: DIY Linux Pre-Install
   advanced-slides: https://docs.google.com/presentation/d/1oLtsjsEIsvChOI31_5YYFhILfzGlyx7Hk9DsL1Nv-mc/edit?usp=sharing
   advanced-video: https://www.youtube.com/watch?v=MnsUBRIw-74&feature=youtu.be
-#   beginner-solutions: https://docs.google.com/document/d/1acpNF5nijQyTforve_-6Rb-Is1_UZkNlyswu2_IJjvY/edit
-#   advanced-solutions: https://docs.google.com/document/d/1n_bP1V9Yz0IKypbhHPJFs0KBUpwNzAIRtNAI2Rglmbg/edit
+  beginner-solutions: https://docs.google.com/document/d/1rs5FCTN99iLzRgV5UHskgQdCrRUJ5vrVY9Mw1acYj9U/edit?usp=sharing 
+  advanced-solutions: https://docs.google.com/document/d/1df8kIAWw7Xxetg_Y5eJXE-1eXgYAHsDW9A3rL5NU1VU/edit?usp=sharing
   labdue: Sat. 9/25
   hidelink: false
 
@@ -48,10 +48,10 @@
   advanced-name: Linux Post-Install
   advanced-slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
   advanced-video: https://youtu.be/BVbHnEv8L9s
-  beginner-solutions: https://docs.google.com/document/d/1RHWFhoKTpqa912ST8VZKyjE-7SaWyq7hcYYDoC9iu9o/edit
-  advanced-solutions: https://docs.google.com/document/d/1UOIrDPVgj3UPneSRMkvqElRdxubSEUTi3NEkoEamJxs/edit
+  #beginner-solutions: https://docs.google.com/document/d/1RHWFhoKTpqa912ST8VZKyjE-7SaWyq7hcYYDoC9iu9o/edit
+  #advanced-solutions: https://docs.google.com/document/d/1UOIrDPVgj3UPneSRMkvqElRdxubSEUTi3NEkoEamJxs/edit
   labdue: Sat. 10/2
-  hidelink: true
+  hidelink: false
 
 - id: 5
   date: 10/4/2021
