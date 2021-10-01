@@ -24,6 +24,7 @@ pipeline {
 
     stage('build') {
       steps {
+        echo "${env.BRANCH_NAME}"
         sh 'make build'
       }
     }
