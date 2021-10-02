@@ -48,10 +48,12 @@ pipeline {
             }
           }
           steps {
-            // sshagent (credentials: ['decal-ssh-key']) {
-            //   sh 'make deploy DEPLOY_DIR="public_html/pr/${PULL_REQUEST}"
-            // }
-            echo "public_html/pr/${env.BRANCH_NAME}"
+            sshagent (credentials: ['decal-ssh-key']) {
+              sh 'make deploy DEPLOY_DIR="public_html/pr/${env.BRANCH_NAME}"'
+            }
+            script {
+              pullRequest.comment("https://decal.ocf.io/pr/${env.BRANCH_NAME}")
+            }
           }
         }
       }
