@@ -28,5 +28,5 @@ clean:
 
 .PHONY: deploy
 deploy:
-	rsync -avzpceR "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static --exclude archives decal@ssh.ocf.berkeley.edu:$(DEPLOY)
+	rsync -avzpce --relative "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static --exclude archives decal@ssh.ocf.berkeley.edu:$(DEPLOY)
 
