@@ -49,7 +49,6 @@ pipeline {
           }
           steps {
             sshagent (credentials: ['decal-ssh-key']) {
-              sh "mkdir -p public_html/pr/${env.BRANCH_NAME}"
               sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
             }
             script {
