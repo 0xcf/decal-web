@@ -58,9 +58,6 @@ pipeline {
   }
 
   post {
-    failure {
-      emailNotification('decal+jenkins@ocf.berkeley.edu')
-    }
     always {
       node(label: 'slave') {
         ircNotification('#decal-spam')
