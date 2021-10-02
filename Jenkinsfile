@@ -30,12 +30,29 @@ pipeline {
     }
 
     stage('deploy') {
-      when {
-        branch 'master'
-      }
-      steps {
-        sshagent (credentials: ['decal-ssh-key']) {
-          sh 'make deploy'
+      parallel {
+        stage('building master') {
+          when {
+            branch 'master'
+          }
+          steps {
+            sshagent (credentials: ['decal-ssh-key']) {
+              sh 'make deploy'
+            }
+          }
+        }
+        stage('building branch') {
+          when {
+            not {
+              branch 'master'
+            }
+          }
+          steps {
+            // sshagent (credentials: ['decal-ssh-key']) {
+            //   sh 'make deploy DEPLOY_DIR="public_html/pr/${PULL_REQUEST}"
+            // }
+            echo "public_html/pr/${PULL_REQUEST}"
+          }
         }
       }
     }
