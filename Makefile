@@ -1,6 +1,6 @@
 LISTEN_IP := 0.0.0.0
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) + 2 )))
-DEPLOY_DIR := public_html
+DEPLOY_DIR := /
 
 .PHONY: dev
 dev: bundle
@@ -28,5 +28,5 @@ clean:
 
 .PHONY: deploy
 deploy:
-	rsync -avzpce --relative "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static --exclude archives decal@ssh.ocf.berkeley.edu:$(DEPLOY)
+	rsync -avzpce --relative $(DEPLOY_DIR) "ssh -o StrictHostKeyChecking=no" --del _site/ --exclude static --exclude archives decal@ssh.ocf.berkeley.edu:~/public_html
 
