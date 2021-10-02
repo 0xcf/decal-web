@@ -51,6 +51,9 @@ pipeline {
             sshagent (credentials: ['decal-ssh-key']) {
               sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
             }
+            script {
+               pullRequest.comment("Deploy Preview: https://decal.ocf.io/pr/${env.BRANCH_NAME}")
+            }
           }
         }
       }
