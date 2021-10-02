@@ -24,7 +24,7 @@ pipeline {
 
     stage('build') {
       steps {
-        echo "${env.BRANCH_NAME}"
+        echo "Building branch ${env.BRANCH_NAME}"
         sh 'make build'
       }
     }
@@ -51,7 +51,7 @@ pipeline {
             // sshagent (credentials: ['decal-ssh-key']) {
             //   sh 'make deploy DEPLOY_DIR="public_html/pr/${PULL_REQUEST}"
             // }
-            echo "public_html/pr/${PULL_REQUEST}"
+            echo "public_html/pr/${env.BRANCH_NAME}"
           }
         }
       }
