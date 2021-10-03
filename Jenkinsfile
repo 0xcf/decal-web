@@ -59,6 +59,7 @@ pipeline {
           }
           steps {
             sshagent (credentials: ['decal-ssh-key']) {
+	      sh "bundle exec jekyll build --verbose --trace --baseurl /pr/${env.BRANCH_NAME}"
               sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
             }
           }
