@@ -64,7 +64,7 @@ pipeline {
 	      script {
 	      
 	      	if (env.CHANGE_ID) {
-			pullRequest.comment("Thanks for submitting a PR! A temporary version of the the pr is hosted [here](https://decal.ocf.berkeley.edu/pr/${env.BRANCH_NAME}).")
+			ircNotify targets: "#decal-spam", customMessage: "New PR hosted at https://decal.ocf.berkeley.edu/pr/${env.BRANCH_NAME}"
 	      	}
               }
             }
