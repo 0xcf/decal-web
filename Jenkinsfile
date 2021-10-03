@@ -64,7 +64,7 @@ pipeline {
 	      script {
 	      
 	      	if (env.CHANGE_ID) {
-			ircMessage("Testing", "jenkins-decal-pr", "#decal-spam", "irc.ocf.berkeley.edu:6697")
+			ircMessage("New PR to decal-web (https://github.com/0xcf/decal-web/pull/${env.CHANGE_ID}) \n\n Hosted at https://decal.ocf.berkeley.edu/pr/${env.BRANCH_NAME}", "decal-web_PR_Notifier", "#decal-spam", "irc.ocf.berkeley.edu:6697")
 	      	}
               }
             }
