@@ -61,6 +61,12 @@ pipeline {
             sshagent (credentials: ['decal-ssh-key']) {
 	      sh "bundle exec jekyll build --verbose --trace --baseurl /pr/${env.BRANCH_NAME}"
               sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
+	      script {
+	      
+	      	if (env.CHANGE_ID) {
+			pullRequest.comment("Thanks for submitting a PR! A temporary version of the the pr is hosted [here](https://decal.ocf.berkeley.edu/pr/${env.BRANCH_NAME}).
+	      	}
+              }
             }
           }
         }
