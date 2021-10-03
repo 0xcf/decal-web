@@ -65,14 +65,6 @@ pipeline {
         }
       }
     }
-
-    stage('notifying PR') {
-      steps {
-        script {
-              pullRequest.comment("Deploy Preview: https://decal.ocf.io/pr/${env.BRANCH_NAME}")
-          }
-      }
-    }
   }
 
   post {
