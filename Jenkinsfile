@@ -64,7 +64,7 @@ pipeline {
 	      script {
 	      
 	      	if (env.CHANGE_ID) {
-			pullRequest.comment("Thanks for submitting a PR! A temporary version of the the pr is hosted [here](https://decal.ocf.berkeley.edu/pr/${env.BRANCH_NAME}).
+			pullRequest.comment("Thanks for submitting a PR! A temporary version of the the pr is hosted [here](https://decal.ocf.berkeley.edu/pr/${env.BRANCH_NAME}).")
 	      	}
               }
             }
