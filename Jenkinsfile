@@ -1,3 +1,13 @@
+void setBuildStatus(String message, String state) {
+  step([
+      $class: "GitHubCommitStatusSetter",
+      reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/0xcf/decal-web"],
+      contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+      errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+      statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
+  ]);
+}
+
 pipeline {
   agent {
     label 'slave'
@@ -24,31 +34,50 @@ pipeline {
 
     stage('build') {
       steps {
-        echo "${env.BRANCH_NAME}"
+        echo "Building branch ${env.BRANCH_NAME}"
         sh 'make build'
       }
     }
 
     stage('deploy') {
-      when {
-        branch 'master'
-      }
-      steps {
-        sshagent (credentials: ['decal-ssh-key']) {
-          sh 'make deploy'
+      parallel {
+        stage('building master') {
+          when {
+            branch 'master'
+          }
+          steps {
+            sshagent (credentials: ['decal-ssh-key']) {
+              sh 'make deploy'
+            }
+          }
+        }
+        stage('building branch') {
+          when {
+            not {
+              branch 'master'
+            }
+          }
+          steps {
+            sshagent (credentials: ['decal-ssh-key']) {
+              sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
+            }
+          }
         }
       }
     }
   }
 
   post {
-    failure {
-      emailNotification('decal+jenkins@ocf.berkeley.edu')
-    }
     always {
       node(label: 'slave') {
         ircNotification('#decal-spam')
       }
+    }
+    success {
+      setBuildStatus("Build succeeded", "SUCCESS");
+    }
+    failure {
+      setBuildStatus("Build failed", "FAILURE");
     }
   }
 }
