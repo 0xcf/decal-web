@@ -75,7 +75,9 @@ pipeline {
     }
     success {
       setBuildStatus("Build succeeded", "SUCCESS");
-      pullRequest.comment("Deploy URL: https://decal.ocf.io/pr/${env.BRANCH_NAME}")
+      script {
+        pullRequest.comment("Deploy URL: https://decal.ocf.io/pr/${env.BRANCH_NAME}")
+      }
     }
     failure {
       setBuildStatus("Build failed", "FAILURE");
