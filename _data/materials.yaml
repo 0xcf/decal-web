@@ -48,8 +48,8 @@
   advanced-name: Linux Post-Install
   advanced-slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
   advanced-video: https://youtu.be/BVbHnEv8L9s
-  #beginner-solutions: https://docs.google.com/document/d/1RHWFhoKTpqa912ST8VZKyjE-7SaWyq7hcYYDoC9iu9o/edit
-  #advanced-solutions: https://docs.google.com/document/d/1UOIrDPVgj3UPneSRMkvqElRdxubSEUTi3NEkoEamJxs/edit
+  beginner-solutions: https://docs.google.com/document/d/1RPEfOSC0XyLcXpF3Kqq7oV_bo7I_7dZCle3_fQlMGqk/edit
+  advanced-solutions: https://docs.google.com/document/d/1AA2kDoGSrg5z-6EhFcl8UpGfVxpftMtpGkKoj3pJHHk/edit
   labdue: Sat. 10/2
   hidelink: false
 
@@ -61,10 +61,10 @@
   advanced-name: Processes and Services
   advanced-slides: https://docs.google.com/presentation/d/1sv5Bxw9Fet9utjFU8xGDntawLVmBOT9YpCt9mJ2V6Dg/edit
   advanced-video: https://youtu.be/AS293JoAr8s
-  beginner-solutions: https://docs.google.com/document/d/1GlpY9JVb9cGuqjez2a68suu6gwQdmpZ4GbQWIjfNAtk/edit
-  advanced-solutions: https://docs.google.com/document/d/1LSzV2I9m_YOA25GtTs6KvWnVTRJ9yknyunmRzYOBlr0/edit
+  #beginner-solutions: https://docs.google.com/document/d/1GlpY9JVb9cGuqjez2a68suu6gwQdmpZ4GbQWIjfNAtk/edit
+  #advanced-solutions: https://docs.google.com/document/d/1LSzV2I9m_YOA25GtTs6KvWnVTRJ9yknyunmRzYOBlr0/edit
   labdue: Sat. 10/9
-  hidelink: true
+  hidelink: false
 
 - id: 6
   date: 10/11/2021

@@ -59,7 +59,14 @@ pipeline {
           }
           steps {
             sshagent (credentials: ['decal-ssh-key']) {
+	      sh "bundle exec jekyll build --verbose --trace --baseurl /pr/${env.BRANCH_NAME}"
               sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
+	      script {
+	      
+	      	if (env.CHANGE_ID) {
+			ircMessage("New PR to decal-web (https://github.com/0xcf/decal-web/pull/${env.CHANGE_ID}). Hosted at https://decal.ocf.berkeley.edu/pr/${env.BRANCH_NAME}", "decal-web_PR_Notifier", "#decal-spam", "irc.ocf.berkeley.edu:6697")
+	      	}
+              }
             }
           }
         }
