@@ -16,7 +16,7 @@ local-dev: bundle
 
 .PHONY: bundle
 bundle:
-	bundle install --deployment
+	bundle config set --local deployment 'true'&&bundle install
 
 .PHONY: build
 build:
