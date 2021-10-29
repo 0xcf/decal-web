@@ -12,7 +12,7 @@ decal-web is built for [Jekyll](https://jekyllrb.com), a static site generator. 
 
 You will need Ruby 2 to build the site (it has been tested on Ruby2.7.4). If using Arch, [follow this guide](https://gist.github.com/jhass/8839655bb038e829fba1) to install it.
 
-You may also need to install Bundler 2.2.26: `gem install bundler:2.2.26`
+You may also need to install Bundler 2.2.25: `gem install bundler:2.2.25`
 
 1. Install Jekyll
 ```bash
