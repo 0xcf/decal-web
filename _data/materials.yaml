@@ -117,7 +117,7 @@
   hidelink: false
 
 - id: 10
-  date: 11/15/2021
+  date: 11/8/2021
   beginner-name: Cloud, Containers, and Config Management
   beginner-slides: https://docs.google.com/presentation/d/1aiSnR1zT2qM-RcLnrCC1FhTqjnzKOQvMyR5r_hJr9V0/edit?usp=sharing
   beginner-video: https://www.youtube.com/watch?v=JhgEg1YTO7c&feature=youtu.be
@@ -125,4 +125,5 @@
   advanced-slides: https://docs.google.com/presentation/d/1EEUT0Z-odYYEmdC9Z1AAh7gVFLH3L2om9CHpqpklhOk/edit?usp=sharing
   advanced-video: https://www.youtube.com/watch?v=tCg77GmZUqo
   labdue: Sat. 11/20
-  hidelink: true
+  hidelink: false
+  
