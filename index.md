@@ -78,4 +78,14 @@ Advanced Track
 </div>
 {% endfor %}
 
+<div class="module" markdown="1">
+## Week 11
+{: .text-gamma }
+Extra Lab! (Optional)
+: **Lab**{: .label .label-yellow} [Lab 11](labs/11)
+    : **Lab due Sun. 12/12**
 
+Special Guest Lecture
+: **Lecture**{: .label .label-yellow} TBA
+    : Date/Details TBA
+</div>
