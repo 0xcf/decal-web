@@ -1,4 +1,4 @@
-LISTEN_IP := 0.0.0.0
+LISTEN_IP := localhost
 RANDOM_PORT := $(shell expr $$(( 8000 + (`id -u` % 1000) + 2 )))
 DEPLOY_DIR := public_html
 
