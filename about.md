@@ -35,10 +35,10 @@ While we expect many students will have a CS background, **the only real prerequ
 # Administrivia
 
 ## Enrollment
-This is a **2 unit DeCal**. Since it is a DeCal, the course is P/NP. **You must attend an infosession and complete Lab 0 to apply.** If you are selected for the course, we will send you a course enrollment code by September 5.
+This is a **2 unit DeCal**. Since it is a DeCal, the course is P/NP. **You must complete Lab 0 to apply.** If you are selected for the course, we will send you a course enrollment code by January 30.
 
 ## Communication
-Official course communications will primarily be sent via email, and mirrored on the front page of the course website.
+Official course communications will primarily be sent via email (through Piazza announcements), and mirrored on the front page of the course website.
 
 There are several ways you can get in contact with course facilitators:
 1. Send a message on the course Piazza. (best for conceptual/debugging/content help)
@@ -49,26 +49,9 @@ There are several ways you can get in contact with course facilitators:
 
 Lectures for this course are asynchronous, and videos will be released at the beginning of each week. There will be 10 total lectures for each track, as well as one optional guest lecture (details TBD).
 
-Since all lectures will be online this semester, we will not track attendance. Nonetheless, all lab assignments will assume that you have already viewed the lecture in its entirety, and may be difficult to complete without watching lecture first.
+A short assignment will be released with every lecture with some questions to check your understanding. To receive participation credit for that week, you may either complete this assignment or attend a lab section (see [live labs](#live-labs)).
 
-<!-- Fa20-sp21 logistics
-Lectures are scheduled for **Tuesdays** for the Beginner section and **Thursdays** for the Advanced section, from **8 to 9pm.** Due to the online nature of this semester, we will offer pre-recorded lectures, posted weekly on this website. Lab sections and office hours will be held over Zoom at [ocf.io/decalzoom](https://ocf.io/decalzoom). -->
-
-<!-- Not applicable for fa20
-OCF Lab, located at 171 MLK (MLK basement down the hall from the student store).
-**Attendance is mandatory, with two allowed unexcused absences.** Some other
-conflicts, such as exams, may be excused if you provide prior notice. Please only
-come to the lab on the day corresponding to the section you are in.
- -->
-
-<!-- While we normally mandate attendance, this will no longer be a requirement for Spring 2021 given the remote nature of the course. Nonetheless, students will be expected to view all lectures, as knowledge of their content will be assumed in lab assignments. -->
-
-<!-- **Lecture will double as office hours** for students to come in and ask questions about lab work or covered material. The one-hour lecture slot will include some lecturing but will also include time to to work on the lab assignment with the help of present facilitators. -->
-
-<!-- Not applicable for fa20
-Note that we only have 30 computers in the lab,
-but 40 people are enrolled in each course, so **please bring a laptop** if you
-can. -->
+All lab assignments will assume that you have already viewed the lecture in its entirety, and may be difficult to complete without watching lecture first.
 
 ## Lab Assignments
 The primary assignment in this course will be **weekly lab work**. Labs are designed to be be significantly hands-on. You will be working on real systems, configuring and fixing things, setting up services, and so on.
@@ -77,21 +60,29 @@ Each lecture corresponds with a lab, labeled by a "b" or "a" (for Beginner or Ad
 
 Each lab will be due by the **Saturday, 11:59pm PST** after the lab section unless otherwise stated. Labs (and lectures) will be released the prior Sunday, so you will have a week to complete them.
 
-**You must complete 10 labs to receive credit for taking the course.** However, we will allow **two unexcused late labs** to be turned in before the semester ends.
+**You must complete 10 labs to receive credit for taking the course.** The late due date for labs is 2 weeks after the original due date. You may submit up to 2 labs late throughout the semester without penalty.
 
-If you need to request an **excused lab extension**, please fill out [this form](https://forms.gle/KX5o2WLYcJqgxCZE9). Doing so will not affect your two unexcused late labs.
+If you need to request an **excused lab extension or drop**, please fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSde6CIiaA1Z-U3vSxDU_AbmyyWKEVPKa-vhHEysltLsG2de3A/viewform). Doing so will not affect your two unexcused late labs.
 
 You are *highly encouraged* to look over the lab, and try to start it, *before* coming to live lab sections each week. This will allow you to better utilize the help of the facilitators.
 
 ## Live Labs
-During the scheduled Tuesday and Thursday class times from 8-9pm, we will host live lab sections, where facilitators will give additional information and demos related to the lab, and hold office hours to answer any questions that may arise. As conditions allow, we currently plan on offering hybrid labs, where you may either join via Zoom or visit the OCF lab (171 MLK) to attend in person. While attendance is not required, you are **highly encouraged** to attend since the information covered will make completing labs a shorter and more enjoyable experience.
+During the scheduled Tuesday and Thursday class times from 8:10-9pm, we will host live lab sections, where facilitators will give additional information, demos related to the lab, walk through solutions to participation assignments, and hold office hours to answer any questions that may arise. Lab sections will be held in the OCF lab (171 MLK, [click here](https://www.ocf.berkeley.edu/docs/services/lab/) for directions).  If you are unable to attend for any reason, you may also complete an alternate participation assignment. 7 out of 10 attendance assignments must be completed over the semester (either by attending, or completing the assignment).
+
+
+## Grading
+The following are required to receive credit for the course:
+* 10 completed lab assignments
+    * Lab assignments are graded on completion, *not* correctness. Blank or otherwise extremely low-effort submissions (i.e. no visible attempt at answering the questions asked) will be considered incomplete.
+* 7 completed participation assignments
+    * You will have the option of either attending live lab or answering questions about the lecture to receive credit for these assignments.
 
 # FAQ
 
 ## Will the DeCal be offered next semester?
-The DeCal has been approved for Fall 2021 and will be happening! There will be more information on how to enroll closer to the start of the semester; in the meantime, please fill out our [interest form](https://docs.google.com/forms/d/1uY6UcbH1s1Bb7AjQiO3wbvGliEMN-L0PJvlci7qNJfI/edit) to stay updated.
+The DeCal has been approved for Spring 2022 and will be happening! There will be more information on how to enroll closer to the start of the semester; in the meantime, please fill out our [interest form](https://docs.google.com/forms/d/e/1FAIpQLSdGESPxNAGEhbrzhterrEi_sT3idf3TjTLjOC0UbEcj0WeqsA/viewform) to stay updated.
 
-As for Spring 2022 and beyond, we currently have no information about the availability for this course in future semesters.
+The DeCal will likely not be offered in Fall 2022, but this is subject to change.
 
 ## How do I know which track is best for me?
 **Beginner Track** is intended for those who have little to no prior experience of using Linux-based systems. We will be providing an overview to several important concepts in systems administration, such as networking, shell scripting, version control, and security. It's perfectly OK if you've never worked with or heard of these concepts before- but if you're familiar with them, we recommend you opt for the advanced track. Overall, we welcome everyone to this track!
@@ -106,7 +97,7 @@ As for Spring 2022 and beyond, we currently have no information about the availa
 If you are still unsure about which track to choose, you can email us at [decal@ocf.berkeley.edu][email].
 
 ## I don't want units / wasn't accepted / am not a student. Can I audit this course?
-We are working hard to get all of our materials online this semester for everyone to access! Since we are no longer bound by physical constraints, feel free to attend any of our scheduled lectures or complete any of the labs on your own. (You will
+We are working hard to get all of our materials online this semester for everyone to access! Feel free to view our lectures or complete any of the labs on your own. (You will
 need your own Linux VM though- you can [install one locally](https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/) or get one from a provider such as [DigitalOcean](https://www.digitalocean.com/).)
 
 ## I'm stuck on a lab/concept! Where can I find help?
@@ -121,4 +112,6 @@ Email us at [decal@ocf.berkeley.edu][email].
 
 # After this Course
 
-There's no substitute for real-world experience. If you'd like to get experience in a low-risk but real-world setting, consider [joining the OCF](https://ocf.io/getinvolved) as a volunteer staff member. There, you'll be able to put the things you learn in this course to  use, and help other students while you're at it. Best of all- **there's no application process**! Just drop by and say hi :)
+There's no substitute for real-world experience. If you'd like to get experience in a low-risk but real-world setting, consider [joining the OCF](https://ocf.io/getinvolved) as a volunteer staff member. There, you'll be able to put the things you learn in this course to use, and help other students while you're at it. Best of all- **there's no application process**! Just drop by and say hi :)
+
+Weekly staff meetings are held Wednesdays at 8pm at the OCF lab.
