@@ -14,7 +14,7 @@ schedule:
       - name: Beginner Lab
         start: 8:00 PM
         end: 9:00 PM
-        location: ocf.io/decalzoom<br />171 MLK Student Union
+        location: 171 MLK Student Union
 
   - name: Wednesday
   - name: Thursday
@@ -22,6 +22,6 @@ schedule:
       - name: Advanced Lab
         start: 8:00 PM
         end: 9:00 PM
-        location: ocf.io/decalzoom<br />171 MLK Student Union
+        location: 171 MLK Student Union
   - name: Friday
 ---
