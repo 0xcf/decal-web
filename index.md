@@ -30,8 +30,7 @@ seo:
 
 Infosession
 : **Infosession**{: .label .label-yellow}[ocf.io/decalzoom](https://ocf.io/decalzoom)
-   : [Slides](https://docs.google.com/presentation/u/4/d/1reHYTzb-19HYRSWwZkmXI8Oa-r328vqJ28VtHmNazGA/edit)
-: **Lab**{: .label .label-yellow}[Lab 0](https://docs.google.com/forms/d/10O6C7dWiRRc1O-q46jx_q-3IIWQobwFdn9TmyQ8qt5M/edit)
+: **Lab**{: .label .label-yellow}Lab 0
     : **Lab due Sat. 9/4**
 </div>
 {% for week in site.data.materials %}
@@ -77,15 +76,3 @@ Advanced Track
 {% endif %}
 </div>
 {% endfor %}
-
-<div class="module" markdown="1">
-## Week 11
-{: .text-gamma }
-Extra Lab! (Optional)
-: **Lab**{: .label .label-yellow} [Lab 11](labs/11)
-    : **Lab due Sun. 12/12**
-
-Special Guest Lecture
-: **Lecture**{: .label .label-yellow} TBA
-    : Date/Details TBA
-</div>

@@ -16,7 +16,7 @@
         {% capture start %}{% include minutes.liquid time=event.start %}{% endcapture %}
         {% capture end %}{% include minutes.liquid time=event.end %}{% endcapture %}
         {% assign top = start | minus: offset | times: 40 | divided_by: 30 %}
-        {% assign height = end | minus: start | times: 60 | divided_by: 30 %}
+        {% assign height = end | minus: start | times: 40 | divided_by: 30 %}
         <li class="schedule-event {% if event.class %}{{ event.class }}{% else %}{{ event.name | slugify }}{% endif %}"
             style="top: {{ top }}px; height: {{ height }}px;">
           <div class="name">{{ event.name }}</div>
