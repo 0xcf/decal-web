@@ -30,8 +30,8 @@ seo:
 
 Infosession
 : **Infosession**{: .label .label-yellow}[ocf.io/decalzoom](https://ocf.io/decalzoom)
-: **Lab**{: .label .label-yellow}Lab 0
-    : **Lab due Sat. 9/4**
+: **Lab**{: .label .label-yellow}[Lab 0](https://docs.google.com/forms/u/3/d/1pTDvGX2f6eB2zoTSv757TWVvjFBa1jFCX25Y5hZTH2A/edit)
+    : **Lab due Sat. 1/29**
 </div>
 {% for week in site.data.materials %}
 <div class="module" markdown="1">
