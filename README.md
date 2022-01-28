@@ -10,6 +10,21 @@ The current iteration uses Jekyll to produce pages.
 
 decal-web is built for [Jekyll](https://jekyllrb.com), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for more information.
 
+### Developing on Supernova
+
+1. SSH into supernova
+```bash
+$ ssh <ocf-username>@supernova.ocf.berkeley.edu
+```
+1. Start the Jekyll server on supernova with:
+```bash
+$ make supernova
+```
+
+The console should ouput a web address (`http://supernova.ocf.berkeley.edu:8xxx/`). This web-page will update as you make changes, reload your browser tab to preview the changes.
+
+### Developing on your local machine
+
 You will need Ruby 2 to build the site (it has been tested on Ruby2.7.4). 
 * On Ubuntu 20.04, Ruby can be installed using `sudo apt install ruby-full`.
 * If using Arch, [follow this guide](https://gist.github.com/jhass/8839655bb038e829fba1) to install it.
