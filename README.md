@@ -12,12 +12,19 @@ decal-web is built for [Jekyll](https://jekyllrb.com), a static site generator. 
 
 ### Developing on Supernova
 
+This is the recommended method of development. 
+
 1. SSH into supernova
 ```bash
 $ ssh <ocf-username>@supernova.ocf.berkeley.edu
 ```
+1. Clone this repository
+```bash
+$ git clone https://github.com/0xcf/decal-web
+```
 1. Start the Jekyll server on supernova with:
 ```bash
+$ cd decal-web
 $ make supernova
 ```
 
