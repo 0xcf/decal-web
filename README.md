@@ -18,11 +18,11 @@ This is the recommended method of development.
 ```bash
 $ ssh <ocf-username>@supernova.ocf.berkeley.edu
 ```
-1. Clone this repository
+2. Clone this repository
 ```bash
 $ git clone https://github.com/0xcf/decal-web
 ```
-1. Start the Jekyll server on supernova with:
+3. Start the Jekyll server on supernova with:
 ```bash
 $ cd decal-web
 $ make supernova
@@ -43,11 +43,11 @@ You may also need to install Bundler 2.2.25: `gem install bundler:2.2.25`
 ```bash
 $ bundle install
 ```
-1. Start your local Jekyll server. You can also use `make local-dev`.
+2. Start your local Jekyll server. You can also use `make local-dev`.
 ```bash
 $ bundle exec jekyll serve
 ```
-1. The console should output a server address (`localhost:8xxx`). Open that address in your browser.
-1. Reload your web browser after making a change to preview its effect.
+3. The console should output a server address (`localhost:8xxx`). Open that address in your browser.
+4. Reload your web browser after making a change to preview its effect.
 
 For more information, refer to [Just the Docs](https://pmarsceill.github.io/just-the-docs/).
