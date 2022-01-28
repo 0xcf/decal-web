@@ -6,13 +6,13 @@ DEPLOY_DIR := public_html
 dev: bundle
 	bundle exec jekyll serve --host $(LISTEN_IP) -P $(RANDOM_PORT)
 
+.PHONY: supernova
+supernova: LISTEN_IP=supernova.ocf.berkeley.edu
+supernova: dev
+	
 .PHONY: local-dev
 local-dev: LISTEN_IP=127.0.0.1
 local-dev: dev
-
-.PHONY: local-dev
-local-dev: bundle
-	bundle exec jekyll serve
 
 .PHONY: bundle
 bundle:
