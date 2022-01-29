@@ -3,7 +3,7 @@ name: Nikhil Jha
 role: Facilitator
 email: nikhiljha@berkeley.edu
 website:
-photo:
+photo: nikhil.jpg
 ---
 
 helo
