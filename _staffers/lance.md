@@ -5,3 +5,5 @@ email:
 website:
 photo: lance.jpg
 ---
+
+"will be done later"
