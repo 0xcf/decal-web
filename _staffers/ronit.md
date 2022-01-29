@@ -1,6 +1,6 @@
 ---
 name: Ronit Nath
-role: Head Facilitator
+role: Facilitator
 email: ronitnath@berkeley.edu
 photo: ronit.png
 ---
