@@ -1,5 +1,5 @@
 ---
-name: Hongxian Samson Wu (Samson)
+name: Samson Wu
 role: Facilitator
 email: samwu1902@berkeley.edu
 website:

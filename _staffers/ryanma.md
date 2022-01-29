@@ -1,5 +1,5 @@
 ---
-name: Ryan Yuteng Ma (Ryan)
+name: Ryan Ma
 role: Facilitator
 email: ryan.ma3011@berkeley.edu
 website: 
