@@ -1,5 +1,5 @@
 ---
-name: Ethan Zang
+name: Ethan Zhang
 role: Facilitator
 email: ethanzhang@berkeley.edu
 website:
