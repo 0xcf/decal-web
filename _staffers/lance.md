@@ -1,8 +1,8 @@
 ---
 name: Lance Mathias
 role: Head Facilitator
-email: 
-website:
+email: lmathias@berkeley.edu
+website: https://github.com/lancemathias
 photo: lance.jpg
 ---
 
