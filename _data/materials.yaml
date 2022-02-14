@@ -38,7 +38,7 @@
   #beginner-solutions: https://docs.google.com/document/d/1rs5FCTN99iLzRgV5UHskgQdCrRUJ5vrVY9Mw1acYj9U/edit?usp=sharing 
   #advanced-solutions: https://docs.google.com/document/d/1df8kIAWw7Xxetg_Y5eJXE-1eXgYAHsDW9A3rL5NU1VU/edit?usp=sharing
   labdue: Sat. 2/19
-  hidelink: true
+  hidelink: false
 
 - id: 4
   date: 2/21/2022
