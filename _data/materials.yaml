@@ -22,8 +22,8 @@
   advanced-name: Packages
   advanced-slides: https://docs.google.com/presentation/d/1RMNPRHNoh4a5KWwXY8fBWJ49nBafxbo4g-OvSZZ85V8/edit?usp=sharing
   advanced-video: https://youtu.be/M0vPXQycer0
-  #beginner-solutions: https://docs.google.com/document/d/18d2eJ6sdD-HvLIRY0z2eC-hx8Rbaaxc0Tk7iHn9aJ5E/edit?usp=sharing
-  #advanced-solutions: https://docs.google.com/document/d/1sYrT0-6nlKaKSdNfKPIVQC7qT5TfIr4ufbpAE1xUtJM/edit?usp=sharing
+  beginner-solutions: https://docs.google.com/document/d/18d2eJ6sdD-HvLIRY0z2eC-hx8Rbaaxc0Tk7iHn9aJ5E/edit?usp=sharing
+  advanced-solutions: https://docs.google.com/document/d/1sYrT0-6nlKaKSdNfKPIVQC7qT5TfIr4ufbpAE1xUtJM/edit?usp=sharing
   labdue: Mon. 2/14
   hidelink: false
 
@@ -64,7 +64,7 @@
   #beginner-solutions: https://docs.google.com/document/d/1ltsmW3Tg_VRN9Slt9nSYAxZtqMAFQvlsO6NsJjag6m0/edit?usp=sharing
   #advanced-solutions: https://docs.google.com/document/d/1gCotUApMFWvhGXpkXozwOkPhd4AGYqp7jmyyutbkIIM/edit?usp=sharing
   labdue: Sat. 3/5
-  hidelink: true
+  hidelink: false
 
 - id: 6
   date: 3/7/2022
