@@ -77,7 +77,7 @@
   #beginner-solutions: https://docs.google.com/document/d/1LQQzsYmZrplLFdCykMwBcXJwb7qu35ZqlXJogonhNCI/edit?usp=sharing
   #advanced-solutions: https://docs.google.com/document/d/1D9V_4VB4vu2FYRrQgID2m98ak2qEzXAuqWr2hSUoz1U/edit?usp=sharing
   labdue: Sat. 3/12
-  hidelink: true
+  hidelink: false
 
 - id: 7
   date: 3/14/2022
