@@ -48,8 +48,8 @@
   advanced-name: Linux Post-Install
   advanced-slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
   advanced-video: https://youtu.be/BVbHnEv8L9s
-  #beginner-solutions: https://docs.google.com/document/d/1RPEfOSC0XyLcXpF3Kqq7oV_bo7I_7dZCle3_fQlMGqk/edit
-  #advanced-solutions: https://docs.google.com/document/d/1AA2kDoGSrg5z-6EhFcl8UpGfVxpftMtpGkKoj3pJHHk/edit
+  beginner-solutions: https://docs.google.com/document/d/1RPEfOSC0XyLcXpF3Kqq7oV_bo7I_7dZCle3_fQlMGqk/edit
+  advanced-solutions: https://docs.google.com/document/d/1AA2kDoGSrg5z-6EhFcl8UpGfVxpftMtpGkKoj3pJHHk/edit
   labdue: Sat. 2/26
   hidelink: false
 
@@ -90,7 +90,7 @@
   #beginner-solutions: https://docs.google.com/document/d/1u5KV_LIfUbQHvPbspq_ejHxO1LsxHskMIlcHVgi0AhQ/edit?usp=sharing
   #advanced-solutions: https://docs.google.com/document/d/1YiSOMMNl_H5XNmvEqo53tCQ8xHFurqBMkIq6dWJ7ExE/edit?usp=sharing
   labdue: Sat. 3/26
-  hidelink: true
+  hidelink: false
 
 - id: 8
   date: 3/28/2022
