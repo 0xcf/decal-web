@@ -103,7 +103,7 @@
   #beginner-solutions: https://docs.google.com/document/d/1izHUZNfQHGPcdvLuYJhB9iPtABFGo8sxvRpwALqHkvw/edit?usp=sharing
   #advanced-solutions: https://docs.google.com/document/d/1cQ5w2uZN1uZB2UJXCloBj3TFcppyWjJGu7hbLerREtA/edit?usp=sharing
   labdue: Sat. 4/2
-  hidelink: true
+  hidelink: false
 
 - id: 9
   date: 4/4/2022
