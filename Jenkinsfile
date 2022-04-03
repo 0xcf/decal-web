@@ -29,7 +29,7 @@ pipeline {
     stage('build') {
       steps {
         echo "Building branch ${env.BRANCH_NAME}"
-	sh "[ -d _site] || mkdir _site"
+	sh " test -d _site || mkdir _site"
         sh 'docker run --rm --volume=$PWD:/srv/jekyll jekyll/jekyll:latest jekyll build'
       }
     }
