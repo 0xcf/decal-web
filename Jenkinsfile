@@ -29,7 +29,7 @@ pipeline {
     stage('build') {
       steps {
         echo "Building branch ${env.BRANCH_NAME}"
-        sh 'docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/jekyll:latest jekyll build'
+        sh 'docker run --rm --volume=\"$PWD:/srv/jekyll\" -it jekyll/jekyll:latest jekyll build'
       }
     }
 
@@ -53,7 +53,7 @@ pipeline {
           }
           steps {
             sshagent (credentials: ['decal-ssh-key']) {
-	      sh "docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/jekyll:latest jekyll build --baseurl /pr/${env.BRANCH_NAME}"
+	      sh "docker run --rm --volume=\"$PWD:/srv/jekyll\" -it jekyll/jekyll:latest jekyll build --baseurl /pr/${env.BRANCH_NAME}"
               sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
 	      script {
 	      
