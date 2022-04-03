@@ -2,7 +2,7 @@
 name: Vacuum Cleaner
 role: Facilitator
 email: me@example.com
-website: https://google.com
+website: https://google.com     # should start with https://
 photo: kevin.jpg
 ---
 
