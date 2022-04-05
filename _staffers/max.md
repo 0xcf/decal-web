@@ -1,7 +1,9 @@
 ---
 name: Max Vogel
 role: Facilitator
-email: max-v@berkeley.edu
-website: www.mehvix.com
-photo: max.png
+email: max@mehvix.com
+website: https://www.mehvix.com
+photo: vogel.png
 ---
+
+Never not experimenting.
