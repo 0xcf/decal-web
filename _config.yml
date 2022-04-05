@@ -19,7 +19,7 @@ description: A course covering the basics of setting up and administering a prod
 author: Nikhil Jha, Ben Cuan
 baseurl: '/' # the subpath of your site, e.g. /blog
 url: 'https://decal.ocf.berkeley.edu' # the base hostname & protocol for your site, e.g. http://example.com
-exclude: ["Gemfile", "Gemfile.lock", "LICENSE", "README.md", vendor]
+exclude: ["Gemfile", "Gemfile.lock", "LICENSE", "README.md", vendor, Jenkinsfile, Makefile]
 
 # Theme settings
 remote_theme: pmarsceill/just-the-docs@v0.3.3
