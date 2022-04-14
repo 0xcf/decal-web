@@ -10,9 +10,39 @@ The current iteration uses Jekyll to produce pages.
 
 decal-web is built for [Jekyll](https://jekyllrb.com), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for more information.
 
+### Developing using Docker
+
+**This is the reccomended method for development.**
+
+
+1. Install Docker following instructions from [here](https://docs.docker.com/engine/install/)
+2. Pull the Docker image
+```bash
+$ docker pull jekyll/jekyll
+```
+3. Clone this repository
+```bash
+$ git clone https://github.com/0xcf/decal-web
+$ cd decal-web
+```
+4. Build the site
+```bash 
+$ docker run --rm --volume=$PWD:/srv/jekyll:Z  \
+    --volume=$PWD/vendor/bundle:/usr/local/bundle:Z \
+    jekyll/jekyll:latest jekyll build
+```
+The first volume is necessary to provide the build files to Jekyll but the second volume is optional and used to cache Gems.
+5. Serve the site on your local machine
+```bash
+$ docker run --rm --volume=$PWD:/srv/jekyll:Z  \
+    --volume=$PWD/vendor/bundle:/usr/local/bundle:Z \
+    --publish [::1]:4000:4000 jekyll/jekyll:latest jekyll serve
+```
+The website should be served on http://localhost:4000 and will reflect changes that you make.
+
 ### Developing on Supernova
 
-This is the recommended method of development. 
+**This is method currently does not work.**
 
 1. SSH into supernova
 ```bash

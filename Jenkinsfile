@@ -26,16 +26,11 @@ pipeline {
       }
     }
 
-    stage('bundle') {
-      steps {
-        sh 'make bundle'
-      }
-    }
-
     stage('build') {
       steps {
         echo "Building branch ${env.BRANCH_NAME}"
-        sh 'make build'
+	sh " test -d _site || mkdir _site"
+        sh 'docker run --rm --volume=$PWD:/srv/jekyll:Z  --volume=$PWD/vendor/bundle:/usr/local/bundle:Z jekyll/jekyll:latest jekyll build'
       }
     }
 
@@ -59,7 +54,7 @@ pipeline {
           }
           steps {
             sshagent (credentials: ['decal-ssh-key']) {
-	      sh "bundle exec jekyll build --verbose --trace --baseurl /pr/${env.BRANCH_NAME}"
+	      sh "docker run --rm --volume=\$PWD:/srv/jekyll --volume=$PWD/vendor/bundle:/usr/local/bundle:Z jekyll/jekyll:latest jekyll build --baseurl /pr/${env.BRANCH_NAME}"
               sh "make deploy DEPLOY_DIR=public_html/pr/${env.BRANCH_NAME}"
 	      script {
 	      
