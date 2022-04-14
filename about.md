@@ -98,7 +98,7 @@ If you are still unsure about which track to choose, you can email us at [decal@
 
 ## I don't want units / wasn't accepted / am not a student. Can I audit this course?
 We are working hard to get all of our materials online this semester for everyone to access! Feel free to view our lectures or complete any of the labs on your own. (You will
-need your own Linux VM though- you can [install one locally](https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/) or get one from a provider such as [DigitalOcean](https://www.digitalocean.com/).)
+need your own Linux VM though- you can [install one locally](https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/) or get one from a provider.
 
 ## I'm stuck on a lab/concept! Where can I find help?
 The best way to get support with course content is to ask during scheduled lab times. If you need help at another time, feel free to ask on Piazza, on our Slack channel at [#decal-general][slack], or on our [Discord channel][discord]. Logistics questions are best suited for email ([decal@ocf.berkeley.edu][email]).
