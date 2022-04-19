@@ -76,3 +76,11 @@ Advanced Track
 {% endif %}
 </div>
 {% endfor %}
+
+<div class="module" markdown="1">
+## Week 11
+{: .text-gamma }
+Extra Lab! (Optional)
+: **Lab**{: .label .label-yellow} [Lab 11](labs/11)
+    : **Lab due Sun. 5/7**
+</div>
