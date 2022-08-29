@@ -6,7 +6,7 @@ description: >-
     Past offerings of the course.
 ---
 
-<h1>Unix System Administration Decal</h1>
+<h1>Linux System Administration Decal</h1>
 
 <p>Below are previous semesters' archived course websites:</p>
 
