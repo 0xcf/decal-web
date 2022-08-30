@@ -28,8 +28,6 @@ search_enabled: true
 heading_anchors: true
 permalink: pretty
 aux_links:
-  Piazza:
-    - 'https://piazza.com/class/ky3z1ykh7iz384'
   OCF:
     - 'https://ocf.berkeley.edu/'
   XCF:
