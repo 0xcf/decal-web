@@ -11,17 +11,16 @@ schedule:
   - name: Monday
   - name: Tuesday
     events:
-      - name: Beginner Lab
+      - name: Lab
         start: 8:00 PM
         end: 9:00 PM
         location: 171 MLK Student Union
-
   - name: Wednesday
   - name: Thursday
     events:
-      - name: Advanced Lab
-        start: 8:00 PM
-        end: 9:00 PM
-        location: 171 MLK Student Union
+      - name: Lecture
+        start: 9:00 PM
+        end: 10:00 PM
+        location: VLSB 2060
   - name: Friday
 ---

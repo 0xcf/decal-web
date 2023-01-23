@@ -2,128 +2,65 @@
 # redirect to the provided link.
 
 - id: 1
-  date: 1/31/2022
-  beginner-name: History of UNIX, intro to shell, FOSS
-  beginner-slides: https://docs.google.com/presentation/d/1AtnXiOZniLuP9QcnG8_OT1lwmhISRk2_zeANpXgycaY/edit?usp=sharing
-  beginner-video: https://www.youtube.com/playlist?list=PLbFJdEcMM5GHnbRDEgJ5HNdOzmS5QrNXG
-  advanced-name: Advanced Introduction to UNIX
-  advanced-slides: https://docs.google.com/presentation/d/1P4HcAr1NcxFEL1m9bIokiBP1zOODHj8YQMPFSafeWko/edit?usp=sharing
-  advanced-video: https://www.youtube.com/watch?v=TBsxgbGwtnA
-  beginner-solutions: https://docs.google.com/document/d/1SaaiUpLzfY6Mo8EJXhi9V_JK7V8Z2d5ctZsbeRWgzKU/edit?usp=sharing
-  advanced-solutions: https://docs.google.com/document/d/12IYqVnEZfSUz0wPUyItKP6M5Axbn4qjWeu0TJ72AHFU/edit?usp=sharing
-  labdue: Sat. 2/5
-  hidelink: false
+  date: 1/31/2023
+  name: Intro to Linux, FOSS
+  # slides: 
+  # video: 
+  # solutions: 
+  # labdue: Sat. 2/04
+  hidelink: true
 
 - id: 2
-  date: 2/7/2022
-  beginner-name: Core Shell
-  beginner-slides: https://docs.google.com/presentation/d/1o7CWAAa21JYll_isRd-oR3dhurBAPzQA5desEhxvwH0/edit?usp=sharing
-  beginner-video: https://www.youtube.com/watch?v=TXNpIIlcHm4&feature=youtu.be
-  advanced-name: Packages
-  advanced-slides: https://docs.google.com/presentation/d/1RMNPRHNoh4a5KWwXY8fBWJ49nBafxbo4g-OvSZZ85V8/edit?usp=sharing
-  advanced-video: https://youtu.be/M0vPXQycer0
-  beginner-solutions: https://docs.google.com/document/d/18d2eJ6sdD-HvLIRY0z2eC-hx8Rbaaxc0Tk7iHn9aJ5E/edit?usp=sharing
-  advanced-solutions: https://docs.google.com/document/d/1sYrT0-6nlKaKSdNfKPIVQC7qT5TfIr4ufbpAE1xUtJM/edit?usp=sharing
-  labdue: Mon. 2/14
-  hidelink: false
+  date: 2/7/2023
+  name: Shell Scripting
+  hidelink: true
 
 - id: 3
-  date: 2/14/2022
-  beginner-name: Shell Scripting
-  beginner-slides: https://docs.google.com/presentation/d/1LG8G_fbduqo9K2NOtQDjHkmNCMim0kQOmo-0q3fvmRc/edit?usp=sharing
-  beginner-video: https://www.youtube.com/watch?v=7xAGcmhkflM
-  advanced-name: DIY Linux Pre-Install
-  advanced-slides: https://docs.google.com/presentation/d/1oLtsjsEIsvChOI31_5YYFhILfzGlyx7Hk9DsL1Nv-mc/edit?usp=sharing
-  advanced-video: https://www.youtube.com/watch?v=MnsUBRIw-74&feature=youtu.be
-  beginner-solutions: https://docs.google.com/document/d/1rs5FCTN99iLzRgV5UHskgQdCrRUJ5vrVY9Mw1acYj9U/edit?usp=sharing
-  advanced-solutions: https://docs.google.com/document/d/1df8kIAWw7Xxetg_Y5eJXE-1eXgYAHsDW9A3rL5NU1VU/edit?usp=sharing
-  labdue: Sat. 2/19
-  hidelink: false
+  date: 2/14/2023
+  name: Packages
+  hidelink: true
 
 - id: 4
-  date: 2/21/2022
-  beginner-name: Compiling, Distros, and Packaging
-  beginner-slides: https://docs.google.com/presentation/d/1UJHO7fXok-6RN7DAJ5SPTqcCXiRSR8hpGZx9OQMnMOU/edit?usp=sharing
-  beginner-video: https://youtu.be/Uh7N86zjYm4
-  advanced-name: Linux Post-Install
-  advanced-slides: https://docs.google.com/presentation/d/1b5nggnCS-qzkpp62xvnq5eGrJcgsYAvqlwIsx-Z6ETI/edit?usp=sharing
-  advanced-video: https://youtu.be/BVbHnEv8L9s
-  beginner-solutions: https://docs.google.com/document/d/1RPEfOSC0XyLcXpF3Kqq7oV_bo7I_7dZCle3_fQlMGqk/edit
-  advanced-solutions: https://docs.google.com/document/d/1AA2kDoGSrg5z-6EhFcl8UpGfVxpftMtpGkKoj3pJHHk/edit
-  labdue: Sat. 2/26
-  hidelink: false
+  date: 2/21/2023
+  name: Services
+  hidelink: true
 
 - id: 5
-  date: 2/28/2022
-  beginner-name: Networking 101
-  beginner-slides: https://docs.google.com/presentation/d/1DCN2fViHjAS7PoS98dsVC-LNwPN_jvaAKIuVFaRJrM0/edit?usp=sharing
-  beginner-video: https://youtu.be/cPkLsSFKwPM
-  advanced-name: Processes and Services
-  advanced-slides: https://docs.google.com/presentation/d/1sv5Bxw9Fet9utjFU8xGDntawLVmBOT9YpCt9mJ2V6Dg/edit
-  advanced-video: https://youtu.be/AS293JoAr8s
-  beginner-solutions: https://docs.google.com/document/d/1ltsmW3Tg_VRN9Slt9nSYAxZtqMAFQvlsO6NsJjag6m0/edit?usp=sharing
-  advanced-solutions: https://docs.google.com/document/d/1gCotUApMFWvhGXpkXozwOkPhd4AGYqp7jmyyutbkIIM/edit?usp=sharing
-  labdue: Sat. 3/5
-  hidelink: false
+  date: 2/28/2023
+  name: Networking 101
+  hidelink: true
 
 - id: 6
-  date: 3/7/2022
-  beginner-name: Processes
-  beginner-slides: https://docs.google.com/presentation/d/1AS1BYX8jdBQGBviBGgcZPREIePrsgkT7pc-9Wk_RkS0/edit?usp=sharing
-  beginner-video: https://youtu.be/Z_q1zkeWEFs
-  advanced-name: Networking 102
-  advanced-slides: https://docs.google.com/presentation/d/14XXyjUxUohINsg93qD-8SHP1mPpTTnBoZ3NHmMVTJqY/edit?usp=sharing
-  advanced-video: https://youtu.be/DPKRivN9ga4
-  beginner-solutions: https://docs.google.com/document/d/1LQQzsYmZrplLFdCykMwBcXJwb7qu35ZqlXJogonhNCI/edit?usp=sharing
-  advanced-solutions: https://docs.google.com/document/d/1D9V_4VB4vu2FYRrQgID2m98ak2qEzXAuqWr2hSUoz1U/edit?usp=sharing
-  labdue: Sat. 3/12
-  hidelink: false
+  date: 3/7/2023
+  name: Web Servers
+  hidelink: true
 
 - id: 7
-  date: 3/14/2022
-  beginner-name: Services
-  beginner-slides: https://docs.google.com/presentation/d/1N67saQd3NWrBLrk1oEOE2UdLa4Ny_qjDBUAZQolXsUE/edit?usp=sharing
-  beginner-video: https://youtu.be/y3mIzYtCPeY
-  advanced-name: Networked Services
-  advanced-slides: https://docs.google.com/presentation/d/11nMxy5iJTS3YDBLqT3O5i8cbbRdtS2Hxf4QRbHJiGBo/edit
-  advanced-video: https://youtu.be/5clc5xi5FDo
-  beginner-solutions: https://docs.google.com/document/d/1u5KV_LIfUbQHvPbspq_ejHxO1LsxHskMIlcHVgi0AhQ/edit?usp=sharing
-  advanced-solutions: https://docs.google.com/document/d/1YiSOMMNl_H5XNmvEqo53tCQ8xHFurqBMkIq6dWJ7ExE/edit?usp=sharing
-  labdue: Sat. 3/26
-  hidelink: false
+  date: 3/14/2023
+  name: Security Fundamentals
+  hidelink: true
 
 - id: 8
-  date: 3/28/2022
-  beginner-name: Security Fundamentals
-  beginner-slides: https://docs.google.com/presentation/d/1t6fU6qPELZvBo7N_KZLDiLDsS2DJPcgySIXZjIVfKho/edit?usp=sharing
-  beginner-video: https://www.youtube.com/watch?v=hqrWBYm5-Zg&feature=youtu.be
-  advanced-name: Config Management
-  advanced-slides: https://docs.google.com/presentation/d/1ZAXSwjM9_SncvD8GGQgbPI2g3KlSsIZi2-xxeHwfSWA/edit
-  advanced-video: https://youtu.be/T9hakIIYUkk
-  #beginner-solutions: https://docs.google.com/document/d/1izHUZNfQHGPcdvLuYJhB9iPtABFGo8sxvRpwALqHkvw/edit?usp=sharing
-  #advanced-solutions: https://docs.google.com/document/d/1cQ5w2uZN1uZB2UJXCloBj3TFcppyWjJGu7hbLerREtA/edit?usp=sharing
-  labdue: Sat. 4/2
-  hidelink: false
+  date: 3/28/2023
+  name: Version Control (git) and Backups
+  hidelink: true
 
 - id: 9
-  date: 4/4/2022
-  beginner-name: Version Control and Backups
-  beginner-slides: https://docs.google.com/presentation/d/18BQc1AyNBsOE-zu_EPG52PsMsQ_uRLF_0s266jaApAM/edit
-  beginner-video: https://youtu.be/X4yGMr9c64U
-  advanced-name: Advanced Security
-  advanced-slides: https://docs.google.com/presentation/d/12ypck2LSIaNGq5RpLmIb4gbAX-GP2pCSgf4l9VMuq1k/edit
-  advanced-video: https://youtu.be/j4ryvaVJURs
-  labdue: Sat. 4/9
-  hidelink: false
+  date: 4/4/2023
+  name: Docker
+  hidelink: true
 
 - id: 10
-  date: 4/11/2022
-  beginner-name: Cloud, Containers, and Config Management
-  beginner-slides: https://docs.google.com/presentation/d/1aiSnR1zT2qM-RcLnrCC1FhTqjnzKOQvMyR5r_hJr9V0/edit?usp=sharing
-  beginner-video: https://www.youtube.com/watch?v=JhgEg1YTO7c&feature=youtu.be
-  advanced-name: Virtualization, Containers, Distributed Architecture
-  advanced-slides: https://docs.google.com/presentation/d/1EEUT0Z-odYYEmdC9Z1AAh7gVFLH3L2om9CHpqpklhOk/edit?usp=sharing
-  advanced-video: https://www.youtube.com/watch?v=tCg77GmZUqo
-  labdue: Sat. 4/16
-  hidelink: false
+  date: 4/11/2023
+  name: Kubernetes
+  hidelink: true
 
+- id: 11
+  date: 4/18/2023
+  name: Puppet (Optional Extra Lab)
+  hidelink: true
+
+- id: 12
+  date: 4/25/2023
+  name: CUDA (Guest Lecture)
+  hidelink: true
