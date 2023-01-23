@@ -1,10 +1,10 @@
 ---
 title: Week 0 Announcement
 week: 0
-date: 2022-8-29
+date: 2023-1-23
 ---
 
-1. We will **not** be offering the Linux SysAdmin Decal in Fall 2022!
-1. Feel free to fill out the [interest form](https://forms.gle/rXAQRXXy8isehBd7A) to be notified about the Spring 2023 offering of the Decal. 
-1. We at the OCF are using this semester to revamp the Decal for it's future offerings. If you're interested in helping out and learning cool things along the way, [join](https://ocf.io/apply) the volunteer staff!
-1. Looking for a previous semester's materials? You can view it in the [archive](/archive).
+1. [Fill out the interest form](https://forms.gle/rXAQRXXy8isehBd7A) to receive updates for Linux SysAdmin Decal Spring 2023! The official *registration* form will be released after the infosessions.
+2. There will be two infosessions, see below for dates.
+3. The listed course content is tentative and may be subject to change.
+4. Looking for a previous semester's materials? You can view it in the [archive](/archive).
