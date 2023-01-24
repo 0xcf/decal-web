@@ -11,16 +11,16 @@ schedule:
   - name: Monday
   - name: Tuesday
     events:
-      - name: Lab
-        start: 8:00 PM
-        end: 9:00 PM
-        location: 171 MLK Student Union
-  - name: Wednesday
-  - name: Thursday
-    events:
       - name: Lecture
         start: 9:00 PM
         end: 10:00 PM
         location: VLSB 2060
+  - name: Wednesday
+  - name: Thursday
+    events:
+      - name: Lab
+        start: 8:00 PM
+        end: 9:00 PM
+        location: 171 MLK Student Union (OCF Lab)
   - name: Friday
 ---
