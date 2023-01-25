@@ -30,6 +30,7 @@ seo:
 Infosession
 : **Infosession 1**{: .label .label-yellow} Tuesday 1/24, 9-10pm @ VLSB 2060 / [ocf.io/decalzoom](https://ocf.io/decalzoom)
 : **Infosession 2**{: .label .label-yellow} Thursday 1/26, 8-9pm @ OCF / [ocf.io/decalzoom](https://ocf.io/decalzoom)
+: **Lab**{: .label .label-blue}[ocf.io/decal/lab0](https://ocf.io/decal/lab0)
 </div>
 
 
