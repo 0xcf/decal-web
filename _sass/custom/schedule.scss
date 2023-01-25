@@ -92,11 +92,11 @@
       @extend .fs-2;
     }
 
-    &.beginner-lab {
+    &.lecture {
       background-color: $blue-000;
     }
 
-    &.advanced-lab {
+    &.lab {
       background-color: $red-000;
     }
   }
