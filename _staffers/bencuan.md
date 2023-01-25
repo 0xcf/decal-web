@@ -1,6 +1,6 @@
 ---
 name: Ben Cuan
-role: Head Facilitator
+role: Facilitator
 email: contact@bencuan.me
 website: https://bencuan.me
 photo: bencuan.jpg
