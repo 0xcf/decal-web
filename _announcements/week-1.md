@@ -1,7 +1,7 @@
 ---
 title: Week 1 Announcement
 week: 1
-date: 2022-1-30
+date: 2023-1-30
 ---
 
 Hello everyone! Welcome to the Linux Sysadmin Decal! Here are your week 1 announcements:

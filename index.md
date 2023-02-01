@@ -43,9 +43,6 @@ Infosession
 {% if week.hidelink %}
 **Lecture**{: .label .label-green}{{week.name}} <br />
 **Lab**{: .label .label-blue}Lab {{week.id}}
-{% if week.labdue %}
-    : **Lab due {{week.labdue}}**
-{% endif %}
 
 {% elsif week.solutions %}
 **Lecture**{: .label .label-green}[{{week.name}}]({{week.video}}) 
@@ -54,10 +51,9 @@ Infosession
     : **Lab due {{week.labdue}}**
 
 {% else %}
-**Lecture**{: .label .label-green}[{{week.name}}]({{week.video}}) 
-    : [Slides]({{week.slides}})
-: **Lab**{: .label .label-blue}[Lab {{week.id}}](labs/b{{week.id}})
-    : **Lab due {{week.labdue}}**
+**Lecture**{: .label .label-green}{{week.name}} : [Recording]({{week.video}}), [Slides]({{week.slides}}){:target="_blank"} <br />
+**Lab**{: .label .label-blue}[Lab {{week.id}}](labs/{{week.id}}) {% if week.labdue %}due **{{week.labdue}}**{% endif %}
+
 
 {% endif %}
 </div>
