@@ -28,6 +28,8 @@ search_enabled: true
 heading_anchors: true
 permalink: pretty
 aux_links:
+  Ed:
+    - 'https://edstem.org/us/courses/35914/discussion/'
   OCF:
     - 'https://ocf.berkeley.edu/'
   XCF:
