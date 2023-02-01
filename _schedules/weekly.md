@@ -14,8 +14,7 @@ schedule:
       - name: Lecture
         start: 9:00 PM
         end: 10:00 PM
-        location: VLSB 2060
-        zoom: ocf.io/decalzoom
+        location: VLSB 2060<br /> ocf.io/decalzoom
   - name: Wednesday
   - name: Thursday
     events:
