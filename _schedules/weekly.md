@@ -15,6 +15,7 @@ schedule:
         start: 9:00 PM
         end: 10:00 PM
         location: VLSB 2060
+        zoom: ocf.io/decalzoom
   - name: Wednesday
   - name: Thursday
     events:
