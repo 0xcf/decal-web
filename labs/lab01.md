@@ -144,10 +144,10 @@ Here's the problem statement:
 
 In the spirit of this course and sysadmin work in general, we highly encourage you to take this opportunity to go off-script and figure out how to acquire an virtual machine. If you have difficulties getting a VM setup, ask us for help duing the lab section or make a private post on the course Ed. 
 
-<details>
-<summary>Possible suggestions if you're really stuck on this :)</summary>
-<p>
-<p>
+
+
+Possible suggestions if you're really stuck on this :)
+
 
 There are primarily 2 ways of getting a VM - locally on your machine or on the cloud(someone else's machine):
 
