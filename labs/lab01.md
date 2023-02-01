@@ -140,6 +140,23 @@ Using the public OCF login server will allow you to do basic things like the lab
 
 Here's the problem statement:
 
-**Using any method you prefer, create and connect to a virtual machine running any Debian-based Linux distribution. Submit a screenshot of you running `ssh` and successfully logging into your instance.** 
+**Using any method you prefer, create and connect to a virtual machine running any Debian-based Linux distribution. Submit a screenshot of you successfully logging into your instance.** 
 
-In the spirit of this course and sysadmin work in general, we highly encourage you to take this opportunity to go off-script and figure out how to 
+In the spirit of this course and sysadmin work in general, we highly encourage you to take this opportunity to go off-script and figure out how to acquire an virtual machine. If you have difficulties getting a VM setup, ask us for help duing the lab section or make a private post on the course Ed. 
+
+<details>
+<summary>Possible suggestions if you're really stuck on this :)</summary>
+<p>
+<p>
+
+There are primarily 2 ways of getting a VM - locally on your machine or on the cloud(someone else's machine):
+
+ ### Local Setups:
+  - [Virtual Box](https://www.virtualbox.org/)
+  - [UTM](https://getutm.app/) - Only for MacOS
+ 
+ ### Cloud Setups:
+ These are usually paid services but if you have a student email berkeley or any other university they provide more than enough free credits for the purposes of this decal 
+  - [Digital Ocean](https://www.digitalocean.com/github-students)
+  - [GCP](https://cloud.google.com/free/)
+  - [Azure](https://azure.microsoft.com/en-us/free/students/)
