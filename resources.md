@@ -18,8 +18,8 @@ description: >-
 
 Labs intended to bridge the gap between regular DeCal content and knowledge required to contribute to OCF infrastructure.
 
-* [Lab S1](../labs/s1): staff onboarding and getting started.
-* [Lab S2](../labs/s2): an interactive tour of OCF command-line tools.
-* [Lab S3](../labs/s3): how to access the OCF administrative tools (RT, buysheet, minutes)
-* [Lab S4](../labs/s4): making your first pull request to the OCF
+* [Lab S1](../labs/staff/s1): staff onboarding and getting started.
+* [Lab S2](../labs/staff/s2): an interactive tour of OCF command-line tools.
+* [Lab S3](../labs/staff/s3): how to access the OCF administrative tools (RT, buysheet, minutes)
+* [Lab S4](../labs/staff/s4): making your first pull request to the OCF
 * [Lab S5](#): coming soon
