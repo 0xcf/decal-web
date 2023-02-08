@@ -12,7 +12,8 @@
 
 - id: 2
   date: 2/7/2023
-  name: Shell Scripting
+  name: Core Shell & Shell Scripting
+  slides: https://docs.google.com/presentation/d/1DG4sbgUtxSwVnfZH-pJriyS0Zrc9C5kp7p4zway3Kp0/edit#slide=id.g1fdf073d99a_0_235
   hidelink: false
 
 - id: 3
