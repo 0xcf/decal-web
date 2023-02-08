@@ -13,7 +13,7 @@
 - id: 2
   date: 2/7/2023
   name: Shell Scripting
-  hidelink: true
+  hidelink: false
 
 - id: 3
   date: 2/14/2023
