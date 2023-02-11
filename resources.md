@@ -22,4 +22,4 @@ Labs intended to bridge the gap between regular DeCal content and knowledge requ
 * [Lab S2](../labs/staff/s2): an interactive tour of OCF command-line tools.
 * [Lab S3](../labs/staff/s3): how to access the OCF administrative tools (RT, buysheet, minutes)
 * [Lab S4](../labs/staff/s4): making your first pull request to the OCF
-* [Lab S5](#): coming soon
+* [Lab S5](../labs/staff/s5): an introduction to networking at the OCF
