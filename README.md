@@ -66,6 +66,7 @@ You will need Ruby 2 to build the site (it has been tested on Ruby2.7.4).
 * On Ubuntu 20.04, Ruby can be installed using `sudo apt install ruby-full`.
 * If using Arch, [follow this guide](https://gist.github.com/jhass/8839655bb038e829fba1) to install it.
 * [ruby-install](https://github.com/postmodern/ruby-install) is a helpful script- you can run `ruby-install 2.7.4` if Ruby is on the wrong version in your package manager.
+* You can also use [asdf-vm](https://asdf-vm.com/). After installing Ruby ( `asdf install ruby 2.7.2` ), prepend `asdf exec` to all commands that require it (example: `asdf exec bundle exec jekyll serve`).
 
 You may also need to install Bundler 2.3.10: `gem install bundler:2.3.10`
 
