@@ -28,7 +28,9 @@
 - id: 4
   date: 2/21/2023
   name: Services
-  hidelink: true
+  hidelink: false
+  slides: https://docs.google.com/presentation/d/15QamCeJRNG4ezZ2T1ovQQWrpSPTJahlJoszvJzIImvc/edit#slide=id.g1f06a453932_0_0
+  labdue: Sat. 3/4
 
 - id: 5
   date: 2/28/2023
