@@ -53,7 +53,10 @@
 - id: 7
   date: 3/14/2023
   name: Security Fundamentals
-  hidelink: true
+  hidelink: false
+  slides: https://docs.google.com/presentation/d/1l53AOhxI3OIYpD1xTlUthZGF2S30Sb3QtfwKVeX28ag/edit?usp=sharing
+  video: 
+  labdue: Sat. 3/25
 
 - id: 8
   date: 3/28/2023
