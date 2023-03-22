@@ -61,7 +61,8 @@
 - id: 8
   date: 3/21/2023
   name: Version Control (git) and Backups
-  hidelink: true
+  slides: https://docs.google.com/presentation/d/1flD9fiZQdx32QM4imaAJ9X2v69Go88nzKxh-XuPzotk/edit?usp=sharing
+  hidelink: false
 
 - id: 9
   date: 4/4/2023
