@@ -69,7 +69,8 @@
 - id: 9
   date: 4/4/2023
   name: Docker
-  hidelink: true
+  labdue: Sat. 4/15
+  hidelink: false
 
 - id: 10
   date: 4/11/2023
