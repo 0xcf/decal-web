@@ -76,7 +76,9 @@
 - id: 10
   date: 4/11/2023
   name: Kubernetes
-  hidelink: true
+  hidelink: false
+  labdue: Sat. 4/22
+  slides: https://docs.google.com/presentation/d/1KiUXv9z7NiHGHXVq2qjR9yxUpOcMMAHEIUOWGVyrKFs/edit#slide=id.gecfccbeaae_0_0
 
 - id: 11
   date: 4/18/2023
