@@ -89,4 +89,4 @@
 - id: 12
   date: 4/25/2023
   name: CUDA (Guest Lecture)
-  hidelink: true
+  hidelink: false
