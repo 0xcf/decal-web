@@ -1,9 +1,9 @@
 ---
 name: Trinity Chung
-role: Facilitator
+role: Head Facilitator
 email: trinityc@berkeley.edu
 website: https://trinityjchung.com
-photo: trinity.png
+photo: trinityc.png
 ---
 
-beep boop
+bada bing bada boop

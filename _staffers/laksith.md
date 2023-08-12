@@ -1,6 +1,6 @@
 ---
 name: Laksith
-role: Head Facilitator
+role: Facilitator
 email: laksith@berkeley.edu
 photo: laksith.jpg
 website: https://github.com/laksith19/

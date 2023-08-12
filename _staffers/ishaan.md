@@ -1,6 +1,6 @@
 ---
 name: Ishaan Dham
-role: Head Facilitator
+role: Facilitator
 email: ishaandham@berkeley.edu
 website: https://ishaandham.com
 photo: ishaan.jpg

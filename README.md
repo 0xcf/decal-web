@@ -42,7 +42,7 @@ The website should be served on http://localhost:4000 and will reflect changes t
 
 ### Developing on Supernova
 
-**This is method currently does not work.**
+**This method currently does not work.**
 
 1. SSH into supernova
 ```bash

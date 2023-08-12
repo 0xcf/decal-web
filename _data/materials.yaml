@@ -2,91 +2,60 @@
 # redirect to the provided link.
 
 - id: 1
-  date: 1/31/2023
+  date: 9/05/2023
   name: Intro to Linux, FOSS
-  slides: https://docs.google.com/presentation/d/1iXD7CfopTuDo4JsQ4E8rep0adJaKsI3LMSAXcAoKowU/edit?usp=sharing
-  video: https://youtu.be/z8jNU_kk3V8 
+  # slides: https://docs.google.com/presentation/d/1iXD7CfopTuDo4JsQ4E8rep0adJaKsI3LMSAXcAoKowU/edit?usp=sharing
+  # video: https://youtu.be/z8jNU_kk3V8 
   # solutions: 
-  labdue: Sat. 2/04
-  hidelink: false
+  # labdue: Sat. 2/04
+  hidelink: true
 
 - id: 2
-  date: 2/7/2023
+  date: 9/12/2023
   name: Core Shell & Shell Scripting
-  slides: https://docs.google.com/presentation/d/1DG4sbgUtxSwVnfZH-pJriyS0Zrc9C5kp7p4zway3Kp0/edit#slide=id.g1fdf073d99a_0_235
-  video: https://www.youtube.com/watch?v=7xAGcmhkflM
-  labdue: Sat. 2/18
-  hidelink: false
+  hidelink: true
 
 - id: 3
-  date: 2/14/2023
+  date: 9/19/2023
   name: Packages
-  hidelink: false
-  slides: https://docs.google.com/presentation/d/1yhLCVbVPIqhufsR6HAqH7Z2_sICdy_RTqiUwQhmAKsE/edit?usp=sharing
-  video: https://youtu.be/IMLPkfj_Hu4
-  labdue: Sat. 2/18
+  hidelink: true
 
 - id: 4
-  date: 2/21/2023
+  date: 9/26/2023
   name: Services
-  hidelink: false
-  slides: https://docs.google.com/presentation/d/15QamCeJRNG4ezZ2T1ovQQWrpSPTJahlJoszvJzIImvc/edit#slide=id.g1f06a453932_0_0
-  video: https://youtu.be/iVitjOyc8wk
-  labdue: Sat. 3/4
+  hidelink: true
 
 - id: 5
-  date: 2/28/2023
+  date: 10/03/2023
   name: Networking 101
-  hidelink: false
-  slides: https://docs.google.com/presentation/d/1m2Ur8Cp5aoAWAnC03s-gQQvmCN_sltz-WQvT6c5N2BI/edit?usp=sharing
-  video: https://youtu.be/WV7pwNURef0
-  labdue: Thurs. 3/16
+  hidelink: true
 
 - id: 6
-  date: 3/7/2023
+  date: 10/10/2023
   name: Web Servers
-  hidelink: false
-  slides: https://docs.google.com/presentation/d/1wxd7SWeIRT5YUc9HvfA9EZpcP7Y6jLe8P60FuRHc_-4/edit
-  video: https://drive.google.com/file/d/1HTtbgG5cOfj6aod8-osKKBlxToKClrnW/view?usp=sharing
-  labdue: Sat. 3/25
+  hidelink: true
 
 - id: 7
-  date: 3/14/2023
+  date: 10/17/2023
   name: Security Fundamentals
-  hidelink: false
-  slides: https://docs.google.com/presentation/d/1l53AOhxI3OIYpD1xTlUthZGF2S30Sb3QtfwKVeX28ag/edit?usp=sharing
-  video: 
-  labdue: Sat. 3/25
+  hidelink: true
 
 - id: 8
-  date: 3/21/2023
+  date: 10/24/2023
   name: Version Control (git) and Backups
-  slides: https://docs.google.com/presentation/d/1flD9fiZQdx32QM4imaAJ9X2v69Go88nzKxh-XuPzotk/edit?usp=sharing
-  video: https://www.youtube.com/watch?v=X4yGMr9c64U&ab_channel=EdricXiang
-  labdue: Sat. 4/8
-  hidelink: false
+  hidelink: true
 
 - id: 9
-  date: 4/4/2023
+  date: 10/31/2023
   name: Docker
-  labdue: Sat. 4/15
-  hidelink: false
-  slides: https://docs.google.com/presentation/d/1gSE3KluCwjaDv5YnhUi2Z8PAMYiKATujakv5dzGpRjQ/edit?usp=sharing
+  hidelink: true
 
 - id: 10
-  date: 4/11/2023
+  date: 11/07/2023
   name: Kubernetes
-  hidelink: false
-  labdue: Sat. 4/22
-  slides: https://docs.google.com/presentation/d/1KiUXv9z7NiHGHXVq2qjR9yxUpOcMMAHEIUOWGVyrKFs/edit#slide=id.gecfccbeaae_0_0
+  hidelink: true
 
 - id: 11
-  date: 4/18/2023
+  date: 11/14/2023
   name: Puppet (Optional Extra Lab)
-  hidelink: false
-  labdue: Sat. 4/29
-
-- id: 12
-  date: 4/25/2023
-  name: CUDA (Guest Lecture)
-  hidelink: false
+  hidelink: true

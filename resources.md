@@ -11,7 +11,7 @@ description: >-
 
 ## Reading
 
-* **[Reading List](https://docs.google.com/document/d/14AI1B4prCDhbAfvPjH2fvBWD5s-y6vv5SQw-zt7T2U4/edit)**
+* **[Reading List](https://docs.google.com/document/d/1WGkwR_5gA46KN2kBqnusYVIqz1NvNgjWGpqNezBMypE/edit?usp=sharing)**
 
 
 ## Staff Training
