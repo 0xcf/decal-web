@@ -2,7 +2,7 @@
 name: Benjamin Plate
 role: Facilitator
 email: bplate@berkeley.edu
-website: "" 
+ 
 photo: bplate.jpg
 ---
 

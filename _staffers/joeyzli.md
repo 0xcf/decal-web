@@ -2,8 +2,8 @@
 name: Joey Li
 role: Facilitator
 email: joeyzli@berkeley.edu
-website: "" 
-photo: waddles.png
+ 
+photo: joeyli.jpg
 ---
 
 average ricing enjoyer

@@ -2,7 +2,7 @@
 name: Luke Peters
 role: Facilitator
 email: lukepeters@berkeley.edu
-website: "" 
+ 
 photo: lukep.jpg
 ---
 
