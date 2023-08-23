@@ -27,7 +27,9 @@ seo:
 ## Week 0: 8/29/2023
 {: .text-gamma }
 
-**Infosession**{: .label .label-yellow} Date TBD @ OCF Lab ([171 MLK Student Union](https://www.ocf.berkeley.edu/docs/services/lab/)) / [ocf.io/decalzoom](https://ocf.io/decalzoom)
+**Infosession**{: .label .label-yellow} Tues 8/29 & Thurs 8/31, 7-9pm @ OCF Lab / [ocf.io/decalzoom](https://ocf.io/decalzoom)
+<br />
+**Lab**{: .label .label-blue}[Lab 0](lab0) due **Sat 9/2**
 </div>
 
 
