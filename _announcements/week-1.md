@@ -10,5 +10,5 @@ Here are some notes for the week:
 
 - Normal schedule begins this week.
 - The lecture is 7-8pm Tuesday, and the lab is 8-9pm Tuesday.
-- [Lab 1 is open](https://decal.ocf.berkeley.edu/lab1) and is **due 09/06 at 11:59PM PDT.**
+- [Lab 1 is open](https://decal.ocf.berkeley.edu/labs/1) and is **due 09/06 at 11:59PM PDT.**
 - Any questions? Let us know at [decal@ocf.berkeley.edu](mailto:decal@ocf.berkeley.edu)!
