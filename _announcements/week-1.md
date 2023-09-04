@@ -8,6 +8,7 @@ Hi all, this is our first official week for this semester's Linux SysAdmin decal
 
 Here are some notes for the week:
 
+- You should now have access to Ed and Gradescope!
 - Normal schedule begins this week.
 - The lecture is 7-8pm Tuesday, and the lab is 8-9pm Tuesday.
 - [Lab 1 is open](https://decal.ocf.berkeley.edu/labs/1) and is **due 09/06 at 11:59PM PDT.**
