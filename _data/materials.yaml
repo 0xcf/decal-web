@@ -3,12 +3,12 @@
 
 - id: 1
   date: 9/05/2023
-  name: Intro to Linux, FOSS
-  # slides: https://docs.google.com/presentation/d/1iXD7CfopTuDo4JsQ4E8rep0adJaKsI3LMSAXcAoKowU/edit?usp=sharing
+  name: History of UNIX, Intro to Linux, FOSS
+  slides: https://docs.google.com/presentation/d/1U5YeoCjcr-M2QxqRUv5juRmWM7gShoGL2dFGa9GvUq0/edit#slide=id.g25ffdc0247_0_17
   # video: https://youtu.be/z8jNU_kk3V8 
   # solutions: 
-  # labdue: Sat. 2/04
-  hidelink: true
+  labdue: Sat. 9/09
+  hidelink: false
 
 - id: 2
   date: 9/12/2023
