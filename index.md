@@ -50,9 +50,9 @@ seo:
     : **Lab due {{week.labdue}}**
 
 {% else %}
-
 **Lecture**{: .label .label-green}{{week.name}} : {% if week.video %}[Recording]({{week.video}}), {% endif %} {% if week.slides %}[Slides]({{week.slides}}){:target="_blank"}{% endif %}<br />
 **Lab**{: .label .label-blue}[Lab {{week.id}}](labs/{{week.id}}){% if week.labdue %} due **{{week.labdue}}**{% endif %}
+
 {% endif %}
 </div>
 {% endfor %}
