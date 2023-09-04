@@ -11,5 +11,6 @@ Here are some notes for the week:
 - Normal schedule begins this week (see calendar below).
 - Enrollment codes have been sent out!
 - You should now also have access to Ed and Gradescope. Please use Ed for class discussion!
-- [Lab 1 is open](https://decal.ocf.berkeley.edu/labs/1) and is **due 09/06 at 11:59PM PDT.**
+- [Lab 1 is open](https://decal.ocf.berkeley.edu/labs/1) and is **due 09/09 at 11:59PM PDT**.
+- Vitamin 1 will be released on Tuesday on Gradescope and will be **due Saturday 09/09 at 11:59PM PDT**.
 - Any questions? Post on Ed or reach us at [decal@ocf.berkeley.edu](mailto:decal@ocf.berkeley.edu)!
