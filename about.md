@@ -39,7 +39,7 @@ This is a **2 unit DeCal**. Since it is a DeCal, the course is P/NP. **You must 
 Official course communications will primarily be sent via email (through Ed announcements), and mirrored on the front page of the course website.
 
 There are several ways you can get in contact with course facilitators:
-1. Make a post on Ed. (best for conceptual/debugging/content help)
+1. Make a post on [Ed][ed]. (best for conceptual/debugging/content help)
 2. Send a message to #decal-general (or as a private message to a facilitator) either on [Slack][slack] or [Discord][discord]. (best for realtime communications)
 3. Email [decal@ocf.berkeley.edu][email]. (best for prospective students and matters that need to go on official record)
 
@@ -59,6 +59,8 @@ Each lecture corresponds with a lab and will be releasedon Sundays.
 Each lab will be due by the **Saturday, 11:59pm PST** after the lab section unless otherwise stated.
 
 **You must complete 10 labs to receive credit for taking the course.** The late due date for labs is 2 weeks after the original due date. You may submit up to 2 labs late throughout the semester without penalty.
+
+If you have not yet joined the Linux SysAdmin DeCal class on Gradescope, you can use the course entry code `PXVZ22` to do so.
 
 If you need to request an **excused lab extension or drop**, please fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSde6CIiaA1Z-U3vSxDU_AbmyyWKEVPKa-vhHEysltLsG2de3A/viewform). Doing so will not affect your two unexcused late labs.
 
@@ -93,6 +95,7 @@ The best way to get support with course content is to ask during scheduled lab t
 Email us at [decal@ocf.berkeley.edu][email].
 
 [email]: mailto:decal@ocf.berkeley.edu
+[ed]: https://edstem.org/us/join/SZPcwa
 [slack]: https://ocf.io/slack
 [discord]: https://ocf.io/discord
 
