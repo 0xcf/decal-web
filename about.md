@@ -49,7 +49,7 @@ Lectures for this course are synchronous (see the weekly schedule on the home pa
 We will do our best to provide recordings at the beginning of each week as well.
 There will be 10 total required lectures for each track, as well as one optional guest lecture.
 
-A short participation assignment will be released every week with some questions to check your understanding on lecture and reading. To receive participation credit for that week, you may either complete this assignment or attend lecture live. 7 out of 10 participation assignments must be completed over the semester (either by attending, or completing the assignment).
+A short participation assignment (vitamin) will be released every week with some questions to check your understanding on lecture and reading. We require 5 out of 10 of the vitamins to be completed, and if you compete all 10, we will grant you 1 lab drop.
 
 ## Lab Assignments
 The primary assignment in this course will be **weekly lab work**. Labs are designed to be be significantly hands-on. You will be working on real systems, configuring and fixing things, setting up services, and so on.
@@ -73,8 +73,8 @@ Lab sections will be held in the OCF lab (171 MLK, [click here](https://www.ocf.
 The following are required to receive credit for the course:
 * 10 completed lab assignments
     * Lab assignments are graded on completion, *not* correctness. Blank or otherwise extremely low-effort submissions (i.e. no visible attempt at answering the questions asked) will be considered incomplete.
-* 7 completed participation assignments
-    * You will have the option of either attending lecture live or answering questions about the lecture to receive credit for these assignments.
+* At least 5 completed participation assignments (vitamins)
+    * If you complete all 10 of the vitamins, we will grant you 1 lab drop.
 
 # FAQ
 
