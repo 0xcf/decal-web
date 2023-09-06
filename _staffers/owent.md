@@ -6,4 +6,4 @@ email: owent@berkeley.edu
 photo: owent.jpg
 ---
 
-I love Linux and I'm thrilled to get to teach you all more about it!
+anybody else installing gentoo at 2 am or is that just me
