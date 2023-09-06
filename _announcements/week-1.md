@@ -14,3 +14,4 @@ Here are some notes for the week:
 - [Lab 1 is open](https://decal.ocf.berkeley.edu/labs/1) and is **due 09/09 at 11:59PM PDT**.
 - Vitamin 1 will be released on Tuesday on Gradescope and will be **due Saturday 09/09 at 11:59PM PDT**.
 - Any questions? Post on Ed or reach us at [decal@ocf.berkeley.edu](mailto:decal@ocf.berkeley.edu)!
+- Need access to the Ed or Gradescope? Join the Ed [here](https://edstem.org/us/join/SZPcwa), and you can join the Gradescope using code **PXVZ22**.
