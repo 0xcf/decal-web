@@ -6,4 +6,4 @@ email: rjz@berkeley.edu
 photo: rjz.png
 ---
 
-Hi! I'm Jonathan, or you can call me rjz. Excited to be facilitating this semester!
+5261696E 626F7720 44617368 20697320 62657374 20706F6E 65
