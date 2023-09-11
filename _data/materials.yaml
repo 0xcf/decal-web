@@ -4,7 +4,7 @@
 - id: 1
   date: 9/05/2023
   name: History of UNIX, Intro to Linux, FOSS
-  slides: https://docs.google.com/presentation/d/1U5YeoCjcr-M2QxqRUv5juRmWM7gShoGL2dFGa9GvUq0/edit#slide=id.g25ffdc0247_0_17
+  slides: https://docs.google.com/presentation/d/1U5YeoCjcr-M2QxqRUv5juRmWM7gShoGL2dFGa9GvUq0/edit?usp=sharing
   video: https://youtu.be/lOV1b4CFlKs 
   # solutions: 
   labdue: Sat. 9/09
@@ -13,7 +13,9 @@
 - id: 2
   date: 9/12/2023
   name: Core Shell & Shell Scripting
-  hidelink: true
+  slides: https://docs.google.com/presentation/d/1SYoC8j1qiM4CuhSArouJbhLpUfDAfyuFMF8r7R4Y0_Y/edit?usp=sharing
+  labdue: Sat. 9/16
+  hidelink: false
 
 - id: 3
   date: 9/19/2023
