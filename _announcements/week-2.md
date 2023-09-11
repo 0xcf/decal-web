@@ -4,7 +4,7 @@ week: 2
 date: 2023-09-10
 ---
 
-Hi everyone, we’re entering the second week of the DeCal! At this point, you should have turned in your first lab at Gradescope and we’ll be taking a look and grading them soon.
+Hi everyone, we're entering the second week of the DeCal! At this point, you should have turned in your first lab at Gradescope and we’ll be taking a look and grading them soon.
 
 Weekly notes:
 
