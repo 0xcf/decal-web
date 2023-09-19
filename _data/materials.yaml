@@ -21,7 +21,9 @@
 - id: 3
   date: 9/19/2023
   name: Packages
-  hidelink: true
+  slides: https://docs.google.com/presentation/d/1SPb5rikbwzZVESFsTwfwnvl20TJGqlfyvmwHBmIOUr8/edit?usp=sharing
+  labdue: Sat. 9/23
+  hidelink: false
 
 - id: 4
   date: 9/26/2023
