@@ -1,7 +1,7 @@
 ---
-title: Week 3 Announcement
-week: 3
-date: 2023-09-17
+title: Week 4 Announcement
+week: 4
+date: 2023-09-24
 ---
 
 Hello fellow Linux enjoyers, it is now Week 4 of the DeCal! This week we are discussing Services and Processes! :O
