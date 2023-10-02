@@ -37,7 +37,9 @@
 - id: 5
   date: 10/03/2023
   name: Networking 101
-  hidelink: true
+  slides: https://docs.google.com/presentation/d/1dcsymJQBGUImbuY3nIi7B5Ypq5AFk-QrfOq2-vD2BE8/edit
+  labdue: Sat. 10/7
+  hidelink: false
 
 - id: 6
   date: 10/10/2023
