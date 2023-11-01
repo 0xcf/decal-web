@@ -62,12 +62,14 @@
   date: 10/24/2023
   name: Version Control (git) and Backups
   slides: https://docs.google.com/presentation/d/1HJCgPlDlFCusGYAQePZMJD8EpDZOICqG59y6HWpeyX0/edit
+  video: https://youtu.be/2P00pRt_Qjw
   labdue: Sat. 10/28
   hidelink: false
 
 - id: 9
   date: 10/31/2023
   name: Docker
+  slides: https://docs.google.com/presentation/d/1zwtj3KFmBjIGyTXdaUnxxzn4CL1I7Ded1hnm9eCYajc/edit?usp=sharing
   labdue: Sat. 11/4
   hidelink: false
 
