@@ -84,4 +84,5 @@
 - id: 11
   date: 11/14/2023
   name: Puppet (Optional Extra Lab)
-  hidelink: true
+  hidelink: false
+  slides: https://docs.google.com/presentation/d/13XWdd45NGob8rrO0p5EgK2qyAFSfGzN_-WFPCVoO87w/edit?usp=sharing
