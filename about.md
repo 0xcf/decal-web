@@ -54,13 +54,13 @@ A short participation assignment (vitamin) will be released every week with some
 ## Lab Assignments
 The primary assignment in this course will be **weekly lab work**. Labs are designed to be be significantly hands-on. You will be working on real systems, configuring and fixing things, setting up services, and so on.
 
-Each lecture corresponds with a lab and will be releasedon Sundays. 
+Each lecture corresponds with a lab and will be releasedon Sundays.
 
 Each lab will be due by the **Saturday, 11:59pm PST** after the lab section unless otherwise stated.
 
 **You must complete 10 labs to receive credit for taking the course.** The late due date for labs is 2 weeks after the original due date. You may submit up to 2 labs late throughout the semester without penalty.
 
-If you need to request an **excused lab extension or drop**, please fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSde6CIiaA1Z-U3vSxDU_AbmyyWKEVPKa-vhHEysltLsG2de3A/viewform). Doing so will not affect your two unexcused late labs.
+If you need to request an **excused lab extension or drop**, please fill out [this form](https://forms.gle/GDDa5ixTnYQxG5zU9). Doing so will not affect your two unexcused late labs.
 
 You are *highly encouraged* to look over the lab, and try to start it, *before* coming to live lab sections each week. This will allow you to better utilize the help of the facilitators.
 
