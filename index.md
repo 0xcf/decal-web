@@ -24,12 +24,12 @@ seo:
 # Calendar
 
 <div class="module" markdown="1">
-## Week 0: 8/29/2023
+## Week 0: 1/23/2024
 {: .text-gamma }
 
-**Infosession**{: .label .label-yellow} Tues 8/29 & Thurs 8/31, 7-9pm @ OCF Lab / [ocf.io/decalzoom](https://ocf.io/decalzoom)
+**Infosession**{: .label .label-yellow} Tues 1/23 & Thurs 1/25, 7-8pm @ OCF Lab / [ocf.io/decalzoom](https://ocf.io/decalzoom)
 <br />
-**Lab**{: .label .label-blue}[Lab 0](lab0) due **Sat 9/2**
+**Lab**{: .label .label-blue}[Lab 0](lab0) due **Sat. 1/27**
 </div>
 
 
@@ -44,7 +44,7 @@ seo:
 **Lab**{: .label .label-blue}Lab {{week.id}}
 
 {% elsif week.solutions %}
-**Lecture**{: .label .label-green}[{{week.name}}]({{week.video}}) 
+**Lecture**{: .label .label-green}[{{week.name}}]({{week.video}})
     : [Slides]({{week.slides}}){:target="_blank"}
 : **Lab**{: .label .label-blue}[Lab {{week.id}}](labs/b{{week.id}}) &nbsp; &nbsp; [(Solution)]({{week.solutions}})
     : **Lab due {{week.labdue}}**
