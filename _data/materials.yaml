@@ -5,7 +5,7 @@
   date: 1/30/2024
   name: History of UNIX, Intro to Linux, FOSS
   labdue: Sat. 2/3
-  hidelink: true
+  hidelink: false
 
 - id: 2
   date: 2/06/2024
