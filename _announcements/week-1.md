@@ -1,7 +1,7 @@
 ---
 title: Week 1 Announcement
 week: 1
-date: 2023-01-30
+date: 2024-01-30
 ---
 
 Hi all, this is our first official week for this semester's Linux SysAdmin
