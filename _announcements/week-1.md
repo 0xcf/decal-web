@@ -15,7 +15,7 @@ engaging!
 Here are some notes for the week:
 
 - Normal schedule begins this week (see calendar below).
-- We will maintain rolling admission to the DeCal for the next 1-2 weeks, so fill out [Lab 0](https://forms.gle/rdhQ48jTEvqPf8Lz9) as soon as possible if you'd like to enroll!
+- We will maintain rolling admission to the DeCal for the next 1-2 weeks, so fill out [Lab 0](https://decal.ocf.berkeley.edu/lab0) as soon as possible if you'd like to enroll!
 - Enrollment codes will be sent out today.
 - You should now also have access to Ed and Gradescope. Please use Ed for class discussion!
 - [Lab 1 is open](https://decal.ocf.berkeley.edu/labs/1) and is **due 02/03 at 11:59PM PST**.
