@@ -4,6 +4,8 @@
 - id: 1
   date: 1/30/2024
   name: History of UNIX, Intro to Linux, FOSS
+  video: https://drive.google.com/file/d/1X7hQWD_a9ld6V5XlKmQRxiwyG5wD8Pq6/view?usp=sharing
+  slides: https://docs.google.com/presentation/d/1zIyPK5NIqKp9F5u-_qIepgwFeR3CffajOMrTv0S5UQM/edit?usp=sharing
   labdue: Sat. 2/3
   hidelink: false
 
