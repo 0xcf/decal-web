@@ -12,8 +12,9 @@
 - id: 2
   date: 2/06/2024
   name: Core Shell & Shell Scripting
+  slides: https://docs.google.com/presentation/d/1Tlj4ilyJg8svzFJpKHEx3bbEhdybx8DZYB1g6QoX7Wk/edit?usp=sharing
   labdue: Sat. 2/10
-  hidelink: true
+  hidelink: false
 
 - id: 3
   date: 2/13/2024
