@@ -19,8 +19,9 @@
 - id: 3
   date: 2/13/2024
   name: Packages
+  slides: https://docs.google.com/presentation/d/1d81JbQdpG2WzppmMHEYIZORARoXIUdb8gOUZxBOK_44/edit?usp=sharing 
   labdue: Sat. 2/17
-  hidelink: true
+  hidelink: false
 
 - id: 4
   date: 2/20/2024
