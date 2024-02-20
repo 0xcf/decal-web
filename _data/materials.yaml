@@ -12,6 +12,7 @@
 - id: 2
   date: 2/06/2024
   name: Core Shell & Shell Scripting
+  video: https://drive.google.com/file/d/1X7hQWD_a9ld6V5XlKmQRxiwyG5wD8Pq6/view?usp=sharing
   slides: https://docs.google.com/presentation/d/1Tlj4ilyJg8svzFJpKHEx3bbEhdybx8DZYB1g6QoX7Wk/edit?usp=sharing
   labdue: Sat. 2/10
   hidelink: false
@@ -19,6 +20,7 @@
 - id: 3
   date: 2/13/2024
   name: Packages
+  video: https://drive.google.com/file/d/1B611L7GGbevdHPWkCZRAEZRFRJwMSv7I/view?usp=sharing
   slides: https://docs.google.com/presentation/d/1d81JbQdpG2WzppmMHEYIZORARoXIUdb8gOUZxBOK_44/edit?usp=sharing 
   labdue: Sat. 2/17
   hidelink: false
@@ -26,8 +28,9 @@
 - id: 4
   date: 2/20/2024
   name: Services
+  slides: https://docs.google.com/presentation/d/1ZBSpFWgr4vFcP1RJ137MIfHOvmyRHc-abl0ZMznLo5s/edit?usp=sharing
   labdue: Sat. 2/24
-  hidelink: true
+  hidelink: false
 
 - id: 5
   date: 2/27/2024
