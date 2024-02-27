@@ -36,8 +36,9 @@
 - id: 5
   date: 2/27/2024
   name: Networking 101
+  slides: https://docs.google.com/presentation/d/1iYbjWRzEQWB7xT9iaNYZuf9RWLxJnyQKG9R1-cKerYU/edit?usp=sharing
   labdue: Sat. 3/2
-  hidelink: true
+  hidelink: false
 
 - id: 6
   date: 3/05/2024
