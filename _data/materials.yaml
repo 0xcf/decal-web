@@ -52,8 +52,9 @@
 - id: 7
   date: 3/12/2024
   name: Security Fundamentals
+  slides: https://docs.google.com/presentation/d/1ARhbPMI5p8lhwWZwSD7DBMasRdMC2F5vO6LfCW6btSY/edit?usp=sharing
   labdue: Sat. 3/16
-  hidelink: true
+  hidelink: false
 
 - id: 8
   date: 3/19/2024
