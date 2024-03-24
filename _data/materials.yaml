@@ -52,7 +52,7 @@
 - id: 7
   date: 3/12/2024
   name: Security Fundamentals
-  video: https://drive.google.com/file/d/1ORXLg44pWPrEfxcV4BiqSJr15NNn7pV4/view?usp=sharing 
+  video: https://drive.google.com/file/d/1ORXLg44pWPrEfxcV4BiqSJr15NNn7pV4/view?usp=sharing
   slides: https://docs.google.com/presentation/d/1ARhbPMI5p8lhwWZwSD7DBMasRdMC2F5vO6LfCW6btSY/edit?usp=sharing
   labdue: Sat. 3/16
   hidelink: false
@@ -62,7 +62,7 @@
   name: Version Control (git) and Backups
   video: https://www.youtube.com/watch?v=2P00pRt_Qjw
   slides: https://docs.google.com/presentation/d/19ydexOl-H9yI49Fs-P7hF6P6OdSDHJehUB2KEt2rjyA/edit?usp=sharing
-  labdue: Sat. 3/23
+  labdue: Sat. 3/30
   hidelink: false
 
 - id: 9
