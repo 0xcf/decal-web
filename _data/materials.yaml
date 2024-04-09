@@ -74,8 +74,9 @@
 - id: 10
   date: 4/09/2024
   name: Puppet
-  labdue: Sat. 4/27
-  hidelink: true
+  slides: https://docs.google.com/presentation/d/1cKYJh0hAFjGkcFURlHS8U8xoyakSI-LBrq6-WnyrgZI/edit?usp=sharing
+  labdue: Sat. 4/13
+  hidelink: false
 
 - id: 11
   date: 4/16/2024
