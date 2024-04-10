@@ -9,6 +9,7 @@ Where did the time go?! It's already Week 10, Puppet! And to think just two mont
 - There is no Vitamin 10 for this week! See [the ed post](https://edstem.org/us/courses/54016/discussion/4731691) for more information.
 - Normal schedule, Lecture + Lab at **Tuesday 4/09 7-9PM PDT**
 	- The slides are available [here](https://docs.google.com/presentation/d/1cKYJh0hAFjGkcFURlHS8U8xoyakSI-LBrq6-WnyrgZI/edit?usp=sharing)
+	- I forgot to share my screen during the lecture! Just.. play the audio while you have the slideshow open.
 - Lab 10 has been released and can be accessed below.
 	- Please use the corresponding [Ed thread for Lab 10](https://edstem.org/us/courses/54016/discussion/4726200) related questions
 	- It has been released on Gradescope and will be **due Saturday 04/13 at 11:59PM PDT**.
