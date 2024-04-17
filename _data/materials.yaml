@@ -84,6 +84,7 @@
 - id: 11
   date: 4/16/2024
   name: Kubernetes (Optional Extra Lab)
+  video: https://drive.google.com/file/d/1LcnTJxIiX-Z6WThdVJNvtpLe3TBJimjF/view?usp=sharing
   slides: https://docs.google.com/presentation/d/1DFdoH7wTWrpySJ-OW5QIro62Lll087GqduOQrHyQ5G0/edit?usp=sharing
   labdue: Sat. 4/20
   hidelink: false
