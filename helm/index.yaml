@@ -1,0 +1,58 @@
+apiVersion: v1
+entries:
+  mocktail:
+  - apiVersion: v2
+    appVersion: 2.0.3
+    created: "2024-04-17T18:35:14.897213917-07:00"
+    description: Free, 11mb, mock API server with a dashboard.
+    digest: 454f2527e9829a5201001aeb9b62118ba69d002b32c075786ae9d3ea01c6c482
+    icon: https://repository-images.githubusercontent.com/258341966/9ca586dd-f169-4297-a889-f1fdb18d3415
+    name: mocktail
+    type: application
+    urls:
+    - https://decal.ocf.berkeley.edu/helm/mocktail-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
+    appVersion: 2.0.3
+    created: "2024-04-17T18:35:14.895756895-07:00"
+    description: Free, 11mb, mock API server with a dashboard.
+    digest: 76c44df33fd4a961783e0dff577ab8252c7c2aa4598ab589fc9867d03ef4ec1d
+    icon: https://repository-images.githubusercontent.com/258341966/9ca586dd-f169-4297-a889-f1fdb18d3415
+    name: mocktail
+    type: application
+    urls:
+    - https://decal.ocf.berkeley.edu/helm/mocktail-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 2.0.3
+    created: "2024-04-17T18:35:14.893948211-07:00"
+    description: Free, 11mb, mock API server with a dashboard.
+    digest: 22561ed7c377d7ed3f9934b5f658e9b7bda9730ba8915ec80d80af83fdb3518b
+    icon: https://repository-images.githubusercontent.com/258341966/9ca586dd-f169-4297-a889-f1fdb18d3415
+    name: mocktail
+    type: application
+    urls:
+    - https://decal.ocf.berkeley.edu/helm/mocktail-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 2.0.2
+    created: "2024-04-17T18:35:14.892215142-07:00"
+    description: Free, 11mb, mock API server with a dashboard.
+    digest: dedebdbe4180decf8c0251c59c54c91e52d2d9a9959efbd160682ed7730e2d9c
+    icon: https://repository-images.githubusercontent.com/258341966/9ca586dd-f169-4297-a889-f1fdb18d3415
+    name: mocktail
+    type: application
+    urls:
+    - https://decal.ocf.berkeley.edu/helm/mocktail-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2024-04-17T18:35:14.890186403-07:00"
+    description: Free & fancy mock API server with dashboard.
+    digest: 8a73893961a575881e0ba0392bc72d75cd11bf65029ddff686c36b854fb65a4d
+    name: mocktail
+    type: application
+    urls:
+    - https://decal.ocf.berkeley.edu/helm/mocktail-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-04-17T18:35:14.8870919-07:00"
