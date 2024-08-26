@@ -1,5 +1,6 @@
 ---
 name: Kian
+pronouns: he/him/his
 role: Head Facilitator
 email: kian@ocf.berkeley.edu
 

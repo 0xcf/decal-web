@@ -24,12 +24,12 @@ seo:
 # Calendar
 
 <div class="module" markdown="1">
-## Week 0: 1/23/2024
+## Week 0: 9/3/2024
 {: .text-gamma }
 
-**Infosession**{: .label .label-yellow} Tues 1/23 & Thurs 1/25, 7-8pm @ OCF Lab / [ocf.io/decalzoom](https://ocf.io/decalzoom)
+**Infosession**{: .label .label-yellow} Tues 9/3 & Thurs 9/5, 7-8pm @ OCF Lab / [ocf.io/decalzoom](https://ocf.io/decalzoom)
 <br />
-**Lab**{: .label .label-blue}[Lab 0](lab0) due **Sat. 1/27**
+**Lab**{: .label .label-blue}[Lab 0](lab0) due **Sat. 9/7**
 </div>
 
 

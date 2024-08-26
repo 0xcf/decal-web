@@ -2,89 +2,67 @@
 # redirect to the provided link.
 
 - id: 1
-  date: 1/30/2024
+  date: 9/10/2024
   name: History of UNIX, Intro to Linux, FOSS
-  video: https://drive.google.com/file/d/1X7hQWD_a9ld6V5XlKmQRxiwyG5wD8Pq6/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/1zIyPK5NIqKp9F5u-_qIepgwFeR3CffajOMrTv0S5UQM/edit?usp=sharing
-  labdue: Sat. 2/3
-  hidelink: false
+  labdue: Sat. 9/14
+  hidelink: true
 
 - id: 2
-  date: 2/06/2024
+  date: 9/17/2024
   name: Core Shell & Shell Scripting
-  video: https://drive.google.com/file/d/1M2w4sTalERv-oC9_HTJsn47veHnhPRig/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/1Tlj4ilyJg8svzFJpKHEx3bbEhdybx8DZYB1g6QoX7Wk/edit?usp=sharing
-  labdue: Sat. 2/10
-  hidelink: false
+  labdue: Sat. 9/21
+  hidelink: true
 
 - id: 3
-  date: 2/13/2024
+  date: 9/24/2024
   name: Packages
-  video: https://drive.google.com/file/d/1B611L7GGbevdHPWkCZRAEZRFRJwMSv7I/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/1d81JbQdpG2WzppmMHEYIZORARoXIUdb8gOUZxBOK_44/edit?usp=sharing
-  labdue: Sat. 2/17
-  hidelink: false
+  labdue: Sat. 9/28
+  hidelink: true
 
 - id: 4
-  date: 2/20/2024
+  date: 10/01/2024
   name: Services
-  video: https://drive.google.com/file/d/1LeLF6B8ycBKYc-04nly5k6beQTPgMCMU/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/1ZBSpFWgr4vFcP1RJ137MIfHOvmyRHc-abl0ZMznLo5s/edit?usp=sharing
-  labdue: Sat. 2/24
-  hidelink: false
+  labdue: Sat. 10/5
+  hidelink: true
 
 - id: 5
-  date: 2/27/2024
+  date: 10/08/2024
   name: Networking 101
-  slides: https://docs.google.com/presentation/d/1iYbjWRzEQWB7xT9iaNYZuf9RWLxJnyQKG9R1-cKerYU/edit?usp=sharing
-  video: https://drive.google.com/file/d/1OQjIbc1dMbTrEXODH1Uo-ckaSjYyFe8o/view?usp=sharing
-  labdue: Sat. 3/2
-  hidelink: false
+  labdue: Sat. 10/12
+  hidelink: true
 
 - id: 6
-  date: 3/05/2024
+  date: 10/15/2024
   name: Web Servers
-  video: https://drive.google.com/file/d/1CieQXXB4N887ueckcqlu8x8JlQRbRzVV/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/1cmaVrQP-uPQUKw0iojv_w51fW4a_Eu9q29na7LD64Pk/edit?usp=sharing
-  labdue: Sat. 3/9
-  hidelink: false
+  labdue: Sat. 10/19
+  hidelink: true
 
 - id: 7
-  date: 3/12/2024
+  date: 10/22/2024
   name: Security Fundamentals
-  video: https://drive.google.com/file/d/1ORXLg44pWPrEfxcV4BiqSJr15NNn7pV4/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/1ARhbPMI5p8lhwWZwSD7DBMasRdMC2F5vO6LfCW6btSY/edit?usp=sharing
-  labdue: Sat. 3/16
-  hidelink: false
+  labdue: Sat. 10/26
+  hidelink: true
 
 - id: 8
-  date: 3/19/2024
+  date: 10/29/2024
   name: Version Control (git) and Backups
-  video: https://www.youtube.com/watch?v=2P00pRt_Qjw
-  slides: https://docs.google.com/presentation/d/19ydexOl-H9yI49Fs-P7hF6P6OdSDHJehUB2KEt2rjyA/edit?usp=sharing
-  labdue: Sat. 3/30
-  hidelink: false
+  labdue: Sat. 11/2
+  hidelink: true
 
 - id: 9
-  date: 4/02/2024
+  date: 11/05/2024
   name: Docker
-  video: https://drive.google.com/file/d/14TLe8_DHQZWnHd6tMbMM6V3A0Mh5C1mx/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/17CuazMDADm6GTFOhZjvKmQ6p_WA758sVods5fuAOuMM/edit?usp=sharing
-  labdue: Sat. 4/6
-  hidelink: false
+  labdue: Sat. 11/9
+  hidelink: true
 
 - id: 10
-  date: 4/09/2024
+  date: 11/12/2024
   name: Puppet
-  video: https://drive.google.com/file/d/19Dn2S7JnZTMWRntLwIk5qMXGG58Fb-8D/view?usp=drive_link
-  slides: https://docs.google.com/presentation/d/1cKYJh0hAFjGkcFURlHS8U8xoyakSI-LBrq6-WnyrgZI/edit?usp=sharing
-  labdue: Sat. 4/13
-  hidelink: false
+  labdue: Sat. 11/16
+  hidelink: true
 
 - id: 11
-  date: 4/16/2024
+  date: 11/19/2024
   name: Kubernetes (Optional Extra Lab)
-  video: https://drive.google.com/file/d/1LcnTJxIiX-Z6WThdVJNvtpLe3TBJimjF/view?usp=sharing
-  slides: https://docs.google.com/presentation/d/1DFdoH7wTWrpySJ-OW5QIro62Lll087GqduOQrHyQ5G0/edit?usp=sharing
-  labdue: Sat. 4/20
-  hidelink: false
+  labdue: Sat. 12/7
+  hidelink: true
