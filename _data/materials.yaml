@@ -5,7 +5,8 @@
   date: 9/10/2024
   name: History of UNIX, Intro to Linux, FOSS
   labdue: Sat. 9/14
-  hidelink: true
+  hidelink: false
+  slides: https://docs.google.com/presentation/d/13i-6I3ckGnPWxQHxvDj3qDx6lHoW1OUU_gZO_iJMDqA/edit?usp=sharing
 
 - id: 2
   date: 9/17/2024
