@@ -4,7 +4,7 @@ week: 2
 date: 2024-09-16
 ---
 
-Welcome to week 2, sysadmins! We'll be learning about the shell and shell scripting this week, facilitated by Jaysa and Albert. As usual, lecture and lab will be held in MLK 171 and online at https://ocf.io/decalzoom on Tuesday from 7-9pm.
+Welcome to week 2, sysadmins! We'll be learning about the shell and shell scripting this week, facilitated by Jaysa and Albert. As usual, lecture and lab will be held in MLK 171 and online at [ocf.io/decalzoom](https://ocf.io/decalzoom) on Tuesday from 7-9pm.
 
 - Applications are now closed for the DeCal but if you would like to audit you can still follow along on this website!
 - If you need extra time to complete lab 1 or you anticipate needing more time to finish lab 2, please fill out the [late lab form](/latelab).
