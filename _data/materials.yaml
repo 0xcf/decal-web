@@ -20,7 +20,8 @@
   date: 9/24/2024
   name: Packages
   labdue: Sat. 9/28
-  hidelink: true
+  hidelink: false
+  slides: https://docs.google.com/presentation/d/1Yp1n8SpI3YowEfS7rg0J31ewp5r3tihMDGArhEez2P0/edit?usp=sharing
 
 - id: 4
   date: 10/01/2024
