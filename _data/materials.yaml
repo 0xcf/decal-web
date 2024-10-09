@@ -37,7 +37,8 @@
   date: 10/08/2024
   name: Networking 101
   labdue: Sat. 10/12
-  hidelink: true
+  hidelink: false
+  slides: https://docs.google.com/presentation/d/1hy0Sjz96PZ6zM4bW1_75ySEj0-WlPDt_Iy3V8TZidB0/edit?usp=sharing
 
 - id: 6
   date: 10/15/2024
