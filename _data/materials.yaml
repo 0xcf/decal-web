@@ -45,7 +45,7 @@
   date: 10/15/2024
   name: Web Servers
   labdue: Sat. 10/19
-  hidelink: true
+  hidelink: false
 
 - id: 7
   date: 10/22/2024
