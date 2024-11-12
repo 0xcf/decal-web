@@ -77,7 +77,7 @@
   date: 11/12/2024
   name: Puppet
   labdue: Sat. 11/16
-  hidelink: true
+  hidelink: false
 
 - id: 11
   date: 11/19/2024
