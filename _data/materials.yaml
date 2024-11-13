@@ -78,7 +78,9 @@
   name: Puppet
   labdue: Sat. 11/16
   hidelink: false
-
+  slides: https://docs.google.com/presentation/d/1wt_ICWaf7wctNggNwMK1UtCzsSFEWC9pBpLvaHZXWh4/edit?usp=drive_link
+  video: https://drive.google.com/file/d/1E7FxpHymYYFyEozicyLaXM_33QogD14h/view?usp=sharing
+  
 - id: 11
   date: 11/19/2024
   name: Kubernetes (Optional Extra Lab)
