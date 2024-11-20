@@ -85,4 +85,5 @@
   date: 11/19/2024
   name: Kubernetes (Optional Extra Lab)
   labdue: Sat. 12/7
-  hidelink: true
+  hidelink: false
+  slides: https://docs.google.com/presentation/d/1uTm_eCEyO1MtyulFfnKINFas2ZmSuj_4qXIM-mMXo7c/edit#slide=id.g16a0678e40a_0_234
