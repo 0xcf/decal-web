@@ -5,7 +5,7 @@ date: 2025-1-23
 ---
 
 1. The Linux SysAdmin Decal is back for Spring 2025!
-1. **To enroll, [fill out lab 0 here](https://docs.google.com/forms/u/3/d/1pTDvGX2f6eB2zoTSv757TWVvjFBa1jFCX25Y5hZTH2A/edit)!** Lab 0 is due **Saturday, Feb. 1st at 11:59pm** and enrollment keys will be sent to those who complete it.
+1. **To enroll, [fill out lab 0 here](https://forms.gle/eEzeC3w4N9hmeMDA7)!** Lab 0 is due **Saturday, Feb. 1st at 11:59pm** and enrollment keys will be sent to those who complete it.
 1. Learn more about the course at the [about page](/about).
 1. Any questions? Contact us at [decal@ocf.berkeley.edu](mailto:decal@ocf.berkeley.edu)!
 1. Looking for a previous semester's materials? You can view it in the [archive](/archive).
