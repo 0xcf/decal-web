@@ -5,7 +5,11 @@ email: jaysa@ocf.berkeley.edu
 
 photo: jaysa.jpg
 ---
+go to [jaysa.net](https://jaysa.net/)
 
-Stay low, go fast, kill first, die last, one shot, one kill, no luck, all skill
-
-go to [jaysa.net](https://jaysa.net)!
+kill first
+die last
+one shot
+one kill
+no luck
+pure skill
