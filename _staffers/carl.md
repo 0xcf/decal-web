@@ -6,4 +6,4 @@ email: erdaifuu@ocf.berkeley.edu
 photo: carl.jpg
 ---
 
-(*^ω^*) （╹◡╹） :3
+(^ω^) （╹◡╹） :3
