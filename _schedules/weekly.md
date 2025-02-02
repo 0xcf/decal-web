@@ -14,7 +14,7 @@ schedule:
       - name: Lecture
         start: 7:00 PM
         end: 8:00 PM
-        location: OCF Lab / ocf.io/decalzoom
+        location: OCF Lab
       - name: Lab
         start: 8:00 PM
         end: 9:00 PM
