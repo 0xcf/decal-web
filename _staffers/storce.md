@@ -3,7 +3,7 @@ name: Joe Wang
 role: Facilitator
 email: storce@ocf.berkeley.edu
 
-photo: storce.jpg
+photo: storce_updated.jpg
 ---
 
-Joe is a staff member at the OCF, passionate about system administration
+OCF is hella chill
