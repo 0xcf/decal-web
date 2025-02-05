@@ -13,7 +13,7 @@
   date: 2/11/2025
   name: Core Shell & Shell Scripting
   labdue: Sat. 2/15
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1Dyl3jHdQSFAc9nw3k4rFDUbLse7_mTnsvdSPcBNbiY4/edit?usp=sharing
   video: https://drive.google.com/file/d/1MLXH352y_9axpAuGpJbnE373dL4GL6CP/view?usp=sharing
 
@@ -21,7 +21,7 @@
   date: 2/18/2025
   name: Packages
   labdue: Sat. 2/22
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1Yp1n8SpI3YowEfS7rg0J31ewp5r3tihMDGArhEez2P0/edit?usp=sharing
   video: https://drive.google.com/file/d/1uWFC1QA6epnSVceP24RDquSZwtEwKBvx/view?usp=sharing
 
@@ -29,7 +29,7 @@
   date: 2/25/2025
   name: Services
   labdue: Sat. 3/1
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1wzExKq-Yp73b6KJh-hrp2HhumV-q2-i9XG_f5WPOahY/edit?usp=sharing
   video: https://drive.google.com/file/d/1qrOXlC-HgkgOJU83DU2ZO4SZVJSamMUF/view?usp=sharing
 
@@ -37,7 +37,7 @@
   date: 3/04/2025
   name: Networking 101
   labdue: Sat. 3/8
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1hy0Sjz96PZ6zM4bW1_75ySEj0-WlPDt_Iy3V8TZidB0/edit?usp=sharing
   video: https://drive.google.com/file/d/1KQKB1eIiyaf7anYlAIzbZbn27Fosycox/view?usp=drive_link
 
@@ -45,7 +45,7 @@
   date: 3/11/2025
   name: Web Servers
   labdue: Sat. 3/15
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1Sh6LRMcK2mYpc5uyZyEW-y1b67OkCnJGtJ-rDS8zAvE/edit?usp=sharing
   video: https://drive.google.com/file/d/1tvoCGwVa8sh5a4XKTvbeaZG14xXgdciI/view?usp=sharing
 
@@ -53,7 +53,7 @@
   date: 3/18/2025
   name: Security Fundamentals
   labdue: Sat. 3/22
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1XTRZHRRrJ-Z4_y_m7AFeTB6kp_O75U9uBSRmEnhQwPU/edit?usp=sharing
   video: https://drive.google.com/file/d/1AbP-xxG6wgiCoVzGgOQ5WxmAyuZVTZ-o/view?usp=drive_link
 
@@ -61,7 +61,7 @@
   date: 4/01/2025
   name: Version Control (git) and Backups
   labdue: Sat. 4/5
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1O1K2cOcceOO5YGFKucTSANdrn_Rec2DCdWdFpNiknRA/edit?usp=sharing
   video: https://www.youtube.com/watch?v=2P00pRt_Qjw
 
@@ -69,7 +69,7 @@
   date: 4/08/2025
   name: Docker
   labdue: Sat. 4/12
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1JA7zQyNSQX-nYEjMQ5meDI_8k1xnZB-cx_wD7FAIh7s/edit?usp=drive_link
   video: https://drive.google.com/file/d/1K4UGdqlY2xlQH1UXlsoW6d3cf8WaawuT/view?usp=drive_link
 
@@ -77,7 +77,7 @@
   date: 4/15/2025
   name: Puppet
   labdue: Sat. 4/19
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1wt_ICWaf7wctNggNwMK1UtCzsSFEWC9pBpLvaHZXWh4/edit?usp=drive_link
   video: https://drive.google.com/file/d/1E7FxpHymYYFyEozicyLaXM_33QogD14h/view?usp=sharing
   
@@ -85,6 +85,6 @@
   date: 4/22/2025
   name: Kubernetes (Optional Extra Lab)
   labdue: Sat. 4/26
-  hidelink: false
+  hidelink: true
   slides: https://docs.google.com/presentation/d/1uTm_eCEyO1MtyulFfnKINFas2ZmSuj_4qXIM-mMXo7c/edit#slide=id.g16a0678e40a_0_234
   video: https://drive.google.com/file/d/1oVnU6N3511RHEL-tY2Qb4srw4gwpf3m4/view?usp=sharing
