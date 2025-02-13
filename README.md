@@ -1,3 +1,8 @@
+# THIS REPO HAS BEEN ARCHIVED 
+The current repo can be found at [ocf/decal-web](https://github.com/ocf/decal-web)
+
+
+
 # OCF/XCF Linux SysAdmin DeCal Website
 
 [![Build Status](https://jenkins.ocf.berkeley.edu/buildStatus/icon?job=decal-web/master)](https://jenkins.ocf.berkeley.edu/job/decal-web/)
